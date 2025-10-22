@@ -1,13 +1,13 @@
 @font-face {
-  font-family: "Atkinson Hyperlegible Next Regular";
-  src: url("../assets/fonts/AtkinsonHyperlegibleNext-Regular.ttf");
+  font-family: 'Atkinson Hyperlegible Next Regular';
+  src: url('../assets/fonts/AtkinsonHyperlegibleNext-Regular.ttf');
 }
 
 :root {
   --bg: #121212;
   --bg-alt: #1e1e1e;
   --fg: #faf9f6;
-  --accent: #c6fbbb;
+  --accent: #3b9fd3;
   --gray: #979797;
   --dark-gray: #606060;
   --light-gray: #b2b2b2;
@@ -18,7 +18,7 @@
   padding: 0;
   box-sizing: border-box;
   line-height: 1.5;
-  font-family: "Atkinson Hyperlegible Next Regular";
+  font-family: 'Atkinson Hyperlegible Next Regular';
   font-display: swap;
 }
 
