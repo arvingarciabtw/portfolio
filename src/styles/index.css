@@ -1,0 +1,47 @@
+@font-face {
+  font-family: "Atkinson Hyperlegible Next Regular";
+  src: url("../assets/fonts/AtkinsonHyperlegibleNext-Regular.ttf");
+}
+
+:root {
+  --bg: #121212;
+  --bg-alt: #1e1e1e;
+  --fg: #faf9f6;
+  --accent: #c6fbbb;
+  --gray: #979797;
+  --dark-gray: #606060;
+  --light-gray: #b2b2b2;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1.5;
+  font-family: "Atkinson Hyperlegible Next Regular";
+  font-display: swap;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+::selection {
+  background-color: var(--accent);
+  color: var(--bg);
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  margin: 0 auto;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 800px;
+  flex: 1;
+}
