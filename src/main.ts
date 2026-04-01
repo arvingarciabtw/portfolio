@@ -1,9 +1,9 @@
-import { mount } from 'svelte'
-import './app.css'
-import App from './App.svelte'
+import { mount } from "svelte";
+import "./lib/globals.css";
+import Portfolio from "./app.svelte";
 
-const app = mount(App, {
-  target: document.getElementById('app')!,
-})
+const app = mount(Portfolio, {
+  target: document.getElementById("app")!,
+});
 
-export default app
+export default app;
