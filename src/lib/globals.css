@@ -6,7 +6,6 @@
   src: url("/fonts/offbit-trial/OffBitTrial-101.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
 }
 @font-face {
   font-family: "source-serif-4";
@@ -14,14 +13,12 @@
     format("woff2");
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
 }
 @font-face {
   font-family: "departure-mono";
   src: url("/fonts/departure-mono/DepartureMono-Regular.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
 }
 
 /* 
