@@ -1,5 +1,7 @@
 <script>
-  const { url, name, year, description, route } = $props();
+  import { Link } from "svelte-routing";
+
+  const { url, name, year, technologies, description, path } = $props();
 </script>
 
 <section class="project">
@@ -23,15 +25,19 @@
     <p class="year">{year}</p>
   </div>
   <div class="middle">
-    <div class="img-placeholder"></div>
-    <!-- TODO: dynamic pills -->
-    <div class="pills"></div>
+    <div class="img-placeholder">
+      <div class="technologies">
+        {#each technologies as technology}
+          <p class="technology">{technology}</p>
+        {/each}
+      </div>
+    </div>
   </div>
   <div class="bottom">
     <div class="description">
       {description}
     </div>
-    <a href={route}>&gt;&gt; Read Case Study</a>
+    <Link to={path} class="case-study-link">&gt;&gt; Read Case Study</Link>
   </div>
 </section>
 
@@ -74,10 +80,26 @@
     width: 100%;
   }
   .project .img-placeholder {
+    position: relative;
     width: 100%;
     height: 40rem;
     background: var(--color-gray-100);
     border: 1px dashed var(--color-gray-400);
+  }
+  .project .technologies {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 1rem;
+  }
+  .project .technology {
+    padding: 0.15rem 0.5rem;
+    font-family: "departure-mono", monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    background: black;
+    color: white;
   }
   .project .bottom {
     display: grid;
@@ -98,12 +120,13 @@
   .project:last-of-type .description {
     max-width: 340px;
   }
-  .project .bottom a {
+  :global(.project .bottom a) {
     justify-self: end;
     align-self: center;
     font-family: "departure-mono", monospace;
     font-size: 14px;
     text-transform: uppercase;
+    color: black;
     text-decoration: none;
   }
 
@@ -122,7 +145,7 @@
       flex-direction: column;
       gap: 1rem;
     }
-    .project .bottom a {
+    :global(.project .bottom a) {
       align-self: start;
     }
   }
@@ -134,8 +157,21 @@
   }
 
   @media (max-width: 420px) {
+    .project {
+      padding: 1.5rem;
+      gap: 1.5rem;
+    }
+    .project .name,
+    .project .year,
+    .project .description,
+    :global(.project .bottom a) {
+      font-size: 0.75rem;
+    }
+    .project .technology {
+      font-size: 0.625rem;
+    }
     .project .img-placeholder {
-      margin: 0 -3rem;
+      margin: 0 -1.5rem;
       width: auto;
       border-left: none;
       border-right: none;
