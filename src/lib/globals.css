@@ -3,20 +3,19 @@
 */
 @font-face {
   font-family: "offbit-trial-101";
-  src: url("/fonts/offbit-trial/OffBitTrial-101.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "source-serif-4";
-  src: url("/fonts/source-serif-4/SourceSerif4Variable-Roman.otf.woff2")
-    format("woff2");
+  src: url("/fonts/offbit-trial/101.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "departure-mono";
-  src: url("/fonts/departure-mono/DepartureMono-Regular.woff2") format("woff2");
+  src: url("/fonts/departure-mono/regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "sentient";
+  src: url("/fonts/sentient/regular.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
