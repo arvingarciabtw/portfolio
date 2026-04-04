@@ -46,20 +46,20 @@
     padding: 3rem;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 1rem;
   }
   .project a {
-    color: black;
+    color: var(--color-fg);
   }
   .project .redirect {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
     text-decoration: none;
     cursor: pointer;
   }
   .project .name {
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 400;
   }
   .project .icon {
@@ -74,7 +74,7 @@
   }
   .project .year {
     font-family: "departure-mono", monospace;
-    font-size: 14px;
+    font-size: 0.875rem;
   }
   .project .middle {
     width: 100%;
@@ -83,8 +83,8 @@
     position: relative;
     width: 100%;
     height: 40rem;
-    background: var(--color-gray-100);
-    border: 1px dashed var(--color-gray-400);
+    background: var(--color-gray-900);
+    border: 1px dashed var(--color-gray-700);
   }
   .project .technologies {
     position: absolute;
@@ -98,8 +98,8 @@
     font-family: "departure-mono", monospace;
     font-size: 0.75rem;
     text-transform: uppercase;
-    background: black;
-    color: white;
+    background: var(--color-fg);
+    color: var(--color-bg);
   }
   .project .bottom {
     display: grid;
@@ -108,8 +108,8 @@
   }
   .project .description {
     max-width: 560px;
-    font-family: "source-serif-4", serif;
-    font-size: 14px;
+    font-family: "sentient", serif;
+    font-size: 0.875rem;
   }
   .project:nth-of-type(2) .description {
     max-width: 400px;
@@ -124,9 +124,9 @@
     justify-self: end;
     align-self: center;
     font-family: "departure-mono", monospace;
-    font-size: 14px;
+    font-size: 0.875rem;
     text-transform: uppercase;
-    color: black;
+    color: var(--color-fg);
     text-decoration: none;
   }
 

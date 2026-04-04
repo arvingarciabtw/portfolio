@@ -114,33 +114,34 @@
 
 <style>
   p {
-    font-family: "source-serif-4", serif;
-    font-size: 14px;
+    font-family: "Sentient", serif;
+    font-size: 0.875rem;
     line-height: 1.75;
   }
   a {
-    color: black;
+    color: var(--color-fg);
   }
   a:hover {
     text-decoration: none;
   }
   .wrapper {
     margin: 0 1rem;
-    border: 1px solid var(--color-gray-200);
+    border-left: 1px solid var(--color-gray-800);
+    border-right: 1px solid var(--color-gray-800);
   }
   .hero {
     display: grid;
-    grid-template-columns: 510px 1fr;
+    grid-template-columns: 516px 1fr;
   }
   .hero .info {
     padding: 3rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    border-right: 1px solid var(--color-gray-200);
+    border-right: 1px solid var(--color-gray-800);
   }
   .hero .art {
-    background: var(--color-gray-100);
+    background: var(--color-gray-900);
   }
   .heading {
     font-family: "offbit-trial-101", monospace;
@@ -165,30 +166,30 @@
     }
   }
   .cta-container {
-    margin-top: 8px;
+    margin-top: 0.5rem;
     display: flex;
-    gap: 12px;
+    gap: 1.5rem;
 
     a {
       padding: 0.25rem 0.75rem;
       position: relative;
       font-family: "departure-mono", monospace;
-      font-size: 14px;
+      font-size: 0.875rem;
       text-transform: uppercase;
       background: transparent;
-      border: 1px solid var(--color-gray-200);
+      border: 1px solid var(--color-gray-800);
       border-radius: none;
       text-decoration: none;
       cursor: pointer;
     }
     a:hover {
-      border: 1px dashed black;
+      border: 1px dashed var(--color-fg);
     }
     a .corner {
       position: absolute;
       width: 3px;
       height: 3px;
-      background: black;
+      background: var(--color-fg);
     }
     a .corner:nth-of-type(1) {
       top: -2px;

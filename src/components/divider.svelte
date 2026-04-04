@@ -19,7 +19,7 @@
   hr {
     height: 1px;
     width: 100%;
-    background-color: var(--color-gray-200);
+    background-color: var(--color-gray-800);
     border: transparent;
   }
   .plus {
@@ -27,13 +27,13 @@
       width: 9px;
       height: 1px;
       position: absolute;
-      background-color: black;
+      background-color: var(--color-fg);
     }
     .vertical {
       width: 1px;
       height: 9px;
       position: absolute;
-      background-color: black;
+      background-color: var(--color-fg);
     }
   }
   .plus.left {

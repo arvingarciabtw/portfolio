@@ -1,8 +1,14 @@
 <script>
   import { TECHNOLOGIES } from "./lib/constants";
   import { Router, Route } from "svelte-routing";
+  import { initTheme } from "./lib/theme";
+  import { onMount } from "svelte";
   import CaseStudy from "./pages/case-study.svelte";
   import Home from "./pages/home.svelte";
+
+  onMount(() => {
+    initTheme();
+  });
 </script>
 
 <Router>

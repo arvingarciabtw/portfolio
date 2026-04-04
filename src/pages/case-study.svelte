@@ -78,12 +78,13 @@
 
 <style>
   p {
-    font-family: "source-serif-4", serif;
+    font-family: "Spectral", serif;
     font-size: 0.875rem;
   }
   .wrapper {
     margin: 0rem 1rem;
-    border: 1px solid var(--color-gray-200);
+    border-left: 1px solid var(--color-gray-800);
+    border-right: 1px solid var(--color-gray-800);
     min-height: 100dvh;
   }
   .cell {
@@ -103,20 +104,20 @@
     align-items: center;
   }
   .hero .top a {
-    color: black;
+    color: var(--color-fg);
   }
   .back {
     font-family: "departure-mono", monospace;
     font-size: 1.25rem;
-    color: black;
+    color: var(--color-fg);
     text-decoration: none;
   }
   .img-placeholder {
     position: relative;
     width: 100%;
     height: 100%;
-    background: var(--color-gray-100);
-    border: 1px dashed var(--color-gray-400);
+    background: var(--color-gray-900);
+    border: 1px dashed var(--color-gray-700);
   }
   .technologies {
     position: absolute;
@@ -130,8 +131,8 @@
     font-family: "departure-mono", monospace;
     font-size: 0.75rem;
     text-transform: uppercase;
-    background: black;
-    color: white;
+    background: var(--color-fg);
+    color: var(--color-bg);
   }
   .project {
     margin-top: 1.25rem;
@@ -163,8 +164,17 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    font-family: "source-serif-4", serif;
+    font-family: "sentient", serif;
     font-size: 0.875rem;
+    font-weight: 400;
+  }
+
+  @media (max-width: 800px) {
+    .info {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
   }
 
   @media (max-width: 420px) {
@@ -190,11 +200,6 @@
       width: auto;
       border-left: none;
       border-right: none;
-    }
-    .info {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
     }
     .info .description {
       font-size: 0.75rem;

@@ -7,6 +7,28 @@
       name="description"
       content="I'm Arvin, a designer and frontend developer based in the Philippines. Come check out the projects I've worked on!"
     />
+    <style>
+      html {
+        background: oklch(0.995 0 0);
+      }
+      html[data-theme="dark"] {
+        background: oklch(0.175 0 0);
+      }
+    </style>
+    <script>
+      (function () {
+        var theme = localStorage.getItem("theme");
+        if (theme === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        } else if (theme === "light") {
+          document.documentElement.setAttribute("data-theme", "light");
+        } else if (theme === "system" || !theme) {
+          if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            document.documentElement.setAttribute("data-theme", "dark");
+          }
+        }
+      })();
+    </script>
     <link
       rel="icon"
       href="/favicon-dark.png"
@@ -18,27 +40,6 @@
       href="/favicon-light.png"
       type="image/png"
       media="(prefers-color-scheme: dark)"
-    />
-    <link
-      rel="preload"
-      href="/fonts/departure-mono/DepartureMono-Regular.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="/fonts/offbit-trial/OffBitTrial-101.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="/fonts/source-serif-4/SourceSerif4Variable-Roman.otf.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
     />
     <title>Arvin Garcia</title>
   </head>
