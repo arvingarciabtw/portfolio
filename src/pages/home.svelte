@@ -11,7 +11,7 @@
       <h1 class="heading">Arvin Garcia</h1>
       <div class="hook">
         <p>I love to design.</p>
-        <p>I love to build those designs.</p>
+        <p class="test">I love to build those designs.</p>
       </div>
       <div class="brief-info">
         <p>
@@ -144,10 +144,15 @@
     background: var(--color-gray-900);
   }
   .heading {
-    font-family: "offbit-trial-101", monospace;
+    font-family: "offbit-trial-101", sans-serif;
     font-size: 3rem;
+    font-weight: normal;
     text-transform: uppercase;
     line-height: 1;
+  }
+  .hero .brief-info a {
+    text-decoration: none;
+    border-bottom: 1px dashed var(--color-fg);
   }
   .projects-head {
     padding: 3rem;
@@ -156,8 +161,9 @@
     align-items: baseline;
 
     h1 {
-      font-family: "offbit-trial-101", monospace;
+      font-family: "offbit-trial-101", sans-serif;
       font-size: 3rem;
+      font-weight: normal;
       text-transform: uppercase;
       line-height: 1;
     }

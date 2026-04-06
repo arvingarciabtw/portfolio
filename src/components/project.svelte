@@ -1,7 +1,38 @@
-<script>
+<script lang="ts">
   import { Link } from "svelte-routing";
+  import { onMount } from "svelte";
+  import gsap from "gsap";
+  import { SplitText } from "gsap/SplitText";
+  import type { SplitText as SplitTextType } from "gsap/SplitText";
 
   const { url, name, year, technologies, description, path } = $props();
+
+  gsap.registerPlugin(SplitText);
+
+  onMount(() => {
+    const targets = gsap.utils.toArray<HTMLElement>(".bottom .description");
+
+    targets.forEach((target) => {
+      SplitText.create(target, {
+        type: "words,lines",
+        linesClass: "line",
+        autoSplit: true,
+        onSplit: (self: SplitTextType) => {
+          gsap.from(self.lines, {
+            duration: 1,
+            yPercent: 100,
+            opacity: 0,
+            stagger: 0.15,
+            ease: "expo.out",
+            scrollTrigger: {
+              trigger: target,
+              start: "top 90%",
+            },
+          });
+        },
+      });
+    });
+  });
 </script>
 
 <section class="project">
@@ -33,8 +64,8 @@
       </div>
     </div>
   </div>
-  <div class="bottom">
-    <div class="description">
+  <div class="bottom" role="group" aria-label={description}>
+    <div class="description" aria-hidden="true">
       {description}
     </div>
     <Link to={path} class="case-study-link">&gt;&gt; Read Case Study</Link>

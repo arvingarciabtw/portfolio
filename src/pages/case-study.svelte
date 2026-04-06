@@ -1,12 +1,44 @@
 <script>
+  import { onMount } from "svelte";
   import Divider from "../components/divider.svelte";
   import Footer from "../components/footer.svelte";
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { SplitText } from "gsap/SplitText";
 
   const { url, name, year, technologies, challenge, approach, outcome } =
     $props();
+
+  ScrollTrigger.refresh();
+
+  onMount(() => {
+    const targets = gsap.utils.toArray(".info .description p");
+
+    targets.forEach((target) => {
+      SplitText.create(target, {
+        type: "words,lines",
+        linesClass: "line",
+        autoSplit: true,
+        mask: "lines",
+        onSplit: (self) => {
+          gsap.from(self.lines, {
+            duration: 0.8,
+            yPercent: 100,
+            opacity: 0,
+            stagger: 0.1,
+            ease: "expo.out",
+            scrollTrigger: {
+              trigger: target,
+              start: "top 90%",
+            },
+          });
+        },
+      });
+    });
+  });
 </script>
 
-<div class="wrapper">
+<main class="wrapper">
   <div class="cell hero">
     <div class="top">
       <a href="/" class="back">&lt;&lt;</a>
@@ -74,7 +106,7 @@
   <Divider />
 
   <Footer />
-</div>
+</main>
 
 <style>
   p {
@@ -82,10 +114,9 @@
     font-size: 0.875rem;
   }
   .wrapper {
-    margin: 0rem 1rem;
+    margin: 0 1rem;
     border-left: 1px solid var(--color-gray-800);
     border-right: 1px solid var(--color-gray-800);
-    min-height: 100dvh;
   }
   .cell {
     padding: 3rem;
@@ -141,8 +172,9 @@
     align-items: baseline;
   }
   .project .name {
-    font-family: "offbit-trial-101", monospace;
+    font-family: "offbit-trial", sans-serif;
     font-size: 3rem;
+    font-weight: normal;
     text-transform: uppercase;
     line-height: 1;
   }

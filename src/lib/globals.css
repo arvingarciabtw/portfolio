@@ -4,20 +4,15 @@
 @font-face {
   font-family: "offbit-trial-101";
   src: url("/fonts/offbit-trial/101.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
 }
 @font-face {
   font-family: "departure-mono";
   src: url("/fonts/departure-mono/regular.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
 }
 @font-face {
   font-family: "sentient";
-  src: url("/fonts/sentient/regular.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
+  src: url("/fonts/sentient/variable.woff2") format("woff2");
+  font-weight: 400;
 }
 
 /* 
