@@ -18,5 +18,8 @@
     "svelte-routing": "^2.13.0",
     "typescript": "~5.9.3",
     "vite": "^8.0.1"
+  },
+  "dependencies": {
+    "gsap": "^3.14.2"
   }
 }
