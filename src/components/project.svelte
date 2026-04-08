@@ -138,12 +138,13 @@
     gap: 2rem;
   }
   .project .description {
-    max-width: 560px;
-    font-family: "sentient", serif;
+    max-width: 500px;
+    font-family: "gambetta", serif;
     font-size: 0.875rem;
+    font-weight: 500;
   }
   .project:nth-of-type(2) .description {
-    max-width: 400px;
+    max-width: 360px;
   }
   .project:nth-of-type(3) .description {
     max-width: 360px;
@@ -182,30 +183,28 @@
   }
 
   @media (max-width: 500px) {
-    .project .img-placeholder {
-      height: 15rem;
-    }
-  }
-
-  @media (max-width: 420px) {
     .project {
       padding: 1.5rem;
       gap: 1.5rem;
-    }
-    .project .name,
-    .project .year,
-    .project .description,
-    :global(.project .bottom a) {
-      font-size: 0.75rem;
-    }
-    .project .technology {
-      font-size: 0.625rem;
-    }
-    .project .img-placeholder {
-      margin: 0 -1.5rem;
-      width: auto;
-      border-left: none;
-      border-right: none;
+
+      .img-placeholder {
+        height: 15rem;
+        margin: 0 -1.5rem;
+        width: auto;
+        border-left: none;
+        border-right: none;
+      }
+
+      .name,
+      .year,
+      .description,
+      :global(.project .bottom a) {
+        font-size: 0.875rem;
+      }
+
+      .technology {
+        font-size: 0.625rem;
+      }
     }
   }
 </style>

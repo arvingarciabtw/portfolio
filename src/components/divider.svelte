@@ -24,7 +24,7 @@
   }
   .plus {
     .horizontal {
-      width: 9px;
+      width: 5px;
       height: 1px;
       position: absolute;
       background-color: var(--color-fg);
@@ -39,7 +39,7 @@
   .plus.left {
     .horizontal {
       top: 0px;
-      left: -5px;
+      left: 0px;
     }
     .vertical {
       top: -4px;
@@ -49,7 +49,7 @@
   .plus.right {
     .horizontal {
       top: 0px;
-      right: -5px;
+      right: 0px;
     }
     .vertical {
       top: -4px;

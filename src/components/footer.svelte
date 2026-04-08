@@ -107,14 +107,14 @@
     }
   }
 
-  @media (max-width: 420px) {
+  @media (max-width: 500px) {
     footer {
       padding: 1.5rem;
       gap: 1rem;
     }
     footer p,
     footer ul {
-      font-size: 0.75rem;
+      font-size: 0.875rem;
     }
     footer ul {
       gap: 1rem;

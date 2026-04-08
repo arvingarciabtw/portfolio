@@ -9,26 +9,37 @@
   <section class="hero">
     <div class="info">
       <h1 class="heading">Arvin Garcia</h1>
-      <div class="hook">
-        <p>I love to design.</p>
-        <p class="test">I love to build those designs.</p>
-      </div>
       <div class="brief-info">
+        <p>Based in the Philippines.</p>
         <p>
-          Previously interned @ <a
-            href="https://www.bridge360.ph/"
-            target="_blank"
-            rel="noopener noreferrer">Bridge360 Inc.</a
-          > as a full stack developer.
-        </p>
-        <p>
-          A CS graduate @ <a
+          A CS graduate at <a
             href="https://www.mapua.edu.ph/"
             target="_blank"
             rel="noopener noreferrer">Mapúa University</a
           >.
         </p>
-        <p>Based in the Philippines.</p>
+      </div>
+      <div class="brief-info">
+        <p>
+          Previously interned at <a
+            href="https://www.bridge360.ph/"
+            target="_blank"
+            rel="noopener noreferrer">Bridge360 Inc.</a
+          >
+          as a full stack developer, building a service marketplace for local blue-collar
+          gig work.
+        </p>
+      </div>
+      <div class="brief-info">
+        <p>
+          Collaborated with
+          <a
+            href="https://www.mbcfi.org.ph"
+            target="_blank"
+            rel="noopener noreferrer">MBCFI</a
+          >, a registered environmental NGO, to develop a custom project
+          management system.
+        </p>
       </div>
       <div class="cta-container">
         <a href="/">
@@ -58,7 +69,7 @@
 
   <div class="projects-head">
     <h1>Projects</h1>
-    <p>26 - TODAY</p>
+    <p class="date-range">26 - TODAY</p>
   </div>
 
   <section class="projects">
@@ -114,8 +125,9 @@
 
 <style>
   p {
-    font-family: "Sentient", serif;
+    font-family: "gambetta", serif;
     font-size: 0.875rem;
+    font-weight: 500;
     line-height: 1.75;
   }
   a {
@@ -234,19 +246,19 @@
   }
 
   @media (max-width: 500px) {
-    .projects-head p {
-      display: none;
-    }
-  }
-
-  @media (max-width: 500px) {
-    .hero .info,
-    .projects-head {
+    .hero .info {
       padding: 1.5rem;
+    }
+    .projects-head {
+      padding: 1.5rem 1.5rem 1rem;
+
+      .date-range {
+        display: none;
+      }
     }
     .hero p,
     .cta-container a {
-      font-size: 0.75rem;
+      font-size: 0.875rem;
     }
   }
 </style>

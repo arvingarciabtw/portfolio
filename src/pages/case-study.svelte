@@ -172,7 +172,7 @@
     align-items: baseline;
   }
   .project .name {
-    font-family: "offbit-trial", sans-serif;
+    font-family: "offbit-trial-101", sans-serif;
     font-size: 3rem;
     font-weight: normal;
     text-transform: uppercase;
@@ -196,9 +196,9 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    font-family: "sentient", serif;
+    font-family: "gambetta", serif;
     font-size: 0.875rem;
-    font-weight: 400;
+    font-weight: 500;
   }
 
   @media (max-width: 800px) {
@@ -209,7 +209,7 @@
     }
   }
 
-  @media (max-width: 420px) {
+  @media (max-width: 500px) {
     .cell {
       padding: 1.5rem;
     }
@@ -234,7 +234,7 @@
       border-right: none;
     }
     .info .description {
-      font-size: 0.75rem;
+      font-size: 0.875rem;
     }
   }
 </style>
