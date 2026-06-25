@@ -127,9 +127,9 @@ html {
   scrollbar-color: var(--color-gray-800) transparent;
 }
 body {
-  max-width: 80rem;
+  /* max-width: 80rem; */
   min-height: 100dvh;
   margin: 0 auto;
-  background: var(--color-bg);
-  color: var(--color-fg);
+  /* background: var(--color-bg); */
+  /* color: var(--color-fg); */
 }

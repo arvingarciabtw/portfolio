@@ -1,8 +1,8 @@
 import { mount } from "svelte";
 import "./lib/globals.css";
-import Portfolio from "./app.svelte";
+import Placeholder from "./placeholder.svelte";
 
-const app = mount(Portfolio, {
+const app = mount(Placeholder, {
   target: document.getElementById("app")!,
 });
 
