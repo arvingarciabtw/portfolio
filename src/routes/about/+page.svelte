@@ -156,10 +156,7 @@
 		<p>preference</p>
 		<div class="description">
 			<p>i like go and svelte. simple, yet powerful.</p>
-			<p>
-				i like to minimally use ai, for redirecting to docs and rubber-ducking. little-to-no ai code
-				generation.
-			</p>
+			<p>i like to learn zig on the weekends.</p>
 		</div>
 	</div>
 	<div class="credit">
@@ -201,6 +198,7 @@
 
 				p {
 					text-wrap: balance;
+					line-height: 1.75;
 				}
 				ul {
 					padding: 0;

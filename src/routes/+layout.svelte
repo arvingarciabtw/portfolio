@@ -23,6 +23,13 @@
 		href={faviconForDark}
 		media="(prefers-color-scheme: dark)"
 	/>
+	<link
+		rel="preload"
+		href="/fonts/commit-mono-regular-subset.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin="anonymous"
+	/>
 	<title>arvin</title>
 </svelte:head>
 

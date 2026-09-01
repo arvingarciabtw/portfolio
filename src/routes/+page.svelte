@@ -2,11 +2,16 @@
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
+	import Download from '$lib/icons/download.svelte';
+	import Fork from '$lib/icons/fork.svelte';
+	import Star from '$lib/icons/star.svelte';
 	import { getCommands } from '$lib/stores/commands.svelte';
 	import { navigation, getIsInHeader } from '$lib/stores/navigation.svelte';
 	import { shake } from '$lib/stores/shake.svelte';
-	import { sections, experiences, projects, socials } from '$lib/data/data';
+	import { sections, projects, socials } from '$lib/data/data';
 	import { handlerSectionKeyPress } from '$lib/helpers/helpers';
+
+	const EXPERIENCE_LENGTH = 1;
 
 	function handlerNavigationKeyPress(e: KeyboardEvent) {
 		const { goUp, goDown, goLeft, goRight, goExecute } = getCommands(e);
@@ -15,7 +20,7 @@
 		const atStartOfExperiences = navigation.activeIndex == sections.length + socials.length;
 		const atEndOfProjects =
 			navigation.activeIndex ==
-			sections.length + socials.length + experiences.length + projects.length - 1;
+			sections.length + socials.length + EXPERIENCE_LENGTH + projects.slice(0, 3).length - 1;
 		const atEndOfSocials = navigation.activeIndex == sections.length + socials.length - 1;
 
 		const inSocials =
@@ -23,9 +28,9 @@
 			navigation.activeIndex < sections.length + socials.length;
 		const inExperiences =
 			navigation.activeIndex >= sections.length + socials.length &&
-			navigation.activeIndex < sections.length + socials.length + experiences.length;
+			navigation.activeIndex < sections.length + socials.length + EXPERIENCE_LENGTH;
 		const inProjects =
-			navigation.activeIndex >= sections.length + socials.length + experiences.length;
+			navigation.activeIndex >= sections.length + socials.length + EXPERIENCE_LENGTH;
 
 		if (goUp) {
 			if (getIsInHeader()) {
@@ -80,7 +85,7 @@
 			}
 			if (inProjects) {
 				goto(resolve('/projects'));
-				navigation.activeIndex -= socials.length + experiences.length;
+				navigation.activeIndex -= socials.length + EXPERIENCE_LENGTH;
 			}
 		}
 	}
@@ -128,44 +133,42 @@
 </div>
 
 <ul class="experience-list">
-	{#each experiences as experience, i (experience.description)}
-		<li class="experience">
-			<a
-				href={resolve('/experience')}
-				onclick={() => {
-					navigation.activeIndex = i + sections.length;
-				}}
-			>
-				<div class="selection">
-					<p class="pointer">
-						{navigation.activeIndex >= sections.length + socials.length &&
-						i == navigation.activeIndex - sections.length - socials.length
-							? '>'
-							: '\u00A0'}
-					</p>
-					<p
-						class={[
-							`position ${navigation.activeIndex == i + sections.length + socials.length && shake.left ? 'shake-left' : ''} ${navigation.activeIndex == i + sections.length + socials.length && shake.right ? 'shake-right' : ''}`,
-							(() =>
-								i + sections.length + socials.length == navigation.activeIndex ? 'active' : '')()
-						]}
-						onanimationend={() => {
-							shake.left = false;
-							shake.right = false;
-							shake.down = false;
-						}}
-					>
-						{experience.position}
-					</p>
-				</div>
-			</a>
-			<p class="description">{experience.description}</p>
-		</li>
-	{/each}
+	<li class="experience">
+		<a
+			href={resolve('/experience')}
+			onclick={() => {
+				navigation.activeIndex = 0 + sections.length;
+			}}
+		>
+			<div class="selection">
+				<p class="pointer">
+					{navigation.activeIndex >= sections.length + socials.length &&
+					0 == navigation.activeIndex - sections.length - socials.length
+						? '>'
+						: '\u00A0'}
+				</p>
+				<p
+					class={[
+						`position ${navigation.activeIndex == 0 + sections.length + socials.length && shake.left ? 'shake-left' : ''} ${navigation.activeIndex == 0 + sections.length + socials.length && shake.right ? 'shake-right' : ''}`,
+						(() =>
+							0 + sections.length + socials.length == navigation.activeIndex ? 'active' : '')()
+					]}
+					onanimationend={() => {
+						shake.left = false;
+						shake.right = false;
+						shake.down = false;
+					}}
+				>
+					see experience
+				</p>
+			</div>
+		</a>
+		<p class="description">fullstack dev intern. did volunteer work.</p>
+	</li>
 </ul>
 
 <ul class="project-list">
-	{#each projects as project, i (project.name)}
+	{#each projects.slice(0, 3) as project, i (project.name)}
 		<li class="project">
 			<a
 				href={resolve('/projects')}
@@ -174,29 +177,57 @@
 				}}
 			>
 				<p class="pointer">
-					{navigation.activeIndex >= sections.length + socials.length + experiences.length &&
-					i == navigation.activeIndex - sections.length - socials.length - experiences.length
+					{navigation.activeIndex >= sections.length + socials.length + EXPERIENCE_LENGTH &&
+					i == navigation.activeIndex - sections.length - socials.length - EXPERIENCE_LENGTH
 						? '>'
 						: '\u00A0'}
 				</p>
 				<div class="selection">
 					<span class="padder"></span>
-					<p
-						class={[
-							`name ${navigation.activeIndex == i + sections.length + socials.length + experiences.length && shake.left ? 'shake-left' : ''} ${navigation.activeIndex == i + sections.length + socials.length + experiences.length && shake.right ? 'shake-right' : ''} ${navigation.activeIndex == i + sections.length + socials.length + experiences.length && shake.down ? 'shake-down' : ''}`,
-							(() =>
-								i + sections.length + socials.length + experiences.length == navigation.activeIndex
-									? 'active'
-									: '')()
-						]}
-						onanimationend={() => {
-							shake.left = false;
-							shake.right = false;
-							shake.down = false;
-						}}
-					>
-						{project.name}
-					</p>
+					<div class="wrapper">
+						<div
+							class={[
+								`name ${navigation.activeIndex == i + sections.length + socials.length + EXPERIENCE_LENGTH && shake.left ? 'shake-left' : ''} ${navigation.activeIndex == i + sections.length + socials.length + EXPERIENCE_LENGTH && shake.right ? 'shake-right' : ''} ${navigation.activeIndex == i + sections.length + socials.length + EXPERIENCE_LENGTH && shake.down ? 'shake-down' : ''}`,
+								(() =>
+									i + sections.length + socials.length + EXPERIENCE_LENGTH == navigation.activeIndex
+										? 'active'
+										: '')()
+							]}
+							onanimationend={() => {
+								shake.left = false;
+								shake.right = false;
+								shake.down = false;
+							}}
+						>
+							<p>{project.name}</p>
+						</div>
+						<div class="metrics">
+							{#if project.metrics.stars != null && project.metrics.stars > 10}
+								<div class="metric stars">
+									<Star />
+									<p>
+										{project.metrics.stars}{project.metrics.stars > 10 ? '+' : ''}
+									</p>
+								</div>
+							{/if}
+							{#if project.metrics.downloads != null && project.metrics.downloads > 10}
+								<div class="metric downloads">
+									<Download />
+									<p>
+										{project.metrics.downloads}{project.metrics.downloads > 10 ? '+' : ''}
+									</p>
+								</div>
+							{/if}
+							{#if project.metrics.forks != null && project.metrics.forks != 0}
+								<div class="metric forks">
+									<Fork />
+									<p>
+										{project.metrics.forks}{project.metrics.forks > 10 ? '+' : ''}
+									</p>
+								</div>
+							{/if}
+						</div>
+					</div>
 					<span class="padder"></span>
 					<p class="description-short">{project.descriptionShort}</p>
 				</div>
@@ -347,30 +378,75 @@
 				align-self: start;
 			}
 
-			div {
+			.selection {
 				display: flex;
 				flex-direction: column;
-				gap: 0;
+				gap: 0.175rem;
+				color: var(--white);
 
-				.padder {
-					display: inline-block;
-					height: 3px;
-					width: 1px;
+				.wrapper {
+					display: grid;
+					grid-template-columns: max-content 3fr;
+					gap: 1rem;
 				}
+
+				.metrics {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					justify-self: end;
+					gap: 1.25rem;
+				}
+
+				.metric {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					gap: 0.5rem;
+					color: var(--bright-yellow);
+				}
+				.metric.stars {
+					color: var(--bright-yellow);
+				}
+				.metric.downloads {
+					color: var(--bright-blue);
+				}
+				.metric.forks {
+					color: var(--bright-green);
+				}
+
+				div {
+					display: flex;
+					flex-direction: column;
+					gap: 0;
+
+					.padder {
+						display: inline-block;
+						height: 3px;
+						width: 1px;
+					}
+					.name {
+						padding: 0 0.25rem;
+						margin: 0 0 0 0.5rem;
+						width: max-content;
+						display: flex;
+						flex-direction: row;
+						gap: 2rem;
+					}
+				}
+
 				.description-short {
 					margin-left: 0.75rem;
-					color: var(--white);
-				}
-				.name {
-					padding: 0 0.25rem;
-					margin: 0 0 0 0.5rem;
-					width: max-content;
 				}
 			}
 		}
 
 		.project a .pointer {
 			color: var(--project);
+		}
+
+		.project a .name {
+			color: var(--bright-white);
 		}
 
 		.project a:hover .name,

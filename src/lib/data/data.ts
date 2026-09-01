@@ -50,10 +50,8 @@ export const experiences: Experience[] = [
 		description:
 			'developed a gig application. led the redesign of the frontend. implemented api + email.',
 		points: [
-			'developed a fully functional gig application from scratch, expanding the company’s product offerings and providing a brand-new revenue channel.',
-			'led the frontend redesign using modern ui components, which drastically improved user navigation, modernized the platform look, and resolved historical layout issues.',
-
-			'implemented secure restful apis and an automated email notification system, eliminating manual communication delays and ensuring instant, real-time user updates.'
+			'migrated the entire React/Redux frontend of a blue-collar gig marketplace from JavaScript to TypeScript, improving type safety, code quality, and implementation consistency across the application.',
+			'led the product redesign from initial Figma concepts through React implementation, while contributing CRUD endpoints with Node.js and MongoDB plus authentication email workflows across the application.'
 		],
 		technologies: ['typescript', 'react', 'redux']
 	},
@@ -65,10 +63,8 @@ export const experiences: Experience[] = [
 		description:
 			'built a project management system for a non-profit. communicated with department heads.',
 		points: [
-			'built and deployed a custom project management system for a registered ngo, centralizing operations and standardizing workflows across multiple internal departments.',
-			'communicated directly with department heads and stakeholders to gather core requirements, ensuring complete alignment on feature delivery and non-profit organizational needs.',
-
-			'integrated the new system into the existing legacy website seamlessly, successfully eliminating data silos and simplifying daily task-tracking for the volunteer team.'
+			'designed and built a Laravel/MariaDB project-management prototype with separate admin and staff workflows, giving the registered biodiversity conservation nonprofit a centralized system for managing project records.',
+			'worked directly with leadership across three core conservation programs to gather requirements, understand existing workflows, and translate project-management needs into clear functional requirements for the application.'
 		],
 		technologies: ['php', 'laravel', 'mariadb']
 	}
@@ -93,15 +89,27 @@ export const projects: Project[] = [
 	{
 		name: 'ditto',
 		url: 'https://github.com/arvingarciabtw/ditto',
-		description:
-			'a system-wide ascii keyboard visualizer. for ricers who love interactive eye candy.',
+		description: 'a system-wide and cross-platform ascii keyboard visualizer and keycaster.',
 		descriptionShort: 'a system-wide ascii keyboard visualizer.',
 		metrics: {
-			downloads: 40,
-			stars: 110,
-			forks: 4
+			downloads: 120,
+			stars: 120,
+			forks: 3
 		},
 		technologies: ['go', 'nix']
+	},
+	{
+		name: 'bettercalapan',
+		url: 'https://bettercalapan.org',
+		description:
+			'open-source lgu initiative for providing better digital services to calapan city.',
+		descriptionShort: 'open-source digital services for calapan.',
+		metrics: {
+			downloads: null,
+			stars: 1,
+			forks: 0
+		},
+		technologies: ['svelte', 'typescript', 'mdsvex']
 	},
 	{
 		name: 'blog',
@@ -138,10 +146,6 @@ export const socials: Social[] = [
 	{
 		name: 'github',
 		url: 'https://github.com/arvingarciabtw'
-	},
-	{
-		name: 'bluesky',
-		url: 'https://bsky.app/profile/arvingarciabtw.bsky.social'
 	},
 	{
 		name: 'email',

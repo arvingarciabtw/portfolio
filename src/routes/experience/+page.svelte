@@ -65,9 +65,6 @@
 </script>
 
 <div class="experiences-wrapper">
-	<!-- TODO: remove note when points are rewritten -->
-	<p class="note">note: bullet points aren't accurate, added temporarily for ui purposes.</p>
-
 	{#each experiences as experience, i (experience.description)}
 		<div class="experience">
 			<div class="selection">
@@ -203,7 +200,8 @@
 					display: flex;
 					gap: 0.5rem;
 					color: var(--white);
-					max-width: 40rem;
+					max-width: 44rem;
+					line-height: 1.75;
 				}
 			}
 		}

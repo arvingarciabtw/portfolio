@@ -81,7 +81,7 @@
 					</p>
 				</div>
 				<div class="metrics">
-					{#if project.metrics.stars != 0 && project.metrics.stars != null}
+					{#if project.metrics.stars != null && project.metrics.stars > 10}
 						<div class="metric stars">
 							<Star />
 							<p>
@@ -89,19 +89,19 @@
 							</p>
 						</div>
 					{/if}
-					{#if project.metrics.forks != 0 && project.metrics.forks != null}
-						<div class="metric forks">
-							<Fork />
-							<p>
-								{project.metrics.forks}{project.metrics.forks > 10 ? '+' : ''}
-							</p>
-						</div>
-					{/if}
-					{#if project.metrics.downloads != 0 && project.metrics.downloads != null}
+					{#if project.metrics.downloads != null && project.metrics.downloads > 10}
 						<div class="metric downloads">
 							<Download />
 							<p>
 								{project.metrics.downloads}{project.metrics.downloads > 10 ? '+' : ''}
+							</p>
+						</div>
+					{/if}
+					{#if project.metrics.forks != null && project.metrics.forks != 0}
+						<div class="metric forks">
+							<Fork />
+							<p>
+								{project.metrics.forks}{project.metrics.forks > 10 ? '+' : ''}
 							</p>
 						</div>
 					{/if}
@@ -173,7 +173,7 @@
 				}
 			}
 			.technology-list {
-				margin: 0.25rem 0 0 1.25rem;
+				margin: 0.375rem 0 0 1.25rem;
 				padding: 0;
 				display: flex;
 				gap: 0.5rem;
@@ -193,6 +193,7 @@
 				margin: 0.25rem 0 0 1.25rem;
 				color: var(--white);
 				text-wrap: stable;
+				line-height: 1.75;
 			}
 		}
 		.project:hover .details .name,
