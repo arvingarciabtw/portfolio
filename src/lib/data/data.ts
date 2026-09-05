@@ -88,7 +88,7 @@ type Metrics = {
 export const projects: Project[] = [
 	{
 		name: 'ditto',
-		url: 'https://github.com/arvingarciabtw/ditto',
+		url: 'https://ditto.arvingarcia.com',
 		description: 'a system-wide and cross-platform ascii keyboard visualizer and keycaster.',
 		descriptionShort: 'a system-wide ascii keyboard visualizer.',
 		metrics: {
