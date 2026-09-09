@@ -41,6 +41,7 @@
 
 <style>
 	main {
+		width: 100%;
 		display: grid;
 		align-content: center;
 		gap: 4rem;

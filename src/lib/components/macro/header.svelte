@@ -82,13 +82,15 @@
 		.section-list {
 			padding: 0;
 			display: flex;
-			gap: 2.5rem;
+			flex-wrap: wrap;
+			gap: 0.5rem 2.5rem;
 			list-style-type: none;
 
 			/* general a element styles. */
 			.section a {
 				padding: 0.125rem 0.25rem;
 				text-decoration: none;
+				width: max-content;
 			}
 			.home a {
 				color: var(--home);

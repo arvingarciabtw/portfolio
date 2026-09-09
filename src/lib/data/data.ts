@@ -123,18 +123,6 @@ export const projects: Project[] = [
 		},
 		technologies: ['astro', 'typescript']
 	},
-	{
-		name: 'dotfiles',
-		url: 'https://github.com/arvingarciabtw/dotfiles',
-		description: 'config files for all of the applications and tools i use in my workflow.',
-		descriptionShort: 'config for my setup.',
-		metrics: {
-			downloads: null,
-			stars: 1,
-			forks: 0
-		},
-		technologies: ['lua', 'shell', 'css']
-	}
 ] as const;
 
 type Social = {
@@ -164,29 +152,29 @@ export const philosophies: Philosophy[] = [
 		url: 'https://pragprog.com/tips/#:~:text=Care%20About%20Your,doing%20it%20well%3F'
 	},
 	{
+		description: 'the unix philosophy',
+		url: 'https://en.wikipedia.org/wiki/Unix_philosophy'
+	},
+	{
 		description: 'be grug-brained',
 		url: 'https://grugbrain.dev/'
 	},
-	{
-		description: 'follow the go proverbs',
-		url: 'https://go-proverbs.github.io/'
-	}
 ];
 
 type Tech = {
 	os: string;
 	distro: string;
 	wm: string;
-	shell: string;
+	["desktop shell"]: string;
 	terminal: string;
 	editor: string;
 };
 
 export const tech: Tech = {
 	os: 'linux',
-	distro: 'arch',
-	wm: 'hyprland',
-	shell: 'fish',
+	distro: 'nixos',
+	wm: 'niri',
+  "desktop shell": 'noctalia',
 	terminal: 'ghostty',
 	editor: 'neovim'
 };

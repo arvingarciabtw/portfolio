@@ -483,6 +483,10 @@
 			margin-left: 0.25rem;
 		}
 
+		.project .selection {
+			margin-left: -0.5rem;
+		}
+
 		.social-list {
 			.social a.active {
 				--flicker-color: var(--black);

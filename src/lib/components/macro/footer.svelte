@@ -107,7 +107,8 @@
 	.key-list {
 		padding: 0;
 		display: flex;
-		gap: 3rem;
+		flex-wrap: wrap;
+		gap: 1rem 3rem;
 		list-style-type: none;
 
 		.key-group {

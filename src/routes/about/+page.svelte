@@ -152,13 +152,6 @@
 			</ul>
 		</div>
 	</div>
-	<div class="preference">
-		<p>preference</p>
-		<div class="description">
-			<p>i like go and svelte. simple, yet powerful.</p>
-			<p>i like to learn zig on the weekends.</p>
-		</div>
-	</div>
 	<div class="credit">
 		<p>credit</p>
 		<div class="description">
