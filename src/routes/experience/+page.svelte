@@ -86,23 +86,27 @@
 					{experience.position}
 				</a>
 			</div>
-			<ul class="position-details">
-				<li class="company">{experience.company}</li>
-				<li class="separator">·</li>
-				<li class="date">{experience.date}</li>
-				<li class="separator">·</li>
-				{#each experience.technologies as technology, i (technology)}
-					<li class="technology">{technology}</li>
-					{#if i != experience.technologies.length - 1}
-						<li class="separator">·</li>
-					{/if}
-				{/each}
-			</ul>
+			<div class="position-details">
+				<ul>
+					<li class="company">{experience.company}</li>
+					<li class="separator">·</li>
+					<li class="date">{experience.date}</li>
+				</ul>
+				<ul>
+					{#each experience.technologies as technology, i (technology)}
+						<li class="technology">{technology}</li>
+						{#if i != experience.technologies.length - 1}
+							<li class="separator">·</li>
+						{/if}
+					{/each}
+				</ul>
+			</div>
 			<ul class="points">
 				{#each experience.points as point (point)}
 					<li class="point">
 						<p class="symbol">*</p>
-						<p class="description">{point}</p>
+						<!-- <p class="description">{point}</p> -->
+						{@html point}
 					</li>
 				{/each}
 			</ul>
@@ -163,14 +167,23 @@
 				}
 			}
 
-			.position-details,
+			.position-details {
+				max-width: 45rem;
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				justify-content: space-between;
+				gap: 0 4rem;
+			}
+
+			ul,
 			.points {
 				margin-left: 1.25rem;
 				padding: 0;
 				list-style-type: none;
 			}
 
-			.position-details {
+			ul {
 				margin-top: 0.25rem;
 				display: flex;
 				flex-wrap: wrap;
@@ -202,6 +215,10 @@
 					color: var(--white);
 					max-width: 44rem;
 					line-height: 1.75;
+
+					span {
+						color: red;
+					}
 				}
 			}
 		}
@@ -231,7 +248,7 @@
 						animation: flicker 0.4s steps(1, end) 1;
 					}
 				}
-				.position-details,
+				ul,
 				.points {
 					margin-left: 0;
 				}

@@ -41,6 +41,16 @@ type Experience = {
 	technologies: string[];
 };
 
+const COLORS = {
+  react: "#0cc8f9",
+  ts: "#619ad8",
+  js: "#F0DB4F",
+  node: "#8eb88a",
+  mongodb: "#4DB33D",
+  laravel: "#F05340",
+  mariadb: "#008ab3",
+}
+
 export const experiences: Experience[] = [
 	{
 		position: 'fullstack dev intern',
@@ -50,10 +60,10 @@ export const experiences: Experience[] = [
 		description:
 			'developed a gig application. led the redesign of the frontend. implemented api + email.',
 		points: [
-			'migrated the entire React/Redux frontend of a blue-collar gig marketplace from JavaScript to TypeScript, improving type safety, code quality, and implementation consistency across the application.',
-			'led the product redesign from initial Figma concepts through React implementation, while contributing CRUD endpoints with Node.js and MongoDB plus authentication email workflows across the application.'
+			`<p>migrated the entire <span style="text-decoration:${COLORS.react} underline dotted;">React/Redux</span> frontend of a blue-collar gig marketplace from <span style="text-decoration:${COLORS.js} underline dotted">JavaScript</span> to <span style="text-decoration:${COLORS.ts} underline dotted">TypeScript</span>, improving type safety, code quality, and implementation consistency across the application.</p>`,
+			`<p>led the product redesign from initial Figma concepts through React implementation, while contributing CRUD endpoints with <span style="text-decoration:${COLORS.node} underline dotted">Node.js</span> and <span style="text-decoration:${COLORS.mongodb} underline dotted">MongoDB</span> plus authentication email workflows across the application.</p>`,
 		],
-		technologies: ['typescript', 'react', 'redux']
+		technologies: ['typescript', 'react', 'redux', 'node', 'mongodb']
 	},
 	{
 		position: 'volunteer work',
@@ -63,7 +73,7 @@ export const experiences: Experience[] = [
 		description:
 			'built a project management system for a non-profit. communicated with department heads.',
 		points: [
-			'designed and built a Laravel/MariaDB project-management prototype with separate admin and staff workflows, giving the registered biodiversity conservation nonprofit a centralized system for managing project records.',
+			`<p>designed and built a <span style="text-decoration:${COLORS.laravel} underline dotted">Laravel</span>/<span style="text-decoration:${COLORS.mariadb} underline dotted">MariaDB</span> project-management prototype with separate admin and staff workflows, giving the registered biodiversity conservation nonprofit a centralized system for managing project records.</p>`,
 			'worked directly with leadership across three core conservation programs to gather requirements, understand existing workflows, and translate project-management needs into clear functional requirements for the application.'
 		],
 		technologies: ['php', 'laravel', 'mariadb']
@@ -92,7 +102,7 @@ export const projects: Project[] = [
 		description: 'a system-wide and cross-platform ascii keyboard visualizer and keycaster.',
 		descriptionShort: 'a system-wide ascii keyboard visualizer.',
 		metrics: {
-			downloads: 120,
+			downloads: 130,
 			stars: 120,
 			forks: 3
 		},
