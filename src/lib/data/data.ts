@@ -102,7 +102,7 @@ export const projects: Project[] = [
 		description: 'a system-wide and cross-platform ascii keyboard visualizer and keycaster.',
 		descriptionShort: 'a system-wide ascii keyboard visualizer.',
 		metrics: {
-			downloads: 130,
+			downloads: 140,
 			stars: 120,
 			forks: 3
 		},
