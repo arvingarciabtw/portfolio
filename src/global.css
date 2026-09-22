@@ -67,8 +67,8 @@ html {
 	--blue: oklch(0.5756 0.0658 199.49);            /* #458588 */
 	--magenta: oklch(0.5973 0.1105 352.22);         /* #B16286 */
 	--cyan: oklch(0.645 0.0939 145.27);             /* #689D6A */
-    --orange: oklch(0.622 0.171 45.8);              /* #D65D0E */
-    --purple: oklch(0.518 0.122 316.5);             /* #8F3F71 */
+  --orange: oklch(0.622 0.171 45.8);              /* #D65D0E */
+  --purple: oklch(0.518 0.122 316.5);             /* #8F3F71 */
 	--white: oklch(0.6903 0.0346 76.31);            /* #A89984 */
 	--bright-black: oklch(0.6192 0.0286 67.26);     /* #928374 */
 	--bright-red: oklch(0.6597 0.2175 30.39);       /* #FB4934 */
@@ -77,13 +77,13 @@ html {
 	--bright-blue: oklch(0.6927 0.042 169.77);      /* #83A598 */
 	--bright-magenta: oklch(0.7054 0.0976 2.19);    /* #D3869B */
 	--bright-cyan: oklch(0.7555 0.1078 137.68);     /* #8EC07C */
-    --bright-orange: oklch(0.731 0.182 51.7);       /* #FE8019 */
-    --bright-purple: oklch(0.7346 0.141 319.2);     /* #CF8BE1 */
+  --bright-orange: oklch(0.731 0.182 51.7);       /* #FE8019 */
+  --bright-purple: oklch(0.7346 0.141 319.2);     /* #CF8BE1 */
 	--bright-white: oklch(0.8941 0.0566 89.24);     /* #EBDBB2 */
 
-    --home: var(--bright-red);
-    --experience: var(--bright-green);
-    --project: var(--bright-purple);
+  --home: var(--bright-red);
+  --experience: var(--bright-green);
+  --project: var(--bright-purple);
 }
 
 /* fonts. */
@@ -154,11 +154,10 @@ html {
 	display: grid;
 	place-items: center;
 	scrollbar-color: var(--bright-black) var(--black);
+  overflow: hidden; /* prevents scrolling on the document, current intended behavior i want */
 }
 body {
-	padding: 1rem 1.5rem;
 	min-height: 100dvh;
-	max-width: 80rem;
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -168,9 +167,7 @@ body {
 	font-family: 'commit-mono', monospace;
 	font-size: 0.875rem;
 }
-main {
-	flex: 1;
-}
+
 @media (max-width: 500px) {
 	body {
 		font-size: 0.75rem;

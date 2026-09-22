@@ -77,10 +77,17 @@
 
 <style>
 	header {
-		padding: 0 1rem;
+		width: 100%;
+		padding: 1.5rem 1rem;
+		background: var(--black);
+		z-index: 1;
+		display: grid;
+		place-items: center;
 
 		.section-list {
-			padding: 0;
+			width: 100%;
+			max-width: 80rem;
+			padding: 0 1.125rem;
 			display: flex;
 			flex-wrap: wrap;
 			gap: 0.5rem 2.5rem;
@@ -183,7 +190,7 @@
 
 	@media (max-width: 500px) {
 		header {
-			padding: 0;
+			padding: 1rem 0;
 
 			.section-list {
 				flex-wrap: wrap;

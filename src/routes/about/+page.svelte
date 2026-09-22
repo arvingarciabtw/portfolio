@@ -174,6 +174,8 @@
 
 <style>
 	.about-wrapper {
+		width: 100%;
+		max-width: 80rem;
 		margin-left: 1.25rem;
 		display: flex;
 		flex-direction: column;

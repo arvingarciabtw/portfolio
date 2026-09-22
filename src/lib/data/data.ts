@@ -60,8 +60,9 @@ export const experiences: Experience[] = [
 		description:
 			'developed a gig application. led the redesign of the frontend. implemented api + email.',
 		points: [
-			`<p>migrated the entire <span style="text-decoration:${COLORS.react} underline dotted;">React/Redux</span> frontend of a blue-collar gig marketplace from <span style="text-decoration:${COLORS.js} underline dotted">JavaScript</span> to <span style="text-decoration:${COLORS.ts} underline dotted">TypeScript</span>, improving type safety, code quality, and implementation consistency across the application.</p>`,
-			`<p>led the product redesign from initial Figma concepts through React implementation, while contributing CRUD endpoints with <span style="text-decoration:${COLORS.node} underline dotted">Node.js</span> and <span style="text-decoration:${COLORS.mongodb} underline dotted">MongoDB</span> plus authentication email workflows across the application.</p>`,
+			`<p>migrated the entire <span style="text-decoration:${COLORS.react} underline dotted;">react/redux</span> frontend of a blue-collar gig marketplace from <span style="text-decoration:${COLORS.js} underline dotted">javaScript</span> to <span style="text-decoration:${COLORS.ts} underline dotted">typeScript</span> to add type safety.</p>`,
+			`<p>led the product redesign from initial figma prototypes all the way up to the frontend implementation</p>`,
+      `<p>contributed crud endpoints with <span style="text-decoration:${COLORS.node} underline dotted">node.js</span> and <span style="text-decoration:${COLORS.mongodb} underline dotted">mongodb</span> plus authentication email workflows across the application.</p>`
 		],
 		technologies: ['typescript', 'react', 'redux', 'node', 'mongodb']
 	},
@@ -73,8 +74,8 @@ export const experiences: Experience[] = [
 		description:
 			'built a project management system for a non-profit. communicated with department heads.',
 		points: [
-			`<p>designed and built a <span style="text-decoration:${COLORS.laravel} underline dotted">Laravel</span>/<span style="text-decoration:${COLORS.mariadb} underline dotted">MariaDB</span> project-management prototype with separate admin and staff workflows, giving the registered biodiversity conservation nonprofit a centralized system for managing project records.</p>`,
-			'worked directly with leadership across three core conservation programs to gather requirements, understand existing workflows, and translate project-management needs into clear functional requirements for the application.'
+			`<p>designed and built a <span style="text-decoration:${COLORS.laravel} underline dotted">laravel</span>/<span style="text-decoration:${COLORS.mariadb} underline dotted">mariadb</span> project-management prototype with separate admin and staff workflows.</p>`,
+			`<p>worked directly with the ngo's higher-ups across three core conservation programs to translate project-management needs into clear functional requirements.</p>`
 		],
 		technologies: ['php', 'laravel', 'mariadb']
 	}

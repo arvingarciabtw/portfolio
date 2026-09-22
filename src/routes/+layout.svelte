@@ -4,8 +4,44 @@
 	import faviconForDark from '$lib/assets/favicon-for-dark.png';
 	import Header from '$lib/components/macro/header.svelte';
 	import Footer from '$lib/components/macro/footer.svelte';
+	import { onMount } from 'svelte';
+	import { afterNavigate } from '$app/navigation';
 
 	let { children } = $props();
+
+	let x = $state(0);
+	let y = $state(0);
+
+	function handlerScrollKeyPress(e: KeyboardEvent) {
+		const DISTANCE = 50;
+		switch (e.key) {
+			case 'w':
+				y += DISTANCE;
+				break;
+			case 'a':
+				x += DISTANCE;
+				break;
+			case 's':
+				y -= DISTANCE;
+				break;
+			case 'd':
+				x -= DISTANCE;
+				break;
+		}
+	}
+
+	afterNavigate(() => {
+		x = 0;
+		y = 0;
+	});
+
+	onMount(() => {
+		window.addEventListener('keydown', handlerScrollKeyPress);
+
+		return () => {
+			window.removeEventListener('keydown', handlerScrollKeyPress);
+		};
+	});
 </script>
 
 <svelte:head>
@@ -34,16 +70,16 @@
 </svelte:head>
 
 <Header />
-<main>
+<main style:transform="translate({x}px, {y}px)">
 	{@render children()}
 </main>
 <Footer />
 
 <style>
 	main {
-		width: 100%;
+		padding: 0 1rem;
 		display: grid;
-		align-content: center;
+		place-items: center;
 		gap: 4rem;
 	}
 </style>

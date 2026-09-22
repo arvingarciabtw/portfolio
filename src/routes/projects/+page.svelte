@@ -124,9 +124,11 @@
 
 <style>
 	.projects-wrapper {
+		width: 100%;
+		max-width: 80rem;
 		display: flex;
 		flex-direction: column;
-		gap: 1.5rem;
+		gap: 3rem;
 
 		.project {
 			max-width: 24rem;

@@ -20,6 +20,12 @@
 		{ key: 'Enter', symbol: 'Enter' },
 		{ key: ' ', symbol: 'Space' }
 	];
+	const scrollKeys = [
+		{ key: 'w', symbol: 'w' },
+		{ key: 'a', symbol: 'a' },
+		{ key: 's', symbol: 's' },
+		{ key: 'd', symbol: 'd' }
+	];
 
 	const keyGroups = [
 		{
@@ -31,6 +37,11 @@
 			group: sectionKeys,
 			class: 'section',
 			description: 'section'
+		},
+		{
+			group: scrollKeys,
+			class: 'scroll',
+			description: 'scroll'
 		},
 		{
 			group: executeKeys,
@@ -52,7 +63,8 @@
 		if (
 			navigationKeys.some((nk) => nk.key === e.key) ||
 			sectionKeys.some((sk) => sk.key === e.key) ||
-			executeKeys.some((ek) => ek.key === e.key)
+			executeKeys.some((ek) => ek.key === e.key) ||
+			scrollKeys.some((ek) => ek.key === e.key)
 		) {
 			blink(e.key);
 		}
@@ -102,10 +114,20 @@
 
 <style>
 	footer {
-		padding: 0 1.25rem;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100dvw;
+		padding: 1.5rem 1rem;
+		background: var(--black);
+		z-index: 1;
+		display: grid;
+		place-items: center;
 	}
 	.key-list {
-		padding: 0;
+		width: 100%;
+		max-width: 80rem;
+		padding: 0 1.25rem;
 		display: flex;
 		flex-wrap: wrap;
 		gap: 1rem 3rem;
@@ -153,6 +175,14 @@
 					color: var(--black);
 					border-color: var(--bright-cyan);
 				}
+				.w,
+				.a,
+				.s,
+				.d {
+					background-color: var(--bright-green);
+					color: var(--black);
+					border-color: var(--bright-green);
+				}
 			}
 		}
 
@@ -167,6 +197,10 @@
 		.execute {
 			color: var(--bright-cyan);
 			border-color: var(--bright-cyan);
+		}
+		.scroll {
+			color: var(--bright-green);
+			border-color: var(--bright-green);
 		}
 	}
 

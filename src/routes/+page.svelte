@@ -101,142 +101,153 @@
 	});
 </script>
 
-<div class="author">
-	<p>arvin garcia</p>
-	<p class="description">software dev based in the philippines.</p>
-	<ul class="social-list">
-		{#each socials as social, i (social)}
-			<li class="social">
-				<a
-					href={social.url}
-					target="_blank"
-					rel="external noopener noreferrer"
-					class={`${navigation.activeIndex == i + sections.length ? 'active' : ''} ${navigation.activeIndex == i + sections.length && shake.left ? 'shake-left' : ''} ${navigation.activeIndex == i + sections.length && shake.right ? 'shake-right' : ''}`}
-					onanimationend={() => {
-						shake.left = false;
-						shake.right = false;
-						shake.down = false;
-					}}>{social.name}</a
-				>
-			</li>
-			{#if i != socials.length - 1}
-				<li class="separator">·</li>
-			{/if}
-		{/each}
-	</ul>
+<div class="home-wrapper">
+	<div class="author">
+		<p>arvin garcia</p>
+		<p class="description">software dev based in the philippines.</p>
+		<ul class="social-list">
+			{#each socials as social, i (social)}
+				<li class="social">
+					<a
+						href={social.url}
+						target="_blank"
+						rel="external noopener noreferrer"
+						class={`${navigation.activeIndex == i + sections.length ? 'active' : ''} ${navigation.activeIndex == i + sections.length && shake.left ? 'shake-left' : ''} ${navigation.activeIndex == i + sections.length && shake.right ? 'shake-right' : ''}`}
+						onanimationend={() => {
+							shake.left = false;
+							shake.right = false;
+							shake.down = false;
+						}}>{social.name}</a
+					>
+				</li>
+				{#if i != socials.length - 1}
+					<li class="separator">·</li>
+				{/if}
+			{/each}
+		</ul>
 
-	<!-- TODO: uncomment this when implemented -->
-	<!-- <div class="ssh"> -->
-	<!-- 	<p>to view my portfolio in the terminal:</p> -->
-	<!-- 	<p>ssh arvingarcia.com [tbf]</p> -->
-	<!-- </div> -->
-</div>
+		<!-- TODO: uncomment this when implemented -->
+		<!-- <div class="ssh"> -->
+		<!-- 	<p>to view my portfolio in the terminal:</p> -->
+		<!-- 	<p>ssh arvingarcia.com [tbf]</p> -->
+		<!-- </div> -->
+	</div>
 
-<ul class="experience-list">
-	<li class="experience">
-		<a
-			href={resolve('/experience')}
-			onclick={() => {
-				navigation.activeIndex = 0 + sections.length;
-			}}
-		>
-			<div class="selection">
-				<p class="pointer">
-					{navigation.activeIndex >= sections.length + socials.length &&
-					0 == navigation.activeIndex - sections.length - socials.length
-						? '>'
-						: '\u00A0'}
-				</p>
-				<p
-					class={[
-						`position ${navigation.activeIndex == 0 + sections.length + socials.length && shake.left ? 'shake-left' : ''} ${navigation.activeIndex == 0 + sections.length + socials.length && shake.right ? 'shake-right' : ''}`,
-						(() =>
-							0 + sections.length + socials.length == navigation.activeIndex ? 'active' : '')()
-					]}
-					onanimationend={() => {
-						shake.left = false;
-						shake.right = false;
-						shake.down = false;
-					}}
-				>
-					see experience
-				</p>
-			</div>
-		</a>
-		<p class="description">fullstack dev intern. did volunteer work.</p>
-	</li>
-</ul>
-
-<ul class="project-list">
-	{#each projects.slice(0, 3) as project, i (project.name)}
-		<li class="project">
+	<ul class="experience-list">
+		<li class="experience">
 			<a
-				href={resolve('/projects')}
+				href={resolve('/experience')}
 				onclick={() => {
-					navigation.activeIndex = i + sections.length;
+					navigation.activeIndex = 0 + sections.length;
 				}}
 			>
-				<p class="pointer">
-					{navigation.activeIndex >= sections.length + socials.length + EXPERIENCE_LENGTH &&
-					i == navigation.activeIndex - sections.length - socials.length - EXPERIENCE_LENGTH
-						? '>'
-						: '\u00A0'}
-				</p>
 				<div class="selection">
-					<span class="padder"></span>
-					<div class="wrapper">
-						<div
-							class={[
-								`name ${navigation.activeIndex == i + sections.length + socials.length + EXPERIENCE_LENGTH && shake.left ? 'shake-left' : ''} ${navigation.activeIndex == i + sections.length + socials.length + EXPERIENCE_LENGTH && shake.right ? 'shake-right' : ''} ${navigation.activeIndex == i + sections.length + socials.length + EXPERIENCE_LENGTH && shake.down ? 'shake-down' : ''}`,
-								(() =>
-									i + sections.length + socials.length + EXPERIENCE_LENGTH == navigation.activeIndex
-										? 'active'
-										: '')()
-							]}
-							onanimationend={() => {
-								shake.left = false;
-								shake.right = false;
-								shake.down = false;
-							}}
-						>
-							<p>{project.name}</p>
-						</div>
-						<div class="metrics">
-							{#if project.metrics.stars != null && project.metrics.stars > 10}
-								<div class="metric stars">
-									<Star />
-									<p>
-										{project.metrics.stars}{project.metrics.stars > 10 ? '+' : ''}
-									</p>
-								</div>
-							{/if}
-							{#if project.metrics.downloads != null && project.metrics.downloads > 10}
-								<div class="metric downloads">
-									<Download />
-									<p>
-										{project.metrics.downloads}{project.metrics.downloads > 10 ? '+' : ''}
-									</p>
-								</div>
-							{/if}
-							{#if project.metrics.forks != null && project.metrics.forks != 0}
-								<div class="metric forks">
-									<Fork />
-									<p>
-										{project.metrics.forks}{project.metrics.forks > 10 ? '+' : ''}
-									</p>
-								</div>
-							{/if}
-						</div>
-					</div>
-					<span class="padder"></span>
-					<p class="description-short">{project.descriptionShort}</p>
+					<p class="pointer">
+						{navigation.activeIndex >= sections.length + socials.length &&
+						0 == navigation.activeIndex - sections.length - socials.length
+							? '>'
+							: '\u00A0'}
+					</p>
+					<p
+						class={[
+							`position ${navigation.activeIndex == 0 + sections.length + socials.length && shake.left ? 'shake-left' : ''} ${navigation.activeIndex == 0 + sections.length + socials.length && shake.right ? 'shake-right' : ''}`,
+							(() =>
+								0 + sections.length + socials.length == navigation.activeIndex ? 'active' : '')()
+						]}
+						onanimationend={() => {
+							shake.left = false;
+							shake.right = false;
+							shake.down = false;
+						}}
+					>
+						see experience
+					</p>
 				</div>
 			</a>
+			<p class="description">fullstack dev intern. did volunteer work.</p>
 		</li>
-	{/each}
-</ul>
+	</ul>
+
+	<ul class="project-list">
+		{#each projects.slice(0, 3) as project, i (project.name)}
+			<li class="project">
+				<a
+					href={resolve('/projects')}
+					onclick={() => {
+						navigation.activeIndex = i + sections.length;
+					}}
+				>
+					<p class="pointer">
+						{navigation.activeIndex >= sections.length + socials.length + EXPERIENCE_LENGTH &&
+						i == navigation.activeIndex - sections.length - socials.length - EXPERIENCE_LENGTH
+							? '>'
+							: '\u00A0'}
+					</p>
+					<div class="selection">
+						<span class="padder"></span>
+						<div class="wrapper">
+							<div
+								class={[
+									`name ${navigation.activeIndex == i + sections.length + socials.length + EXPERIENCE_LENGTH && shake.left ? 'shake-left' : ''} ${navigation.activeIndex == i + sections.length + socials.length + EXPERIENCE_LENGTH && shake.right ? 'shake-right' : ''} ${navigation.activeIndex == i + sections.length + socials.length + EXPERIENCE_LENGTH && shake.down ? 'shake-down' : ''}`,
+									(() =>
+										i + sections.length + socials.length + EXPERIENCE_LENGTH ==
+										navigation.activeIndex
+											? 'active'
+											: '')()
+								]}
+								onanimationend={() => {
+									shake.left = false;
+									shake.right = false;
+									shake.down = false;
+								}}
+							>
+								<p>{project.name}</p>
+							</div>
+							<div class="metrics">
+								{#if project.metrics.stars != null && project.metrics.stars > 10}
+									<div class="metric stars">
+										<Star />
+										<p>
+											{project.metrics.stars}{project.metrics.stars > 10 ? '+' : ''}
+										</p>
+									</div>
+								{/if}
+								{#if project.metrics.downloads != null && project.metrics.downloads > 10}
+									<div class="metric downloads">
+										<Download />
+										<p>
+											{project.metrics.downloads}{project.metrics.downloads > 10 ? '+' : ''}
+										</p>
+									</div>
+								{/if}
+								{#if project.metrics.forks != null && project.metrics.forks != 0}
+									<div class="metric forks">
+										<Fork />
+										<p>
+											{project.metrics.forks}{project.metrics.forks > 10 ? '+' : ''}
+										</p>
+									</div>
+								{/if}
+							</div>
+						</div>
+						<span class="padder"></span>
+						<p class="description-short">{project.descriptionShort}</p>
+					</div>
+				</a>
+			</li>
+		{/each}
+	</ul>
+</div>
 
 <style>
+	.home-wrapper {
+		width: 100%;
+		max-width: 80rem;
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+	}
+
 	.author {
 		margin-left: 1.25rem;
 	}

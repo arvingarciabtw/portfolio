@@ -116,6 +116,8 @@
 
 <style>
 	.experiences-wrapper {
+		width: 100%;
+		max-width: 80rem;
 		display: flex;
 		flex-direction: column;
 		gap: 3rem;
@@ -215,10 +217,6 @@
 					color: var(--white);
 					max-width: 44rem;
 					line-height: 1.75;
-
-					span {
-						color: red;
-					}
 				}
 			}
 		}
