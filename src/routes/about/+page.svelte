@@ -254,7 +254,9 @@
 
 	@media (max-width: 500px) {
 		.about-wrapper {
-			margin-left: 0.25rem;
+			padding: 0;
+			padding-left: 0.25rem;
+			margin-left: 0;
 
 			div {
 				.description {

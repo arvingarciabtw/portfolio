@@ -169,7 +169,11 @@ body {
 }
 
 @media (max-width: 500px) {
+  html {
+    overflow: auto;
+  }
 	body {
+    padding-bottom: 1rem;
 		font-size: 0.75rem;
 	}
 }
