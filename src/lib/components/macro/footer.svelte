@@ -159,13 +159,13 @@
 		padding: 0 1.25rem;
 		display: flex;
 		flex-wrap: wrap;
-		gap: 1rem 3rem;
+		gap: 1rem 2rem;
 		list-style-type: none;
 
 		.key-group {
 			display: flex;
 			flex-direction: column;
-			gap: 0.125rem;
+			gap: 0.25rem;
 
 			.keys {
 				display: flex;
