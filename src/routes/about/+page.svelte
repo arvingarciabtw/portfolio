@@ -174,6 +174,7 @@
 
 <style>
 	.about-wrapper {
+		padding: 0 0.75rem;
 		width: 100%;
 		max-width: 80rem;
 		margin-left: 1.25rem;

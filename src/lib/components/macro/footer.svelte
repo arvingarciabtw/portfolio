@@ -26,6 +26,7 @@
 		{ key: 's', symbol: 's' },
 		{ key: 'd', symbol: 'd' }
 	];
+	const resetKey = [{ key: 'r', symbol: 'r' }];
 
 	const keyGroups = [
 		{
@@ -47,6 +48,11 @@
 			group: executeKeys,
 			class: 'execute',
 			description: 'execute'
+		},
+		{
+			group: resetKey,
+			class: 'reset',
+			description: 'reset'
 		}
 	];
 
@@ -64,7 +70,8 @@
 			navigationKeys.some((nk) => nk.key === e.key) ||
 			sectionKeys.some((sk) => sk.key === e.key) ||
 			executeKeys.some((ek) => ek.key === e.key) ||
-			scrollKeys.some((ek) => ek.key === e.key)
+			scrollKeys.some((ek) => ek.key === e.key) ||
+			resetKey.some((ek) => ek.key === e.key)
 		) {
 			blink(e.key);
 		}
@@ -183,6 +190,11 @@
 					color: var(--black);
 					border-color: var(--bright-green);
 				}
+				.r {
+					background-color: var(--bright-red);
+					color: var(--black);
+					border-color: var(--bright-red);
+				}
 			}
 		}
 
@@ -201,6 +213,10 @@
 		.scroll {
 			color: var(--bright-green);
 			border-color: var(--bright-green);
+		}
+		.reset {
+			color: var(--bright-red);
+			border-color: var(--bright-red);
 		}
 	}
 

@@ -30,16 +30,28 @@
 		}
 	}
 
-	afterNavigate(() => {
+	function reset() {
 		x = 0;
 		y = 0;
+	}
+
+	function handlerPositionReset(e: KeyboardEvent) {
+		if (e.key == 'r') {
+			reset();
+		}
+	}
+
+	afterNavigate(() => {
+		reset();
 	});
 
 	onMount(() => {
 		window.addEventListener('keydown', handlerScrollKeyPress);
+		window.addEventListener('keydown', handlerPositionReset);
 
 		return () => {
 			window.removeEventListener('keydown', handlerScrollKeyPress);
+			window.removeEventListener('keydown', handlerPositionReset);
 		};
 	});
 </script>
