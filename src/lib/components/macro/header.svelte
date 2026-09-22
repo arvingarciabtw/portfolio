@@ -79,6 +79,7 @@
 	header {
 		width: 100%;
 		padding: 1.5rem 1rem;
+		padding-bottom: 0.25rem;
 		background: var(--black);
 		z-index: 1;
 		display: grid;

@@ -27,6 +27,7 @@
 		{ key: 'd', symbol: 'd' }
 	];
 	const resetKey = [{ key: 'r', symbol: 'r' }];
+	const hideKey = [{ key: 'x', symbol: 'x' }];
 
 	const keyGroups = [
 		{
@@ -53,6 +54,11 @@
 			group: resetKey,
 			class: 'reset',
 			description: 'reset'
+		},
+		{
+			group: hideKey,
+			class: 'hide',
+			description: 'hide'
 		}
 	];
 
@@ -71,22 +77,33 @@
 			sectionKeys.some((sk) => sk.key === e.key) ||
 			executeKeys.some((ek) => ek.key === e.key) ||
 			scrollKeys.some((ek) => ek.key === e.key) ||
-			resetKey.some((ek) => ek.key === e.key)
+			resetKey.some((ek) => ek.key === e.key) ||
+			hideKey.some((ek) => ek.key === e.key)
 		) {
 			blink(e.key);
 		}
 	}
 
+	let hide = $state(false);
+
+	function handlerHide(e: KeyboardEvent) {
+		if (e.key == 'x') {
+			hide = !hide;
+		}
+	}
+
 	onMount(() => {
 		window.addEventListener('keydown', handlerNavigationKeyPress);
+		window.addEventListener('keydown', handlerHide);
 
 		return () => {
 			window.removeEventListener('keydown', handlerNavigationKeyPress);
+			window.removeEventListener('keydown', handlerHide);
 		};
 	});
 </script>
 
-<footer>
+<footer class={`${hide ? 'hide' : ''}`}>
 	<ul class="key-list">
 		{#each keyGroups as kg (kg)}
 			<li class={`key-group ${kg.class}`}>
@@ -126,10 +143,15 @@
 		left: 0;
 		width: 100dvw;
 		padding: 1.5rem 1rem;
+		padding-top: 0.25rem;
 		background: var(--black);
 		z-index: 1;
 		display: grid;
 		place-items: center;
+
+		&.hide {
+			display: none;
+		}
 	}
 	.key-list {
 		width: 100%;
@@ -195,6 +217,11 @@
 					color: var(--black);
 					border-color: var(--bright-red);
 				}
+				.x {
+					background-color: var(--bright-orange);
+					color: var(--black);
+					border-color: var(--bright-orange);
+				}
 			}
 		}
 
@@ -217,6 +244,10 @@
 		.reset {
 			color: var(--bright-red);
 			border-color: var(--bright-red);
+		}
+		.hide {
+			color: var(--bright-orange);
+			border-color: var(--bright-orange);
 		}
 	}
 
