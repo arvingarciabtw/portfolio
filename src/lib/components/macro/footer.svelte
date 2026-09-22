@@ -28,6 +28,7 @@
 	];
 	const resetKey = [{ key: 'r', symbol: 'r' }];
 	const hideKey = [{ key: 'x', symbol: 'x' }];
+	const themeKey = [{ key: 't', symbol: 't' }];
 
 	const keyGroups = [
 		{
@@ -59,6 +60,11 @@
 			group: hideKey,
 			class: 'hide',
 			description: 'hide'
+		},
+		{
+			group: themeKey,
+			class: 'theme',
+			description: 'theme'
 		}
 	];
 
@@ -78,7 +84,8 @@
 			executeKeys.some((ek) => ek.key === e.key) ||
 			scrollKeys.some((ek) => ek.key === e.key) ||
 			resetKey.some((ek) => ek.key === e.key) ||
-			hideKey.some((ek) => ek.key === e.key)
+			hideKey.some((ek) => ek.key === e.key) ||
+			themeKey.some((ek) => ek.key === e.key)
 		) {
 			blink(e.key);
 		}
@@ -109,7 +116,7 @@
 			<li class={`key-group ${kg.class}`}>
 				<div class="keys">
 					{#each kg.group as k (k)}
-						<p
+						<kbd
 							class={[
 								'key',
 								(() => {
@@ -127,7 +134,7 @@
 							]}
 						>
 							{k.symbol}
-						</p>
+						</kbd>
 					{/each}
 				</div>
 				<p class="description">{kg.description}</p>
@@ -156,7 +163,7 @@
 	.key-list {
 		width: 100%;
 		max-width: 80rem;
-		padding: 0 1.25rem;
+		padding: 0 1.375rem;
 		display: flex;
 		flex-wrap: wrap;
 		gap: 1rem 2rem;
@@ -222,6 +229,11 @@
 					color: var(--black);
 					border-color: var(--bright-orange);
 				}
+				.t {
+					background-color: var(--bright-yellow);
+					color: var(--black);
+					border-color: var(--bright-yellow);
+				}
 			}
 		}
 
@@ -248,6 +260,10 @@
 		.hide {
 			color: var(--bright-orange);
 			border-color: var(--bright-orange);
+		}
+		.theme {
+			color: var(--bright-yellow);
+			border-color: var(--bright-yellow);
 		}
 	}
 

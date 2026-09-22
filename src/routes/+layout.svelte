@@ -45,13 +45,46 @@
 		reset();
 	});
 
+	let currentTheme = $state(
+		typeof document !== 'undefined' ? document.documentElement.getAttribute('data-theme') || '' : ''
+	);
+
+	function setTheme(theme: string) {
+		const one_year = 60 * 60 * 24 * 365;
+		document.cookie = `theme=${theme}; max-age=${one_year}; path=/`;
+		document.documentElement.setAttribute('data-theme', theme);
+		currentTheme = theme;
+	}
+
+	function toggleTheme(): void {
+		let theme = currentTheme;
+		if (currentTheme == 'dark-hard') {
+			theme = 'dark';
+		} else if (currentTheme == 'dark') {
+			theme = 'light-hard';
+		} else if (currentTheme == 'light-hard') {
+			theme = 'light';
+		} else if (currentTheme == 'light') {
+			theme = 'dark-hard';
+		}
+		setTheme(theme);
+	}
+
+	function handlerTheme(e: KeyboardEvent) {
+		if (e.key == 't') {
+			toggleTheme();
+		}
+	}
+
 	onMount(() => {
 		window.addEventListener('keydown', handlerScrollKeyPress);
 		window.addEventListener('keydown', handlerPositionReset);
+		window.addEventListener('keydown', handlerTheme);
 
 		return () => {
 			window.removeEventListener('keydown', handlerScrollKeyPress);
 			window.removeEventListener('keydown', handlerPositionReset);
+			window.removeEventListener('keydown', handlerTheme);
 		};
 	});
 </script>

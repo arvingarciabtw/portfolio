@@ -124,6 +124,7 @@
 
 <style>
 	.projects-wrapper {
+		padding: 0 0.075rem;
 		width: 100%;
 		max-width: 80rem;
 		display: flex;
