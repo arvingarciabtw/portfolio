@@ -30,6 +30,10 @@
 	const hideKey = [{ key: 'x', symbol: 'x' }];
 	const themeKey = [{ key: 't', symbol: 't' }];
 	const contrastKey = [{ key: 'c', symbol: 'c' }];
+	const zoomKeys = [
+		{ key: '-', symbol: '-' },
+		{ key: '+', symbol: '+' }
+	];
 
 	const keyGroups = [
 		{
@@ -68,6 +72,11 @@
 			description: 'contrast'
 		},
 		{
+			group: zoomKeys,
+			class: 'zoom',
+			description: 'zoom'
+		},
+		{
 			group: hideKey,
 			class: 'hide',
 			description: 'hide'
@@ -92,7 +101,8 @@
 			resetKey.some((ek) => ek.key === e.key) ||
 			hideKey.some((ek) => ek.key === e.key) ||
 			themeKey.some((ek) => ek.key === e.key) ||
-			contrastKey.some((ek) => ek.key === e.key)
+			contrastKey.some((ek) => ek.key === e.key) ||
+			zoomKeys.some((ek) => ek.key === e.key)
 		) {
 			blink(e.key);
 		}
@@ -246,6 +256,12 @@
 					color: var(--black);
 					border-color: var(--bright-white);
 				}
+				.\-,
+				.\+ {
+					background-color: var(--bright-blue);
+					color: var(--black);
+					border-color: var(--bright-blue);
+				}
 			}
 		}
 
@@ -280,6 +296,10 @@
 		.contrast {
 			color: var(--bright-white);
 			border-color: var(--bright-white);
+		}
+		.zoom {
+			color: var(--bright-blue);
+			border-color: var(--bright-blue);
 		}
 	}
 

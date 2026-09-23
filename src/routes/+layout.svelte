@@ -30,20 +30,14 @@
 		}
 	}
 
-	function reset() {
-		x = 0;
-		y = 0;
-	}
-
 	function handlerPositionReset(e: KeyboardEvent) {
 		if (e.key == 'r') {
 			reset();
+			fontSize = 14;
+
+			document.documentElement.style.fontSize = `${fontSize}px`;
 		}
 	}
-
-	afterNavigate(() => {
-		reset();
-	});
 
 	let currentTheme = $state(
 		typeof document !== 'undefined' ? document.documentElement.getAttribute('data-theme') || '' : ''
@@ -96,17 +90,41 @@
 		}
 	}
 
+	let fontSize = $state(14);
+
+	function handlerFontSize(e: KeyboardEvent) {
+		if (e.key == '+' && fontSize < 24) {
+			fontSize++;
+		}
+		if (e.key == '-' && fontSize > 8) {
+			fontSize--;
+		}
+
+		document.documentElement.style.fontSize = `${fontSize}px`;
+	}
+
+	function reset() {
+		x = 0;
+		y = 0;
+	}
+
+	afterNavigate(() => {
+		reset();
+	});
+
 	onMount(() => {
 		window.addEventListener('keydown', handlerScrollKeyPress);
 		window.addEventListener('keydown', handlerPositionReset);
 		window.addEventListener('keydown', handlerTheme);
 		window.addEventListener('keydown', handlerContrast);
+		window.addEventListener('keydown', handlerFontSize);
 
 		return () => {
 			window.removeEventListener('keydown', handlerScrollKeyPress);
 			window.removeEventListener('keydown', handlerPositionReset);
 			window.removeEventListener('keydown', handlerTheme);
 			window.removeEventListener('keydown', handlerContrast);
+			window.removeEventListener('keydown', handlerFontSize);
 		};
 	});
 </script>
@@ -136,7 +154,7 @@
 	<title>arvin</title>
 </svelte:head>
 
-<Header />
+<Header theme={currentTheme} {fontSize} />
 <main style:transform="translate({x}px, {y}px)">
 	{@render children()}
 </main>

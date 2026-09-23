@@ -241,6 +241,7 @@ html {
 	scrollbar-color: var(--bright-black) var(--black);
   overflow: hidden; /* prevents scrolling on the document, current intended behavior i want */
 	background: var(--black);
+  font-size: 0.875rem;
 }
 body {
 	min-height: 100dvh;
@@ -251,7 +252,6 @@ body {
 	background: var(--black);
 	color: var(--bright-white);
 	font-family: 'commit-mono', monospace;
-	font-size: 0.875rem;
 }
 
 @media (max-width: 500px) {

@@ -49,30 +49,38 @@
 			window.removeEventListener('keydown', handlerNavigationKeyPress);
 		};
 	});
+
+	let { theme, fontSize } = $props();
 </script>
 
 <header>
-	<ul class="section-list">
-		{#each sections as section, i (section.name)}
-			<li class={`section ${section.name}`}>
-				<a
-					href={resolve(section.url)}
-					class={`${currentUrl == section.url && navigation.activeIndex != i ? 'active-prio' : ''} ${navigation.activeIndex == i ? 'active' : ''} ${navigation.activeIndex == i && shake.up ? 'shake-up' : ''} ${i == 0 && navigation.activeIndex == 0 && shake.left ? 'shake-left' : ''} ${i == sections.length - 1 && navigation.activeIndex == sections.length - 1 && shake.right ? 'shake-right' : ''}`}
-					onclick={() => {
-						navigation.activeIndex = i;
-					}}
-					onanimationend={() => {
-						shake.up = false;
-						shake.left = false;
-						shake.right = false;
-					}}
-				>
-					0{i + 1}
-					{section.name}
-				</a>
-			</li>
-		{/each}
-	</ul>
+	<div class="wrapper">
+		<ul class="section-list">
+			{#each sections as section, i (section.name)}
+				<li class={`section ${section.name}`}>
+					<a
+						href={resolve(section.url)}
+						class={`${currentUrl == section.url && navigation.activeIndex != i ? 'active-prio' : ''} ${navigation.activeIndex == i ? 'active' : ''} ${navigation.activeIndex == i && shake.up ? 'shake-up' : ''} ${i == 0 && navigation.activeIndex == 0 && shake.left ? 'shake-left' : ''} ${i == sections.length - 1 && navigation.activeIndex == sections.length - 1 && shake.right ? 'shake-right' : ''}`}
+						onclick={() => {
+							navigation.activeIndex = i;
+						}}
+						onanimationend={() => {
+							shake.up = false;
+							shake.left = false;
+							shake.right = false;
+						}}
+					>
+						0{i + 1}
+						{section.name}
+					</a>
+				</li>
+			{/each}
+		</ul>
+		<div class="states">
+			<!-- need to figure out how to show the theme instantly here... -->
+			<p>{fontSize}px</p>
+		</div>
+	</div>
 </header>
 
 <style>
@@ -85,10 +93,18 @@
 		display: grid;
 		place-items: center;
 
-		.section-list {
+		.wrapper {
+			padding: 0 1.125rem;
 			width: 100%;
 			max-width: 80rem;
-			padding: 0 1.125rem;
+			display: grid;
+			grid-template-columns: 1fr max-content;
+			place-items: center;
+			gap: 4rem;
+		}
+		.section-list {
+			padding: 0;
+			width: 100%;
 			display: flex;
 			flex-wrap: wrap;
 			gap: 0.5rem 2.5rem;
@@ -185,6 +201,19 @@
 			}
 			.section a.shake-right {
 				animation: shake-right 0.1s;
+			}
+		}
+		.states {
+			display: flex;
+			gap: 3rem;
+			color: var(--white);
+		}
+	}
+
+	@media (max-width: 700px) {
+		header {
+			.states {
+				display: none;
 			}
 		}
 	}
