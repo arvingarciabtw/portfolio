@@ -34,8 +34,9 @@
 		if (e.key == 'r') {
 			reset();
 			fontSize = 14;
-
+			fontWeight = 400;
 			document.documentElement.style.fontSize = `${fontSize}px`;
+			document.documentElement.style.fontWeight = fontWeight.toString();
 		}
 	}
 
@@ -96,11 +97,24 @@
 		if (e.key == '+' && fontSize < 24) {
 			fontSize++;
 		}
-		if (e.key == '-' && fontSize > 8) {
+		if (e.key == '-' && !e.ctrlKey && fontSize > 8) {
 			fontSize--;
 		}
 
 		document.documentElement.style.fontSize = `${fontSize}px`;
+	}
+
+	let fontWeight = $state(400);
+
+	function handlerFontWeight(e: KeyboardEvent) {
+		if (e.key == ']' && fontWeight < 700) {
+			fontWeight = fontWeight + 25;
+		}
+		if (e.key == '[' && fontWeight > 200) {
+			fontWeight = fontWeight - 25;
+		}
+
+		document.documentElement.style.fontWeight = fontWeight.toString();
 	}
 
 	function reset() {
@@ -118,6 +132,7 @@
 		window.addEventListener('keydown', handlerTheme);
 		window.addEventListener('keydown', handlerContrast);
 		window.addEventListener('keydown', handlerFontSize);
+		window.addEventListener('keydown', handlerFontWeight);
 
 		return () => {
 			window.removeEventListener('keydown', handlerScrollKeyPress);
@@ -125,6 +140,7 @@
 			window.removeEventListener('keydown', handlerTheme);
 			window.removeEventListener('keydown', handlerContrast);
 			window.removeEventListener('keydown', handlerFontSize);
+			window.removeEventListener('keydown', handlerFontWeight);
 		};
 	});
 </script>
@@ -146,7 +162,7 @@
 	/>
 	<link
 		rel="preload"
-		href="/fonts/commit-mono-regular-subset.woff2"
+		href="/fonts/commit-mono-vf.woff2"
 		as="font"
 		type="font/woff2"
 		crossorigin="anonymous"
@@ -154,7 +170,7 @@
 	<title>arvin</title>
 </svelte:head>
 
-<Header theme={currentTheme} {fontSize} />
+<Header font={{ size: fontSize, weight: fontWeight }} />
 <main style:transform="translate({x}px, {y}px)">
 	{@render children()}
 </main>

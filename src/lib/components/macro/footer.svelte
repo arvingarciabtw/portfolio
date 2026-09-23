@@ -34,6 +34,10 @@
 		{ key: '-', symbol: '-' },
 		{ key: '+', symbol: '+' }
 	];
+	const weightKeys = [
+		{ key: '[', symbol: '[' },
+		{ key: ']', symbol: ']' }
+	];
 
 	const keyGroups = [
 		{
@@ -57,11 +61,6 @@
 			description: 'scroll'
 		},
 		{
-			group: resetKey,
-			class: 'reset',
-			description: 'reset'
-		},
-		{
 			group: themeKey,
 			class: 'theme',
 			description: 'theme'
@@ -77,9 +76,19 @@
 			description: 'zoom'
 		},
 		{
+			group: weightKeys,
+			class: 'weight',
+			description: 'weight'
+		},
+		{
 			group: hideKey,
 			class: 'hide',
 			description: 'hide'
+		},
+		{
+			group: resetKey,
+			class: 'reset',
+			description: 'reset'
 		}
 	];
 
@@ -102,7 +111,8 @@
 			hideKey.some((ek) => ek.key === e.key) ||
 			themeKey.some((ek) => ek.key === e.key) ||
 			contrastKey.some((ek) => ek.key === e.key) ||
-			zoomKeys.some((ek) => ek.key === e.key)
+			zoomKeys.some((ek) => ek.key === e.key) ||
+			weightKeys.some((ek) => ek.key === e.key)
 		) {
 			blink(e.key);
 		}
@@ -262,6 +272,12 @@
 					color: var(--black);
 					border-color: var(--bright-blue);
 				}
+				.\[,
+				.\] {
+					background-color: var(--bright-magenta);
+					color: var(--black);
+					border-color: var(--bright-magenta);
+				}
 			}
 		}
 
@@ -300,6 +316,10 @@
 		.zoom {
 			color: var(--bright-blue);
 			border-color: var(--bright-blue);
+		}
+		.weight {
+			color: var(--bright-magenta);
+			border-color: var(--bright-magenta);
 		}
 	}
 

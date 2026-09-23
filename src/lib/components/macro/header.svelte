@@ -50,7 +50,7 @@
 		};
 	});
 
-	let { theme, fontSize } = $props();
+	let { font } = $props();
 </script>
 
 <header>
@@ -78,7 +78,8 @@
 		</ul>
 		<div class="states">
 			<!-- need to figure out how to show the theme instantly here... -->
-			<p>{fontSize}px</p>
+			<p>{font.size}px</p>
+			<p>{font.weight}</p>
 		</div>
 	</div>
 </header>
