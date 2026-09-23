@@ -1,42 +1,9 @@
-# sv
+# portfolio
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+my website is meant to be keyboard-first and visually looks like a tui... because i like tuis. the ui/ux is heavily inspired from [commit mono](https://commitmono.com), so credit to the creator. i also use their font!
 
-## Creating a project
+> note: ***not*** vibed, zero clanker usage
 
-If you're seeing this, you've probably already done this step. Congrats!
+> shameless plug: if you like tuis, ricing, and pretty visualizers, maybe you might find [ditto](https://ditto.arvingarcia.com) interesting, a project of mine!
 
-```sh
-# create a new project
-npx sv create my-app
-```
-
-To recreate this project with the same configuration:
-
-```sh
-# recreate this project
-pnpm dlx sv@0.16.2 create --template minimal --types ts --add prettier eslint sveltekit-adapter="adapter:cloudflare+cfTarget:workers" --install pnpm .
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+(っᵔ◡ᵔ)っ
