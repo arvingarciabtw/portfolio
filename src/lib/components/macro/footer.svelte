@@ -29,6 +29,7 @@
 	const resetKey = [{ key: 'r', symbol: 'r' }];
 	const hideKey = [{ key: 'x', symbol: 'x' }];
 	const themeKey = [{ key: 't', symbol: 't' }];
+	const contrastKey = [{ key: 'c', symbol: 'c' }];
 
 	const keyGroups = [
 		{
@@ -42,14 +43,14 @@
 			description: 'section'
 		},
 		{
-			group: scrollKeys,
-			class: 'scroll',
-			description: 'scroll'
-		},
-		{
 			group: executeKeys,
 			class: 'execute',
 			description: 'execute'
+		},
+		{
+			group: scrollKeys,
+			class: 'scroll',
+			description: 'scroll'
 		},
 		{
 			group: resetKey,
@@ -57,14 +58,19 @@
 			description: 'reset'
 		},
 		{
-			group: hideKey,
-			class: 'hide',
-			description: 'hide'
-		},
-		{
 			group: themeKey,
 			class: 'theme',
 			description: 'theme'
+		},
+		{
+			group: contrastKey,
+			class: 'contrast',
+			description: 'contrast'
+		},
+		{
+			group: hideKey,
+			class: 'hide',
+			description: 'hide'
 		}
 	];
 
@@ -85,7 +91,8 @@
 			scrollKeys.some((ek) => ek.key === e.key) ||
 			resetKey.some((ek) => ek.key === e.key) ||
 			hideKey.some((ek) => ek.key === e.key) ||
-			themeKey.some((ek) => ek.key === e.key)
+			themeKey.some((ek) => ek.key === e.key) ||
+			contrastKey.some((ek) => ek.key === e.key)
 		) {
 			blink(e.key);
 		}
@@ -234,6 +241,11 @@
 					color: var(--black);
 					border-color: var(--bright-yellow);
 				}
+				.c {
+					background-color: var(--bright-white);
+					color: var(--black);
+					border-color: var(--bright-white);
+				}
 			}
 		}
 
@@ -264,6 +276,10 @@
 		.theme {
 			color: var(--bright-yellow);
 			border-color: var(--bright-yellow);
+		}
+		.contrast {
+			color: var(--bright-white);
+			border-color: var(--bright-white);
 		}
 	}
 

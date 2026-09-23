@@ -59,13 +59,27 @@
 	function toggleTheme(): void {
 		let theme = currentTheme;
 		if (currentTheme == 'dark-hard') {
+			theme = 'light-hard';
+		} else if (currentTheme == 'dark') {
+			theme = 'light';
+		} else if (currentTheme == 'light-hard') {
+			theme = 'dark-hard';
+		} else if (currentTheme == 'light') {
+			theme = 'dark';
+		}
+		setTheme(theme);
+	}
+
+	function toggleContrast(): void {
+		let theme = currentTheme;
+		if (currentTheme == 'dark-hard') {
 			theme = 'dark';
 		} else if (currentTheme == 'dark') {
-			theme = 'light-hard';
+			theme = 'dark-hard';
 		} else if (currentTheme == 'light-hard') {
 			theme = 'light';
 		} else if (currentTheme == 'light') {
-			theme = 'dark-hard';
+			theme = 'light-hard';
 		}
 		setTheme(theme);
 	}
@@ -76,15 +90,23 @@
 		}
 	}
 
+	function handlerContrast(e: KeyboardEvent) {
+		if (e.key == 'c') {
+			toggleContrast();
+		}
+	}
+
 	onMount(() => {
 		window.addEventListener('keydown', handlerScrollKeyPress);
 		window.addEventListener('keydown', handlerPositionReset);
 		window.addEventListener('keydown', handlerTheme);
+		window.addEventListener('keydown', handlerContrast);
 
 		return () => {
 			window.removeEventListener('keydown', handlerScrollKeyPress);
 			window.removeEventListener('keydown', handlerPositionReset);
 			window.removeEventListener('keydown', handlerTheme);
+			window.removeEventListener('keydown', handlerContrast);
 		};
 	});
 </script>
