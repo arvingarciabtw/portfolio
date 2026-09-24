@@ -42,14 +42,14 @@ type Experience = {
 };
 
 const COLORS = {
-  react: "#0cc8f9",
-  ts: "#619ad8",
-  js: "#F0DB4F",
-  node: "#8eb88a",
-  mongodb: "#4DB33D",
-  laravel: "#F05340",
-  mariadb: "#008ab3",
-}
+	react: '#0cc8f9',
+	ts: '#619ad8',
+	js: '#F0DB4F',
+	node: '#8eb88a',
+	mongodb: '#4DB33D',
+	laravel: '#F05340',
+	mariadb: '#008ab3'
+};
 
 export const experiences: Experience[] = [
 	{
@@ -60,9 +60,9 @@ export const experiences: Experience[] = [
 		description:
 			'developed a gig application. led the redesign of the frontend. implemented api + email.',
 		points: [
-			`<p>migrated the entire <span style="text-decoration:${COLORS.react} underline dotted;">react/redux</span> frontend of a blue-collar gig marketplace from <span style="text-decoration:${COLORS.js} underline dotted">javaScript</span> to <span style="text-decoration:${COLORS.ts} underline dotted">typeScript</span> to add type safety.</p>`,
+			`<p>migrated the entire <span style="text-decoration:${COLORS.react} underline dotted;">react/redux</span> frontend of a blue-collar gig marketplace from <span style="text-decoration:${COLORS.js} underline dotted">javascript</span> to <span style="text-decoration:${COLORS.ts} underline dotted">typescript</span> to add type safety.</p>`,
 			`<p>led the product redesign from initial figma prototypes all the way up to the frontend implementation</p>`,
-      `<p>contributed crud endpoints with <span style="text-decoration:${COLORS.node} underline dotted">node.js</span> and <span style="text-decoration:${COLORS.mongodb} underline dotted">mongodb</span> plus authentication email workflows across the application.</p>`
+			`<p>contributed crud endpoints with <span style="text-decoration:${COLORS.node} underline dotted">node.js</span> and <span style="text-decoration:${COLORS.mongodb} underline dotted">mongodb</span> plus authentication email workflows across the application.</p>`
 		],
 		technologies: ['typescript', 'react', 'redux', 'node', 'mongodb']
 	},
@@ -133,7 +133,7 @@ export const projects: Project[] = [
 			forks: 0
 		},
 		technologies: ['astro', 'typescript']
-	},
+	}
 ] as const;
 
 type Social = {
@@ -147,7 +147,7 @@ export const socials: Social[] = [
 		url: 'https://github.com/arvingarciabtw'
 	},
 	{
-		name: 'email',
+		name: 'contact@arvingarcia.com',
 		url: 'mailto:contact@arvingarcia.com'
 	}
 ];
@@ -169,14 +169,14 @@ export const philosophies: Philosophy[] = [
 	{
 		description: 'be grug-brained',
 		url: 'https://grugbrain.dev/'
-	},
+	}
 ];
 
 type Tech = {
 	os: string;
 	distro: string;
 	wm: string;
-	["desktop shell"]: string;
+	['desktop shell']: string;
 	terminal: string;
 	editor: string;
 };
@@ -185,7 +185,7 @@ export const tech: Tech = {
 	os: 'linux',
 	distro: 'nixos',
 	wm: 'niri',
-  "desktop shell": 'noctalia',
+	'desktop shell': 'noctalia',
 	terminal: 'ghostty',
 	editor: 'neovim'
 };

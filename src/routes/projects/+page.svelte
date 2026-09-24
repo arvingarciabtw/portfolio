@@ -148,7 +148,8 @@
 						color: var(--project);
 					}
 					.name {
-						padding: 0 0.25rem;
+						padding: 1px 0.25rem;
+						display: inline !important;
 						width: max-content;
 						color: var(--bright-white);
 					}
@@ -210,7 +211,7 @@
 		.project .details .name.name.shake-down,
 		.project .details .name.name.shake-left,
 		.project .details .name.name.shake-right {
-			padding: 0 0.25rem;
+			padding: 1px 0.25rem;
 			display: inline-block;
 		}
 		.project .details .name.shake-down {

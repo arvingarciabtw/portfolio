@@ -138,7 +138,7 @@
 					color: var(--experience);
 				}
 				.position {
-					padding: 0 0.25rem;
+					padding: 1px 0.25rem;
 					width: max-content;
 					color: var(--bright-white);
 					text-decoration: none;
@@ -155,7 +155,7 @@
 				.position.shake-left,
 				.position.shake-right,
 				.position.shake-down {
-					padding: 0 0.25rem;
+					padding: 1 0.25rem;
 					display: inline-block;
 				}
 				.position.shake-left {

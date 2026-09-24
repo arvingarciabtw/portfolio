@@ -58,17 +58,17 @@ h6 {
 
 /* variables to be used globally, such as
    colors, spacings, etc */
-html[data-theme="dark"] {
-  /* gruvbox dark */
+html[data-theme='dark'] {
+	/* gruvbox dark */
 	--black: hsl(0, 0%, 15.69%);
 	--red: hsl(2.4, 75.11%, 45.69%);
-	--green: hsl(59.52, 70.79%, 34.90%);
+	--green: hsl(59.52, 70.79%, 34.9%);
 	--yellow: hsl(39.56, 73.39%, 48.63%);
 	--blue: hsl(182.69, 32.68%, 40.2%);
 	--magenta: hsl(332.66, 33.62%, 53.92%);
 	--cyan: hsl(122.26, 21.29%, 51.18%);
-  --orange: hsl(23.88, 88.55%, 44.51%);
-  --purple: hsl(283.94, 30.74%, 45.29%);
+	--orange: hsl(23.88, 88.55%, 44.51%);
+	--purple: hsl(283.94, 30.74%, 45.29%);
 	--white: hsl(35, 17.14%, 58.82%);
 	--bright-black: hsl(30, 12.1%, 51.37%);
 	--bright-red: hsl(6.33, 96.14%, 59.41%);
@@ -77,26 +77,26 @@ html[data-theme="dark"] {
 	--bright-blue: hsl(157.06, 15.89%, 58.04%);
 	--bright-magenta: hsl(343.64, 46.67%, 67.65%);
 	--bright-cyan: hsl(104.12, 35.05%, 61.96%);
-  --bright-orange: hsl(26.99, 99.13%, 54.71%);
-  --bright-purple: hsl(287.44, 58.90%, 71.37%);
+	--bright-orange: hsl(26.99, 99.13%, 54.71%);
+	--bright-purple: hsl(287.44, 58.9%, 71.37%);
 	--bright-white: hsl(43.16, 58.76%, 80.98%);
 
-  --home: var(--bright-red);
-  --experience: var(--bright-green);
-  --project: var(--bright-purple);
-  --about: var(--bright-orange);
+	--home: var(--bright-red);
+	--experience: var(--bright-green);
+	--project: var(--bright-purple);
+	--about: var(--bright-orange);
 }
-html[data-theme="dark-hard"] {
-  /* gruvbox dark hard */
+html[data-theme='dark-hard'] {
+	/* gruvbox dark hard */
 	--black: hsl(195, 6.45%, 12.16%);
 	--red: hsl(2.4, 75.11%, 45.69%);
-	--green: hsl(59.52, 70.79%, 34.90%);
+	--green: hsl(59.52, 70.79%, 34.9%);
 	--yellow: hsl(39.56, 73.39%, 48.63%);
 	--blue: hsl(182.69, 32.68%, 40.2%);
 	--magenta: hsl(332.66, 33.62%, 53.92%);
 	--cyan: hsl(122.26, 21.29%, 51.18%);
-  --orange: hsl(23.88, 88.55%, 44.51%);
-  --purple: hsl(283.94, 30.74%, 45.29%);
+	--orange: hsl(23.88, 88.55%, 44.51%);
+	--purple: hsl(283.94, 30.74%, 45.29%);
 	--white: hsl(35, 17.14%, 58.82%);
 	--bright-black: hsl(30, 12.1%, 51.37%);
 	--bright-red: hsl(6.33, 96.14%, 59.41%);
@@ -105,26 +105,26 @@ html[data-theme="dark-hard"] {
 	--bright-blue: hsl(157.06, 15.89%, 58.04%);
 	--bright-magenta: hsl(343.64, 46.67%, 67.65%);
 	--bright-cyan: hsl(104.12, 35.05%, 61.96%);
-  --bright-orange: hsl(26.99, 99.13%, 54.71%);
-  --bright-purple: hsl(287.44, 58.90%, 71.37%);
+	--bright-orange: hsl(26.99, 99.13%, 54.71%);
+	--bright-purple: hsl(287.44, 58.9%, 71.37%);
 	--bright-white: hsl(43.16, 58.76%, 80.98%);
 
-  --home: var(--bright-red);
-  --experience: var(--bright-green);
-  --project: var(--bright-purple);
-  --about: var(--bright-orange);
+	--home: var(--bright-red);
+	--experience: var(--bright-green);
+	--project: var(--bright-purple);
+	--about: var(--bright-orange);
 }
-html[data-theme="light"] {
-  /* gruvbox light */
+html[data-theme='light'] {
+	/* gruvbox light */
 	--black: hsl(48.46, 86.67%, 88.24%);
 	--red: hsl(2.4, 75.11%, 45.69%);
-	--green: hsl(59.52, 70.79%, 34.90%);
+	--green: hsl(59.52, 70.79%, 34.9%);
 	--yellow: hsl(39.56, 73.39%, 48.63%);
 	--blue: hsl(182.69, 32.68%, 40.2%);
 	--magenta: hsl(332.66, 33.62%, 53.92%);
 	--cyan: hsl(122.26, 21.29%, 51.18%);
-  --orange: hsl(23.88, 88.55%, 44.51%);
-  --purple: hsl(283.94, 30.74%, 45.29%);
+	--orange: hsl(23.88, 88.55%, 44.51%);
+	--purple: hsl(283.94, 30.74%, 45.29%);
 	--white: hsl(27.5, 10.71%, 38.92%);
 	--bright-black: hsl(30, 12.1%, 51.37%);
 	--bright-red: hsl(357.71, 100%, 30.78%);
@@ -133,26 +133,26 @@ html[data-theme="light"] {
 	--bright-blue: hsl(189.56, 88.98%, 24.9%);
 	--bright-magenta: hsl(322.5, 38.83%, 40.39%);
 	--bright-cyan: hsl(143.16, 30.16%, 32.06%);
-  --bright-orange: hsl(26.99, 99.13%, 30.71%);
-  --bright-purple: hsl(287.44, 58.90%, 41.37%);
+	--bright-orange: hsl(26.99, 99.13%, 30.71%);
+	--bright-purple: hsl(287.44, 58.9%, 41.37%);
 	--bright-white: hsl(20, 5.26%, 22.35%);
 
-  --home: var(--bright-red);
-  --experience: var(--bright-green);
-  --project: var(--bright-purple);
-  --about: var(--bright-orange);
+	--home: var(--bright-red);
+	--experience: var(--bright-green);
+	--project: var(--bright-purple);
+	--about: var(--bright-orange);
 }
-html[data-theme="light-hard"] {
-  /* gruvbox light hard */
+html[data-theme='light-hard'] {
+	/* gruvbox light hard */
 	--black: hsl(52.94, 73.91%, 90.98%);
 	--red: hsl(2.4, 75.11%, 45.69%);
-	--green: hsl(59.52, 70.79%, 34.90%);
+	--green: hsl(59.52, 70.79%, 34.9%);
 	--yellow: hsl(39.56, 73.39%, 48.63%);
 	--blue: hsl(182.69, 32.68%, 40.2%);
 	--magenta: hsl(332.66, 33.62%, 53.92%);
 	--cyan: hsl(122.26, 21.29%, 51.18%);
-  --orange: hsl(23.88, 88.55%, 44.51%);
-  --purple: hsl(283.94, 30.74%, 45.29%);
+	--orange: hsl(23.88, 88.55%, 44.51%);
+	--purple: hsl(283.94, 30.74%, 45.29%);
 	--white: hsl(27.5, 10.71%, 38.92%);
 	--bright-black: hsl(30, 12.1%, 51.37%);
 	--bright-red: hsl(357.71, 100%, 30.78%);
@@ -161,20 +161,20 @@ html[data-theme="light-hard"] {
 	--bright-blue: hsl(189.56, 88.98%, 24.9%);
 	--bright-magenta: hsl(322.5, 38.83%, 40.39%);
 	--bright-cyan: hsl(143.16, 30.16%, 32.06%);
-  --bright-orange: hsl(26.99, 99.13%, 30.71%);
-  --bright-purple: hsl(287.44, 58.90%, 41.37%);
+	--bright-orange: hsl(26.99, 99.13%, 30.71%);
+	--bright-purple: hsl(287.44, 58.9%, 41.37%);
 	--bright-white: hsl(20, 5.26%, 22.35%);
 
-  --home: var(--bright-red);
-  --experience: var(--bright-green);
-  --project: var(--bright-purple);
-  --about: var(--bright-orange);
+	--home: var(--bright-red);
+	--experience: var(--bright-green);
+	--project: var(--bright-purple);
+	--about: var(--bright-orange);
 }
 
 /* fonts */
 @font-face {
 	font-family: 'commit-mono';
-	font-display: swap;
+	font-display: block;
 	src: url('/fonts/commit-mono-vf.woff2') format('woff2');
 }
 
@@ -239,9 +239,9 @@ html {
 	display: grid;
 	place-items: center;
 	scrollbar-color: var(--bright-black) var(--black);
-  overflow: hidden; /* prevents scrolling on the document, current intended behavior i want */
+	overflow: hidden; /* prevents scrolling on the document, current intended behavior i want */
 	background: var(--black);
-  font-size: 0.875rem;
+	font-size: 0.875rem;
 }
 body {
 	min-height: 100dvh;
@@ -255,11 +255,11 @@ body {
 }
 
 @media (max-width: 500px) {
-  html {
-    overflow: auto;
-  }
+	html {
+		overflow: auto;
+	}
 	body {
-    padding-bottom: 1rem;
-		font-size: 0.75rem;
+		padding-bottom: 1rem;
+		font-size: 12px;
 	}
 }

@@ -113,7 +113,8 @@
 
 			/* general a element styles. */
 			.section a {
-				padding: 0.125rem 0.25rem;
+				padding: 1px 0.25rem;
+				display: inline-block;
 				text-decoration: none;
 				width: max-content;
 			}
@@ -191,7 +192,7 @@
 			.section a.shake-up,
 			.section a.shake-left,
 			.section a.shake-right {
-				padding: 0 0.25rem;
+				padding: 1px 0.25rem;
 				display: inline-block;
 			}
 			.section a.shake-up {
@@ -226,6 +227,9 @@
 			.section-list {
 				flex-wrap: wrap;
 				gap: 0.25rem 1rem;
+				.section a {
+					padding: 0.125rem 0.25rem;
+				}
 			}
 		}
 	}

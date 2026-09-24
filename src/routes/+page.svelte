@@ -259,11 +259,11 @@
 	}
 
 	.description {
-		margin-top: 0.25rem;
+		margin-top: 0.375rem;
 		color: var(--white);
 	}
 	.social-list {
-		margin: 0.25rem 0 0 -0.25rem;
+		margin: 0.375rem 0 0 -0.25rem;
 		padding: 0;
 		display: flex;
 		gap: 0.5rem;
@@ -275,9 +275,10 @@
 		}
 
 		.social a {
-			padding: 0.125rem 0.25rem;
+			padding: 1px 0.25rem;
+			display: inline-block;
 			color: var(--white);
-			text-decoration: underline;
+			text-decoration: underline dotted;
 		}
 		.social a:hover {
 			text-decoration: none;
@@ -293,7 +294,7 @@
 		.social a.shake-down,
 		.social a.shake-left,
 		.social a.shake-right {
-			padding: 0 0.25rem;
+			padding: 1px 0.25rem;
 			display: inline-block;
 		}
 		.social a.shake-down {
@@ -320,6 +321,7 @@
 			gap: 0.25rem;
 
 			a {
+				display: inline-block;
 				color: var(--bright-white);
 				text-decoration: none;
 				width: max-content;
@@ -330,7 +332,7 @@
 				grid-template-columns: 1rem max-content;
 
 				.position {
-					padding: 0 0.25rem;
+					padding: 1px 0.25rem;
 				}
 			}
 
@@ -356,7 +358,7 @@
 		.experience a .position.shake-down,
 		.experience a .position.shake-left,
 		.experience a .position.shake-right {
-			padding: 0 0.25rem;
+			padding: 1px 0.25rem;
 			display: inline-block;
 		}
 		.experience a .position.shake-down {
@@ -438,7 +440,7 @@
 						width: 1px;
 					}
 					.name {
-						padding: 0 0.25rem;
+						padding: 1px 0.25rem;
 						margin: 0 0 0 0.5rem;
 						width: max-content;
 						display: flex;
@@ -505,7 +507,7 @@
 				background: var(--flicker-color);
 				color: var(--white);
 				animation: none;
-				text-decoration: underline;
+				text-decoration: underline dotted;
 			}
 		}
 

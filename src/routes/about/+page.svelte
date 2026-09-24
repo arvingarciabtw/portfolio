@@ -166,7 +166,7 @@
 						shake.right = false;
 						shake.down = false;
 					}}>commit mono</a
-				> website. credit as well to their dope font.
+				> website. i also use the font!
 			</p>
 		</div>
 	</div>
@@ -194,13 +194,13 @@
 
 				p {
 					text-wrap: balance;
-					line-height: 1.75;
+					line-height: 1.5;
 				}
 				ul {
 					padding: 0;
 					display: flex;
 					flex-direction: column;
-					gap: 0.375rem;
+					gap: 0.5rem;
 					list-style-type: none;
 				}
 				ul.social-list,
@@ -215,13 +215,15 @@
 					gap: 0.5rem;
 				}
 				.commit-mono {
+					margin-top: 0.375rem;
 					display: inline-block;
-					padding: 0 0.25rem;
+					padding: 1px 0.25rem;
 				}
 				a {
-					padding: 0.125rem 0.25rem;
+					padding: 1px 0.25rem;
+					display: inline-block;
 					color: var(--white);
-					text-decoration: underline;
+					text-decoration: underline dotted;
 				}
 				a:hover {
 					text-decoration: none;
@@ -236,7 +238,7 @@
 				a.shake-down,
 				a.shake-left,
 				a.shake-right {
-					padding: 0 0.25rem;
+					padding: 1px 0.25rem;
 					display: inline-block;
 				}
 				a.shake-down {
@@ -264,7 +266,7 @@
 						background-color: var(--black);
 						color: var(--white);
 						animation: none;
-						text-decoration: underline;
+						text-decoration: underline dotted;
 					}
 				}
 			}
