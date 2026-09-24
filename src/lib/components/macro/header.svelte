@@ -97,7 +97,7 @@
 		.wrapper {
 			padding: 0 1.125rem;
 			width: 100%;
-			max-width: 80rem;
+			max-width: 90rem;
 			display: grid;
 			grid-template-columns: 1fr max-content;
 			place-items: center;

@@ -117,7 +117,7 @@
 <style>
 	.experiences-wrapper {
 		width: 100%;
-		max-width: 80rem;
+		max-width: 90rem;
 		display: flex;
 		flex-direction: column;
 		gap: 3rem;

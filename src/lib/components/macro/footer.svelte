@@ -26,6 +26,7 @@
 		{ key: 's', symbol: 's' },
 		{ key: 'd', symbol: 'd' }
 	];
+	const positionKey = [{ key: 'p', symbol: 'p' }];
 	const resetKey = [{ key: 'r', symbol: 'r' }];
 	const hideKey = [{ key: 'x', symbol: 'x' }];
 	const themeKey = [{ key: 't', symbol: 't' }];
@@ -61,14 +62,9 @@
 			description: 'scroll'
 		},
 		{
-			group: themeKey,
-			class: 'theme',
-			description: 'theme'
-		},
-		{
-			group: contrastKey,
-			class: 'contrast',
-			description: 'contrast'
+			group: positionKey,
+			class: 'pos',
+			description: 'pos'
 		},
 		{
 			group: zoomKeys,
@@ -89,6 +85,16 @@
 			group: resetKey,
 			class: 'reset',
 			description: 'reset'
+		},
+		{
+			group: themeKey,
+			class: 'theme',
+			description: 'theme'
+		},
+		{
+			group: contrastKey,
+			class: 'contrast',
+			description: 'contrast'
 		}
 	];
 
@@ -112,7 +118,8 @@
 			themeKey.some((ek) => ek.key === e.key) ||
 			contrastKey.some((ek) => ek.key === e.key) ||
 			zoomKeys.some((ek) => ek.key === e.key) ||
-			weightKeys.some((ek) => ek.key === e.key)
+			weightKeys.some((ek) => ek.key === e.key) ||
+			positionKey.some((ek) => ek.key === e.key)
 		) {
 			blink(e.key);
 		}
@@ -189,7 +196,7 @@
 	}
 	.key-list {
 		width: 100%;
-		max-width: 80rem;
+		max-width: 90rem;
 		padding: 0 1.375rem;
 		display: flex;
 		flex-wrap: wrap;
@@ -246,6 +253,11 @@
 					color: var(--black);
 					border-color: var(--bright-green);
 				}
+				.p {
+					background-color: var(--bright-yellow);
+					color: var(--black);
+					border-color: var(--bright-yellow);
+				}
 				.r {
 					background-color: var(--bright-red);
 					color: var(--black);
@@ -257,14 +269,14 @@
 					border-color: var(--bright-orange);
 				}
 				.t {
-					background-color: var(--bright-yellow);
-					color: var(--black);
-					border-color: var(--bright-yellow);
-				}
-				.c {
 					background-color: var(--bright-white);
 					color: var(--black);
 					border-color: var(--bright-white);
+				}
+				.c {
+					background-color: var(--white);
+					color: var(--black);
+					border-color: var(--white);
 				}
 				.\-,
 				.\+ {
@@ -297,6 +309,10 @@
 			color: var(--bright-green);
 			border-color: var(--bright-green);
 		}
+		.pos {
+			color: var(--bright-yellow);
+			border-color: var(--bright-yellow);
+		}
 		.reset {
 			color: var(--bright-red);
 			border-color: var(--bright-red);
@@ -306,12 +322,12 @@
 			border-color: var(--bright-orange);
 		}
 		.theme {
-			color: var(--bright-yellow);
-			border-color: var(--bright-yellow);
-		}
-		.contrast {
 			color: var(--bright-white);
 			border-color: var(--bright-white);
+		}
+		.contrast {
+			color: var(--white);
+			border-color: var(--white);
 		}
 		.zoom {
 			color: var(--bright-blue);

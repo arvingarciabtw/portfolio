@@ -83,7 +83,9 @@
 				<div class="metrics">
 					{#if project.metrics.stars != null && project.metrics.stars > 10}
 						<div class="metric stars">
-							<Star />
+							<div class="icon">
+								<Star />
+							</div>
 							<p>
 								{project.metrics.stars}{project.metrics.stars > 10 ? '+' : ''}
 							</p>
@@ -126,7 +128,7 @@
 	.projects-wrapper {
 		padding: 0 0.075rem;
 		width: 100%;
-		max-width: 80rem;
+		max-width: 90rem;
 		display: flex;
 		flex-direction: column;
 		gap: 3rem;
@@ -149,7 +151,6 @@
 					}
 					.name {
 						padding: 1px 0.25rem;
-						display: inline !important;
 						width: max-content;
 						color: var(--bright-white);
 					}
@@ -164,6 +165,15 @@
 						display: flex;
 						align-items: center;
 						gap: 0.5rem;
+
+						.icon {
+							min-height: 100%;
+							aspect-ratio: 1 / 1;
+							* {
+								width: 100%;
+								height: 100%;
+							}
+						}
 					}
 					.stars {
 						color: var(--bright-yellow);

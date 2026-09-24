@@ -93,9 +93,9 @@
 
 <div class="about-wrapper">
 	<div class="general">
-		<p>general</p>
+		<p>socials</p>
 		<div class="description">
-			<p>hi, i'm arvin. a software dev based in the philippines.</p>
+			<!-- <p>hi, i'm arvin. a software dev based in the philippines.</p> -->
 			<ul class="social-list">
 				{#each socials as social, i (social)}
 					<li class="social">
@@ -176,7 +176,7 @@
 	.about-wrapper {
 		padding: 0 0.675rem;
 		width: 100%;
-		max-width: 80rem;
+		max-width: 90rem;
 		margin-left: 1.25rem;
 		display: flex;
 		flex-direction: column;

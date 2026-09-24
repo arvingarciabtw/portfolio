@@ -30,7 +30,7 @@
 		}
 	}
 
-	function handlerPositionReset(e: KeyboardEvent) {
+	function handlerReset(e: KeyboardEvent) {
 		if (e.key == 'r') {
 			reset();
 			fontSize = 14;
@@ -117,6 +117,12 @@
 		document.documentElement.style.fontWeight = fontWeight.toString();
 	}
 
+	function handlerResetPosition(e: KeyboardEvent) {
+		if (e.key == 'p') {
+			reset();
+		}
+	}
+
 	function reset() {
 		x = 0;
 		y = 0;
@@ -128,7 +134,8 @@
 
 	onMount(() => {
 		window.addEventListener('keydown', handlerScrollKeyPress);
-		window.addEventListener('keydown', handlerPositionReset);
+		window.addEventListener('keydown', handlerReset);
+		window.addEventListener('keydown', handlerResetPosition);
 		window.addEventListener('keydown', handlerTheme);
 		window.addEventListener('keydown', handlerContrast);
 		window.addEventListener('keydown', handlerFontSize);
@@ -136,7 +143,8 @@
 
 		return () => {
 			window.removeEventListener('keydown', handlerScrollKeyPress);
-			window.removeEventListener('keydown', handlerPositionReset);
+			window.removeEventListener('keydown', handlerReset);
+			window.removeEventListener('keydown', handlerResetPosition);
 			window.removeEventListener('keydown', handlerTheme);
 			window.removeEventListener('keydown', handlerContrast);
 			window.removeEventListener('keydown', handlerFontSize);

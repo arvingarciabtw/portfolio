@@ -243,7 +243,7 @@
 	.home-wrapper {
 		padding: 0 0.075rem;
 		width: 100%;
-		max-width: 80rem;
+		max-width: 90rem;
 		display: flex;
 		flex-direction: column;
 		gap: 3rem;
