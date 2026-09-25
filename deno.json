@@ -1,23 +1,31 @@
 {
-  "nodeModulesDir": "auto",
-  "imports": {
-    "@sveltejs/adapter-cloudflare": "npm:@sveltejs/adapter-cloudflare@^7.2.8",
-    "@sveltejs/kit": "npm:@sveltejs/kit@^2.63.0",
-    "@sveltejs/vite-plugin-svelte": "npm:@sveltejs/vite-plugin-svelte@^7.1.2",
-    "@types/node": "npm:@types/node@^24",
-    "svelte": "npm:svelte@^5.56.1",
-    "svelte-check": "npm:svelte-check@^4.6.0",
-    "typescript": "npm:typescript@^6.0.3",
-    "vite": "npm:vite@^8.0.16",
-    "wrangler": "npm:wrangler@^4.137.0"
-  },
-  "tasks": {
-    "dev": "deno run -A npm:vite dev",
-    "build": "deno task gen && deno run -A npm:vite build",
-    "gen": "deno run -A npm:wrangler types",
-    "preview": "deno run -A npm:wrangler dev .svelte-kit/cloudflare/_worker.js --port 4173",
-    "check": "deno task gen && deno run -A npm:@sveltejs/kit sync && deno run -A npm:svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "deno run -A npm:@sveltejs/kit sync && deno run -A npm:svelte-check --tsconfig ./tsconfig.json --watch"
-  },
-  "unstable": ["fmt-component"]
+	"nodeModulesDir": "auto",
+	"imports": {
+		"@sveltejs/adapter-cloudflare": "npm:@sveltejs/adapter-cloudflare@^7.2.8",
+		"@sveltejs/kit": "npm:@sveltejs/kit@^2.63.0",
+		"@sveltejs/vite-plugin-svelte": "npm:@sveltejs/vite-plugin-svelte@^7.1.2",
+		"@types/node": "npm:@types/node@^24",
+		"svelte": "npm:svelte@^5.56.1",
+		"svelte-check": "npm:svelte-check@^4.6.0",
+		"typescript": "npm:typescript@^6.0.3",
+		"vite": "npm:vite@^8.0.16",
+		"wrangler": "npm:wrangler@^4.137.0"
+	},
+	"tasks": {
+		"dev": "deno run -A npm:vite dev",
+		"build": "deno task gen && deno run -A npm:vite build",
+		"gen": "deno run -A npm:wrangler types",
+		"preview": "deno run -A npm:wrangler dev .svelte-kit/cloudflare/_worker.js --port 4173",
+		"check": "deno task gen && deno run -A npm:@sveltejs/kit sync && deno run -A npm:svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "deno run -A npm:@sveltejs/kit sync && deno run -A npm:svelte-check --tsconfig ./tsconfig.json --watch"
+	},
+	"unstable": ["fmt-component"],
+	"fmt": {
+		"useTabs": true,
+		"lineWidth": 80,
+		"indentWidth": 4,
+		"semiColons": true,
+		"singleQuote": false,
+		"proseWrap": "preserve"
+	}
 }

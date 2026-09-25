@@ -3,33 +3,33 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 *:not(dialog) {
-  margin: 0;
+	margin: 0;
 }
 @media (prefers-reduced-motion: no-preference) {
-  html {
-    interpolate-size: allow-keywords;
-  }
+	html {
+		interpolate-size: allow-keywords;
+	}
 }
 body {
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
 }
 img,
 picture,
 video,
 canvas,
 svg {
-  display: block;
-  max-width: 100%;
+	display: block;
+	max-width: 100%;
 }
 input,
 button,
 textarea,
 select {
-  font: inherit;
+	font: inherit;
 }
 p,
 h1,
@@ -38,10 +38,10 @@ h3,
 h4,
 h5,
 h6 {
-  overflow-wrap: break-word;
+	overflow-wrap: break-word;
 }
 p {
-  text-wrap: pretty;
+	text-wrap: pretty;
 }
 h1,
 h2,
@@ -49,223 +49,223 @@ h3,
 h4,
 h5,
 h6 {
-  text-wrap: balance;
+	text-wrap: balance;
 }
 #root,
 #__next {
-  isolation: isolate;
+	isolation: isolate;
 }
 
 /* variables */
 /* themes are gruvbox-based */
 html[data-theme='dark'] {
-  --black: hsl(0, 0%, 15.69%);
+	--black: hsl(0, 0%, 15.69%);
 }
 html[data-theme='dark-hard'] {
-  --black: hsl(195, 6.45%, 12.16%);
+	--black: hsl(195, 6.45%, 12.16%);
 }
 html[data-theme='dark'],
 html[data-theme='dark-hard'] {
-  --red: hsl(2.4, 75.11%, 45.69%);
-  --green: hsl(59.52, 70.79%, 34.9%);
-  --yellow: hsl(39.56, 73.39%, 48.63%);
-  --blue: hsl(182.69, 32.68%, 40.2%);
-  --magenta: hsl(332.66, 33.62%, 53.92%);
-  --cyan: hsl(122.26, 21.29%, 51.18%);
-  --orange: hsl(23.88, 88.55%, 44.51%);
-  --purple: hsl(283.94, 30.74%, 45.29%);
-  --white: hsl(35, 17.14%, 58.82%);
-  --bright-black: hsl(30, 12.1%, 51.37%);
-  --bright-red: hsl(6.33, 96.14%, 59.41%);
-  --bright-green: hsl(61.21, 66.22%, 44.12%);
-  --bright-yellow: hsl(41.97, 95.31%, 58.24%);
-  --bright-blue: hsl(157.06, 15.89%, 58.04%);
-  --bright-magenta: hsl(343.64, 46.67%, 67.65%);
-  --bright-cyan: hsl(104.12, 35.05%, 61.96%);
-  --bright-orange: hsl(26.99, 99.13%, 54.71%);
-  --bright-purple: hsl(287.44, 58.9%, 71.37%);
-  --bright-white: hsl(43.16, 58.76%, 80.98%);
+	--red: hsl(2.4, 75.11%, 45.69%);
+	--green: hsl(59.52, 70.79%, 34.9%);
+	--yellow: hsl(39.56, 73.39%, 48.63%);
+	--blue: hsl(182.69, 32.68%, 40.2%);
+	--magenta: hsl(332.66, 33.62%, 53.92%);
+	--cyan: hsl(122.26, 21.29%, 51.18%);
+	--orange: hsl(23.88, 88.55%, 44.51%);
+	--purple: hsl(283.94, 30.74%, 45.29%);
+	--white: hsl(35, 17.14%, 58.82%);
+	--bright-black: hsl(30, 12.1%, 51.37%);
+	--bright-red: hsl(6.33, 96.14%, 59.41%);
+	--bright-green: hsl(61.21, 66.22%, 44.12%);
+	--bright-yellow: hsl(41.97, 95.31%, 58.24%);
+	--bright-blue: hsl(157.06, 15.89%, 58.04%);
+	--bright-magenta: hsl(343.64, 46.67%, 67.65%);
+	--bright-cyan: hsl(104.12, 35.05%, 61.96%);
+	--bright-orange: hsl(26.99, 99.13%, 54.71%);
+	--bright-purple: hsl(287.44, 58.9%, 71.37%);
+	--bright-white: hsl(43.16, 58.76%, 80.98%);
 }
 
 html[data-theme='light'] {
-  --black: hsl(48.46, 86.67%, 88.24%);
+	--black: hsl(48.46, 86.67%, 88.24%);
 }
 html[data-theme='light-hard'] {
-  --black: hsl(52.94, 73.91%, 90.98%);
+	--black: hsl(52.94, 73.91%, 90.98%);
 }
 html[data-theme='light'],
 html[data-theme='light-hard'] {
-  --red: hsl(2.4, 75.11%, 45.69%);
-  --green: hsl(59.52, 70.79%, 34.9%);
-  --yellow: hsl(39.56, 73.39%, 48.63%);
-  --blue: hsl(182.69, 32.68%, 40.2%);
-  --magenta: hsl(332.66, 33.62%, 53.92%);
-  --cyan: hsl(122.26, 21.29%, 51.18%);
-  --orange: hsl(23.88, 88.55%, 44.51%);
-  --purple: hsl(283.94, 30.74%, 45.29%);
-  --white: hsl(27.5, 10.71%, 38.92%);
-  --bright-black: hsl(30, 12.1%, 51.37%);
-  --bright-red: hsl(357.71, 100%, 30.78%);
-  --bright-green: hsl(57.2, 79.26%, 20.47%);
-  --bright-yellow: hsl(36.52, 80.1%, 29.41%);
-  --bright-blue: hsl(189.56, 88.98%, 24.9%);
-  --bright-magenta: hsl(322.5, 38.83%, 40.39%);
-  --bright-cyan: hsl(143.16, 30.16%, 32.06%);
-  --bright-orange: hsl(26.99, 99.13%, 30.71%);
-  --bright-purple: hsl(287.44, 58.9%, 41.37%);
-  --bright-white: hsl(20, 5.26%, 22.35%);
+	--red: hsl(2.4, 75.11%, 45.69%);
+	--green: hsl(59.52, 70.79%, 34.9%);
+	--yellow: hsl(39.56, 73.39%, 48.63%);
+	--blue: hsl(182.69, 32.68%, 40.2%);
+	--magenta: hsl(332.66, 33.62%, 53.92%);
+	--cyan: hsl(122.26, 21.29%, 51.18%);
+	--orange: hsl(23.88, 88.55%, 44.51%);
+	--purple: hsl(283.94, 30.74%, 45.29%);
+	--white: hsl(27.5, 10.71%, 38.92%);
+	--bright-black: hsl(30, 12.1%, 51.37%);
+	--bright-red: hsl(357.71, 100%, 30.78%);
+	--bright-green: hsl(57.2, 79.26%, 20.47%);
+	--bright-yellow: hsl(36.52, 80.1%, 29.41%);
+	--bright-blue: hsl(189.56, 88.98%, 24.9%);
+	--bright-magenta: hsl(322.5, 38.83%, 40.39%);
+	--bright-cyan: hsl(143.16, 30.16%, 32.06%);
+	--bright-orange: hsl(26.99, 99.13%, 30.71%);
+	--bright-purple: hsl(287.44, 58.9%, 41.37%);
+	--bright-white: hsl(20, 5.26%, 22.35%);
 }
 
 html {
-  --home: var(--bright-red);
-  --experience: var(--bright-green);
-  --project: var(--bright-purple);
-  --about: var(--bright-orange);
-  --navigate: var(--bright-blue);
-  --section: var(--bright-magenta);
-  --execute: var(--bright-cyan);
-  --scroll: var(--bright-green);
-  --pos: var(--bright-yellow);
-  --zoom: var(--bright-blue);
-  --weight: var(--bright-magenta);
-  --hide: var(--bright-orange);
-  --reset: var(--bright-red);
-  --theme: var(--bright-white);
-  --contrast: var(--white);
-  --star: var(--bright-yellow);
-  --download: var(--bright-blue);
-  --fork: var(--bright-green);
+	--home: var(--bright-red);
+	--experience: var(--bright-green);
+	--project: var(--bright-purple);
+	--about: var(--bright-orange);
+	--navigate: var(--bright-blue);
+	--section: var(--bright-magenta);
+	--execute: var(--bright-cyan);
+	--scroll: var(--bright-green);
+	--pos: var(--bright-yellow);
+	--zoom: var(--bright-blue);
+	--weight: var(--bright-magenta);
+	--hide: var(--bright-orange);
+	--reset: var(--bright-red);
+	--theme: var(--bright-white);
+	--contrast: var(--white);
+	--star: var(--bright-yellow);
+	--download: var(--bright-blue);
+	--fork: var(--bright-green);
 }
 
 /* fonts */
 @font-face {
-  font-family: 'commit-mono';
-  font-display: block;
-  src: url('/fonts/commit-mono-vf.woff2') format('woff2');
+	font-family: 'commit-mono';
+	font-display: block;
+	src: url('/fonts/commit-mono-vf.woff2') format('woff2');
 }
 
 /* animations */
 @keyframes flicker {
-  0%,
-  20%,
-  100% {
-    background-color: var(--flicker-color);
-  }
-  10% {
-    background-color: transparent;
-  }
+	0%,
+	20%,
+	100% {
+		background-color: var(--flicker-color);
+	}
+	10% {
+		background-color: transparent;
+	}
 }
 @keyframes shake-up {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-2px);
-  }
-  100% {
-    transform: translateY(0);
-  }
+	0% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-2px);
+	}
+	100% {
+		transform: translateY(0);
+	}
 }
 @keyframes shake-down {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(2px);
-  }
-  100% {
-    transform: translateY(0);
-  }
+	0% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(2px);
+	}
+	100% {
+		transform: translateY(0);
+	}
 }
 @keyframes shake-left {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(-2px);
-  }
-  100% {
-    transform: translateX(0);
-  }
+	0% {
+		transform: translateX(0);
+	}
+	50% {
+		transform: translateX(-2px);
+	}
+	100% {
+		transform: translateX(0);
+	}
 }
 @keyframes shake-right {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(2px);
-  }
-  100% {
-    transform: translateX(0);
-  }
+	0% {
+		transform: translateX(0);
+	}
+	50% {
+		transform: translateX(2px);
+	}
+	100% {
+		transform: translateX(0);
+	}
 }
 *.shake-up,
 *.shake-down,
 *.shake-left,
 *.shake-right {
-  padding: 1px 0.25rem;
-  display: inline-block;
+	padding: 1px 0.25rem;
+	display: inline-block;
 }
 /* the !importants here are needed for now, to make it work */
 /* there's probably some specificity problem i need to fix if i want to remove this */
 *.active {
-  background: var(--flicker-color); /* don't set !important here, the flicker animation doesn't work, for some reason... */
-  color: var(--black) !important;
-  animation: flicker 0.4s steps(1, end) 1;
+	background: var(--flicker-color); /* don't set !important here, the flicker animation doesn't work, for some reason... */
+	color: var(--black) !important;
+	animation: flicker 0.4s steps(1, end) 1;
 }
 *.shake-up {
-  animation: shake-up 0.1s !important;
+	animation: shake-up 0.1s !important;
 }
 *.shake-down {
-  animation: shake-down 0.1s !important;
+	animation: shake-down 0.1s !important;
 }
 *.shake-left {
-  animation: shake-left 0.1s !important;
+	animation: shake-left 0.1s !important;
 }
 *.shake-right {
-  animation: shake-right 0.1s !important;
+	animation: shake-right 0.1s !important;
 }
 
 /* general */
 html {
-  display: grid;
-  place-items: center;
-  scrollbar-color: var(--bright-black) var(--black);
-  overflow: hidden; /* prevents scrolling on the document, current intended behavior i want */
-  background: var(--black);
-  font-size: 0.875rem;
+	display: grid;
+	place-items: center;
+	scrollbar-color: var(--bright-black) var(--black);
+	overflow: hidden; /* prevents scrolling on the document, current intended behavior i want */
+	background: var(--black);
+	font-size: 0.875rem;
 }
 body {
-  min-height: 100dvh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  background: var(--black);
-  color: var(--bright-white);
-  font-family: 'commit-mono', monospace;
+	min-height: 100dvh;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 3rem;
+	background: var(--black);
+	color: var(--bright-white);
+	font-family: 'commit-mono', monospace;
 }
 ul {
-  padding: 0;
-  list-style-type: none;
+	padding: 0;
+	list-style-type: none;
 }
 h1 {
-  font-size: 1rem;
-  font-weight: inherit;
+	font-size: 1rem;
+	font-weight: inherit;
 }
 a {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 @media (max-width: 500px) {
-  html {
-    overflow: auto;
-  }
-  body {
-    padding-bottom: 1rem;
-    font-size: 12px;
-  }
-  h1 {
-    font-size: 12px;
-  }
+	html {
+		overflow: auto;
+	}
+	body {
+		padding-bottom: 1rem;
+		font-size: 12px;
+	}
+	h1 {
+		font-size: 12px;
+	}
 }

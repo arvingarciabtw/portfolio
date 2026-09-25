@@ -11,51 +11,51 @@ import { shake } from "$lib/stores/shake.svelte";
 const currentUrl = $derived(page.url.pathname);
 
 function navigationListener(e: KeyboardEvent) {
-  const { goUp, goLeft, goRight, goExecute } = getCommands(e);
+	const { goUp, goLeft, goRight, goExecute } = getCommands(e);
 
-  const atStart = navigation.activeIndex == 0;
-  const atEnd = navigation.activeIndex == sections.length - 1;
+	const atStart = navigation.activeIndex == 0;
+	const atEnd = navigation.activeIndex == sections.length - 1;
 
-  if (goUp && getIsInHeader()) {
-    shake.up = true;
-  }
-  if (goLeft && getIsInHeader()) {
-    if (atStart) {
-      shake.left = true;
-      return;
-    }
-    shake.left = false;
-    navigation.activeIndex--;
-    goto(resolve(sections[navigation.activeIndex].url));
-  }
-  if (goRight && getIsInHeader()) {
-    if (atEnd) {
-      shake.right = true;
-      return;
-    }
-    shake.right = false;
-    navigation.activeIndex++;
-    goto(resolve(sections[navigation.activeIndex].url));
-  }
-  if (goExecute && getIsInHeader()) {
-    goto(resolve(sections[navigation.activeIndex].url));
-  }
+	if (goUp && getIsInHeader()) {
+		shake.up = true;
+	}
+	if (goLeft && getIsInHeader()) {
+		if (atStart) {
+			shake.left = true;
+			return;
+		}
+		shake.left = false;
+		navigation.activeIndex--;
+		goto(resolve(sections[navigation.activeIndex].url));
+	}
+	if (goRight && getIsInHeader()) {
+		if (atEnd) {
+			shake.right = true;
+			return;
+		}
+		shake.right = false;
+		navigation.activeIndex++;
+		goto(resolve(sections[navigation.activeIndex].url));
+	}
+	if (goExecute && getIsInHeader()) {
+		goto(resolve(sections[navigation.activeIndex].url));
+	}
 }
 
 onMount(() => {
-  window.addEventListener("keydown", navigationListener);
+	window.addEventListener("keydown", navigationListener);
 
-  return () => {
-    window.removeEventListener("keydown", navigationListener);
-  };
+	return () => {
+		window.removeEventListener("keydown", navigationListener);
+	};
 });
 
 let { font } = $props();
 </script>
 
 <header>
-  <div class="wrapper">
-    <ul class="section-list">
+	<div class="wrapper">
+		<ul class="section-list">
 			{#each sections as section, i (section.name)}
 				<li class={`section ${section.name}`}>
 					<a
@@ -74,132 +74,133 @@ let { font } = $props();
 						{section.name}
 					</a>
 				</li>
-			{/each}
+		  {/each}
 		</ul>
-    <div class="states">
-      <!-- need to figure out how to show the theme INSTANTLY here... -->
-      <p>{font.size}px</p>
-      <p>{font.weight}</p>
-    </div>
-  </div>
+		<div class="states">
+			<!-- need to figure out how to show the theme INSTANTLY here... -->
+			<p>{font.size}px</p>
+			<p>{font.weight}</p>
+		</div>
+	</div>
 </header>
 
 <style>
 header {
-  padding: 1.5rem 1rem 0.25rem;
-  display: grid;
-  place-items: center;
-  background: var(--black);
-  z-index: 1; /* to stack above scrollable main el */
+	padding: 1.5rem 1rem 0.25rem;
+	display: grid;
+	place-items: center;
+	background: var(--black);
+	z-index: 1; /* to stack above scrollable main el */
 }
 .wrapper {
-  padding: 0 1rem;
-  width: 100%;
-  max-width: 90rem;
-  display: grid;
-  grid-template-columns: 1fr max-content;
-  place-items: center;
-  gap: 4rem;
+	padding: 0 1rem;
+	width: 100%;
+	max-width: 90rem;
+	display: grid;
+	grid-template-columns: 1fr max-content;
+	place-items: center;
+	gap: 4rem;
 }
 
 .section-list {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 2.5rem;
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem 2.5rem;
 }
 .states {
-  display: flex;
-  gap: 3rem;
-  color: var(--white);
+	display: flex;
+	gap: 3rem;
+	color: var(--white);
 }
 .section a {
-  padding: 1px 0.25rem;
-  display: inline-block;
-  text-decoration: none;
-  width: max-content;
+	padding: 1px 0.25rem;
+	display: inline-block;
+	text-decoration: none;
+	width: max-content;
 
-  &:hover,
-  &.active {
-    background: var(--flicker-color);
-    color: var(--black);
-    animation: flicker 0.4s steps(1, end) 1;
-  }
+	&:hover,
+	&.active {
+		background: var(--flicker-color);
+		color: var(--black);
+		animation: flicker 0.4s steps(1, end) 1;
+	}
 
-  &.active-prio {
-    --dot-bg: var(--black);
-    --dot-size: 1px;
-    --dot-space: 2px;
-    background:
-      linear-gradient(
-      90deg,
-      var(--dot-bg) calc(var(--dot-space) - var(--dot-size)),
-      transparent 1%
-    )
-      center / var(--dot-space) var(--dot-space),
-      linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)),
-      transparent 1%)
-      center / var(--dot-space) var(--dot-space),
-      var(--dot-color);
-  }
+	&.active-prio {
+		--dot-bg: var(--black);
+		--dot-size: 1px;
+		--dot-space: 2px;
+		background:
+			linear-gradient(
+			90deg,
+			var(--dot-bg) calc(var(--dot-space) - var(--dot-size)),
+			transparent 1%
+		)
+			center / var(--dot-space) var(--dot-space),
+			linear-gradient(var(--dot-bg) calc(var(--dot-space) -
+			var(--dot-size)),
+			transparent 1%)
+			center / var(--dot-space) var(--dot-space),
+			var(--dot-color);
+	}
 }
 .home a {
-  color: var(--home);
+	color: var(--home);
 
-  &:hover,
-  &.active,
-  &.active-prio {
-    --flicker-color: var(--home);
-    --dot-color: var(--home);
-  }
+	&:hover,
+	&.active,
+	&.active-prio {
+		--flicker-color: var(--home);
+		--dot-color: var(--home);
+	}
 }
 .experience a {
-  color: var(--experience);
+	color: var(--experience);
 
-  &:hover,
-  &.active,
-  &.active-prio {
-    --flicker-color: var(--experience);
-    --dot-color: var(--experience);
-  }
+	&:hover,
+	&.active,
+	&.active-prio {
+		--flicker-color: var(--experience);
+		--dot-color: var(--experience);
+	}
 }
 .projects a {
-  color: var(--project);
+	color: var(--project);
 
-  &:hover,
-  &.active,
-  &.active-prio {
-    --flicker-color: var(--project);
-    --dot-color: var(--project);
-  }
+	&:hover,
+	&.active,
+	&.active-prio {
+		--flicker-color: var(--project);
+		--dot-color: var(--project);
+	}
 }
 .about a {
-  color: var(--about);
+	color: var(--about);
 
-  &:hover,
-  &.active,
-  &.active-prio {
-    --flicker-color: var(--about);
-    --dot-color: var(--about);
-  }
+	&:hover,
+	&.active,
+	&.active-prio {
+		--flicker-color: var(--about);
+		--dot-color: var(--about);
+	}
 }
 
 @media (max-width: 700px) {
-  .states {
-    display: none;
-  }
+	.states {
+		display: none;
+	}
 }
 
 @media (max-width: 500px) {
-  header {
-    padding: 1rem 0;
-  }
-  .section-list {
-    flex-wrap: wrap;
-    gap: 0.25rem 1rem;
-  }
-  .section a {
-    padding: 0.125rem 0.25rem;
-  }
+	header {
+		padding: 1rem 0;
+	}
+	.section-list {
+		flex-wrap: wrap;
+		gap: 0.25rem 1rem;
+	}
+	.section a {
+		padding: 0.125rem 0.25rem;
+	}
 }
 </style>

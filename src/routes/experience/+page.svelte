@@ -7,61 +7,63 @@ import { getIsInHeader, navigation } from "$lib/stores/navigation.svelte";
 import { shake } from "$lib/stores/shake.svelte";
 
 function handlerNavigationKeyPress(e: KeyboardEvent) {
-  const { goUp, goDown, goLeft, goRight, goExecute } = getCommands(e);
+	const { goUp, goDown, goLeft, goRight, goExecute } = getCommands(e);
 
-  const atStart = navigation.activeIndex == sections.length;
-  const atEnd =
-    navigation.activeIndex == sections.length + experiences.length - 1;
+	const atStart = navigation.activeIndex == sections.length;
+	const atEnd =
+		navigation.activeIndex == sections.length + experiences.length - 1;
 
-  if (goUp) {
-    if (getIsInHeader()) {
-      return;
-    }
-    if (atStart) {
-      navigation.activeIndex = 1;
-      return;
-    }
-    navigation.activeIndex -= 1;
-  }
-  if (goDown) {
-    if (atEnd) {
-      shake.down = true;
-      return;
-    }
-    if (getIsInHeader()) {
-      navigation.activeIndex = sections.length;
-      return;
-    }
-    navigation.activeIndex += 1;
-  }
-  if (goLeft && !getIsInHeader()) {
-    shake.left = true;
-  }
-  if (goRight && !getIsInHeader()) {
-    shake.right = true;
-  }
-  if (goExecute) {
-    if (!getIsInHeader()) {
-      window.open(experiences[navigation.activeIndex - sections.length].url);
-    }
-  }
+	if (goUp) {
+		if (getIsInHeader()) {
+			return;
+		}
+		if (atStart) {
+			navigation.activeIndex = 1;
+			return;
+		}
+		navigation.activeIndex -= 1;
+	}
+	if (goDown) {
+		if (atEnd) {
+			shake.down = true;
+			return;
+		}
+		if (getIsInHeader()) {
+			navigation.activeIndex = sections.length;
+			return;
+		}
+		navigation.activeIndex += 1;
+	}
+	if (goLeft && !getIsInHeader()) {
+		shake.left = true;
+	}
+	if (goRight && !getIsInHeader()) {
+		shake.right = true;
+	}
+	if (goExecute) {
+		if (!getIsInHeader()) {
+			window.open(
+				experiences[navigation.activeIndex - sections.length].url,
+			);
+		}
+	}
 }
 
 onMount(() => {
-  window.addEventListener("keypress", handlerSectionKeyPress);
-  window.addEventListener("keydown", handlerNavigationKeyPress);
+	window.addEventListener("keypress", handlerSectionKeyPress);
+	window.addEventListener("keydown", handlerNavigationKeyPress);
 
-  return () => {
-    window.addEventListener("keypress", handlerSectionKeyPress);
-    window.removeEventListener("keydown", handlerNavigationKeyPress);
-  };
+	return () => {
+		window.addEventListener("keypress", handlerSectionKeyPress);
+		window.removeEventListener("keydown", handlerNavigationKeyPress);
+	};
 });
 onMount(() => {
-  window.addEventListener("keypress", handlerSectionKeyPress);
+	window.addEventListener("keypress", handlerSectionKeyPress);
 
-  return () => {
-    window.removeEventListener("keypress", handlerSectionKeyPress);
-  };
+	return () => {
+		window.removeEventListener("keypress", handlerSectionKeyPress);
+	};
 });
 </script>
 
@@ -109,86 +111,86 @@ onMount(() => {
 
 <style>
 .experiences-wrapper {
-  padding: 0 1.25rem;
-  width: 100%;
-  max-width: 90rem;
-  display: flex;
-  flex-direction: column;
-  gap: 4rem;
+	padding: 0 1.25rem;
+	width: 100%;
+	max-width: 90rem;
+	display: flex;
+	flex-direction: column;
+	gap: 4rem;
 }
 .experience {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
 }
 .details {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
 }
 .name {
-  margin-left: -0.25rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
+	margin-left: -0.25rem;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 1rem;
 }
 .position {
-  padding: 1px 0.25rem;
-  width: max-content;
-  color: var(--bright-white);
-  text-decoration: none;
+	padding: 1px 0.25rem;
+	width: max-content;
+	color: var(--bright-white);
+	text-decoration: none;
 
-  &:hover,
-  &.active {
-    --flicker-color: var(--experience);
-    background: var(--flicker-color);
-    color: var(--black);
-    animation: flicker 0.4s steps(1, end) 1;
-  }
+	&:hover,
+	&.active {
+		--flicker-color: var(--experience);
+		background: var(--flicker-color);
+		color: var(--black);
+		animation: flicker 0.4s steps(1, end) 1;
+	}
 }
 .others {
-  margin-top: 0.25rem;
-  max-width: 45rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0 4rem;
+	margin-top: 0.25rem;
+	max-width: 45rem;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0 4rem;
 }
 ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.125rem 0.5rem;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.125rem 0.5rem;
 }
 .separator {
-  color: var(--white);
+	color: var(--white);
 }
 .company {
-  color: var(--bright-blue);
+	color: var(--bright-blue);
 }
 .date {
-  color: var(--bright-magenta);
+	color: var(--bright-magenta);
 }
 .points {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
 }
 .point {
-  display: flex;
-  gap: 0.5rem;
-  color: var(--white);
-  max-width: 44rem;
-  line-height: 2;
+	display: flex;
+	gap: 0.5rem;
+	color: var(--white);
+	max-width: 44rem;
+	line-height: 2;
 }
 
 @media (max-width: 500px) {
-  *.active {
-    --flicker-color: var(--black) !important;
-    color: var(--bright-white) !important;
-  }
-  .experiences-wrapper {
-    padding: 0 0.25rem;
-  }
+	*.active {
+		--flicker-color: var(--black) !important;
+		color: var(--bright-white) !important;
+	}
+	.experiences-wrapper {
+		padding: 0 0.25rem;
+	}
 }
 </style>
