@@ -1,74 +1,74 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { sections, experiences } from '$lib/data/data';
-	import { handlerSectionKeyPress } from '$lib/helpers/helpers';
-	import { getCommands } from '$lib/stores/commands.svelte';
-	import { navigation, getIsInHeader } from '$lib/stores/navigation.svelte';
-	import { shake } from '$lib/stores/shake.svelte';
+import { onMount } from "svelte";
+import { experiences, sections } from "$lib/data/data";
+import { handlerSectionKeyPress } from "$lib/helpers/helpers";
+import { getCommands } from "$lib/stores/commands.svelte";
+import { getIsInHeader, navigation } from "$lib/stores/navigation.svelte";
+import { shake } from "$lib/stores/shake.svelte";
 
-	function handlerNavigationKeyPress(e: KeyboardEvent) {
-		const { goUp, goDown, goLeft, goRight, goExecute } = getCommands(e);
+function handlerNavigationKeyPress(e: KeyboardEvent) {
+  const { goUp, goDown, goLeft, goRight, goExecute } = getCommands(e);
 
-		const atStart = navigation.activeIndex == sections.length;
-		const atEnd = navigation.activeIndex == sections.length + experiences.length - 1;
+  const atStart = navigation.activeIndex == sections.length;
+  const atEnd =
+    navigation.activeIndex == sections.length + experiences.length - 1;
 
-		if (goUp) {
-			if (getIsInHeader()) {
-				return;
-			}
-			if (atStart) {
-				navigation.activeIndex = 1;
-				return;
-			}
-			navigation.activeIndex -= 1;
-		}
-		if (goDown) {
-			if (atEnd) {
-				shake.down = true;
-				return;
-			}
-			if (getIsInHeader()) {
-				navigation.activeIndex = sections.length;
-				return;
-			}
-			navigation.activeIndex += 1;
-		}
-		if (goLeft && !getIsInHeader()) {
-			shake.left = true;
-		}
-		if (goRight && !getIsInHeader()) {
-			shake.right = true;
-		}
-		if (goExecute) {
-			if (!getIsInHeader()) {
-				window.open(experiences[navigation.activeIndex - sections.length].url);
-			}
-		}
-	}
+  if (goUp) {
+    if (getIsInHeader()) {
+      return;
+    }
+    if (atStart) {
+      navigation.activeIndex = 1;
+      return;
+    }
+    navigation.activeIndex -= 1;
+  }
+  if (goDown) {
+    if (atEnd) {
+      shake.down = true;
+      return;
+    }
+    if (getIsInHeader()) {
+      navigation.activeIndex = sections.length;
+      return;
+    }
+    navigation.activeIndex += 1;
+  }
+  if (goLeft && !getIsInHeader()) {
+    shake.left = true;
+  }
+  if (goRight && !getIsInHeader()) {
+    shake.right = true;
+  }
+  if (goExecute) {
+    if (!getIsInHeader()) {
+      window.open(experiences[navigation.activeIndex - sections.length].url);
+    }
+  }
+}
 
-	onMount(() => {
-		window.addEventListener('keypress', handlerSectionKeyPress);
-		window.addEventListener('keydown', handlerNavigationKeyPress);
+onMount(() => {
+  window.addEventListener("keypress", handlerSectionKeyPress);
+  window.addEventListener("keydown", handlerNavigationKeyPress);
 
-		return () => {
-			window.addEventListener('keypress', handlerSectionKeyPress);
-			window.removeEventListener('keydown', handlerNavigationKeyPress);
-		};
-	});
-	onMount(() => {
-		window.addEventListener('keypress', handlerSectionKeyPress);
+  return () => {
+    window.addEventListener("keypress", handlerSectionKeyPress);
+    window.removeEventListener("keydown", handlerNavigationKeyPress);
+  };
+});
+onMount(() => {
+  window.addEventListener("keypress", handlerSectionKeyPress);
 
-		return () => {
-			window.removeEventListener('keypress', handlerSectionKeyPress);
-		};
-	});
+  return () => {
+    window.removeEventListener("keypress", handlerSectionKeyPress);
+  };
+});
 </script>
 
 <div class="experiences-wrapper">
 	{#each experiences as experience, i (experience.description)}
 		<div class="experience">
 			<div class="selection">
-				<p class="pointer">{navigation.activeIndex == i + sections.length ? '>' : ''}</p>
 				<a
 					href={experience.url}
 					target="_blank"
@@ -92,20 +92,11 @@
 					<li class="separator">·</li>
 					<li class="date">{experience.date}</li>
 				</ul>
-				<ul>
-					{#each experience.technologies as technology, i (technology)}
-						<li class="technology">{technology}</li>
-						{#if i != experience.technologies.length - 1}
-							<li class="separator">·</li>
-						{/if}
-					{/each}
-				</ul>
 			</div>
 			<ul class="points">
 				{#each experience.points as point (point)}
 					<li class="point">
 						<p class="symbol">*</p>
-						<!-- <p class="description">{point}</p> -->
 						{@html point}
 					</li>
 				{/each}
@@ -115,142 +106,135 @@
 </div>
 
 <style>
-	.experiences-wrapper {
-		width: 100%;
-		max-width: 90rem;
-		display: flex;
-		flex-direction: column;
-		gap: 3rem;
+.experiences-wrapper {
+  padding: 0 1.375rem;
+  width: 100%;
+  max-width: 90rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 
-		/* TODO: remove this once points are rewritten */
-		.note {
-			margin-left: 1.25rem;
-			color: var(--white);
-		}
+  /* TODO: remove this once points are rewritten */
+  .note {
+    margin-left: 1.25rem;
+    color: var(--white);
+  }
 
-		.experience {
-			.selection {
-				display: grid;
-				grid-template-columns: 1px 1fr;
-				gap: 1rem;
+  .experience {
+    .selection {
+      margin-left: -0.25rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
 
-				.pointer {
-					color: var(--experience);
-				}
-				.position {
-					padding: 1px 0.25rem;
-					width: max-content;
-					color: var(--bright-white);
-					text-decoration: none;
-				}
+      .position {
+        padding: 1px 0.25rem;
+        width: max-content;
+        color: var(--bright-white);
+        text-decoration: none;
+      }
 
-				.position:hover,
-				.position.active {
-					--flicker-color: var(--experience);
-					background: var(--flicker-color);
-					color: var(--black);
-					animation: flicker 0.4s steps(1, end) 1;
-				}
+      .position:hover,
+      .position.active {
+        --flicker-color: var(--experience);
+        background: var(--flicker-color);
+        color: var(--black);
+        animation: flicker 0.4s steps(1, end) 1;
+      }
 
-				.position.shake-left,
-				.position.shake-right,
-				.position.shake-down {
-					padding: 1 0.25rem;
-					display: inline-block;
-				}
-				.position.shake-left {
-					animation: shake-left 0.1s;
-				}
-				.position.shake-right {
-					animation: shake-right 0.1s;
-				}
-				.position.shake-down {
-					animation: shake-down 0.1s;
-				}
-			}
+      .position.shake-left,
+      .position.shake-right,
+      .position.shake-down {
+        padding: 1 0.25rem;
+        display: inline-block;
+      }
+      .position.shake-left {
+        animation: shake-left 0.1s;
+      }
+      .position.shake-right {
+        animation: shake-right 0.1s;
+      }
+      .position.shake-down {
+        animation: shake-down 0.1s;
+      }
+    }
 
-			.position-details {
-				max-width: 45rem;
-				display: flex;
-				flex-wrap: wrap;
-				align-items: center;
-				justify-content: space-between;
-				gap: 0 4rem;
-			}
+    .position-details {
+      margin-top: 0.25rem;
+      max-width: 45rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0 4rem;
+    }
 
-			ul,
-			.points {
-				margin-left: 1.25rem;
-				padding: 0;
-				list-style-type: none;
-			}
+    ul,
+    .points {
+      padding: 0;
+      list-style-type: none;
+    }
 
-			ul {
-				margin-top: 0.25rem;
-				display: flex;
-				flex-wrap: wrap;
-				gap: 0.125rem 0.5rem;
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.125rem 0.5rem;
 
-				.separator {
-					color: var(--white);
-				}
-				.company {
-					color: var(--bright-blue);
-				}
-				.date {
-					color: var(--bright-magenta);
-				}
-				.technology {
-					color: var(--bright-cyan);
-				}
-			}
+      .separator {
+        color: var(--white);
+      }
+      .company {
+        color: var(--bright-blue);
+      }
+      .date {
+        color: var(--bright-magenta);
+      }
+    }
 
-			.points {
-				margin: 1rem 0 0 1.25rem;
-				display: flex;
-				flex-direction: column;
-				gap: 0.5rem;
+    .points {
+      margin-top: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
 
-				.point {
-					display: flex;
-					gap: 0.5rem;
-					color: var(--white);
-					max-width: 44rem;
-					line-height: 1.75;
-				}
-			}
-		}
-	}
+      .point {
+        display: flex;
+        gap: 0.5rem;
+        color: var(--white);
+        max-width: 44rem;
+        line-height: 1.75;
+      }
+    }
+  }
+}
 
-	@media (max-width: 500px) {
-		.pointer {
-			display: none;
-		}
-		.experiences-wrapper {
-			.note,
-			.experience {
-				margin-left: 0.25rem;
-			}
-			.experience {
-				.selection {
-					margin: 0;
-					gap: 0;
+@media (max-width: 500px) {
+  .experiences-wrapper {
+    padding: 0 0.125rem;
+    .note,
+    .experience {
+      margin-left: 0.25rem;
+    }
+    .experience {
+      .selection {
+        margin: 0;
+        gap: 0;
 
-					.position {
-						padding: 0;
-					}
-					.position.active {
-						--flicker-color: var(--black);
-						background: var(--flicker-color);
-						color: var(--bright-white);
-						animation: flicker 0.4s steps(1, end) 1;
-					}
-				}
-				ul,
-				.points {
-					margin-left: 0;
-				}
-			}
-		}
-	}
+        .position {
+          padding: 0;
+        }
+        .position.active {
+          --flicker-color: var(--black);
+          background: var(--flicker-color);
+          color: var(--bright-white);
+          animation: flicker 0.4s steps(1, end) 1;
+        }
+      }
+      ul,
+      .points {
+        margin-left: 0;
+      }
+    }
+  }
+}
 </style>

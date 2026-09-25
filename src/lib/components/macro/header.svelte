@@ -1,61 +1,61 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { goto } from '$app/navigation';
-	import { resolve } from '$app/paths';
-	import { page } from '$app/state';
-	import { sections } from '$lib/data/data';
-	import { getCommands } from '$lib/stores/commands.svelte';
-	import { navigation, getIsInHeader } from '$lib/stores/navigation.svelte';
-	import { shake } from '$lib/stores/shake.svelte';
+import { onMount } from "svelte";
+import { goto } from "$app/navigation";
+import { resolve } from "$app/paths";
+import { page } from "$app/state";
+import { sections } from "$lib/data/data";
+import { getCommands } from "$lib/stores/commands.svelte";
+import { getIsInHeader, navigation } from "$lib/stores/navigation.svelte";
+import { shake } from "$lib/stores/shake.svelte";
 
-	const currentUrl = $derived(page.url.pathname);
+const currentUrl = $derived(page.url.pathname);
 
-	function handlerNavigationKeyPress(e: KeyboardEvent) {
-		const { goUp, goLeft, goRight, goExecute } = getCommands(e);
+function handlerNavigationKeyPress(e: KeyboardEvent) {
+  const { goUp, goLeft, goRight, goExecute } = getCommands(e);
 
-		const atStart = navigation.activeIndex == 0;
-		const atEnd = navigation.activeIndex == sections.length - 1;
+  const atStart = navigation.activeIndex == 0;
+  const atEnd = navigation.activeIndex == sections.length - 1;
 
-		if (goUp && getIsInHeader()) {
-			shake.up = true;
-		}
-		if (goLeft && getIsInHeader()) {
-			if (atStart) {
-				shake.left = true;
-				return;
-			}
-			shake.left = false;
-			navigation.activeIndex--;
-			goto(resolve(sections[navigation.activeIndex].url));
-		}
-		if (goRight && getIsInHeader()) {
-			if (atEnd) {
-				shake.right = true;
-				return;
-			}
-			shake.right = false;
-			navigation.activeIndex++;
-			goto(resolve(sections[navigation.activeIndex].url));
-		}
-		if (goExecute && getIsInHeader()) {
-			goto(resolve(sections[navigation.activeIndex].url));
-		}
-	}
+  if (goUp && getIsInHeader()) {
+    shake.up = true;
+  }
+  if (goLeft && getIsInHeader()) {
+    if (atStart) {
+      shake.left = true;
+      return;
+    }
+    shake.left = false;
+    navigation.activeIndex--;
+    goto(resolve(sections[navigation.activeIndex].url));
+  }
+  if (goRight && getIsInHeader()) {
+    if (atEnd) {
+      shake.right = true;
+      return;
+    }
+    shake.right = false;
+    navigation.activeIndex++;
+    goto(resolve(sections[navigation.activeIndex].url));
+  }
+  if (goExecute && getIsInHeader()) {
+    goto(resolve(sections[navigation.activeIndex].url));
+  }
+}
 
-	onMount(() => {
-		window.addEventListener('keydown', handlerNavigationKeyPress);
+onMount(() => {
+  window.addEventListener("keydown", handlerNavigationKeyPress);
 
-		return () => {
-			window.removeEventListener('keydown', handlerNavigationKeyPress);
-		};
-	});
+  return () => {
+    window.removeEventListener("keydown", handlerNavigationKeyPress);
+  };
+});
 
-	let { font } = $props();
+let { font } = $props();
 </script>
 
 <header>
-	<div class="wrapper">
-		<ul class="section-list">
+  <div class="wrapper">
+    <ul class="section-list">
 			{#each sections as section, i (section.name)}
 				<li class={`section ${section.name}`}>
 					<a
@@ -76,161 +76,162 @@
 				</li>
 			{/each}
 		</ul>
-		<div class="states">
-			<!-- need to figure out how to show the theme instantly here... -->
-			<p>{font.size}px</p>
-			<p>{font.weight}</p>
-		</div>
-	</div>
+    <div class="states">
+      <!-- need to figure out how to show the theme instantly here... -->
+      <p>{font.size}px</p>
+      <p>{font.weight}</p>
+    </div>
+  </div>
 </header>
 
 <style>
-	header {
-		width: 100%;
-		padding: 1.5rem 1rem;
-		padding-bottom: 0.25rem;
-		background: var(--black);
-		z-index: 1;
-		display: grid;
-		place-items: center;
+header {
+  width: 100%;
+  padding: 1.5rem 1rem;
+  padding-bottom: 0.25rem;
+  background: var(--black);
+  z-index: 1;
+  display: grid;
+  place-items: center;
 
-		.wrapper {
-			padding: 0 1.125rem;
-			width: 100%;
-			max-width: 90rem;
-			display: grid;
-			grid-template-columns: 1fr max-content;
-			place-items: center;
-			gap: 4rem;
-		}
-		.section-list {
-			padding: 0;
-			width: 100%;
-			display: flex;
-			flex-wrap: wrap;
-			gap: 0.5rem 2.5rem;
-			list-style-type: none;
+  .wrapper {
+    padding: 0 1.125rem;
+    width: 100%;
+    max-width: 90rem;
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    place-items: center;
+    gap: 4rem;
+  }
+  .section-list {
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2.5rem;
+    list-style-type: none;
 
-			/* general a element styles. */
-			.section a {
-				padding: 1px 0.25rem;
-				display: inline-block;
-				text-decoration: none;
-				width: max-content;
-			}
-			.home a {
-				color: var(--home);
-			}
-			.experience a {
-				color: var(--experience);
-			}
-			.projects a {
-				color: var(--project);
-			}
-			.about a {
-				color: var(--bright-orange);
-			}
+    /* general a element styles. */
+    .section a {
+      padding: 1px 0.25rem;
+      display: inline-block;
+      text-decoration: none;
+      width: max-content;
+    }
+    .home a {
+      color: var(--home);
+    }
+    .experience a {
+      color: var(--experience);
+    }
+    .projects a {
+      color: var(--project);
+    }
+    .about a {
+      color: var(--bright-orange);
+    }
 
-			/* hover and active styles. */
-			.section a:hover,
-			.section a.active {
-				background: var(--flicker-color);
-				color: var(--black);
-				animation: flicker 0.4s steps(1, end) 1;
-			}
-			.home a:hover,
-			.home a.active {
-				--flicker-color: var(--home);
-			}
-			.experience a:hover,
-			.experience a.active {
-				--flicker-color: var(--experience);
-			}
-			.projects a:hover,
-			.projects a.active {
-				--flicker-color: var(--project);
-			}
-			.about a:hover,
-			.about a.active {
-				--flicker-color: var(--bright-orange);
-			}
+    /* hover and active styles. */
+    .section a:hover,
+    .section a.active {
+      background: var(--flicker-color);
+      color: var(--black);
+      animation: flicker 0.4s steps(1, end) 1;
+    }
+    .home a:hover,
+    .home a.active {
+      --flicker-color: var(--home);
+    }
+    .experience a:hover,
+    .experience a.active {
+      --flicker-color: var(--experience);
+    }
+    .projects a:hover,
+    .projects a.active {
+      --flicker-color: var(--project);
+    }
+    .about a:hover,
+    .about a.active {
+      --flicker-color: var(--bright-orange);
+    }
 
-			/* active-prio styles. */
-			.section a.active-prio {
-				--dot-bg: var(--black);
-				--dot-size: 1px;
-				--dot-space: 2px;
-				background:
-					linear-gradient(
-							90deg,
-							var(--dot-bg) calc(var(--dot-space) - var(--dot-size)),
-							transparent 1%
-						)
-						center / var(--dot-space) var(--dot-space),
-					linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%)
-						center / var(--dot-space) var(--dot-space),
-					var(--dot-color);
-			}
-			.home a.active-prio {
-				--dot-color: var(--red);
-				color: var(--home);
-			}
-			.experience a.active-prio {
-				--dot-color: var(--green);
-				color: var(--experience);
-			}
-			.projects a.active-prio {
-				--dot-color: var(--project);
-				color: var(--project);
-			}
-			.about a.active-prio {
-				--dot-color: var(--bright-orange);
-				color: var(--bright-orange);
-			}
+    /* active-prio styles. */
+    .section a.active-prio {
+      --dot-bg: var(--black);
+      --dot-size: 1px;
+      --dot-space: 2px;
+      background:
+        linear-gradient(
+        90deg,
+        var(--dot-bg) calc(var(--dot-space) - var(--dot-size)),
+        transparent 1%
+      )
+        center / var(--dot-space) var(--dot-space),
+        linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)),
+        transparent 1%)
+        center / var(--dot-space) var(--dot-space),
+        var(--dot-color);
+    }
+    .home a.active-prio {
+      --dot-color: var(--red);
+      color: var(--home);
+    }
+    .experience a.active-prio {
+      --dot-color: var(--green);
+      color: var(--experience);
+    }
+    .projects a.active-prio {
+      --dot-color: var(--project);
+      color: var(--project);
+    }
+    .about a.active-prio {
+      --dot-color: var(--bright-orange);
+      color: var(--bright-orange);
+    }
 
-			/* shake styles. */
-			.section a.shake-up,
-			.section a.shake-left,
-			.section a.shake-right {
-				padding: 1px 0.25rem;
-				display: inline-block;
-			}
-			.section a.shake-up {
-				animation: shake-up 0.1s;
-			}
-			.section a.shake-left {
-				animation: shake-left 0.1s;
-			}
-			.section a.shake-right {
-				animation: shake-right 0.1s;
-			}
-		}
-		.states {
-			display: flex;
-			gap: 3rem;
-			color: var(--white);
-		}
-	}
+    /* shake styles. */
+    .section a.shake-up,
+    .section a.shake-left,
+    .section a.shake-right {
+      padding: 1px 0.25rem;
+      display: inline-block;
+    }
+    .section a.shake-up {
+      animation: shake-up 0.1s;
+    }
+    .section a.shake-left {
+      animation: shake-left 0.1s;
+    }
+    .section a.shake-right {
+      animation: shake-right 0.1s;
+    }
+  }
+  .states {
+    display: flex;
+    gap: 3rem;
+    color: var(--white);
+  }
+}
 
-	@media (max-width: 700px) {
-		header {
-			.states {
-				display: none;
-			}
-		}
-	}
+@media (max-width: 700px) {
+  header {
+    .states {
+      display: none;
+    }
+  }
+}
 
-	@media (max-width: 500px) {
-		header {
-			padding: 1rem 0;
+@media (max-width: 500px) {
+  header {
+    padding: 1rem 0;
 
-			.section-list {
-				flex-wrap: wrap;
-				gap: 0.25rem 1rem;
-				.section a {
-					padding: 0.125rem 0.25rem;
-				}
-			}
-		}
-	}
+    .section-list {
+      flex-wrap: wrap;
+      gap: 0.25rem 1rem;
+      .section a {
+        padding: 0.125rem 0.25rem;
+      }
+    }
+  }
+}
 </style>
