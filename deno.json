@@ -1,0 +1,27 @@
+{
+  "nodeModulesDir": "auto",
+  "imports": {
+    "@std/assert": "jsr:@std/assert@1",
+    "@sveltejs/adapter-cloudflare": "npm:@sveltejs/adapter-cloudflare@^7.2.8",
+    "@sveltejs/kit": "npm:@sveltejs/kit@^2.63.0",
+    "@sveltejs/vite-plugin-svelte": "npm:@sveltejs/vite-plugin-svelte@^7.1.2",
+    "@types/node": "npm:@types/node@^24",
+    "globals": "npm:globals@^17.6.0",
+    "svelte": "npm:svelte@^5.56.1",
+    "svelte-check": "npm:svelte-check@^4.6.0",
+    "typescript": "npm:typescript@^6.0.3",
+    "typescript-eslint": "npm:typescript-eslint@^8.60.1",
+    "vite": "npm:vite@^8.0.16",
+    "wrangler": "npm:wrangler@^4.97.0"
+  },
+  "tasks": {
+    "dev": "deno run -A npm:vite dev",
+    "build": "deno task gen:check && deno run -A npm:vite build",
+    "preview": "deno run -A npm:wrangler dev .svelte-kit/cloudflare/_worker.js --port 4173",
+    "check": "deno run -A npm:wrangler types --check && deno run -A npm:svelte-kit sync && deno run -A npm:svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "deno run -A npm:svelte-kit sync && deno run -A npm:svelte-check --tsconfig ./tsconfig.json --watch",
+    "lint": "deno run -A npm:prettier --check . && deno run -A npm:eslint .",
+    "format": "deno run -A npm:prettier --write .",
+    "gen": "deno run -A npm:wrangler types"
+  }
+}
