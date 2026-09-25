@@ -107,8 +107,8 @@ onMount(() => {
 </script>
 
 <div class="home-wrapper">
-  <div class="author">
-    <p>arvin garcia</p>
+  <section class="author">
+    <h1>arvin garcia</h1>
     <p class="description">software dev based in the philippines.</p>
     <ul class="social-list">
       {#each socials as social, i (social)}
@@ -136,40 +136,37 @@ onMount(() => {
     <!-- 	<p>to view my portfolio in the terminal:</p> -->
     <!-- 	<p>ssh arvingarcia.com [tbf]</p> -->
     <!-- </div> -->
-  </div>
+  </section>
 
-  <ul class="experience-list">
-    <li class="experience">
-      <a
-        href={resolve("/experience")}
-        onclick={() => {
+  <section class="experience">
+    <a
+      href={resolve("/experience")}
+      onclick={() => {
           navigation.activeIndex = 0 + sections.length;
         }}
-      >
-        <div class="selection">
-          <p
-            class={[
+    >
+      <h1
+        class={[
               `position ${navigation.activeIndex == 0 + sections.length + socials.length && shake.left ? "shake-left" : ""} ${navigation.activeIndex == 0 + sections.length + socials.length && shake.right ? "shake-right" : ""}`,
               (() =>
                 0 + sections.length + socials.length == navigation.activeIndex
                   ? "active"
                   : "")(),
             ]}
-            onanimationend={() => {
+        onanimationend={() => {
               shake.left = false;
               shake.right = false;
               shake.down = false;
             }}
-          >
+      >
             see experience
-          </p>
-        </div>
-      </a>
-      <p class="description">fullstack dev intern. did volunteer work.</p>
-    </li>
-  </ul>
+          </h1>
+    </a>
+    <p class="description">fullstack dev intern. did volunteer work.</p>
+  </section>
 
-  <ul class="project-list">
+  <section class="projects">
+    <ul>
     {#each projects.slice(0, 3) as project, i (project.name)}
       <li class="project">
         <a
@@ -178,9 +175,7 @@ onMount(() => {
             navigation.activeIndex = i + sections.length;
           }}
         >
-          <div class="selection">
-            <span class="padder"></span>
-            <div class="wrapper">
+            <div class="details">
               <div
                 class={[
                   `name ${navigation.activeIndex == i + sections.length + socials.length + EXPERIENCE_LENGTH && shake.left ? "shake-left" : ""} ${navigation.activeIndex == i + sections.length + socials.length + EXPERIENCE_LENGTH && shake.right ? "shake-right" : ""} ${navigation.activeIndex == i + sections.length + socials.length + EXPERIENCE_LENGTH && shake.down ? "shake-down" : ""}`,
@@ -237,311 +232,149 @@ onMount(() => {
                 {/if}
               </div>
             </div>
-            <span class="padder"></span>
-            <p class="description-short">{project.descriptionShort}</p>
-          </div>
+            <p class="description">{project.descriptionShort}</p>
         </a>
       </li>
     {/each}
   </ul>
+  </section>
 </div>
 
 <style>
 .home-wrapper {
-  padding: 0 0.075rem;
+  padding: 0 1.25rem;
   width: 100%;
   max-width: 90rem;
   display: flex;
   flex-direction: column;
   gap: 3rem;
 }
-
-.author {
-  margin-left: 1.25rem;
-}
-
-.ssh {
-  margin-top: 1.5rem;
-  color: var(--white);
-}
-
-.description {
-  margin-top: 0.375rem;
-  color: var(--white);
-}
-.social-list {
-  margin: 0.375rem 0 0 -0.25rem;
-  padding: 0;
-  display: flex;
-  gap: 0.5rem;
-  list-style-type: none;
-
-  .social,
-  .separator {
-    color: var(--white);
-  }
-
-  .social a {
-    padding: 1px 0.25rem;
-    display: inline-block;
-    color: var(--white);
-    text-decoration: underline dotted;
-  }
-  .social a:hover {
-    text-decoration: none;
-  }
-  .social a.active {
-    --flicker-color: var(--bright-orange);
-    background: var(--flicker-color);
-    color: var(--black);
-    animation: flicker 0.4s steps(1, end) 1;
-    text-decoration: none;
-  }
-
-  .social a.shake-down,
-  .social a.shake-left,
-  .social a.shake-right {
-    padding: 1px 0.25rem;
-    display: inline-block;
-  }
-  .social a.shake-down {
-    animation: shake-down 0.1s;
-  }
-  .social a.shake-left {
-    animation: shake-left 0.1s;
-  }
-  .social a.shake-right {
-    animation: shake-right 0.1s;
-  }
-}
-
-.experience-list {
-  padding: 0;
+section {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  list-style-type: none;
+  gap: 0.5rem;
 
-  .experience {
-    margin-left: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
+  .description {
+    color: var(--white);
+  }
+}
+.social-list {
+  margin-left: -0.25rem;
+  display: flex;
+  gap: 0.5rem;
+}
 
-    a {
-      display: inline-block;
-      color: var(--bright-white);
-      text-decoration: none;
-      width: max-content;
-    }
+.social a {
+  padding: 1px 0.25rem;
+  display: inline-block;
+  text-decoration: underline dotted;
+  color: var(--white);
 
-    .selection {
-      margin-left: -0.25rem;
-      display: grid;
-      grid-template-columns: max-content;
-
-      .position {
-        padding: 1px 0.25rem;
-      }
-    }
-
-    .description {
-      max-width: 30rem;
-      color: var(--white);
-    }
+  &:hover {
+    text-decoration: none;
   }
 
-  .experience a:hover .position,
-  .experience a .position.active {
+  &.active {
+    --flicker-color: var(--about);
+    text-decoration: none;
+  }
+}
+.experience {
+  width: max-content;
+  cursor: pointer;
+
+  &:hover .position {
     --flicker-color: var(--experience);
     background: var(--flicker-color);
     color: var(--black);
     animation: flicker 0.4s steps(1, end) 1;
   }
+}
+.experience .position {
+  margin-left: -0.25rem;
+  padding: 1px 0.25rem;
+  width: max-content;
+  color: var(--bright-white);
+  text-decoration: none;
 
-  .experience a .position.shake-down,
-  .experience a .position.shake-left,
-  .experience a .position.shake-right {
-    padding: 1px 0.25rem;
-    display: inline-block;
-  }
-  .experience a .position.shake-down {
-    animation: shake-down 0.1s;
-  }
-  .experience a .position.shake-left {
-    animation: shake-left 0.1s;
-  }
-  .experience a .position.shake-right {
-    animation: shake-right 0.1s;
+  &.active {
+    --flicker-color: var(--experience);
   }
 }
 
-.project-list {
-  padding: 0 0.75rem;
+.projects ul {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  list-style-type: none;
+  gap: 2rem;
+}
+.project a {
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--bright-white);
+  text-decoration: none;
 
-  .project a {
-    padding-left: 0.625rem;
-    width: max-content;
-    display: grid;
-    grid-template-columns: 1fr;
-    align-items: center;
-    color: var(--bright-white);
-    text-decoration: none;
-
-    .selection {
-      display: flex;
-      flex-direction: column;
-      gap: 0.175rem;
-      color: var(--white);
-
-      .wrapper {
-        display: grid;
-        grid-template-columns: max-content max-content;
-        gap: 0.5rem;
-      }
-
-      .metrics {
-        display: grid;
-        grid-template-columns: max-content max-content max-content;
-        justify-self: end;
-        gap: 0.5rem;
-      }
-
-      .metric {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 0.5rem;
-        color: var(--bright-yellow);
-
-        .icon {
-          min-height: 100%;
-          aspect-ratio: 1 / 1;
-          display: grid;
-          place-items: end;
-        }
-      }
-      .metric.stars {
-        color: var(--bright-yellow);
-      }
-      .metric.downloads {
-        color: var(--bright-blue);
-      }
-      .metric.forks {
-        color: var(--bright-green);
-      }
-
-      div {
-        display: flex;
-        flex-direction: column;
-        gap: 0;
-
-        .padder {
-          display: inline-block;
-          height: 3px;
-          width: 1px;
-        }
-        .name {
-          margin-left: -0.25rem;
-          padding: 1px 0.25rem;
-          width: max-content;
-          display: flex;
-          flex-direction: row;
-          gap: 2rem;
-        }
-      }
-    }
-  }
-
-  .project a .name {
-    color: var(--bright-white);
-  }
-
-  .project a:hover .name,
-  .project a .name.active {
+  &:hover .name {
     --flicker-color: var(--project);
     background: var(--flicker-color);
     color: var(--black);
     animation: flicker 0.4s steps(1, end) 1;
   }
 
-  .project a .name.shake-down,
-  .project a .name.shake-left,
-  .project a .name.shake-right {
+  .name {
+    margin-left: -0.25rem;
     padding: 0 0.25rem;
-    display: inline-block;
+
+    &.active {
+      --flicker-color: var(--project);
+    }
   }
-  .project a .name.shake-down {
-    animation: shake-down 0.1s;
-  }
-  .project a .name.shake-left {
-    animation: shake-left 0.1s;
-  }
-  .project a .name.shake-right {
-    animation: shake-right 0.1s;
-  }
+}
+.project .details {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  gap: 0.5rem;
+}
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  gap: 0.5rem;
+}
+.metric {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--bright-yellow);
+}
+.metric .icon {
+  min-height: 100%;
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: end;
+}
+.metric.stars {
+  color: var(--star);
+}
+.metric.downloads {
+  color: var(--download);
+}
+.metric.forks {
+  color: var(--fork);
 }
 
 @media (max-width: 500px) {
-  .author {
-    margin-left: 0.25rem;
+  .home-wrapper {
+    padding: 0 0.25rem;
   }
-
-  .project .selection {
-    margin-left: -0.5rem;
+  *.active {
+    --flicker-color: var(--black) !important;
+    color: var(--bright-white) !important;
   }
-
-  .social-list {
-    .social a.active {
-      --flicker-color: var(--black);
-      background: var(--flicker-color);
-      color: var(--white);
-      animation: none;
-      text-decoration: underline dotted;
-    }
-  }
-
-  .experience-list {
-    .experience {
-      margin-left: 0.25rem;
-      div {
-        grid-template-columns: 1fr;
-      }
-
-      .description {
-        max-width: 100%;
-      }
-    }
-    .experience a .position.active {
-      --flicker-color: var(--black);
-      background: var(--flicker-color);
-      color: var(--bright-white);
-      animation: none;
-    }
-  }
-
-  .project-list {
-    margin-left: 0.25rem;
-    padding: 0;
-    .project a {
-      grid-template-columns: 1fr;
-      div {
-        .name,
-        .description-short {
-          padding: 0;
-        }
-      }
-    }
-    .project a .name.active {
-      --flicker-color: var(--black);
-      background: var(--flicker-color);
-      color: var(--bright-white);
-      animation: none;
-    }
+  a.active {
+    text-decoration: underline dotted !important;
+    color: var(--white) !important;
   }
 }
 </style>

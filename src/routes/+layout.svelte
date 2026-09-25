@@ -2,8 +2,8 @@
 import "../global.css";
 import faviconForLight from "$lib/assets/favicon-for-light.png";
 import faviconForDark from "$lib/assets/favicon-for-dark.png";
-import Header from "$lib/components/macro/header.svelte";
-import Footer from "$lib/components/macro/footer.svelte";
+import Header from "$lib/components/header.svelte";
+import Footer from "$lib/components/footer.svelte";
 import { onMount } from "svelte";
 import { afterNavigate } from "$app/navigation";
 
@@ -99,7 +99,7 @@ function handlerFontSize(e: KeyboardEvent) {
   if (e.key == "+" && fontSize < 24) {
     fontSize++;
   }
-  if (e.key == "-" && !e.ctrlKey && fontSize > 8) {
+  if (e.key == "-" && !e.ctrlKey && fontSize > 10) {
     fontSize--;
   }
 

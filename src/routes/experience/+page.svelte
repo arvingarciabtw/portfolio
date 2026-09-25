@@ -67,32 +67,34 @@ onMount(() => {
 
 <div class="experiences-wrapper">
 	{#each experiences as experience, i (experience.description)}
-		<div class="experience">
-			<div class="selection">
-				<a
-					href={experience.url}
-					target="_blank"
-					rel="external noopener noreferrer"
-					class={[
-						`position ${navigation.activeIndex == i + sections.length && shake.left ? 'shake-left' : ''} ${navigation.activeIndex == i + sections.length && shake.right ? 'shake-right' : ''} ${navigation.activeIndex == i + sections.length && shake.down ? 'shake-down' : ''}`,
-						(() => (i + sections.length == navigation.activeIndex ? 'active' : ''))()
-					]}
-					onanimationend={() => {
-						shake.left = false;
-						shake.right = false;
-						shake.down = false;
-					}}
-				>
-					{experience.position}
-				</a>
-			</div>
-			<div class="position-details">
-				<ul>
-					<li class="company">{experience.company}</li>
-					<li class="separator">·</li>
-					<li class="date">{experience.date}</li>
-				</ul>
-			</div>
+    <div class="experience">
+      <div class="details">
+        <div class="name">
+          <a
+            href={experience.url}
+            target="_blank"
+            rel="external noopener noreferrer"
+            class={[
+              `position ${navigation.activeIndex == i + sections.length && shake.left ? 'shake-left' : ''} ${navigation.activeIndex == i + sections.length && shake.right ? 'shake-right' : ''} ${navigation.activeIndex == i + sections.length && shake.down ? 'shake-down' : ''}`,
+              (() => (i + sections.length == navigation.activeIndex ? 'active' : ''))()
+            ]}
+            onanimationend={() => {
+              shake.left = false;
+              shake.right = false;
+              shake.down = false;
+            }}
+          >
+            {experience.position}
+          </a>
+        </div>
+        <div class="others">
+          <ul>
+            <li class="company">{experience.company}</li>
+            <li class="separator">·</li>
+            <li class="date">{experience.date}</li>
+          </ul>
+        </div>
+      </div>
 			<ul class="points">
 				{#each experience.points as point (point)}
 					<li class="point">
@@ -107,134 +109,86 @@ onMount(() => {
 
 <style>
 .experiences-wrapper {
-  padding: 0 1.375rem;
+  padding: 0 1.25rem;
   width: 100%;
   max-width: 90rem;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 4rem;
+}
+.experience {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.name {
+  margin-left: -0.25rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+.position {
+  padding: 1px 0.25rem;
+  width: max-content;
+  color: var(--bright-white);
+  text-decoration: none;
 
-  /* TODO: remove this once points are rewritten */
-  .note {
-    margin-left: 1.25rem;
-    color: var(--white);
+  &:hover,
+  &.active {
+    --flicker-color: var(--experience);
+    background: var(--flicker-color);
+    color: var(--black);
+    animation: flicker 0.4s steps(1, end) 1;
   }
-
-  .experience {
-    .selection {
-      margin-left: -0.25rem;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-
-      .position {
-        padding: 1px 0.25rem;
-        width: max-content;
-        color: var(--bright-white);
-        text-decoration: none;
-      }
-
-      .position:hover,
-      .position.active {
-        --flicker-color: var(--experience);
-        background: var(--flicker-color);
-        color: var(--black);
-        animation: flicker 0.4s steps(1, end) 1;
-      }
-
-      .position.shake-left,
-      .position.shake-right,
-      .position.shake-down {
-        padding: 1 0.25rem;
-        display: inline-block;
-      }
-      .position.shake-left {
-        animation: shake-left 0.1s;
-      }
-      .position.shake-right {
-        animation: shake-right 0.1s;
-      }
-      .position.shake-down {
-        animation: shake-down 0.1s;
-      }
-    }
-
-    .position-details {
-      margin-top: 0.25rem;
-      max-width: 45rem;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0 4rem;
-    }
-
-    ul,
-    .points {
-      padding: 0;
-      list-style-type: none;
-    }
-
-    ul {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.125rem 0.5rem;
-
-      .separator {
-        color: var(--white);
-      }
-      .company {
-        color: var(--bright-blue);
-      }
-      .date {
-        color: var(--bright-magenta);
-      }
-    }
-
-    .points {
-      margin-top: 1.25rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-
-      .point {
-        display: flex;
-        gap: 0.5rem;
-        color: var(--white);
-        max-width: 44rem;
-        line-height: 1.75;
-      }
-    }
-  }
+}
+.others {
+  margin-top: 0.25rem;
+  max-width: 45rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0 4rem;
+}
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.125rem 0.5rem;
+}
+.separator {
+  color: var(--white);
+}
+.company {
+  color: var(--bright-blue);
+}
+.date {
+  color: var(--bright-magenta);
+}
+.points {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.point {
+  display: flex;
+  gap: 0.5rem;
+  color: var(--white);
+  max-width: 44rem;
+  line-height: 2;
 }
 
 @media (max-width: 500px) {
+  *.active {
+    --flicker-color: var(--black) !important;
+    color: var(--bright-white) !important;
+  }
   .experiences-wrapper {
-    padding: 0 0.125rem;
-    .note,
-    .experience {
-      margin-left: 0.25rem;
-    }
-    .experience {
-      .selection {
-        margin: 0;
-        gap: 0;
-
-        .position {
-          padding: 0;
-        }
-        .position.active {
-          --flicker-color: var(--black);
-          background: var(--flicker-color);
-          color: var(--bright-white);
-          animation: flicker 0.4s steps(1, end) 1;
-        }
-      }
-      ul,
-      .points {
-        margin-left: 0;
-      }
-    }
+    padding: 0 0.25rem;
   }
 }
 </style>

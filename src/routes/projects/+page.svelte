@@ -78,50 +78,50 @@ onMount(() => {
 					>
 						{project.name}
 					</p>
+          <div class="metrics">
+            {#if project.metrics.stars != null && project.metrics.stars > 10}
+              <div class="metric stars">
+                <div class="icon">
+                  <Star />
+                </div>
+                <p>
+                  {project.metrics.stars}{project.metrics.stars > 10 ? '+' : ''}
+                </p>
+              </div>
+            {/if}
+            {#if project.metrics.downloads != null && project.metrics.downloads > 10}
+              <div class="metric downloads">
+                <div class="icon">
+                  <Download />
+                </div>
+                <p>
+                  {project.metrics.downloads}{project.metrics.downloads > 10 ? '+' : ''}
+                </p>
+              </div>
+            {/if}
+            {#if project.metrics.forks != null && project.metrics.forks != 0}
+              <div class="metric forks">
+                <div class="icon">
+                  <Fork />
+                </div>
+                <p>
+                  {project.metrics.forks}{project.metrics.forks > 10 ? '+' : ''}
+                </p>
+              </div>
+            {/if}
+          </div>
 				</div>
-				<div class="metrics">
-					{#if project.metrics.stars != null && project.metrics.stars > 10}
-						<div class="metric stars">
-							<div class="icon">
-								<Star />
-							</div>
-							<p>
-								{project.metrics.stars}{project.metrics.stars > 10 ? '+' : ''}
-							</p>
-						</div>
-					{/if}
-					{#if project.metrics.downloads != null && project.metrics.downloads > 10}
-						<div class="metric downloads">
-							<div class="icon">
-								<Download />
-							</div>
-							<p>
-								{project.metrics.downloads}{project.metrics.downloads > 10 ? '+' : ''}
-							</p>
-						</div>
-					{/if}
-					{#if project.metrics.forks != null && project.metrics.forks != 0}
-						<div class="metric forks">
-							<div class="icon">
-								<Fork />
-							</div>
-							<p>
-								{project.metrics.forks}{project.metrics.forks > 10 ? '+' : ''}
-							</p>
-						</div>
-					{/if}
-				</div>
+          <ul class="technology-list">
+            {#each project.technologies as technology, i (technology)}
+              <li class="technology">
+                <p>{technology}</p>
+                {#if i != project.technologies.length - 1}
+                  <p class="separator">·</p>
+                {/if}
+              </li>
+            {/each}
+          </ul>
 			</div>
-			<ul class="technology-list">
-				{#each project.technologies as technology, i (technology)}
-					<li class="technology">
-						<p>{technology}</p>
-						{#if i != project.technologies.length - 1}
-							<p class="separator">·</p>
-						{/if}
-					</li>
-				{/each}
-			</ul>
 			<p class="description">{project.description}</p>
 		</a>
 	{/each}
@@ -129,137 +129,107 @@ onMount(() => {
 
 <style>
 .projects-wrapper {
-  padding: 0 1.375rem;
+  padding: 0 1.25rem;
   width: 100%;
   max-width: 90rem;
   display: flex;
   flex-direction: column;
   gap: 3rem;
+}
+.project {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 24rem;
+  text-decoration: none;
 
-  .project {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    max-width: 24rem;
-    text-decoration: none;
-
-    .details {
-      display: grid;
-      grid-template-columns: max-content max-content;
-      gap: 0.5rem;
-
-      .selection {
-        margin-left: -0.25rem;
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 0.25rem;
-
-        .name {
-          padding: 1px 0.25rem;
-          width: max-content;
-          color: var(--bright-white);
-        }
-      }
-
-      .metrics {
-        justify-content: end;
-        display: flex;
-        gap: 0.5rem;
-
-        .metric {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-
-          .icon {
-            min-height: 100%;
-            aspect-ratio: 1 / 1;
-            display: grid;
-            place-items: end;
-          }
-        }
-        .stars {
-          color: var(--bright-yellow);
-        }
-        .forks {
-          color: var(--bright-green);
-        }
-        .downloads {
-          color: var(--bright-blue);
-        }
-      }
-    }
-    .technology-list {
-      padding: 0;
-      display: flex;
-      gap: 0.5rem;
-      list-style-type: none;
-
-      .technology {
-        display: flex;
-        gap: 0.5rem;
-        color: var(--bright-cyan);
-
-        .separator {
-          color: var(--white);
-        }
-      }
-    }
-    .description {
-      margin-top: 1rem;
-      color: var(--white);
-      text-wrap: stable;
-      line-height: 1.75;
-    }
-  }
-  .project:hover .details .name,
-  .project .details .name.active {
+  &:hover .details .name,
+  & .active {
     --flicker-color: var(--project);
+  }
+
+  &:hover .details .name {
     background: var(--flicker-color);
     color: var(--black);
     animation: flicker 0.4s steps(1, end) 1;
   }
+}
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+.selection {
+  margin-left: -0.25rem;
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  gap: 0.5rem;
+}
+.name {
+  padding: 1px 0.25rem;
+  width: max-content;
+  color: var(--bright-white);
+}
+.metrics {
+  justify-content: end;
+  display: flex;
+  gap: 0.5rem;
+}
+.metric {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.icon {
+  min-height: 100%;
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: end;
+}
+.stars {
+  color: var(--star);
+}
+.downloads {
+  color: var(--download);
+}
+.forks {
+  color: var(--fork);
+}
 
-  .project .details .name.name.shake-down,
-  .project .details .name.name.shake-left,
-  .project .details .name.name.shake-right {
-    padding: 1px 0.25rem;
-    display: inline-block;
-  }
-  .project .details .name.shake-down {
-    animation: shake-down 0.1s;
-  }
-  .project .details .name.shake-left {
-    animation: shake-left 0.1s;
-  }
-  .project .details .name.shake-right {
-    animation: shake-right 0.1s;
-  }
+.technology-list {
+  display: flex;
+  gap: 0.5rem;
+}
+.technology {
+  display: flex;
+  gap: 0.5rem;
+  color: var(--bright-cyan);
+}
+.separator {
+  color: var(--white);
+}
+.description {
+  color: var(--white);
+  text-wrap: stable;
+  line-height: 2;
 }
 
 @media (max-width: 500px) {
+  *.active {
+    --flicker-color: var(--black) !important;
+    color: var(--bright-white) !important;
+  }
   .projects-wrapper {
-    padding: 0 0.125rem;
-    .project {
-      .description {
-        margin-left: 0.25rem;
-      }
-      .technology-list {
-        margin: 0.25rem 0 0 0.25rem;
-      }
-      .details {
-        .selection {
-          margin: 0;
-        }
-      }
-    }
-
-    .project .details .name.active {
-      --flicker-color: var(--black);
-      background: var(--flicker-color);
-      color: var(--bright-white);
-      animation: none;
-    }
+    padding: 0;
+  }
+  .description {
+    margin-left: 0.25rem;
+  }
+  .technology-list {
+    margin: 0.25rem 0 0 0.25rem;
+  }
+  .selection {
+    margin: 0;
   }
 }
 </style>

@@ -20,6 +20,6 @@
 <style>
 svg {
   min-height: 100%;
-  width: 60%;
+  width: 55%;
 }
 </style>
