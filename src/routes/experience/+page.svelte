@@ -1,69 +1,22 @@
 <script lang="ts">
-import { onMount } from "svelte";
-import { experiences, sections } from "$lib/data/data";
-import { handlerSectionKeyPress } from "$lib/helpers/helpers";
-import { getCommands } from "$lib/stores/commands.svelte";
-import { getIsInHeader, navigation } from "$lib/stores/navigation.svelte";
-import { shake } from "$lib/stores/shake.svelte";
+import { experiences } from "$lib/data/data";
+import { global as G } from "$lib/stores/global.svelte";
+import Navigable from "$lib/components/navigable.svelte";
 
-function handlerNavigationKeyPress(e: KeyboardEvent) {
-	const { goUp, goDown, goLeft, goRight, goExecute } = getCommands(e);
+const rowMap: Record<number, number> = {
+	0: 3, // header
+	// below should probably be dynamically generated, based on experiences.length
+	1: 0, // exp 1
+	2: 0, // exp 2
+};
 
-	const atStart = navigation.activeIndex == sections.length;
-	const atEnd =
-		navigation.activeIndex == sections.length + experiences.length - 1;
+G.maxRow = Object.keys(rowMap).length - 1;
+G.lastVisitedIndexByRow = {
+	0: 1,
+};
 
-	if (goUp) {
-		if (getIsInHeader()) {
-			return;
-		}
-		if (atStart) {
-			navigation.activeIndex = 1;
-			return;
-		}
-		navigation.activeIndex -= 1;
-	}
-	if (goDown) {
-		if (atEnd) {
-			shake.down = true;
-			return;
-		}
-		if (getIsInHeader()) {
-			navigation.activeIndex = sections.length;
-			return;
-		}
-		navigation.activeIndex += 1;
-	}
-	if (goLeft && !getIsInHeader()) {
-		shake.left = true;
-	}
-	if (goRight && !getIsInHeader()) {
-		shake.right = true;
-	}
-	if (goExecute) {
-		if (!getIsInHeader()) {
-			window.open(
-				experiences[navigation.activeIndex - sections.length].url,
-			);
-		}
-	}
-}
-
-onMount(() => {
-	window.addEventListener("keypress", handlerSectionKeyPress);
-	window.addEventListener("keydown", handlerNavigationKeyPress);
-
-	return () => {
-		window.addEventListener("keypress", handlerSectionKeyPress);
-		window.removeEventListener("keydown", handlerNavigationKeyPress);
-	};
-});
-onMount(() => {
-	window.addEventListener("keypress", handlerSectionKeyPress);
-
-	return () => {
-		window.removeEventListener("keypress", handlerSectionKeyPress);
-	};
+$effect(() => {
+	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
 });
 </script>
 
@@ -72,22 +25,13 @@ onMount(() => {
     <div class="experience">
       <div class="details">
         <div class="name">
-          <a
+          <Navigable 
+            content={experience.position}
             href={experience.url}
-            target="_blank"
-            rel="external noopener noreferrer"
-            class={[
-              `position ${navigation.activeIndex == i + sections.length && shake.left ? 'shake-left' : ''} ${navigation.activeIndex == i + sections.length && shake.right ? 'shake-right' : ''} ${navigation.activeIndex == i + sections.length && shake.down ? 'shake-down' : ''}`,
-              (() => (i + sections.length == navigation.activeIndex ? 'active' : ''))()
-            ]}
-            onanimationend={() => {
-              shake.left = false;
-              shake.right = false;
-              shake.down = false;
-            }}
-          >
-            {experience.position}
-          </a>
+            external={true}
+            row={i + 1}
+            idx={0}
+          />
         </div>
         <div class="others">
           <ul>
@@ -117,6 +61,7 @@ onMount(() => {
 	display: flex;
 	flex-direction: column;
 	gap: 4rem;
+	--flicker-color: var(--experience);
 }
 .experience {
 	display: flex;
@@ -133,20 +78,6 @@ onMount(() => {
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: 1rem;
-}
-.position {
-	padding: 1px 0.25rem;
-	width: max-content;
-	color: var(--bright-white);
-	text-decoration: none;
-
-	&:hover,
-	&.active {
-		--flicker-color: var(--experience);
-		background: var(--flicker-color);
-		color: var(--black);
-		animation: flicker 0.4s steps(1, end) 1;
-	}
 }
 .others {
 	margin-top: 0.25rem;
@@ -185,10 +116,6 @@ ul {
 }
 
 @media (max-width: 500px) {
-	*.active {
-		--flicker-color: var(--black) !important;
-		color: var(--bright-white) !important;
-	}
 	.experiences-wrapper {
 		padding: 0 0.25rem;
 	}

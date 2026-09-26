@@ -76,15 +76,16 @@ html[data-theme='dark-hard'] {
 	--purple: hsl(283.94, 30.74%, 45.29%);
 	--white: hsl(35, 17.14%, 58.82%);
 	--bright-black: hsl(30, 12.1%, 51.37%);
-	--bright-red: hsl(6.33, 96.14%, 59.41%);
+	--bright-red: hsl(6.33, 96.14%, 63.41%);
 	--bright-green: hsl(61.21, 66.22%, 44.12%);
 	--bright-yellow: hsl(41.97, 95.31%, 58.24%);
 	--bright-blue: hsl(157.06, 15.89%, 58.04%);
 	--bright-magenta: hsl(343.64, 46.67%, 67.65%);
 	--bright-cyan: hsl(104.12, 35.05%, 61.96%);
 	--bright-orange: hsl(26.99, 99.13%, 54.71%);
-	--bright-purple: hsl(287.44, 58.9%, 71.37%);
+	--bright-purple: hsl(287.44, 42.9%, 70.37%);
 	--bright-white: hsl(43.16, 58.76%, 80.98%);
+	--bright-ocean: hsl(237.06, 40.89%, 69.04%);
 }
 
 html[data-theme='light'] {
@@ -114,20 +115,21 @@ html[data-theme='light-hard'] {
 	--bright-orange: hsl(26.99, 99.13%, 30.71%);
 	--bright-purple: hsl(287.44, 58.9%, 41.37%);
 	--bright-white: hsl(20, 5.26%, 22.35%);
+	--bright-ocean: hsl(237.06, 40.89%, 49.04%);
 }
 
 html {
-	--home: var(--bright-red);
-	--experience: var(--bright-green);
-	--project: var(--bright-purple);
-	--about: var(--bright-orange);
-	--navigate: var(--bright-blue);
-	--section: var(--bright-magenta);
-	--execute: var(--bright-cyan);
-	--scroll: var(--bright-green);
+	--home: var(--bright-blue);
+	--experience: var(--bright-cyan);
+	--project: var(--bright-magenta);
+	--about: var(--bright-purple);
+	--navigate: var(--bright-magenta);
+	--section: var(--bright-purple);
+	--execute: var(--bright-ocean);
+	--scroll: var(--bright-blue);
+	--zoom: var(--bright-cyan);
+	--weight: var(--bright-green);
 	--pos: var(--bright-yellow);
-	--zoom: var(--bright-blue);
-	--weight: var(--bright-magenta);
 	--hide: var(--bright-orange);
 	--reset: var(--bright-red);
 	--theme: var(--bright-white);
@@ -208,11 +210,6 @@ html {
 }
 /* the !importants here are needed for now, to make it work */
 /* there's probably some specificity problem i need to fix if i want to remove this */
-*.active {
-	background: var(--flicker-color); /* don't set !important here, the flicker animation doesn't work, for some reason... */
-	color: var(--black) !important;
-	animation: flicker 0.4s steps(1, end) 1;
-}
 *.shake-up {
 	animation: shake-up 0.1s !important;
 }

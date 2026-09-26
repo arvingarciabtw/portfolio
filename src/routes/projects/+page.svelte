@@ -1,84 +1,41 @@
 <script lang="ts">
-import { onMount } from "svelte";
-import { projects, sections } from "$lib/data/data";
-import { handlerSectionKeyPress } from "$lib/helpers/helpers";
-import { getCommands } from "$lib/stores/commands.svelte";
-import { getIsInHeader, navigation } from "$lib/stores/navigation.svelte";
-import { shake } from "$lib/stores/shake.svelte";
+import { projects } from "$lib/data/data";
+import { global as G } from "$lib/stores/global.svelte";
 import Download from "$lib/icons/download.svelte";
 import Fork from "$lib/icons/fork.svelte";
 import Star from "$lib/icons/star.svelte";
+import Navigable from "$lib/components/navigable.svelte";
 
-function handlerNavigationKeyPress(e: KeyboardEvent) {
-	const { goUp, goDown, goLeft, goRight, goExecute } = getCommands(e);
+const rowMap: Record<number, number> = {
+	0: 3, // header
+	// below should probably be dynamically generated, based on projects.length
+	1: 0, // proj 1
+	2: 0, // proj 2
+	3: 0, // proj 3
+};
 
-	const atStart = navigation.activeIndex == sections.length;
-	const atEnd =
-		navigation.activeIndex == sections.length + projects.length - 1;
+G.maxRow = Object.keys(rowMap).length - 1;
+G.lastVisitedIndexByRow = {
+	0: 2,
+};
 
-	if (goUp) {
-		if (getIsInHeader()) {
-			return;
-		}
-		if (atStart) {
-			navigation.activeIndex = 2;
-			return;
-		}
-		navigation.activeIndex -= 1;
-	}
-	if (goDown) {
-		if (atEnd) {
-			shake.down = true;
-			return;
-		}
-		if (getIsInHeader()) {
-			navigation.activeIndex = sections.length;
-			return;
-		}
-		navigation.activeIndex += 1;
-	}
-	if (goLeft && !getIsInHeader()) {
-		shake.left = true;
-	}
-	if (goRight && !getIsInHeader()) {
-		shake.right = true;
-	}
-	if (goExecute) {
-		if (!getIsInHeader()) {
-			window.open(projects[navigation.activeIndex - sections.length].url);
-		}
-	}
-}
-
-onMount(() => {
-	window.addEventListener("keypress", handlerSectionKeyPress);
-	window.addEventListener("keydown", handlerNavigationKeyPress);
-
-	return () => {
-		window.addEventListener("keypress", handlerSectionKeyPress);
-		window.removeEventListener("keydown", handlerNavigationKeyPress);
-	};
+$effect(() => {
+	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
 });
 </script>
 
 <div class="projects-wrapper">
 	{#each projects as project, i (project.name)}
-		<a class="project" href={project.url} target="_blank" rel="external noopener noreferrer">
+		<div class="project">
 			<div class="details">
 				<div class="selection">
-					<p
-						class={[
-							`name ${navigation.activeIndex == i + sections.length && shake.left ? 'shake-left' : ''} ${navigation.activeIndex == i + sections.length && shake.right ? 'shake-right' : ''} ${navigation.activeIndex == i + sections.length && shake.down ? 'shake-down' : ''}`,
-							(() => (i + sections.length == navigation.activeIndex ? 'active' : ''))()
-						]}
-						onanimationend={() => {
-							shake.left = false;
-							shake.right = false;
-							shake.down = false;
-						}}
-					>
-						{project.name}
-					</p>
+          <Navigable 
+            content={project.name}
+            href={project.url}
+            external={true}
+            row={i + 1}
+            idx={0}
+          />
           <div class="metrics">
             {#if project.metrics.stars != null && project.metrics.stars > 10}
               <div class="metric stars">
@@ -124,7 +81,7 @@ onMount(() => {
           </ul>
 			</div>
 			<p class="description">{project.description}</p>
-		</a>
+		</div>
 	{/each}
 </div>
 
@@ -136,6 +93,7 @@ onMount(() => {
 	display: flex;
 	flex-direction: column;
 	gap: 3rem;
+	--flicker-color: var(--project);
 }
 .project {
 	display: flex;
@@ -143,17 +101,6 @@ onMount(() => {
 	gap: 1.25rem;
 	max-width: 24rem;
 	text-decoration: none;
-
-	&:hover .details .name,
-	& .active {
-		--flicker-color: var(--project);
-	}
-
-	&:hover .details .name {
-		background: var(--flicker-color);
-		color: var(--black);
-		animation: flicker 0.4s steps(1, end) 1;
-	}
 }
 .details {
 	display: flex;
@@ -162,17 +109,10 @@ onMount(() => {
 }
 .selection {
 	margin-left: -0.25rem;
-	display: grid;
-	grid-template-columns: repeat(2, max-content);
+	display: flex;
 	gap: 0.5rem;
 }
-.name {
-	padding: 1px 0.25rem;
-	width: max-content;
-	color: var(--bright-white);
-}
 .metrics {
-	justify-content: end;
 	display: flex;
 	gap: 0.5rem;
 }
@@ -216,10 +156,6 @@ onMount(() => {
 }
 
 @media (max-width: 500px) {
-	*.active {
-		--flicker-color: var(--black) !important;
-		color: var(--bright-white) !important;
-	}
 	.projects-wrapper {
 		padding: 0;
 	}

@@ -138,56 +138,117 @@ export const projects: Project[] = [
 	},
 ] as const;
 
-type Social = {
-	name: string;
+type About = {
+	content: string;
 	url: string;
 };
 
-export const socials: Social[] = [
+export const socials: About[] = [
 	{
-		name: "github",
+		content: "github",
 		url: "https://github.com/arvingarciabtw",
 	},
 	{
-		name: "contact@arvingarcia.com",
+		content: "contact@arvingarcia.com",
 		url: "mailto:contact@arvingarcia.com",
 	},
 ];
 
-type Philosophy = {
-	description: string;
-	url: string;
-};
-
-export const philosophies: Philosophy[] = [
+export const philosophies: About[] = [
 	{
-		description: "care about your craft",
+		content: "care about your craft",
 		url: "https://pragprog.com/tips/#:~:text=Care%20About%20Your,doing%20it%20well%3F",
 	},
 	{
-		description: "the unix philosophy",
+		content: "the unix philosophy",
 		url: "https://en.wikipedia.org/wiki/Unix_philosophy",
 	},
 	{
-		description: "be grug-brained",
+		content: "be grug-brained",
 		url: "https://grugbrain.dev/",
 	},
 ];
 
-type Tech = {
-	os: string;
-	distro: string;
-	wm: string;
-	["desktop shell"]: string;
-	terminal: string;
-	editor: string;
-};
+export const software: About[] = [
+	{
+		content: "linux",
+		url: "https://www.linux.org",
+	},
+	{
+		content: "nixos",
+		url: "https://nixos.org",
+	},
+	{
+		content: "niri",
+		url: "https://niri-wm.github.io/niri/",
+	},
+	{
+		content: "noctalia",
+		url: "https://noctalia.dev",
+	},
+	{
+		content: "ghostty",
+		url: "https://ghostty.org",
+	},
+	{
+		content: "neovim",
+		url: "https://neovim.io",
+	},
+];
 
-export const tech: Tech = {
-	os: "linux",
-	distro: "nixos",
-	wm: "niri",
-	"desktop shell": "noctalia",
-	terminal: "ghostty",
-	editor: "neovim",
-};
+export const games: About[] = [
+	{
+		content: "hollow knight",
+		url: "https://www.hollowknight.com",
+	},
+	{
+		content: "hades",
+		url: "https://www.supergiantgames.com/games/hades/",
+	},
+	{
+		content: "pokemon",
+		url: "https://www.pokemon.com/us",
+	},
+	{
+		content: "gta: san andreas",
+		url: "https://www.rockstargames.com/games/SanAndreas",
+	},
+	{
+		content: "assassin's creed",
+		url: "https://www.ubisoft.com/en-us/game/assassins-creed",
+	},
+];
+
+export const music: About[] = [
+	{
+		content: "twenty one pilots",
+		url: "https://open.spotify.com/artist/3YQKmKGau1PzlVlkL1iodx",
+	},
+	{
+		content: "quadeca",
+		url: "https://open.spotify.com/artist/3zz52ViyCBcplK0ftEVPSS",
+	},
+	{
+		content: "tsubi club",
+		url: "https://open.spotify.com/artist/6fHEaFnFgMxMAtDt7mFoQ3",
+	},
+	{
+		content: "cavetown",
+		url: "https://open.spotify.com/artist/2hR4h1Cao2ueuI7Cx9c7V8",
+	},
+	{
+		content: "internet girl",
+		url: "https://open.spotify.com/artist/2eVTKG3Z5bbKk2OWMIe3iL",
+	},
+];
+
+export const conditions: About[] = [
+	{
+		content: "astigmatism",
+		url: "https://www.webmd.com/eye-health/astigmatism-eyes",
+	},
+	{
+		content: "bronchial asthma",
+		url: "https://www.webmd.com/asthma/bronchial-asthma",
+	},
+];
