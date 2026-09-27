@@ -1,211 +1,113 @@
 <script lang="ts">
+import { onMount } from "svelte";
+import { afterNavigate } from "$app/navigation";
 import "../global.css";
 import faviconForLight from "$lib/assets/favicon-for-light.png";
 import faviconForDark from "$lib/assets/favicon-for-dark.png";
-import { onMount } from "svelte";
-import { afterNavigate } from "$app/navigation";
-import { goto } from "$app/navigation";
-import { global as G } from "$lib/stores/global.svelte";
+import { font } from "$lib/helpers/fonts";
+import { execute, move, navigate } from "$lib/helpers/navigation";
+import { position } from "$lib/helpers/position";
+import { settings } from "$lib/helpers/settings";
+import { theme } from "$lib/helpers/theme";
 import Header from "$lib/components/header.svelte";
 import Footer from "$lib/components/footer.svelte";
 
 let { children } = $props();
 
-// theme
-let currentTheme = $state(
-	typeof document !== "undefined"
+let currentTheme = $state({
+	val: typeof document !== "undefined"
 		? document.documentElement.getAttribute("data-theme") || ""
 		: "",
-);
-
-function setTheme(theme: string) {
-	const one_year = 60 * 60 * 24 * 365;
-	document.cookie = `theme=${theme}; max-age=${one_year}; path=/`;
-	document.documentElement.setAttribute("data-theme", theme);
-	currentTheme = theme;
-}
-
-function toggleTheme(): void {
-	let theme = currentTheme;
-	if (currentTheme == "dark-hard") {
-		theme = "light-hard";
-	} else if (currentTheme == "dark") {
-		theme = "light";
-	} else if (currentTheme == "light-hard") {
-		theme = "dark-hard";
-	} else if (currentTheme == "light") {
-		theme = "dark";
-	}
-	setTheme(theme);
-}
-
-// settings
-let x = $state(0);
-let y = $state(0);
-let fontSize = $state(14);
-let fontWeight = $state(400);
+});
+let positionState = $state({
+	x: 0,
+	y: 0,
+});
+let fontState = $state({
+	size: 14,
+	weight: 400,
+});
 
 function settingsListener(e: KeyboardEvent) {
-	const DISTANCE = 50;
 	switch (e.key) {
 		case "w":
-			y += DISTANCE;
+			position.y.increase(positionState);
 			break;
 		case "a":
-			x += DISTANCE;
+			position.x.increase(positionState);
 			break;
 		case "s":
-			y -= DISTANCE;
+			position.y.decrease(positionState);
 			break;
 		case "d":
-			x -= DISTANCE;
+			position.x.decrease(positionState);
 			break;
 		case "r":
-			reset();
-			fontSize = 14;
-			fontWeight = 400;
-			document.documentElement.style.fontSize = `${fontSize}px`;
-			document.documentElement.style.fontWeight = fontWeight.toString();
+			settings.reset(positionState, fontState);
 			break;
 		case "p":
-			reset();
+			position.reset(positionState);
 			break;
 		case "t":
-			toggleTheme();
+			theme.mode(currentTheme);
 			break;
 		case "c":
-			toggleContrast();
+			theme.contrast(currentTheme);
 			break;
 		case "+":
-			if (fontSize < 24) fontSize++;
-			document.documentElement.style.fontSize = `${fontSize}px`;
+			font.size.increase(fontState);
 			break;
 		case "-":
-			if (!e.ctrlKey && fontSize > 10) fontSize--;
-			document.documentElement.style.fontSize = `${fontSize}px`;
+			font.size.decrease(e, fontState);
 			break;
 		case "]":
-			if (fontWeight < 700) fontWeight = fontWeight + 25;
-			document.documentElement.style.fontWeight = fontWeight.toString();
+			font.weight.increase(fontState);
 			break;
 		case "[":
-			if (fontWeight > 200) fontWeight = fontWeight - 25;
-			document.documentElement.style.fontWeight = fontWeight.toString();
+			font.weight.decrease(fontState);
 			break;
 	}
 }
 
-function reset() {
-	x = 0;
-	y = 0;
-}
-
-function toggleContrast(): void {
-	let theme = currentTheme;
-	if (currentTheme == "dark-hard") {
-		theme = "dark";
-	} else if (currentTheme == "dark") {
-		theme = "dark-hard";
-	} else if (currentTheme == "light-hard") {
-		theme = "light";
-	} else if (currentTheme == "light") {
-		theme = "light-hard";
-	}
-	setTheme(theme);
-}
-
-// navigation
 function navigationListener(e: KeyboardEvent) {
 	switch (e.key) {
 		case "1":
-			go("/");
+			navigate("/");
 			break;
 		case "2":
-			go("/experience");
+			navigate("/experience");
 			break;
 		case "3":
-			go("/projects");
+			navigate("/projects");
 			break;
 		case "4":
-			go("/about");
+			navigate("/about");
 			break;
 		case "h":
 		case "ArrowLeft":
-			if (G.activeIndex > 0) {
-				G.activeIndex--;
-			}
-			if (G.activeRow == 0) {
-				render(e);
-			}
+			move.left(e);
 			break;
 		case "j":
 		case "ArrowDown":
-			if (G.activeRow < G.maxRow) {
-				if (G.maxRowIndex > 0) {
-					G.lastVisitedIndexByRow[G.activeRow] = G.activeIndex;
-				}
-				G.activeRow++;
-				G.activeIndex = G.lastVisitedIndexByRow[G.activeRow] ?? 0;
-			}
+			move.down();
 			break;
 		case "k":
 		case "ArrowUp":
-			if (G.activeRow > 0) {
-				if (G.maxRowIndex > 0) {
-					G.lastVisitedIndexByRow[G.activeRow] = G.activeIndex;
-				}
-				G.activeRow--;
-				G.activeIndex = G.lastVisitedIndexByRow[G.activeRow] ?? 0;
-			}
+			move.up();
 			break;
 		case "l":
 		case "ArrowRight":
-			if (G.activeIndex < G.maxRowIndex) {
-				G.activeIndex++;
-			}
-			if (G.activeRow == 0) {
-				render(e);
-			}
+			move.right(e);
 			break;
 		case " ":
 		case "Enter":
-			if (render(e)) {
-				G.activeRow = 1;
-				G.activeIndex = 0;
-			}
+			execute(e);
 			break;
 	}
 }
 
-function go(path: string) {
-	goto(path);
-	G.activeRow = 1;
-	G.activeIndex = 0;
-}
-
-function render(e: KeyboardEvent): boolean {
-	e.preventDefault();
-
-	const navigable = document.querySelector<HTMLAnchorElement>(
-		`[data-navigable][data-row="${G.activeRow}"][data-idx="${G.activeIndex}"]`,
-	);
-	if (!navigable) return false;
-
-	const target = new URL(navigable.href);
-	const isCurrentRoute = target.origin === window.location.origin &&
-		target.pathname === window.location.pathname;
-
-	if (isCurrentRoute) return false;
-
-	const isExternal = navigable.target === "_blank";
-
-	navigable.click();
-
-	return !isExternal;
-}
-
 afterNavigate(() => {
-	reset();
+	position.reset(positionState);
 });
 
 onMount(() => {
@@ -237,8 +139,8 @@ onMount(() => {
 	<title>arvin</title>
 </svelte:head>
 
-<Header font={{ size: fontSize, weight: fontWeight }} />
-<main style:transform="translate({x}px, {y}px)">
+<Header font={{ size: fontState.size, weight: fontState.weight }} />
+<main style:transform="translate({positionState.x}px, {positionState.y}px)">
   {@render children()}
 </main>
 <Footer />

@@ -1,9 +1,17 @@
 <script lang="ts">
 import { onMount } from "svelte";
 import { page } from "$app/state";
+import { global as G, pageMaps } from "$lib/stores/global.svelte";
+
+let shake = $state({
+	left: false,
+	down: false,
+	up: false,
+	right: false,
+});
+
 let { content, href, external, row, idx, underlined = false, multi = false } =
 	$props();
-import { global as G, pageMaps } from "$lib/stores/global.svelte";
 
 const isActive = $derived(
 	row == G.activeRow && idx == G.activeIndex,
@@ -20,15 +28,9 @@ function setPageMap() {
 			break;
 		case "/about":
 			pageMaps.about[G.activeRow] = G.activeIndex;
+			break;
 	}
 }
-
-let shake = $state({
-	left: false,
-	down: false,
-	up: false,
-	right: false,
-});
 
 function navigationListener(e: KeyboardEvent) {
 	const rowMatches = row == G.activeRow;

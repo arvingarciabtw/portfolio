@@ -75,7 +75,7 @@ export const experiences: Experience[] = [
 			"built a project management system for a non-profit. communicated with department heads.",
 		points: [
 			`<p>designed and built a <span style="text-decoration:${COLORS.laravel} underline dotted">laravel</span>/<span style="text-decoration:${COLORS.mariadb} underline dotted">mariadb</span> project-management prototype with separate admin and staff workflows.</p>`,
-			`<p>worked directly with the ngo's higher-ups across three core conservation programs to translate project-management needs into clear functional requirements.</p>`,
+			`<p>worked directly with the ngo's higher-ups across three core programs to translate project needs into clear functional requirements.</p>`,
 		],
 		technologies: ["php", "laravel", "mariadb"],
 	},

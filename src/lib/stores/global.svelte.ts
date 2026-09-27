@@ -11,7 +11,9 @@ export const global: Global = $state({
 	activeIndex: 0,
 	maxRowIndex: 0,
 	maxRow: 0,
-	lastVisitedIndexByRow: {},
+	lastVisitedIndexByRow: {
+		0: 0,
+	},
 });
 
 type PageMaps = {
