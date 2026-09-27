@@ -137,6 +137,7 @@ html {
 	--star: var(--bright-yellow);
 	--download: var(--bright-blue);
 	--fork: var(--bright-green);
+	--error: var(--bright-red);
 }
 
 /* fonts */

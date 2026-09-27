@@ -10,8 +10,16 @@ let shake = $state({
 	right: false,
 });
 
-let { content, href, external, row, idx, underlined = false, multi = false } =
-	$props();
+let {
+	content,
+	href,
+	external,
+	row,
+	idx,
+	underlined = false,
+	multi = false,
+	...rest
+} = $props();
 
 const isActive = $derived(
 	row == G.activeRow && idx == G.activeIndex,
@@ -99,6 +107,7 @@ onMount(() => {
     G.activeRow = 1
     G.activeIndex = 0
   }}
+	{...rest}
 >
   {content}
 </a>
