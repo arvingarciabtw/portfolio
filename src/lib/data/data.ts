@@ -30,6 +30,10 @@ export const sections: InternalLink[] = [
 		href: "/projects",
 	},
 	{
+		content: "oss",
+		href: "/oss",
+	},
+	{
 		content: "about",
 		href: "/about",
 	},
@@ -71,41 +75,101 @@ export const projects: Project[] = [
 		url: "https://ditto.arvingarcia.com",
 		description:
 			"a system-wide and cross-platform ascii keyboard visualizer and keycaster.",
-		descriptionShort: "a system-wide ascii keyboard visualizer.",
 		metrics: {
 			downloads: 140,
 			stars: 120,
-			forks: 3,
+			forks: 2,
 		},
 		technologies: ["go", "nix"],
 	},
 	{
-		name: "bettercalapan",
-		url: "https://bettercalapan.org",
+		name: "uxie",
+		url: "https://uxie.arvingarcia.com",
 		description:
-			"open-source lgu initiative for providing better digital services to calapan city.",
-		descriptionShort: "open-source digital services for calapan.",
+			"a web and cli-based spaced repetition platform for programmers.",
 		metrics: {
 			downloads: null,
 			stars: 1,
 			forks: 0,
 		},
-		technologies: ["svelte", "typescript", "mdsvex"],
+		technologies: ["sveltekit", "typescript", "go"],
+	},
+	{
+		name: "portfolio",
+		url: "https://github.com/arvingarciabtw/portfolio",
+		description:
+			"this keyboard-first personal site inspired by a terminal user interface.",
+		metrics: {
+			downloads: null,
+			stars: 2,
+			forks: 0,
+		},
+		technologies: ["sveltekit", "typescript", "deno"],
 	},
 	{
 		name: "blog",
 		url: "https://blog.arvingarcia.com",
 		description:
 			"my blog where i go over what i'm learning and whatever's on my mind.",
-		descriptionShort: "where i talk about what i'm learning.",
 		metrics: {
 			downloads: null,
 			stars: 2,
 			forks: 0,
 		},
-		technologies: ["astro", "typescript"],
+		technologies: ["astro", "typescript", "pnpm"],
+	},
+	{
+		name: "gitlarp",
+		url: "https://github.com/arvingarciabtw/gitlarp",
+		description:
+			"a simple pet project for semi-automating your git commits.",
+		metrics: {
+			downloads: null,
+			stars: 1,
+			forks: 0,
+		},
+		technologies: ["go"],
 	},
 ] as const;
+
+export const oss: Project[] = [
+	{
+		name: "bettergov",
+		url: "https://bettergov.ph",
+		description:
+			"volunteer-led tech initiative making government transparent, efficient, and accessible.",
+		metrics: {
+			downloads: null,
+			stars: 530,
+			forks: 270,
+		},
+		technologies: ["typescript", "react"],
+	},
+	{
+		name: "the odin project",
+		url: "https://www.theodinproject.com/",
+		description:
+			"a free full stack curriculum supported by a passionate open source community.",
+		metrics: {
+			downloads: null,
+			stars: 13100,
+			forks: 16800,
+		},
+		technologies: ["javascript", "ruby"],
+	},
+	{
+		name: "bettercalapan",
+		url: "https://bettercalapan.org",
+		description:
+			"open-source lgu initiative for providing better digital services to calapan city.",
+		metrics: {
+			downloads: null,
+			stars: 1,
+			forks: 0,
+		},
+		technologies: ["sveltekit", "typescript", "mdsvex"],
+	},
+];
 
 export const socials: ExternalLink[] = [
 	{

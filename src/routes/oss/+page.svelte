@@ -1,5 +1,5 @@
 <script lang="ts">
-import { projects } from "$lib/data/data";
+import { oss } from "$lib/data/data";
 import { global as G } from "$lib/stores/global.svelte";
 import Download from "$lib/icons/download.svelte";
 import Fork from "$lib/icons/fork.svelte";
@@ -11,13 +11,11 @@ const rowMap: Record<number, number> = {
 	1: 0,
 	2: 0,
 	3: 0,
-	4: 0,
-	5: 0,
 };
 
 G.maxRow = Object.keys(rowMap).length - 1;
 G.indexMap = {
-	0: 2,
+	0: 3,
 };
 
 $effect(() => {
@@ -25,82 +23,83 @@ $effect(() => {
 });
 </script>
 
-<div class="projects-wrapper">
-	{#each projects as project, i (project)}
-		<div class="project">
+<div class="oss-wrapper">
+	{#each oss as org, i (org)}
+		<div class="oss">
 			<div class="details">
 				<div class="selection">
           <Navigable 
-            content={project.name}
-            href={project.url}
+            content={org.name}
+            href={org.url}
             external={true}
             row={i + 1}
             idx={0}
           />
+          <!-- hacky way of customizing five-digit metrics, but i can't be bothered rn -->
           <div class="metrics">
-            {#if project.metrics.stars != null && project.metrics.stars > 10}
+            {#if org.metrics.stars != null && org.metrics.stars > 10}
               <div class="metric stars">
                 <div class="icon">
                   <Star />
                 </div>
                 <p>
-                  {project.metrics.stars}{project.metrics.stars > 10 ? '+' : ''}
+                  {org.metrics.stars - 10000 > 0 ? `${org.metrics.stars.toString().slice(0, 2)}.${org.metrics.stars.toString().slice(2, 3)}k` : org.metrics.stars}{org.metrics.stars > 10 ? '+' : ''}
                 </p>
               </div>
             {/if}
-            {#if project.metrics.downloads != null && project.metrics.downloads > 10}
+            {#if org.metrics.downloads != null && org.metrics.downloads > 10}
               <div class="metric downloads">
                 <div class="icon">
                   <Download />
                 </div>
                 <p>
-                  {project.metrics.downloads}{project.metrics.downloads > 10 ? '+' : ''}
+                  {org.metrics.downloads}{org.metrics.downloads > 10 ? '+' : ''}
                 </p>
               </div>
             {/if}
-            {#if project.metrics.forks != null && project.metrics.forks >= 5}
+            {#if org.metrics.forks != null && org.metrics.forks >= 5}
               <div class="metric forks">
                 <div class="icon">
                   <Fork />
                 </div>
                 <p>
-                  {project.metrics.forks}{project.metrics.forks > 10 ? '+' : ''}
+                  {org.metrics.forks - 10000 > 0 ? `${org.metrics.forks.toString().slice(0, 2)}.${org.metrics.forks.toString().slice(2, 3)}k` : org.metrics.forks}{org.metrics.forks > 10 ? '+' : ''}
                 </p>
               </div>
             {/if}
           </div>
 				</div>
           <ul class="technology-list">
-            {#each project.technologies as technology, i (technology)}
+            {#each org.technologies as technology, i (technology)}
               <li class="technology">
                 <p>{technology}</p>
-                {#if i != project.technologies.length - 1}
+                {#if i != org.technologies.length - 1}
                   <p class="separator">·</p>
                 {/if}
               </li>
             {/each}
           </ul>
 			</div>
-			<p class="description">{project.description}</p>
+			<p class="description">{org.description}</p>
 		</div>
 	{/each}
 </div>
 
 <style>
-.projects-wrapper {
+.oss-wrapper {
 	padding: 0 1.25rem;
 	width: 100%;
 	max-width: 90rem;
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
-	--flicker-color: var(--project);
+	--flicker-color: var(--oss);
 }
-.project {
+.oss {
 	display: flex;
 	flex-direction: column;
 	gap: 1.25rem;
-	max-width: 24rem;
+	max-width: 32rem;
 	text-decoration: none;
 }
 .details {
@@ -157,7 +156,7 @@ $effect(() => {
 }
 
 @media (max-width: 500px) {
-	.projects-wrapper {
+	.oss-wrapper {
 		padding: 0;
 	}
 	.description {

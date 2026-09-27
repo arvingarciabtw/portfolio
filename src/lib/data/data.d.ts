@@ -24,7 +24,6 @@ export type Project = {
 	name: string;
 	url: string;
 	description: string;
-	descriptionShort: string;
 	metrics: Metrics;
 	technologies: string[];
 };

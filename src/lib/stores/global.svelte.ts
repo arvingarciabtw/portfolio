@@ -21,7 +21,7 @@ export const pageMaps: PageMaps = {
 		4: 0,
 	},
 	about: {
-		0: 3,
+		0: 4,
 		1: 0,
 		2: 0,
 		3: 0,

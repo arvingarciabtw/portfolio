@@ -12,7 +12,7 @@ export function navigate(path: string) {
 			G.activeIndex = pageMaps.home[1];
 			break;
 		case "/about":
-			pageMaps.about[0] = 3;
+			pageMaps.about[0] = 4;
 			G.activeIndex = pageMaps.about[1];
 			break;
 		default:

@@ -4,7 +4,7 @@ import { sections } from "$lib/data/data";
 import Navigable from "./navigable.svelte";
 import { global as G } from "$lib/stores/global.svelte";
 
-G.maxRowIndex = 3;
+G.maxRowIndex = 4;
 
 let { font } = $props();
 
@@ -73,6 +73,9 @@ header {
 }
 .section.projects {
 	--flicker-color: var(--project);
+}
+.section.oss {
+	--flicker-color: var(--oss);
 }
 .section.about {
 	--flicker-color: var(--about);

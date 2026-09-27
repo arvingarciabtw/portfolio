@@ -81,6 +81,9 @@ function navigationListener(e: KeyboardEvent) {
 			navigate("/projects");
 			break;
 		case "4":
+			navigate("/oss");
+			break;
+		case "5":
 			navigate("/about");
 			break;
 		case "h":

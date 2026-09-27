@@ -4,7 +4,7 @@ import { socials } from "$lib/data/data";
 import Navigable from "$lib/components/navigable.svelte";
 
 const rowMap: Record<number, number> = {
-	0: 3,
+	0: 4,
 	1: 1,
 	2: 0,
 	3: 0,

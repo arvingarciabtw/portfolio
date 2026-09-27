@@ -122,6 +122,7 @@ html {
 	--home: var(--bright-blue);
 	--experience: var(--bright-cyan);
 	--project: var(--bright-magenta);
+	--oss: var(--bright-ocean);
 	--about: var(--bright-purple);
 	--navigate: var(--bright-magenta);
 	--section: var(--bright-purple);
