@@ -4,15 +4,15 @@ import { socials } from "$lib/data/data";
 import Navigable from "$lib/components/navigable.svelte";
 
 const rowMap: Record<number, number> = {
-	0: 3, // header
-	1: 1, // socials
-	2: 0, // exp
-	3: 0, // proj
-	4: 0, // about
+	0: 3,
+	1: 1,
+	2: 0,
+	3: 0,
+	4: 0,
 };
 
 G.maxRow = Object.keys(rowMap).length - 1;
-G.lastVisitedIndexByRow = pageMaps.home;
+G.indexMap = pageMaps.home;
 
 $effect(() => {
 	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
@@ -28,7 +28,7 @@ $effect(() => {
         <li class="social">  
           <Navigable 
             content={social.content}
-            href={social.url}
+            href={social.href}
             external={true}
             row={1}
             idx={i}

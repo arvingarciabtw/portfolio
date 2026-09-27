@@ -17,11 +17,11 @@ onMount(() => {
 <header>
 	<div class="wrapper">
 		<ul class="section-list">
-			{#each sections as section, i (section.name)}
-				<li class={`section ${section.name}`}>
+			{#each sections as section, i (section)}
+				<li class={`section ${section.content}`}>
           <Navigable 
-            content={`0${i + 1} ${section.name}`}
-            href={section.url}
+            content={`0${i + 1} ${section.content}`}
+            href={section.href}
             external={false}
             row={0}
             idx={i}

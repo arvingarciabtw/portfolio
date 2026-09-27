@@ -25,7 +25,7 @@ const isActive = $derived(
 	row == G.activeRow && idx == G.activeIndex,
 );
 const isLastVisited = $derived(
-	G.lastVisitedIndexByRow[row] === idx &&
+	G.indexMap[row] === idx &&
 		row != G.activeRow,
 );
 

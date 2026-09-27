@@ -12,19 +12,19 @@ import { global as G, pageMaps } from "$lib/stores/global.svelte";
 import Navigable from "$lib/components/navigable.svelte";
 
 const rowMap: Record<number, number> = {
-	0: 3, // header
-	1: 1, // socials
-	2: 0, // phil 1
-	3: 0, // phil 2
-	4: 0, // phil 3
-	5: 5, // software
-	6: 4, // games
-	7: 4, // music
-	8: 1, // conditions
+	0: 3,
+	1: 1,
+	2: 0,
+	3: 0,
+	4: 0,
+	5: 5,
+	6: 4,
+	7: 4,
+	8: 1,
 };
 
 G.maxRow = Object.keys(rowMap).length - 1;
-G.lastVisitedIndexByRow = pageMaps.about;
+G.indexMap = pageMaps.about;
 
 $effect(() => {
 	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
@@ -45,7 +45,7 @@ onMount(() => {
 					<li class="social">
             <Navigable 
               content={social.content} 
-              href={social.url} 
+              href={social.href} 
               external={true}
               row=1
               idx={i}
@@ -69,7 +69,7 @@ onMount(() => {
 					<li class="philosophy">
             <Navigable 
               content={philosophy.content} 
-              href={philosophy.url} 
+              href={philosophy.href} 
               external={true}
               row={i + 2}
               idx={0}
@@ -89,7 +89,7 @@ onMount(() => {
 					<li class="tool">
             <Navigable 
               content={s.content} 
-              href={s.url} 
+              href={s.href} 
               external={true}
               row={5}
               idx={i}
@@ -113,7 +113,7 @@ onMount(() => {
 					<li class="tool">
             <Navigable 
               content={game.content} 
-              href={game.url} 
+              href={game.href} 
               external={true}
               row={6}
               idx={i}
@@ -137,7 +137,7 @@ onMount(() => {
 					<li class="tool">
             <Navigable 
               content={artist.content} 
-              href={artist.url} 
+              href={artist.href} 
               external={true}
               row={7}
               idx={i}
@@ -161,7 +161,7 @@ onMount(() => {
 					<li class="tool">
             <Navigable 
               content={condition.content} 
-              href={condition.url} 
+              href={condition.href} 
               external={true}
               row={8}
               idx={i}

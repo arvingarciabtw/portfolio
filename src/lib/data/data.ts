@@ -1,45 +1,10 @@
+import type {
+	Experience,
+	ExternalLink,
+	InternalLink,
+	Project,
+} from "./data.d.ts";
 import { resolve } from "$app/paths";
-
-type Route = Parameters<typeof resolve>[0];
-
-type Section = {
-	name: string;
-	shortName: string;
-	url: Route;
-};
-
-export const sections: Section[] = [
-	{
-		name: "home",
-		shortName: "home",
-		url: "/",
-	},
-	{
-		name: "experience",
-		shortName: "exp",
-		url: "/experience",
-	},
-	{
-		name: "projects",
-		shortName: "proj",
-		url: "/projects",
-	},
-	{
-		name: "about",
-		shortName: "about",
-		url: "/about",
-	},
-] as const;
-
-type Experience = {
-	position: string;
-	company: string;
-	url: string;
-	date: string;
-	description: string;
-	points: string[];
-	technologies: string[];
-};
 
 const COLORS = {
 	react: "#0cc8f9",
@@ -50,6 +15,25 @@ const COLORS = {
 	laravel: "#F05340",
 	mariadb: "#008ab3",
 };
+
+export const sections: InternalLink[] = [
+	{
+		content: "home",
+		href: "/",
+	},
+	{
+		content: "experience",
+		href: "/experience",
+	},
+	{
+		content: "projects",
+		href: "/projects",
+	},
+	{
+		content: "about",
+		href: "/about",
+	},
+] as const;
 
 export const experiences: Experience[] = [
 	{
@@ -80,21 +64,6 @@ export const experiences: Experience[] = [
 		technologies: ["php", "laravel", "mariadb"],
 	},
 ] as const;
-
-type Project = {
-	name: string;
-	url: string;
-	description: string;
-	descriptionShort: string;
-	metrics: Metrics;
-	technologies: string[];
-};
-
-type Metrics = {
-	downloads: number | null;
-	stars: number | null;
-	forks: number | null;
-};
 
 export const projects: Project[] = [
 	{
@@ -138,117 +107,113 @@ export const projects: Project[] = [
 	},
 ] as const;
 
-type About = {
-	content: string;
-	url: string;
-};
-
-export const socials: About[] = [
+export const socials: ExternalLink[] = [
 	{
 		content: "github",
-		url: "https://github.com/arvingarciabtw",
+		href: "https://github.com/arvingarciabtw",
 	},
 	{
 		content: "contact@arvingarcia.com",
-		url: "mailto:contact@arvingarcia.com",
+		href: "mailto:contact@arvingarcia.com",
 	},
 ];
 
-export const philosophies: About[] = [
+export const philosophies: ExternalLink[] = [
 	{
 		content: "care about your craft",
-		url: "https://pragprog.com/tips/#:~:text=Care%20About%20Your,doing%20it%20well%3F",
+		href:
+			"https://pragprog.com/tips/#:~:text=Care%20About%20Your,doing%20it%20well%3F",
 	},
 	{
 		content: "the unix philosophy",
-		url: "https://en.wikipedia.org/wiki/Unix_philosophy",
+		href: "https://en.wikipedia.org/wiki/Unix_philosophy",
 	},
 	{
 		content: "be grug-brained",
-		url: "https://grugbrain.dev/",
+		href: "https://grugbrain.dev/",
 	},
 ];
 
-export const software: About[] = [
+export const software: ExternalLink[] = [
 	{
 		content: "linux",
-		url: "https://www.linux.org",
+		href: "https://www.linux.org",
 	},
 	{
 		content: "nixos",
-		url: "https://nixos.org",
+		href: "https://nixos.org",
 	},
 	{
 		content: "niri",
-		url: "https://niri-wm.github.io/niri/",
+		href: "https://niri-wm.github.io/niri/",
 	},
 	{
 		content: "noctalia",
-		url: "https://noctalia.dev",
+		href: "https://noctalia.dev",
 	},
 	{
 		content: "ghostty",
-		url: "https://ghostty.org",
+		href: "https://ghostty.org",
 	},
 	{
 		content: "neovim",
-		url: "https://neovim.io",
+		href: "https://neovim.io",
 	},
 ];
 
-export const games: About[] = [
+export const games: ExternalLink[] = [
 	{
 		content: "hollow knight",
-		url: "https://www.hollowknight.com",
+		href: "https://www.hollowknight.com",
 	},
 	{
 		content: "hades",
-		url: "https://www.supergiantgames.com/games/hades/",
+		href: "https://www.supergiantgames.com/games/hades/",
 	},
 	{
 		content: "pokemon",
-		url: "https://www.pokemon.com/us",
+		href: "https://www.pokemon.com/us",
 	},
 	{
 		content: "gta: san andreas",
-		url: "https://www.rockstargames.com/games/SanAndreas",
+		href: "https://www.rockstargames.com/games/SanAndreas",
 	},
 	{
 		content: "assassin's creed",
-		url: "https://www.ubisoft.com/en-us/game/assassins-creed",
+		href: "https://www.ubisoft.com/en-us/game/assassins-creed",
 	},
 ];
 
-export const music: About[] = [
+export const music: ExternalLink[] = [
 	{
 		content: "twenty one pilots",
-		url: "https://open.spotify.com/artist/3YQKmKGau1PzlVlkL1iodx",
+		href: "https://open.spotify.com/artist/3YQKmKGau1PzlVlkL1iodx",
 	},
 	{
 		content: "quadeca",
-		url: "https://open.spotify.com/artist/3zz52ViyCBcplK0ftEVPSS",
+		href: "https://open.spotify.com/artist/3zz52ViyCBcplK0ftEVPSS",
 	},
 	{
 		content: "tsubi club",
-		url: "https://open.spotify.com/artist/6fHEaFnFgMxMAtDt7mFoQ3",
+		href: "https://open.spotify.com/artist/6fHEaFnFgMxMAtDt7mFoQ3",
 	},
 	{
 		content: "cavetown",
-		url: "https://open.spotify.com/artist/2hR4h1Cao2ueuI7Cx9c7V8",
+		href: "https://open.spotify.com/artist/2hR4h1Cao2ueuI7Cx9c7V8",
 	},
 	{
 		content: "internet girl",
-		url: "https://open.spotify.com/artist/2eVTKG3Z5bbKk2OWMIe3iL",
+		href: "https://open.spotify.com/artist/2eVTKG3Z5bbKk2OWMIe3iL",
 	},
 ];
 
-export const conditions: About[] = [
+export const conditions: ExternalLink[] = [
 	{
 		content: "astigmatism",
-		url: "https://www.webmd.com/eye-health/astigmatism-eyes",
+		href: "https://www.webmd.com/eye-health/astigmatism-eyes",
 	},
 	{
 		content: "bronchial asthma",
-		url: "https://www.webmd.com/asthma/bronchial-asthma",
+		href: "https://www.webmd.com/asthma/bronchial-asthma",
 	},
 ];

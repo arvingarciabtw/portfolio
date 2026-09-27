@@ -7,15 +7,14 @@ import Star from "$lib/icons/star.svelte";
 import Navigable from "$lib/components/navigable.svelte";
 
 const rowMap: Record<number, number> = {
-	0: 3, // header
-	// below should probably be dynamically generated, based on projects.length
-	1: 0, // proj 1
-	2: 0, // proj 2
-	3: 0, // proj 3
+	0: 3,
+	1: 0,
+	2: 0,
+	3: 0,
 };
 
 G.maxRow = Object.keys(rowMap).length - 1;
-G.lastVisitedIndexByRow = {
+G.indexMap = {
 	0: 2,
 };
 
@@ -25,7 +24,7 @@ $effect(() => {
 </script>
 
 <div class="projects-wrapper">
-	{#each projects as project, i (project.name)}
+	{#each projects as project, i (project)}
 		<div class="project">
 			<div class="details">
 				<div class="selection">

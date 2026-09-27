@@ -1,27 +1,18 @@
-type Global = {
-	activeRow: number;
-	activeIndex: number;
-	maxRowIndex: number;
-	maxRow: number;
-	lastVisitedIndexByRow: Record<number, number>;
-};
+import type { Global, PageMaps } from "./global.d.ts";
 
 export const global: Global = $state({
 	activeRow: 1,
 	activeIndex: 0,
 	maxRowIndex: 0,
 	maxRow: 0,
-	lastVisitedIndexByRow: {
+	indexMap: {
 		0: 0,
 	},
 });
 
-type PageMaps = {
-	home: Record<number, number>;
-	about: Record<number, number>;
-};
-
 export const pageMaps: PageMaps = {
+	// the other pages don't have multi-rows,
+	// which is why they aren't declared here
 	home: {
 		0: 0,
 		1: 0,

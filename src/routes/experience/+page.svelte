@@ -4,14 +4,13 @@ import { global as G } from "$lib/stores/global.svelte";
 import Navigable from "$lib/components/navigable.svelte";
 
 const rowMap: Record<number, number> = {
-	0: 3, // header
-	// below should probably be dynamically generated, based on experiences.length
-	1: 0, // exp 1
-	2: 0, // exp 2
+	0: 3,
+	1: 0,
+	2: 0,
 };
 
 G.maxRow = Object.keys(rowMap).length - 1;
-G.lastVisitedIndexByRow = {
+G.indexMap = {
 	0: 1,
 };
 

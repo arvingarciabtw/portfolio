@@ -5,15 +5,18 @@ export function navigate(path: string) {
 	goto(path);
 
 	G.activeRow = 1;
-	G.activeIndex = 0;
 
 	switch (path) {
 		case "/":
 			pageMaps.home[0] = 0;
+			G.activeIndex = pageMaps.home[1];
 			break;
 		case "/about":
 			pageMaps.about[0] = 3;
+			G.activeIndex = pageMaps.about[1];
 			break;
+		default:
+			G.activeIndex = 0;
 	}
 }
 
@@ -50,19 +53,19 @@ export const move = {
 	down: () => {
 		if (G.activeRow < G.maxRow) {
 			if (G.maxRowIndex > 0) {
-				G.lastVisitedIndexByRow[G.activeRow] = G.activeIndex;
+				G.indexMap[G.activeRow] = G.activeIndex;
 			}
 			G.activeRow++;
-			G.activeIndex = G.lastVisitedIndexByRow[G.activeRow] ?? 0;
+			G.activeIndex = G.indexMap[G.activeRow] ?? 0;
 		}
 	},
 	up: () => {
 		if (G.activeRow > 0) {
 			if (G.maxRowIndex > 0) {
-				G.lastVisitedIndexByRow[G.activeRow] = G.activeIndex;
+				G.indexMap[G.activeRow] = G.activeIndex;
 			}
 			G.activeRow--;
-			G.activeIndex = G.lastVisitedIndexByRow[G.activeRow] ?? 0;
+			G.activeIndex = G.indexMap[G.activeRow] ?? 0;
 		}
 	},
 	right: (e: KeyboardEvent) => {

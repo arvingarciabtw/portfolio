@@ -3,6 +3,7 @@ import { keyGroups, keys } from "$lib/helpers/keys";
 import { onMount } from "svelte";
 
 let char = $state("");
+let hide = $state(false);
 
 function blink(key: string) {
 	char = key;
@@ -11,7 +12,7 @@ function blink(key: string) {
 	}, 100);
 }
 
-function navigationListener(e: KeyboardEvent) {
+function listener(e: KeyboardEvent) {
 	if (
 		keys.navigation.some((nk) => nk.key === e.key) ||
 		keys.section.some((sk) => sk.key === e.key) ||
@@ -27,23 +28,17 @@ function navigationListener(e: KeyboardEvent) {
 	) {
 		blink(e.key);
 	}
-}
 
-let hide = $state(false);
-
-function hideListener(e: KeyboardEvent) {
 	if (e.key == "x") {
 		hide = !hide;
 	}
 }
 
 onMount(() => {
-	window.addEventListener("keydown", navigationListener);
-	window.addEventListener("keydown", hideListener);
+	window.addEventListener("keydown", listener);
 
 	return () => {
-		window.removeEventListener("keydown", navigationListener);
-		window.removeEventListener("keydown", hideListener);
+		window.removeEventListener("keydown", listener);
 	};
 });
 </script>

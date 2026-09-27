@@ -8,7 +8,7 @@ const rowMap: Record<number, number> = {
 };
 
 G.maxRow = Object.keys(rowMap).length - 1;
-G.lastVisitedIndexByRow = {};
+G.indexMap = {};
 
 $effect(() => {
 	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
