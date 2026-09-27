@@ -8,7 +8,7 @@ import {
 	socials,
 	software,
 } from "$lib/data/data";
-import { global as G } from "$lib/stores/global.svelte";
+import { global as G, pageMaps } from "$lib/stores/global.svelte";
 import Navigable from "$lib/components/navigable.svelte";
 
 const rowMap: Record<number, number> = {
@@ -24,17 +24,7 @@ const rowMap: Record<number, number> = {
 };
 
 G.maxRow = Object.keys(rowMap).length - 1;
-G.lastVisitedIndexByRow = {
-	0: 3,
-	1: 0,
-	2: 0,
-	3: 0,
-	4: 0,
-	5: 0,
-	6: 0,
-	7: 0,
-	8: 0,
-};
+G.lastVisitedIndexByRow = pageMaps.about;
 
 $effect(() => {
 	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
@@ -229,6 +219,7 @@ ul {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
+		align-items: center;
 		gap: 0.375rem 0.5rem;
 	}
 }

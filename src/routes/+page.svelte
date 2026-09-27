@@ -1,5 +1,5 @@
 <script lang="ts">
-import { global as G } from "$lib/stores/global.svelte";
+import { global as G, pageMaps } from "$lib/stores/global.svelte";
 import { socials } from "$lib/data/data";
 import Navigable from "$lib/components/navigable.svelte";
 
@@ -12,13 +12,7 @@ const rowMap: Record<number, number> = {
 };
 
 G.maxRow = Object.keys(rowMap).length - 1;
-G.lastVisitedIndexByRow = {
-	0: 0,
-	1: 0,
-	2: 0,
-	3: 0,
-	4: 0,
-};
+G.lastVisitedIndexByRow = pageMaps.home;
 
 $effect(() => {
 	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
@@ -28,7 +22,7 @@ $effect(() => {
 <div class="home-wrapper">
 	<section class="author">
 		<h1>arvin garcia</h1>
-		<p class="description">software dev based in the philippines.</p>
+		<p class="description">a software dev based in the philippines.</p>
 		<ul class="social-list">
       {#each socials as social, i (social)}
         <li class="social">  
@@ -100,6 +94,9 @@ $effect(() => {
 	gap: 3rem;
 	--flicker-color: var(--home);
 }
+.author h1 {
+	margin-bottom: 0.25rem;
+}
 section {
 	display: flex;
 	flex-direction: column;
@@ -112,6 +109,7 @@ section {
 .social-list {
 	margin-left: -0.25rem;
 	display: flex;
+	align-items: center;
 	gap: 0.5rem;
 	color: var(--white);
 }

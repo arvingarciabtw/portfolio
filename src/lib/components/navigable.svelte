@@ -1,8 +1,9 @@
 <script lang="ts">
 import { onMount } from "svelte";
+import { page } from "$app/state";
 let { content, href, external, row, idx, underlined = false, multi = false } =
 	$props();
-import { global as G } from "$lib/stores/global.svelte";
+import { global as G, pageMaps } from "$lib/stores/global.svelte";
 
 const isActive = $derived(
 	row == G.activeRow && idx == G.activeIndex,
@@ -11,6 +12,16 @@ const isLastVisited = $derived(
 	G.lastVisitedIndexByRow[row] === idx &&
 		row != G.activeRow,
 );
+
+function setPageMap() {
+	switch (page.url.pathname) {
+		case "/":
+			pageMaps.home[G.activeRow] = G.activeIndex;
+			break;
+		case "/about":
+			pageMaps.about[G.activeRow] = G.activeIndex;
+	}
+}
 
 let shake = $state({
 	left: false,
@@ -31,18 +42,22 @@ function navigationListener(e: KeyboardEvent) {
 		case "h":
 		case "ArrowLeft":
 			if (inFirstIdx && rowMatches && idxMatches) shake.left = true;
+			setPageMap();
 			break;
 		case "j":
 		case "ArrowDown":
 			if (rowMatches && idxMatches && inLastRow) shake.down = true;
+			setPageMap();
 			break;
 		case "k":
 		case "ArrowUp":
 			if (rowMatches && idxMatches && inFirstRow) shake.up = true;
+			setPageMap();
 			break;
 		case "l":
 		case "ArrowRight":
 			if (inLastIdx && rowMatches && idxMatches) shake.right = true;
+			setPageMap();
 			break;
 	}
 }
