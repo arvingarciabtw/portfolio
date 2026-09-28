@@ -20,25 +20,43 @@ export function navigate(path: string) {
 	}
 }
 
-export function render(e: KeyboardEvent): boolean {
+export function render(e: KeyboardEvent): {
+	external: boolean;
+	path: string;
+} {
 	e.preventDefault();
 
 	const navigable = document.querySelector<HTMLAnchorElement>(
 		`[data-navigable][data-row="${G.activeRow}"][data-idx="${G.activeIndex}"]`,
 	);
-	if (!navigable) return false;
+	if (!navigable) {
+		return {
+			external: false,
+			path: "",
+		};
+	}
 
 	const target = new URL(navigable.href);
+
+	console.log(target.pathname);
 	const isCurrentRoute = target.origin === globalThis.location.origin &&
 		target.pathname === globalThis.location.pathname;
 
-	if (isCurrentRoute) return false;
+	if (isCurrentRoute) {
+		return {
+			external: false,
+			path: "",
+		};
+	}
 
 	const isExternal = navigable.target === "_blank";
 
 	navigable.click();
 
-	return !isExternal;
+	return {
+		external: isExternal,
+		path: target.pathname,
+	};
 }
 
 export const move = {
@@ -79,8 +97,18 @@ export const move = {
 };
 
 export function execute(e: KeyboardEvent) {
-	if (render(e)) {
+	const { external, path } = render(e);
+
+	if (!external) {
 		G.activeRow = 1;
-		G.activeIndex = 0;
+
+		if (path == "/") {
+			pageMaps.home[0] = 0;
+			G.activeIndex = pageMaps.home[1];
+		}
+		if (path == "/about") {
+			pageMaps.about[0] = 4;
+			G.activeIndex = pageMaps.about[1];
+		}
 	}
 }
