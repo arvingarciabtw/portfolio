@@ -60,9 +60,13 @@ h6 {
 /* themes are gruvbox-based */
 html[data-theme='dark'] {
 	--black: hsl(0, 0%, 15.69%);
+	--black-alt: hsl(0, 0%, 18.69%);
+	--black-alt-2: hsl(0, 0%, 28.69%);
 }
 html[data-theme='dark-hard'] {
 	--black: hsl(195, 6.45%, 12.16%);
+	--black-alt: hsl(195, 6.45%, 15.16%);
+	--black-alt-2: hsl(195, 6.45%, 25.16%);
 }
 html[data-theme='dark'],
 html[data-theme='dark-hard'] {
@@ -90,9 +94,13 @@ html[data-theme='dark-hard'] {
 
 html[data-theme='light'] {
 	--black: hsl(48.46, 86.67%, 88.24%);
+	--black-alt: hsl(48.46, 66.67%, 85.24%);
+	--black-alt-2: hsl(48.46, 66.67%, 70.24%);
 }
 html[data-theme='light-hard'] {
 	--black: hsl(52.94, 73.91%, 90.98%);
+	--black-alt: hsl(52.94, 53.91%, 87.98%);
+	--black-alt-2: hsl(52.94, 53.91%, 72.98%);
 }
 html[data-theme='light'],
 html[data-theme='light-hard'] {
@@ -118,6 +126,21 @@ html[data-theme='light-hard'] {
 	--bright-ocean: hsl(237.06, 40.89%, 49.04%);
 }
 
+/* syntax highlighting */
+html[data-theme='light'] .shiki,
+html[data-theme='light-hard'] .shiki,
+html[data-theme='light'] .shiki span,
+html[data-theme='light-hard'] .shiki span {
+	color: var(--shiki-light);
+}
+
+html[data-theme='dark'] .shiki,
+html[data-theme='dark-hard'] .shiki,
+html[data-theme='dark'] .shiki span,
+html[data-theme='dark-hard'] .shiki span {
+	color: var(--shiki-dark);
+}
+
 html {
 	--home: var(--bright-blue);
 	--experience: var(--bright-cyan);
@@ -139,6 +162,7 @@ html {
 	--download: var(--bright-blue);
 	--fork: var(--bright-green);
 	--error: var(--bright-red);
+	--blog: var(--bright-green);
 }
 
 /* fonts */
@@ -244,11 +268,13 @@ body {
 	color: var(--bright-white);
 	font-family: 'commit-mono', monospace;
 }
-ul {
+ul,
+ol {
 	padding: 0;
 	list-style-type: none;
 }
-h1 {
+h1,
+h2 {
 	font-size: 1rem;
 	font-weight: inherit;
 }
@@ -264,7 +290,8 @@ a {
 		padding-bottom: 1rem;
 		font-size: 12px;
 	}
-	h1 {
+	h1,
+	h2 {
 		font-size: 12px;
 	}
 }

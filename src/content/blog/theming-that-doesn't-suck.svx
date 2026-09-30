@@ -1,0 +1,226 @@
+---
+title: "Theming that Doesn't Suck"
+description: "No more of that horrible flashing."
+pubDate: "Sep 13, 2026"
+---
+
+<script lang="ts">
+import { global as G } from "$lib/stores/global.svelte";
+import Navigable from "$lib/components/navigable.svelte";
+
+const rowMap: Record<number, number> = {
+	0: 4,
+	1: 0,
+	2: 0,
+	3: 0,
+	4: 0,
+	5: 0,
+	6: 0,
+	7: 0,
+	8: 0,
+};
+
+G.activeRow = 1;
+G.maxRow = Object.keys(rowMap).length - 1;
+G.indexMap = {};
+
+$effect(() => {
+	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
+});
+</script>
+
+TL;DR:
+
+> To prevent unwanted flashing, do server-side theming using a cookie approach.
+
+I'll go over this using SvelteKit, but I'd imagine that the concept would be the same for other similar frameworks like Next.js.
+
+<p>
+My approach is based on this 
+<Navigable 
+  content={"article"}
+  href={"https://scriptraccoon.dev/blog/darkmode-toggle-sveltekit"}
+  external={true}
+  row={1}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>, though mine differs from how it stores the current theme and solving the unwanted flash on the <em>very first</em> page visit.
+</p>
+
+Styles are applied based on the `html` element's `data-theme` attribute, so make sure you have:
+
+```html
+<html data-theme="">
+  <!-- ... -->
+</html>
+```
+
+Then you just simply add CSS styles based on that. Here are some example variables:
+
+```css
+html {
+  --bg: hsl(15, 44%, 96%);
+  --fg: hsl(300, 5%, 13%);
+  --blue: hsl(200, 51%, 37%);
+}
+html[data-theme='dark'] {
+  --bg: hsl(285, 5%, 17%);
+  --fg: hsl(60, 25%, 98%);
+  --blue: hsl(186, 71%, 69%);
+}
+```
+
+The main thing though, saving the theme as a cookie:
+
+```svelte
+<script>
+  let currentTheme = $state(
+    typeof document !== 'undefined' 
+      ? document.documentElement.getAttribute('data-theme') || '' 
+      : ''
+  );
+
+  function set_theme(theme: string) {
+    const one_year = 60 * 60 * 24 * 365;
+    document.cookie = `theme=${theme}; max-age=${one_year}; path=/`;
+    document.documentElement.setAttribute('data-theme', theme);
+    currentTheme = theme;
+  }
+
+  function toggleTheme(): void {
+    const theme = currentTheme === 'light' ? 'dark' : 'light';
+    set_theme(theme);
+  }
+</script>
+```
+
+The `document` only exists in the browser, so if the code is running in the browser, get the value of `data-theme` attribute. Otherwise, if the code is running on the server, the `document` doesn't exist (it is undefined), so just set `currentTheme` to a blank string.
+
+Then, for whatever element that is toggling your theme, call `set_theme`. It simply sets a cookie that lasts for one year, and it's available to all pages through `path=/`. It also sets the data attribute to the correct theme, and updates the `currentTheme` accordingly.
+
+<p>
+We can then use a 
+<Navigable 
+  content={"handle"}
+  href={"https://svelte.dev/docs/kit/hooks#handle"}
+  external={true}
+  row={2}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> hook to change the <code>data-theme</code> attribute <em>on the server</em>. This is so that the user won't see unwanted flashing anymore. Note that you can't use a 
+<Navigable 
+  content={"prerendered"}
+  href={"https://svelte.dev/docs/kit/page-options#prerender"}
+  external={true}
+  row={3}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> website:
+</p>
+
+```ts
+export const handle = async ({ event, resolve }) => {
+  const theme = event.cookies.get("theme");
+
+  if (!theme) {
+    return await resolve(event);
+  }
+
+  return await resolve(event, {
+    transformPageChunk: ({ html }) => {
+      return html.replace(
+        'data-theme=""',
+        `data-theme="${theme}"`
+      );
+    },
+  });
+};
+```
+
+<p>
+If there's no <code>theme</code> cookie, return the default response. Otherwise, we replace the empty attribute with the correct value. The 
+<Navigable 
+  content={"transformPageChunk"}
+  href={"https://svelte.dev/docs/kit/@sveltejs-kit#resolveoptions"}
+  external={true}
+  row={4}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> function can replace the HTML string for us.
+</p>
+
+To solve the problem where there is flashing on the *very first* page visit, we can do an inline script that immediately sets the correct value using the user's system settings: 
+
+```html
+<html lang="en" data-theme="">
+  <head>
+    <script>
+      (function () {
+        var match = document.cookie.match(/(?:^|; )theme=([^;]+)/);
+        var theme = match
+          ? match[1]
+          : window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light';
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+    <!-- ... -->
+  </head>
+</html>
+```
+
+This script runs synchronously, before the rest of the page renders, which is why it prevents the flash. It sets the `data-theme` immediately, before the browser has painted anything visible!
+
+## Resources
+
+<ul>
+<li>
+<Navigable 
+  content={"basis"}
+  href={"https://scriptraccoon.dev/blog/darkmode-toggle-sveltekit"}
+  external={true}
+  row={5}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>
+</li>
+<li>
+<Navigable 
+  content={"handle"}
+  href={"https://svelte.dev/docs/kit/hooks#handle"}
+  external={true}
+  row={6}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>
+</li>
+<li>
+<Navigable 
+  content={"prerender"}
+  href={"https://svelte.dev/docs/kit/page-options#prerender"}
+  external={true}
+  row={7}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>
+</li>
+<li>
+<Navigable 
+  content={"transformPageChunk"}
+  href={"https://svelte.dev/docs/kit/@sveltejs-kit#resolveoptions"}
+  external={true}
+  row={8}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>
+</li>
+</ul>

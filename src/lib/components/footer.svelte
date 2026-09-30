@@ -95,7 +95,7 @@ footer {
 .key-list {
 	padding: 0 1.25rem;
 	width: 100%;
-	max-width: 90rem;
+	max-width: 78rem;
 	display: flex;
 	flex-wrap: wrap;
 	gap: 1rem 2rem;

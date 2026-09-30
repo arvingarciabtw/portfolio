@@ -15,8 +15,6 @@ export function navigate(path: string) {
 			pageMaps.about[0] = 4;
 			G.activeIndex = pageMaps.about[1];
 			break;
-		default:
-			G.activeIndex = 0;
 	}
 }
 
@@ -38,7 +36,6 @@ export function render(e: KeyboardEvent): {
 
 	const target = new URL(navigable.href);
 
-	console.log(target.pathname);
 	const isCurrentRoute = target.origin === globalThis.location.origin &&
 		target.pathname === globalThis.location.pathname;
 
@@ -100,8 +97,6 @@ export function execute(e: KeyboardEvent) {
 	const { external, path } = render(e);
 
 	if (!external) {
-		G.activeRow = 1;
-
 		if (path == "/") {
 			pageMaps.home[0] = 0;
 			G.activeIndex = pageMaps.home[1];

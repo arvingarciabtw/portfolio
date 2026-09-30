@@ -1,0 +1,250 @@
+---
+title: "Learning SQL"
+description: "A blog article explaining the fundamentals of SQL."
+pubDate: "Oct 26 2025"
+---
+
+<script lang="ts">
+import { global as G } from "$lib/stores/global.svelte";
+import Navigable from "$lib/components/navigable.svelte";
+
+const rowMap: Record<number, number> = {
+	0: 4,
+	1: 0,
+	2: 0,
+	3: 0,
+	4: 0,
+	5: 0,
+	6: 0,
+	7: 0,
+	8: 0,
+	9: 0,
+};
+
+G.activeRow = 1;
+G.maxRow = Object.keys(rowMap).length - 1;
+G.indexMap = {};
+
+$effect(() => {
+	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
+});
+</script>
+
+<p>
+This week, I finished the 
+<Navigable 
+  content={"Databases course"}
+  href={"https://www.theodinproject.com/paths/full-stack-javascript/courses/databases"}
+  external={true}
+  row={1}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> from The Odin Project! The course itself is short, but the linked interactive tutorials were quite hefty in material. So, I'll go over the concepts <em>briefly</em>, to keep this article's length manageable. I'll link the interactive tutorials at the end if you'd like to practice and explore!
+</p>
+
+Before diving into what SQL is, let's go over what a database is. As the name implies, a database is essentially an organized collection of data. These data can be classified as either structured data or unstructured data.
+
+<p>
+There are many kinds of databases, which stores data differently from one another. This 
+<Navigable 
+  content={"article"}
+  href={"https://estuary.dev/blog/types-of-databases-with-examples/"}
+  external={true}
+  row={2}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> goes over the various types of databases. But, for the purpose of learning SQL, we'll focus on relational databases and what a relational database management system (RDBMS) is.
+</p>
+
+You can think of a relational database as a spreadsheet. So, it simply organizes data into tables that have rows and columns. A table holds data about a specific entity (e.g. users), a row is simply one record (e.g. a _user_ in our users table), and a field would be the data for a specific attribute in a row/record (e.g. we have a name column, and this user's name is _Bob_).
+
+<p>
+As you might have noticed, I used the term field instead of column. While these terms are typically used interchangeably, they are technically different. A column is the set of data values for a specific type, while a field is the data value for a specific row (or record). This 
+<Navigable 
+  content={"article"}
+  href={"https://advancedsqlpuzzles.com/2023/06/23/attributes-fields-and-columns/"}
+  external={true}
+  row={3}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> explains the difference of the two terms.
+</p>
+
+On the other hand, an RDBMS is the software that manages these relational databases. Popular relational database management systems include PostgreSQL, MySQL, and SQLite. These RDBMSes have some differences, but they all use SQL.
+
+Now with that out of the way, what is SQL? It stands for Structured Query Language, and it is basically the programming language used for communicating with a relational database. The main actions are synonymous to CRUD (Create, Read, Update, Delete), but the keywords in SQL are just a bit different for some of it.
+
+The concepts when doing 'read' queries go pretty deep, so I'll go over the other main actions first!
+
+To create a database, you'd use `CREATE DATABASE *database_name;*`. To create a table, you'd do:
+
+```sql
+CREATE TABLE table_name (
+    column1_name datatype, -- id INTEGER,
+    column2_name datatype, -- name TEXT,
+    column3_name datatype, -- age INTEGER,
+   ....
+);
+```
+
+Just to be clear, `--` is how you write comments in SQL.
+
+Now, if you'd want to 'create' a new record for a table, `CREATE` is _not_ the appropriate keyword. You would use the `INSERT INTO` keyword, along with `VALUES` like so:
+
+```sql
+INSERT INTO table_name (column1_name, column2_name, column3_name, ...)
+VALUES (value1, value2, value3, ...);
+```
+
+Optionally, you can omit the column names, but it's better to include them to follow best practices.
+
+Update and delete queries are pretty easy to remember, since you'd use the `UPDATE` and `DELETE` keywords! To update or modify any records in a table, you'd do:
+
+```sql
+UPDATE table_name
+SET column1_name = value1, column2 = value2, ...
+WHERE condition;
+```
+
+To delete records from a table, you'd do `DELETE FROM table_name WHERE condition;`.
+
+However, if you want to delete a database or table instead of records, you'd use the `DROP` keyword. So, deleting a database would be `DROP DATABASE *database_name;*` while deleting a table would be `DROP TABLE table_name;`
+
+Now, for 'read' queries, there's a lot to cover! First, you'd use the `SELECT` keyword to select data from a database. It would look like this:
+
+```sql
+SELECT column1_name, column2_name, ...
+FROM table_name;
+```
+
+The query above would display all of the records from the table name specified, showing only the columns specified. But if you'd want to show _all_ of the columns, then you'd do `SELECT * FROM table_name;`, where `*` just simply means 'all columns'.
+
+Expanding from this, we can introduce something called a `WHERE` clause, which is used to filter records. So, this `SELECT * FROM users WHERE name = 'Bob';` would simply select all records that have a name of Bob, showing all of the columns because we used `*`.
+
+Furthermore, we can introduce something called an `IN` operator, which allows you to specify multiple values. It's essentially the same as having multiple `OR` conditions. So, `SELECT * FROM users WHERE name IN ('Amy', 'Bob', 'Carl');` would select records that have a name of Amy, Bob, or Carl.
+
+In our `WHERE` clause, we can also have a `LIKE` operator which searches for a specified pattern in a column. When using this operator, we have access to two _wildcards_, `%` and `_`. It's probably easier to explain with examples.
+
+`SELECT * FROM users WHERE name LIKE 'B%';` would select records that have a name that _starts_ with the letter B (e.g. Bob, Bert, Bartholomew). `SELECT * FROM users WHERE name LIKE '%b';` would select records that have a name that _ends_ with the letter 'b' (e.g. Bob, Jacob, Caleb). `SELECT * FROM users WHERE name LIKE '%ob%';` would select records that have a name that _contains_ the phrase 'ob' anywhere in the name (e.g. Bob, Bobby, Jacob).
+
+As for the `_` wildcard, it simply means that the position where the `_` is at can be any character. So, `SELECT * FROM users WHERE name LIKE '_ob';` would select all records that have a name similar to the pattern we specified (e.g. Bob, Rob, Lob);
+
+Aside from a simple `SELECT` statement, you can use the `SELECT DISTINCT` statement to only return _distinct_ values. So, something like `SELECT DISTINCT name FROM users;` would return distinct names (e.g. duplicate users that also have the name Bob would not be returned).
+
+Another useful keyword to know is `ORDER BY`, which sorts the resulting records based on the column you specify. So, `SELECT * FROM users ORDER BY age;` would select all the records from the users table, but it would be sorted by age. You can add the `ASC` or `DESC` keyword at the end to specify if it will be sorted in ascending or descending order. If you don't specify it, then by default it will be sorted in ascending order.
+
+SQL also has keywords for logical operators: `AND`, `OR`, `NOT`. You can add these in your `WHERE` clause, and it would work as you would expect. So, `SELECT * FROM users WHERE name = 'Bob' AND age = '25';` would select records that have the name Bob and an age of 25.
+
+In SQL, you also have a `CASE` expression, which you can simply think of as an if-else statement. The syntax for it looks like this:
+
+```sql
+CASE
+  WHEN condition1 THEN result1
+  WHEN condition2 THEN result2
+  WHEN condition3 THEN result3
+  ELSE result
+END;
+```
+
+An important concept to know in SQL are aggregate functions. These are functions that perform calculations on a set of values, then returns a single value. Oftentimes, you would use these with the `GROUP BY` statement which I'll go over in a bit. The most commonly used aggregate functions are `COUNT()`, `SUM()`, `AVG()`,`MIN()`, and `MAX()`.
+
+Each of these aggregate functions would do what their name implies. So, for example, `SELECT COUNT(*) FROM users WHERE name = 'Bob';` would return the count of records that have the name of Bob. `SELECT SUM(age) FROM users WHERE name = 'Bob';` would return the sum of ages from all records that have the name of Bob.
+
+Now, as for the `GROUP BY` statement, it groups rows that have the same values into summary rows. This is used with aggregate functions to group the resulting records by one or more columns. So, in this example:
+
+```sql
+SELECT COUNT(customer_id), country
+FROM customers
+GROUP BY country;
+```
+
+The query will select the number of customers in each country.
+
+When the records have been selected, the column name for `COUNT(customer_id)` is just that, `COUNT(customer_id)`. We can use something called a column alias by changing this column's name through the `AS` keyword. So if we do this:
+
+```sql
+SELECT COUNT(customer_id) AS num_of_customers, country
+FROM customers
+GROUP BY country;
+```
+
+The column's name will now be `num_of_customers` when the records get selected.
+
+Another vital concept to understand in SQL is joining tables. We can combine rows from two or more tables with a `JOIN` clause, based on a related column between them (which would typically be an id). A table will pretty much always have an id column, to make sure that each record is unique.
+
+There are four different types of `JOIN`s: `INNER JOIN`, `LEFT OUTER JOIN`, `RIGHT OUTER JOIN`, and `FULL OUTER JOIN`. The keywords `INNER` and `OUTER` can be omitted. `INNER JOIN` returns the records that have matching values in both tables, `LEFT JOIN` returns all of the records from the left table and the matched records from the right table. `RIGHT JOIN` is essentially the same as `LEFT JOIN` but reversed, while `FULL JOIN` combines all rows and returns the value `NULL` for unmatched rows.
+
+<p>
+TO better visualize what happens when you do these <code>JOIN</code> statements, I recommend taking a look at this 
+<Navigable 
+  content={"article"}
+  href={"https://blog.codinghorror.com/a-visual-explanation-of-sql-joins/"}
+  external={true}
+  row={4}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> from Jeff Atwood. It's a concise, quick, visual read on SQL <code>JOIN</code>s.
+</p>
+
+<p>
+Apart from aggregate functions, SQL also has window functions. Now, there's quite a good amount of window functions, and this article has already been quite long so I won't go through each of them. But, if you'd like to explore further, you can read this 
+<Navigable 
+  content={"article"}
+  href={"https://www.sqltutorial.org/sql-window-functions/"}
+  external={true}
+  row={5}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>.
+</p>
+
+<p>
+And I've pretty much covered most of what I've learned in the Databases course. Apart from these keywords, it's worth taking a look as well at this 
+<Navigable 
+  content={"SQL style guide"}
+  href={"https://www.sqlstyle.guide/"}
+  external={true}
+  row={6}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> to have better formatting. It's also worth reading up on a query's 
+<Navigable 
+  content={"order of execution"}
+  href={"https://sqlbolt.com/lesson/select_queries_order_of_execution"}
+  external={true}
+  row={7}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>.
+</p>
+
+<p>
+If you'd like to put in some practice with SQL, I recommend doing 
+<Navigable 
+  content={"SQLBolt"}
+  href={"https://sqlbolt.com/"}
+  external={true}
+  row={8}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> and 
+<Navigable 
+  content={"SQLZoo"}
+  href={"https://sqlzoo.net/wiki/SQL_Tutorial"}
+  external={true}
+  row={9}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>. These were the interactive tutorials linked in The Odin Project and I can say with 100% confidence that it will get you comfortable with SQL!
+</p>
+
+And that's about it for this week. I'm now on the Node.js course, so expect something about Node.js for the next article!

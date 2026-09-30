@@ -1,0 +1,130 @@
+---
+title: "React: State and Rendering"
+description: "A blog article explaining how state and rendering works in React."
+pubDate: "Oct 12 2025"
+---
+
+<script lang="ts">
+import { global as G } from "$lib/stores/global.svelte";
+import Navigable from "$lib/components/navigable.svelte";
+
+const rowMap: Record<number, number> = {
+	0: 4,
+	1: 0,
+	2: 0,
+	3: 0,
+	4: 0,
+};
+
+G.activeRow = 1;
+G.maxRow = Object.keys(rowMap).length - 1;
+G.indexMap = {};
+
+$effect(() => {
+	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
+});
+</script>
+
+<p>
+I took a break from 
+<Navigable 
+  content={"The Odin Project"}
+  href={"https://www.theodinproject.com"}
+  external={true}
+  row={1}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> for about a month, but I'm ready to dive back in from where I left off. In my last article, I talked about React basics, so this time I'll talk about what I've learned so far on state and how rendering works.
+</p>
+
+<p>
+Since it has been a while, I needed a refresher on React, so this 
+<Navigable 
+  content={"resource"}
+  href={"https://react.dev/learn"}
+  external={true}
+  row={2}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> helped a lot! For people that want to learn React, I recommend taking a look at this as it teaches you all that you need to know in greater detail than what I will try to explain here.
+</p>
+
+But before we talk about state, it's important to know how "rendering" works in React. Before components are displayed on the screen, they have to be rendered by React. There's essentially three steps to requesting and serving UI:
+
+1. Triggering a render
+2. Rendering the component
+3. Committing to the DOM
+
+For the first step, a render is triggered for the following conditions: (1) when it's the component's initial render and (2) the state has been updated. More on what state is later!
+
+After the render has been triggered, React calls your components, and calling these components is what rendering means. On initial render, React will call the root component. While for re-renders, React will call the component whose state update triggered the render.
+
+After rendering or calling your components, React will modify the DOM. However, DOM nodes will only change if there's a difference between renders. On initial render, all of the DOM nodes React created will be put on the screen using the `appendChild()` DOM API. For re-renders, React will do the minimal operations needed to make the DOM match the latest rendering output.
+
+I mention all of that because it's important to know how rendering works, especially since as mentioned, updating the state triggers a re-render of that component. So anyways, what is state?
+
+We need state because we want to retain data between renders. With local variables, this is not possible because they don't persist between renders. Also, changing these local variables don't trigger renders (as mentioned before, re-renders happen when the _state_ is updated).
+
+Alright, so we need something to hold our state, but we also need something to update that state. This is where we can use the `useState` hook. Put simply, a hook is a special function that allows developers to use state and other React features.
+
+This `useState` hook provides us two things: (1) a _state variable_ that holds our state, which retains data between renders and (2) a _state setter function_ that updates the state variable (which again, will trigger a re-render since the state is updated).
+
+The syntax for it looks like this:
+
+```javascript
+import { useState } from "react";
+
+const [number, setNumber] = useState(0);
+```
+
+We import the `useState` hook with a named import. Then, we have a state variable called `number`, and a state setter function called `setNumber`. The argument that we pass in the `useState` hook will be the value of the state variable on initial render. So, in this example, it just means that our `number` state variable has a value of 0 on initial render.
+
+To use our state setter function, we could do something like this:
+
+```javascript
+function click() {
+  setNumber(number + 1);
+}
+```
+
+This just means that whenever our `click()` function is called, we will update our `number` state variable, incrementing it by 1. Since our state got updated, the component that holds this state will re-render.
+
+Put simply, that's basically how state works! But, it can get quite complicated. For example:
+
+```javascript
+function click() {
+  setNumber(number + 1);
+  setNumber(number + 1);
+  setNumber(number + 1);
+}
+```
+
+At first glance, it seems that when this function is called, we update our state three times so we get three re-renders, and ultimately the value of our state variable gets increased by 3. But, it only actually increases by 1!
+
+<p>
+Now, I don't want this article to be too long so I won't explain the gist of it, but this 
+<Navigable 
+  content={"lesson"}
+  href={"https://react.dev/learn/queueing-a-series-of-state-updates"}
+  external={true}
+  row={3}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> from the resource I mentioned before goes into great detail on why this is the case. I also urge you to read about the other lessons there concerning state, as it is explained very well and there are even exercises.
+</p>
+
+<p>
+And that's about it! I actually wanted to also talk about effects in this article, but I noticed it was already getting slightly too lengthy. So, I'll talk about it next time once I complete this 
+<Navigable 
+  content={"memory card game"}
+  href={"https://github.com/arvingarciabtw/the-odin-project/tree/main/full-stack-javascript/fsj-04-react/22-memory-card"}
+  external={true}
+  row={4}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> that I'm building.
+</p>

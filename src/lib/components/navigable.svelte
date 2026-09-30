@@ -115,7 +115,7 @@ onMount(() => {
 <style>
 a.navigable {
 	padding: 1px 0.25rem;
-	width: max-content;
+	max-width: 100%;
 	display: inline-block;
 	color: inherit;
 	line-height: 1.5;
@@ -191,8 +191,8 @@ a.navigable {
 		&.active {
 			opacity: 1;
 			background: transparent;
-			--flicker-color: var(--black);
-			color: inherit;
+			animation: none;
+			color: var(--active-color, inherit);
 		}
 	}
 }

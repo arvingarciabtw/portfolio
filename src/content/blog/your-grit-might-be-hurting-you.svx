@@ -1,0 +1,101 @@
+---
+title: "Your Grit Might Be Hurting You"
+description: "A blog article on explaining why grit might hurt you, if you don't understand it."
+pubDate: "Mar 29, 2026"
+---
+
+<script lang="ts">
+import { global as G } from "$lib/stores/global.svelte";
+import Navigable from "$lib/components/navigable.svelte";
+
+const rowMap: Record<number, number> = {
+	0: 4,
+	1: 0,
+	2: 0,
+	3: 0,
+	4: 0,
+};
+
+G.activeRow = 1;
+G.maxRow = Object.keys(rowMap).length - 1;
+G.indexMap = {};
+
+$effect(() => {
+	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
+});
+</script>
+
+<p>
+A while back, I did 
+<Navigable 
+  content={"The Odin Project"}
+  href={"https://www.theodinproject.com/"}
+  external={true}
+  row={1}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>, an open-source curriculum on learning full stack web development. In the very early parts of the curriculum, a huge emphasis was placed on 
+<Navigable 
+  content={"grit"}
+  href={"https://www.theodinproject.com/lessons/foundations-motivation-and-mindset"}
+  external={true}
+  row={2}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>. That you'll go through very difficult moments, and that with grittiness, you'll overcome them.
+</p>
+
+However, admittedly, I've been recently quite unhappy with full stack web development. If anything, I've kind of felt that way midway through the curriculum, but I pushed it off, and I told myself that perhaps I just wasn't being "gritty" enough. That I was just making excuses.
+
+To cope with my unhappiness as of late, I've been listening to videos of psychologists and researchers talking about a variety of different things. Happiness, optimism, and the like.
+
+<p>
+And by the grace of the YouTube algorithm, I was recommended an 
+<Navigable 
+  content={"episode"}
+  href={"https://www.youtube.com/watch?v=KAi2L_b1V2I"}
+  external={true}
+  row={3}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> of the A Bit of Optimism podcast, where Angela Duckworth was the guest. She's a researcher who's done a ton of research on grit, and she's probably the one where you've heard of grit from. She has this really popular 
+<Navigable 
+  content={"TED talk"}
+  href={"https://www.youtube.com/watch?v=H14bBuluwB8"}
+  external={true}
+  row={4}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>, maybe you've watched it before.
+</p>
+
+The last section of the podcast completely turned my view of grit upside down. I thought that grit meant persevering _no matter what_. Even when you have to force yourself out of bed to do the thing. Even if you feel unhappy doing that thing for so long. Persevere, persevere, persevere, practice, practice, practice.
+
+The host, Simon Sinek, even acknowledged that grit is dangerous. If you have a misconception of grit, you force yourself to do something that you don't want to do, or it serves as feedback to yourself, that you just need more grit. You become someone who just "grits it out".
+
+All this to say, so what is grit? Mrs. Duckworth cleared up the misconception, and this is where my perspective completely changed.
+
+There are four things that runs through the mind of someone who has grit:
+
+1. This is interesting.
+2. This is important.
+3. I can do this.
+4. I know what to try next.
+
+At its core, gritty people don't just hammer through something, just for the sake of grit. Someone has grit towards something they find interesting. Something they find important. Something they believe they can do. Something they know how to improve on through practice.
+
+It sounds so simple, but truthfully, I had it backwards the whole time. I was being gritty, for the wrong thing.
+
+Being honest with myself, I'm not really interested in full stack development anymore. Nor, do I even know what to try next. Instead of mastering one craft, I’m expected to be a mediocre architect, a junior DevOps engineer, and a cloud engineer all at once. This role has turned into something that I just don't want to do.
+
+Moving forward, I'm going to make a shift towards what I truly find interesting. What I truly find important. What I truly believe I can excel at. What I truly believe I can pour in deliberate practice.
+
+And to me, that is design and frontend development.
+
+To end this article, here's something that Mrs. Duckworth said during the podcast:
+
+> I hereby give everybody license, and endorsement, and even encouragement, to quit the things that you hate. Don't spend another day doing things that you don't really want to do.

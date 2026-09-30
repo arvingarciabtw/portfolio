@@ -1,0 +1,179 @@
+---
+title: "I Actually Used Subgrid"
+description: "I didn't think I would ever use subgrid, but here I am!"
+pubDate: "Aug 16, 2026"
+---
+
+<script lang="ts">
+import { global as G } from "$lib/stores/global.svelte";
+import Navigable from "$lib/components/navigable.svelte";
+
+const rowMap: Record<number, number> = {
+	0: 4,
+	1: 0,
+	2: 0,
+	3: 0,
+	4: 0,
+	5: 0,
+	6: 0,
+	7: 0,
+	8: 0,
+	9: 0,
+};
+
+G.activeRow = 1;
+G.maxRow = Object.keys(rowMap).length - 1;
+G.indexMap = {};
+
+$effect(() => {
+	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
+});
+</script>
+
+<p>
+I'm someone who likes to learn about these new not-so-popular CSS things. One example is 
+<Navigable 
+  content={"squircle"}
+  href={"https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/corner-shape-value#squircle"}
+  external={true}
+  row={1}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>, which I'd love to use when it gets enough browser support. Another one of these is 
+<Navigable 
+  content={"subgrid"}
+  href={"https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Grid_layout/Subgrid"}
+  external={true}
+  row={2}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>, which is baseline widely available. I've never found a use case for this though... until this week!
+</p>
+
+<p>
+I've recently been working on 
+<Navigable 
+  content={"BetterCalapan"}
+  href={"https://bettercalapan.org"}
+  external={true}
+  row={3}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>, an open-source LGU initiative for providing better digital services to the people of Calapan. To have a place where people can see where development efforts are being done, I decided to have a simple 
+<Navigable 
+  content={"roadmap"}
+  href={"https://roadmap.bettercalapan.org"}
+  external={true}
+  row={4}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> website.
+</p>
+
+Admittedly, I've never really worked a lot with table layouts, but it seemed simple enough. Just put grid on the rows, align the items how I want to, that's about it. A problem that stumped me though is that whenever I tried to scroll the overflowed contents of the table, the row's styles were being cut off!
+
+I tried to battle with this problem a lot, but I just could not figure out what was causing this.
+
+My first guess was that something up the ancestor chain was clipping the overflow, so I checked every `overflow` rule I had. Nothing. I removed styles one by one, thinking maybe I'd copied something from another project. Still nothing.
+
+Turns out overflow wasn't the problem at all. It came down to how `display: grid` and `display: block` interacted on each row.
+
+Here's roughly what I had: table was `display: block` with `overflow-x: auto` so it could scroll sideways. thead and tbody were also `display: block`. Each tr was `display: grid`, split into three columns.
+
+Seemed fine, but each tr was building its own grid, separate from every other row. And since every td had a `min-width: 200px`, some rows needed more space than they actually had.
+
+That extra width spilled past the row's own box. The problem is, background and border only show up on that box, not on the content spilling out of it. So once you scrolled past where the row used to end, you'd just see empty space where the row should've been.
+
+My first fix was giving `tr` a `width: max-content`, so it'd grow to fit its own grid. That worked, the clipping was gone! But now every row sized its columns off its own content, so a row with a longer project name lined up differently than the row above it. The table looked like it'd been hit by an earthquake.
+
+The real fix wasn't making each row size itself better. It was making every row share the same columns, computed once. That's exactly what subgrid does. So I made table the actual grid, and had thead, tbody, and every tr inherit its columns with `grid-template-columns: subgrid`, instead of defining their own.
+
+```css
+table {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
+  overflow-x: auto;
+}
+
+thead,
+tbody {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+}
+
+tr {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+  border-bottom: 1px solid var(--neutral-hover);
+}
+```
+
+Now table owns the only column definition, and every row just plugs into it instead of guessing. Columns line up because they're _literally_ the same grid, not a coincidence. And since tr is a normal grid item again, its background and border cover the row's full width, even the part you have to scroll to see.
+
+I'd read about subgrid before, usually for lining up card layouts, but it never really clicked why I'd use it over a plain grid. This was the first time subgrid wasn't just nice to have, it was the only real fix. Felt good to finally have a reason to use it.
+
+<p>
+If you want to poke at the fix yourself, the roadmap site is live 
+<Navigable 
+  content={"here"}
+  href={"https://roadmap.bettercalapan.org"}
+  external={true}
+  row={5}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>, and the 
+<Navigable 
+  content={"source code"}
+  href={"https://github.com/bettercalapan/roadmap"}
+  external={true}
+  row={6}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> is over on GitHub.
+</p>
+
+## RESOURCES
+
+<ul>
+<li>
+<Navigable 
+  content={"subgrid"}
+  href={"https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Grid_layout/Subgrid"}
+  external={true}
+  row={7}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>
+</li>
+<li>
+<Navigable 
+  content={"portal"}
+  href={"https://bettercalapan.org"}
+  external={true}
+  row={8}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>
+</li>
+<li>
+<Navigable 
+  content={"roadmap"}
+  href={"https://roadmap.bettercalapan.org"}
+  external={true}
+  row={9}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>
+</li>
+</ul>

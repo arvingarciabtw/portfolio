@@ -1,0 +1,103 @@
+---
+title: "UI with Radix Primitives"
+description: "A blog article on easily implementing UI components with Radix Primitives."
+pubDate: "Dec 14 2025"
+---
+
+<script lang="ts">
+import { global as G } from "$lib/stores/global.svelte";
+import Navigable from "$lib/components/navigable.svelte";
+
+const rowMap: Record<number, number> = {
+	0: 4,
+	1: 0,
+	2: 0,
+	3: 0,
+	4: 0,
+};
+
+G.activeRow = 1;
+G.maxRow = Object.keys(rowMap).length - 1;
+G.indexMap = {};
+
+$effect(() => {
+	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
+});
+</script>
+
+When I first started building some pet projects to learn web development, a common pain point that I always
+kept experiencing was styling some of the native HTML elements.
+
+You've also probably been there before, wondering why it's so difficult to style those `option`s inside of a `select` element. And if you do end up with someting half-decent, it looks different in another browser. And you can't really do anything about it, because each browser has their own way of rendering HTML elements. That's just how it is.
+
+<p>
+Thankfully though, 
+<Navigable 
+  content={"component libraries"}
+  href={"https://www.sanity.io/glossary/component-library"}
+  external={true}
+  row={1}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> exist! A component library is a collection of reusable user interface elements that you can use to ensure design consistency. This solves the dilemma I mentioned before, where we can instead use a component from this library which is consistent across browsers!
+</p>
+
+<p>
+There are a ton of component libraries out there, and I haven't done a deep dive on all of them. But for my own use, I've decided to go with 
+<Navigable 
+  content={"Radix Primitives"}
+  href={"https://www.radix-ui.com/primitives"}
+  external={true}
+  row={2}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>, an open-source component libary focused on accessibility, customization, and developer experience.
+</p>
+
+<p>
+I like that it handles the accessibility for us. I'm certainly not an accessibility wizard just yet, so having components that adhere to the 
+<Navigable 
+  content={"WAI-ARIA design patterns"}
+  href={"https://www.w3.org/WAI/ARIA/apg/"}
+  external={true}
+  row={3}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> are a huge plus. The fact that it is unstyled is also great! This means that I can essentially style these components however I like.
+</p>
+
+Getting started with it is easy. To install Radix Primitives, simply run:
+
+```sh
+npm install radix-ui@latest
+```
+
+Now you can just import any component that you'd like. For example:
+
+```typescript
+import { Select } from "radix-ui";
+
+function Component() {
+  <Select.Root>
+    // the rest of the component's structure here
+  </Select.Root>
+}
+```
+
+A project I've been recently working on is a visualizer for contiguous memory allocation. I've been using it as an opportunity to practice TypeScript, but also to familiarize with using Radix Primitives. So far, I've used the `Select` and `Dialog` components and I've been happy with my experience using the library.
+
+<p>
+If you find this component library interesting, I'd suggest you take a look at their 
+<Navigable 
+  content={"documentation"}
+  href={"https://www.radix-ui.com/primitives/docs/overview/introduction"}
+  external={true}
+  row={4}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> and explore the components that the library has!
+</p>

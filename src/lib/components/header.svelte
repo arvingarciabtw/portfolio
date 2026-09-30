@@ -47,9 +47,9 @@ header {
 	z-index: 1; /* to stack above scrollable main el */
 }
 .wrapper {
-	padding: 0 1rem;
+	padding: 0 1.25rem 0 1rem;
 	width: 100%;
-	max-width: 90rem;
+	max-width: 78rem;
 	display: grid;
 	grid-template-columns: 1fr max-content;
 	place-items: center;

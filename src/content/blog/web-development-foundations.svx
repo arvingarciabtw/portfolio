@@ -1,0 +1,320 @@
+---
+title: "Web Development Foundations"
+description: "A blog article explaining the foundations of web development."
+pubDate: "Aug 10 2025"
+---
+
+<script lang="ts">
+import { global as G } from "$lib/stores/global.svelte";
+import Navigable from "$lib/components/navigable.svelte";
+
+const rowMap: Record<number, number> = {
+	0: 4,
+	1: 0,
+	2: 0,
+	3: 0,
+	4: 0,
+	5: 0,
+	6: 0,
+	7: 0,
+	8: 0,
+	9: 0,
+	10: 0,
+	11: 0,
+	12: 0,
+	13: 0,
+	14: 0,
+	15: 0,
+	16: 0,
+	17: 0,
+	18: 0,
+	19: 0,
+	20: 0,
+	21: 0,
+	22: 0,
+	23: 0,
+};
+
+G.activeRow = 1;
+G.maxRow = Object.keys(rowMap).length - 1;
+G.indexMap = {};
+
+$effect(() => {
+	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
+});
+</script>
+
+As with any skill that you want to learn from the beginning, you have to start with the basics. The fundamentals. You need to have a good foundation.
+
+<p>
+This week, I completed the 
+<Navigable 
+  content={"Foundations"}
+  href={"https://www.theodinproject.com/paths/foundations/courses/foundations"}
+  external={true}
+  row={1}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> course from 
+<Navigable 
+  content={"The Odin Project"}
+  href={"https://www.theodinproject.com/"}
+  external={true}
+  row={2}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> curriculum. At the beginning of the course, it was greatly emphasized that learning to code will be hard. I also know this because I've tried doing the curriculum before. The founder of The Odin Project wrote this amazing 
+<Navigable 
+  content={"article"}
+  href={"https://dev.to/theodinproject/why-learning-to-code-is-so-damn-hard-11nn"}
+  external={true}
+  row={3}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> on why coding is so difficult. Apart from this, the difference of having a fixed mindset and a growth mindset was given great importance in this 
+<Navigable 
+  content={"chapter"}
+  href={"https://www.theodinproject.com/lessons/foundations-motivation-and-mindset"}
+  external={true}
+  row={4}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>.
+</p>
+
+Before even diving into the basics of HTML, the basics of computers and how the web works were first taught. From my understanding, this is essentially what happens when you type an address into the browser and press `Enter`:
+
+<p>
+The web browser will request the resource from the web server where the resource is stored. This is done via a network protocol called 
+<Navigable 
+  content={"HTTP"}
+  href={"https://developer.mozilla.org/en-US/docs/Web/HTTP"}
+  external={true}
+  row={5}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> (Hypertext Transfer Protocol). If the request is successful, then the web server will send an HTTP response back the browser with the requested resource. In this process, 
+<Navigable 
+  content={"IP"}
+  href={"https://www.cloudflare.com/learning/network-layer/internet-protocol/"}
+  external={true}
+  row={6}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> essentially acts as the highway while 
+<Navigable 
+  content={"TCP"}
+  href={"https://www.techtarget.com/searchnetworking/definition/TCP-IP"}
+  external={true}
+  row={7}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> acts as the transport mechanisms (like cars) that deliver your request to the destination (web server).
+</p>
+
+<p>
+Furthermore, after pressing <code>Enter</code>, your browser will ask your computer if it knows the IP address of this domain name. If it does, then it is simply translated to the IP address and the web server can send a response back. However, if your computer does not recognize the IP address associated with the domain, then your request goes to a 
+<Navigable 
+  content={"DNS server"}
+  href={"https://www.cloudflare.com/learning/dns/what-is-a-dns-server/"}
+  external={true}
+  row={8}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> and it is this server that will tell the browser what the IP address of the domain name is.
+</p>
+
+At least, that's how I understood it anyway. I'm sure it is much more technical than that.
+
+<p>
+From this point, the basics of 
+<Navigable 
+  content={"Git"}
+  href={"https://git-scm.com/doc"}
+  external={true}
+  row={9}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> were also taught. Thankfully, I've already used Git in past personal projects and my previous internship. However, this was a good opportunity to practice 
+<Navigable 
+  content={"Lazygit"}
+  href={"https://github.com/jesseduffield/lazygit"}
+  external={true}
+  row={10}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> for the week since I find this to be a very useful tool!
+</p>
+
+<p>
+And finally, we now get to 
+<Navigable 
+  content={"HTML"}
+  href={"https://developer.mozilla.org/en-US/docs/Web/HTML"}
+  external={true}
+  row={11}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>! It was honestly quite nice having a refresher on HTML boilerplate code, especially on the <code>charset</code> attribute of the meta tag as well as the <code>name="viewport" content="width=device-width,initial-scale=1.0"</code> to keep the site responsive.
+</p>
+
+<p>
+Also, this 
+<Navigable 
+  content={"resource"}
+  href={"https://internetingishard.netlify.app/html-and-css/links-and-images/"}
+  external={true}
+  row={12}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> by Interneting is Hard is a fantastic read on links and images. It clearly taught me the difference of absolute, relative, and root-relative links. And most importantly, when I should use certain image types (jpg, png, svg, gif)!
+</p>
+
+<p>
+From this point on, everything I learned about HTML were put into practice in this 
+<Navigable 
+  content={"project"}
+  href={"https://recipes-seven-teal.vercel.app/"}
+  external={true}
+  row={13}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>, which is a simple recipes website. Take note, however, that there is styling on the website because this project was revisited once I went further along in the curriculum.
+</p>
+
+<p>
+After this, I then had a refresher on 
+<Navigable 
+  content={"CSS"}
+  href={"https://developer.mozilla.org/en-US/docs/Web/CSS"}
+  external={true}
+  row={14}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> (Cascading Style Sheets). Most notably, flexbox. Admittedly, I didn't fully understand <code>flex-grow</code>, <code>flex-shrink</code>, and <code>flex-basis</code> before. But now, I understand it a lot more and can actually put <code>flex-grow</code> to good use now. Also, this 
+<Navigable 
+  content={"article"}
+  href={"https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/"}
+  external={true}
+  row={15}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> by Josh Comeau absolutely blew my mind on the capabilites of flexbox. I didn't think dynamic layouts were possible without the use of media queries, but I was astonished to see flexbox used so well!
+</p>
+
+<p>
+At this point, I made this 
+<Navigable 
+  content={"project"}
+  href={"https://landing-page-sigma-peach-49.vercel.app/"}
+  external={true}
+  row={16}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> which is just a simple layout that was followed in the lesson's instructions. I had a lot of fun personalizing it and making it Silksong-themed! Do take note that it is not responsive since responsiveness is not yet covered at this point of the curriculum.
+</p>
+
+<p>
+We now face the beast that is 
+<Navigable 
+  content={"JavaScript"}
+  href={"https://developer.mozilla.org/en-US/docs/Web/JavaScript"}
+  external={true}
+  row={17}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>. From here on out, I thought that I would struggle a bit in doing the projects. But surprisingly, it wasn't that bad. I have a strong feeling that it's because I took this 
+<Navigable 
+  content={"chapter"}
+  href={"https://www.theodinproject.com/lessons/foundations-problem-solving"}
+  external={true}
+  row={18}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> to heart, which talks about the importance of developing a problem solving framework (understanding the problem, planning, and pseudocode).
+</p>
+
+Looking back in the past, I would often just go straight to code without having a concrete plan in mind, so the application's structure ends up being a mess (and so I give up and delegate the debugging to AI, which makes it even more of a mess). This time around though, actually writing down first in plain English the flow of my application helps SO much when it comes to the actual coding.
+
+<p>
+Anyways, here are the projects I made for the JavaScript chapter. 
+<Navigable 
+  content={"Rock paper scissors"}
+  href={"https://rock-paper-scissors-mu-kohl.vercel.app/"}
+  external={true}
+  row={19}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>, 
+<Navigable 
+  content={"etch-a-sketch"}
+  href={"https://etch-a-sketch-indol-xi.vercel.app/"}
+  external={true}
+  row={20}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>, and a 
+<Navigable 
+  content={"calculator"}
+  href={"https://calculator-psi-black.vercel.app/"}
+  external={true}
+  row={21}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>. For each project, there definitely could have been more features, but I stuck with the defined scope in the respective lesson's instructions. The point of these projects is to practice JavaScript fundamentals anyways, so I didn't want to go over the top with features.
+</p>
+
+I will say this though, I am not yet super familiar with the built in string methods and array methods in JavaScript. Oftentimes, I had to keep going back to the documentation and see what method would work for my problem. Of course, re-reading documentation is perfectly normal, but I do want to reach a point where I'm at least comfortable with the most used methods out there.
+
+<p>
+On another note, this 
+<Navigable 
+  content={"article"}
+  href={"https://www.javascripttutorial.net/javascript-dom/javascript-event-delegation/"}
+  external={true}
+  row={22}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> on event delegation is such a worthwhile read. Instead of adding an event listener to each element, you could just add that event listener to their parent and access the <code>target</code> property that references the element that dispatches the event. This is so useful, and so I used this concept for my JavaScript projects.
+</p>
+
+I also almost forgot to mention, but I decided to integrate a little bit of AI into my learning journey. However, I specifically prompt it to never directly give me the solution. And instead, it should just keep asking me questions until I figure out a solution to the problem that I have. And honestly, it works a ton! I still have to think about the problem in hand, and I do end up learning a lot at the end of it all. But of course, I still pour in a considerable amount of time trying to figure out the problem by myself first before asking for guidance from AI.
+
+For any beginners like me out there, perhaps you could use the prompt that I use:
+
+_"You are a senior developer. I am a beginner developer. I will ask you questions. However, do NOT directly give me the solution. Instead, like a good senior, you should ask me questions that will challenge my critical thinking to guide me in discovering or forming my own solution to the problem I asked. Is this clear?"_
+
+<p>
+That's about it for this week. Overall, it was very fun! Time to move on to the 
+<Navigable 
+  content={"Intermediate HTML and CSS"}
+  href={"https://www.theodinproject.com/paths/full-stack-javascript/courses/intermediate-html-and-css"}
+  external={true}
+  row={23}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> course. Excited to learn further!
+</p>

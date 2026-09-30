@@ -1,0 +1,94 @@
+---
+title: "Full-Stack Made Easy with Next.js"
+description: "A blog article on the simplicity of building a full-stack application with Next.js."
+pubDate: "Jan 18 2026"
+---
+
+<script lang="ts">
+import { global as G } from "$lib/stores/global.svelte";
+import Navigable from "$lib/components/navigable.svelte";
+
+const rowMap: Record<number, number> = {
+	0: 4,
+	1: 0,
+	2: 0,
+	3: 0,
+	4: 0,
+};
+
+G.activeRow = 1;
+G.maxRow = Object.keys(rowMap).length - 1;
+G.indexMap = {};
+
+$effect(() => {
+	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
+});
+</script>
+
+I've been slowly building a simple spaced repetition web app last week with Next.js. It's my first time using this framework, and so far, I love how easy it has made the development experience.
+
+<p>
+In their 
+<Navigable 
+  content={"documentation"}
+  href={"https://nextjs.org/docs"}
+  external={true}
+  row={1}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>:
+</p>
+
+> Next.js is a React framework for building full-stack web applications. You use React Components to build user interfaces, and Next.js for additional features and optimizations.
+
+Thankfully, I'm already slightly familiar with React, so that part I don't have to worry about.
+
+What pleasantly surprised me the most is that Next.js uses _file-system routing_. Essentially, the routes in your application are determined by your directory structure! This is the first time I've seen this, so I'm not sure if there are other frameworks that adopt this paradigm.
+
+Your top-level folders organizes your app code (`app`) and static assets (`public`). Top-level files are your app configurations (e.g. `next.config.ts`), dependencies (`package.json`), proxy (`proxy.ts`), etc.
+
+The interesting thing is that all subfolders inside of your `app` are URL segments! But, if you want to expose a route, then that folder should have a `page` file inside of it. So, if you have a `dashboard` folder that has a `page` file inside of it, then that route would be `yourdomain.com/dashboard`.
+
+Next also has other routing files, like `layout` for shared UI such as nav or footer, `loading` for skeletons, `error` for error boundaries, and `route` for APIs.
+
+You can also have dynamic routes by parameterizing segments with square brackets. `[segment]` for a single param, `[...segment]` for catch‑all, and `[[...segment]]` for optional catch‑all. For instance, the path `app/blog/[slug]/page.tsx` would be the URL pattern `/blog/my-first-post`.
+
+<p>
+This framework has many more features that it provides, but I suggest that you take a look at the documentation I linked above if you want to learn more. The documentation will explain concepts way better than I could. They also have 
+<Navigable 
+  content={"courses"}
+  href={"https://nextjs.org/learn"}
+  external={true}
+  row={2}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> that walk you through the concepts while building an app.
+</p>
+
+<p>
+Just to get myself familiarized, I followed their app router course. Although, for the app that I'm currently building, I decided to use other libraries for other features. I used 
+<Navigable 
+  content={"Better Auth"}
+  href={"https://www.better-auth.com/"}
+  external={true}
+  row={3}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> for authentication, and I'm using 
+<Navigable 
+  content={"Prisma"}
+  href={"https://www.prisma.io/"}
+  external={true}
+  row={4}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> purely because I want to use an ORM and see how it integrates with Next.js.
+</p>
+
+And that's really about it. I didn't want to go too technical for this article since their documentation already explains stuff really well. I just wanted to share how Next.js forces you to approach your development with a file-system routing paradigm, which I think is pretty neat.
+
+I've loved how much easier it is to use Better Auth compared to the default, NextAuth. I may write about Better Auth next week!

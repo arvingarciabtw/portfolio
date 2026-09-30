@@ -107,18 +107,6 @@ export const projects: Project[] = [
 		technologies: ["sveltekit", "typescript", "deno"],
 	},
 	{
-		name: "blog",
-		url: "https://blog.arvingarcia.com",
-		description:
-			"my blog where i go over what i'm learning and whatever's on my mind.",
-		metrics: {
-			downloads: null,
-			stars: 2,
-			forks: 0,
-		},
-		technologies: ["astro", "typescript", "pnpm"],
-	},
-	{
 		name: "gitlarp",
 		url: "https://github.com/arvingarciabtw/gitlarp",
 		description:
@@ -134,18 +122,6 @@ export const projects: Project[] = [
 
 export const oss: Project[] = [
 	{
-		name: "bettergov",
-		url: "https://bettergov.ph",
-		description:
-			"volunteer-led tech initiative making government transparent, efficient, and accessible.",
-		metrics: {
-			downloads: null,
-			stars: 530,
-			forks: 270,
-		},
-		technologies: ["typescript", "react"],
-	},
-	{
 		name: "the odin project",
 		url: "https://www.theodinproject.com/",
 		description:
@@ -156,6 +132,18 @@ export const oss: Project[] = [
 			forks: 16800,
 		},
 		technologies: ["javascript", "ruby"],
+	},
+	{
+		name: "bettergov",
+		url: "https://bettergov.ph",
+		description:
+			"volunteer-led tech initiative making government transparent, efficient, and accessible.",
+		metrics: {
+			downloads: null,
+			stars: 530,
+			forks: 270,
+		},
+		technologies: ["typescript", "react"],
 	},
 	{
 		name: "bettercalapan",

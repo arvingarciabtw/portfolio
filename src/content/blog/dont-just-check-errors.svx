@@ -1,0 +1,93 @@
+---
+title: "Don't Just Check Errors"
+description: "Don't just check errors, handle them gracefully."
+pubDate: "Aug 30, 2026"
+---
+
+<script lang="ts">
+import { global as G } from "$lib/stores/global.svelte";
+import Navigable from "$lib/components/navigable.svelte";
+
+const rowMap: Record<number, number> = {
+	0: 4,
+	1: 0,
+	2: 0,
+	3: 0,
+	4: 0,
+	5: 0,
+};
+
+G.activeRow = 1;
+G.maxRow = Object.keys(rowMap).length - 1;
+G.indexMap = {};
+
+$effect(() => {
+	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
+});
+</script>
+
+<p>
+<Navigable 
+  content={"Handle them gracefully"}
+  href={"https://go-proverbs.github.io/#:~:text=Don%27t%20just%20check%20errors%2C%20handle%20them%20gracefully."}
+  external={true}
+  row={1}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>.
+</p>
+
+<p>
+If you're a technical person, who values learning the technical stuff much more deeply, you'll get much more value out of reading this 
+<Navigable 
+  content={"article from Dave Cheney"}
+  href={"https://dave.cheney.net/2016/04/27/dont-just-check-errors-handle-them-gracefully"}
+  external={true}
+  row={2}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>. And read 
+<Navigable 
+  content={"this one"}
+  href={"https://dave.cheney.net/2016/04/07/constant-errors"}
+  external={true}
+  row={3}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> too while you're at it. This article is really just me sharing these resources, and I won't say much as I believe they explain it better than I could.
+</p>
+
+TL;DR:
+
+> Treat all errors as opaque. If not possible, assert errors for behavior. Use `errors.Wrap` and `errors.Cause`.
+
+<p>
+These functions aren't natively in Go though, it comes from another package, 
+<Navigable 
+  content={"github.com/pkg/errors"}
+  href={"https://pkg.go.dev/github.com/pkg/errors"}
+  external={true}
+  row={4}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>. It's not a big deal, but maybe it's not your cup of tea.
+</p>
+
+<p>
+This was written way back in 2016 though. It's been 9 years, and while I'm not yet super familiar with the language, I'm sure it has evolved since then. JetBrains wrote this year about more 
+<Navigable 
+  content={"modern practices"}
+  href={"https://blog.jetbrains.com/go/2026/03/02/secure-go-error-handling-best-practices/"}
+  external={true}
+  row={5}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>, which still uses opaque wrapping.
+</p>
+
+For now I'll just use what the standard library provides, but it's good to keep the other approach at the back of my head.

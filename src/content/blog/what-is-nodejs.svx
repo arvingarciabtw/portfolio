@@ -1,0 +1,114 @@
+---
+title: "What is Node.js?"
+description: "A blog article explaining the fundamentals of Node.js."
+pubDate: "Nov 02 2025"
+---
+
+<script lang="ts">
+import { global as G } from "$lib/stores/global.svelte";
+import Navigable from "$lib/components/navigable.svelte";
+
+const rowMap: Record<number, number> = {
+	0: 4,
+	1: 0,
+	2: 0,
+	3: 0,
+	4: 0,
+};
+
+G.activeRow = 1;
+G.maxRow = Object.keys(rowMap).length - 1;
+G.indexMap = {};
+
+$effect(() => {
+	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
+});
+</script>
+
+<p>
+I'm now currently on the 
+<Navigable 
+  content={"Node.js course"}
+  href={"https://www.theodinproject.com/paths/full-stack-javascript/courses/nodejs"}
+  external={true}
+  row={1}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> of The Odin Project curriculum. I've progressed farther than I've expected this week. I'm currently doing the file uploader project, which involves using the 
+<Navigable 
+  content={"Prisma ORM"}
+  href={"https://www.prisma.io/"}
+  external={true}
+  row={2}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>. But, to keep this article short and simple, I'll just simply talk about Node.js!
+</p>
+
+<p>
+From the actual 
+<Navigable 
+  content={"Node.js website"}
+  href={"https://nodejs.org/en/about/"}
+  external={true}
+  row={3}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>:
+</p>
+
+> "As an asynchronous event-driven JavaScript runtime, Node.js is designed to build scalable network applications."
+
+Node.js is a JavaScript runtime that allows us to write JavaScript code outside of the browser. So, it allows us to write server-side code in JavaScript. Node.js lets us read and write local files, create HTTP connections, and listen to network requests.
+
+Going back to its definition, it's a runtime that is asynchronous and event-driven. This is where callbacks become crucial to understanding how Node.js works.
+
+Callbacks are fundamental to Node.js's asynchronous nature. A callback is simply a function that gets passed as an argument to another function and is executed after some operation completes. Instead of waiting for time-consuming operations like file reads or database queries to finish, Node.js continues executing other code and calls your callback function when the operation is done.
+
+For example, when reading a file, you don't want your entire server to freeze while waiting for the file system. With callbacks, Node.js can handle other requests while the file is being read, then execute your callback once the data is ready:
+
+```js
+const fs = require("fs");
+
+fs.readFile("example.txt", "utf8", (err, data) => {
+  if (err) {
+    console.error("Error reading file:", err);
+    return;
+  }
+  console.log("File contents:", data);
+});
+
+console.log("This runs immediately, without waiting!");
+```
+
+This callback pattern is what makes Node.js so efficient for I/O-heavy applications. It can handle thousands of concurrent connections without creating a new thread for each one. While modern Node.js also supports `Promises` and `async/await` syntax, understanding callbacks is essential since they're the foundation of Node.js's event-driven architecture.
+
+The event-driven model means Node.js applications respond to events like incoming HTTP requests, file operations completing, or timers expiring by executing the appropriate callback functions. This design philosophy is what allows Node.js to be so scalable and performant for real-time applications.
+
+With all of that said, let's write a simple Hello World script and execute it with Node.js! In an `app.js`, write:
+
+```js
+console.log("Hello, World!");
+```
+
+Then, simply run this in your terminal, and it should work:
+
+```bash
+node app.js
+```
+
+<p>
+I'll talk about 
+<Navigable 
+  content={"Express"}
+  href={"https://expressjs.com/"}
+  external={true}
+  row={4}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> in the article next week!
+</p>

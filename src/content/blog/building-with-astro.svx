@@ -1,0 +1,139 @@
+---
+title: "Building with Astro"
+description: "A blog article on explaining why Astro is good for building content-driven websites."
+pubDate: "Feb 15 2026"
+---
+
+<script lang="ts">
+import { global as G } from "$lib/stores/global.svelte";
+import Navigable from "$lib/components/navigable.svelte";
+
+const rowMap: Record<number, number> = {
+	0: 4,
+	1: 0,
+	2: 0,
+};
+
+G.activeRow = 1;
+G.maxRow = Object.keys(rowMap).length - 1;
+G.indexMap = {};
+
+$effect(() => {
+	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
+});
+</script>
+
+A week ago, I decided to refactor this blog because I wasn't really satisfied with the structure of my codebase, as well as with the site's performance. It was fine, but at least based from Lighthouse, performance could still go up a few notches.
+
+I looked around to see what I could use to refactor this blog, and decided to go with Astro. And so far, I've been very happy with the switch! Let's talk about this framework.
+
+From their site:
+
+> Astro is a JavaScript web framework optimized for building fast, content-driven websites.
+
+Sounds perfect for my use case!
+
+Conveniently enough, it uses file-based routing, which is great for me because I just recently learned how to build web apps with Next.js. All of your pages go inside `src/pages`, and the name of the route segment will be based on the name of your `.astro` file.
+
+To make an Astro component, create a file with a `.astro` extension. For instance, the footer component of this blog:
+
+```astro
+<!-- footer.astro -->
+---
+---
+<footer>
+  Made by
+  <a href="" class="author" target="_blank" rel="noopener noreferrer">
+    @arvingarciabtw
+  </a>
+</footer>
+```
+
+An Astro component can take in some props:
+
+```astro
+---
+const { message } = Astro.props;
+---
+<p>{message}</p>
+```
+
+As you've probably noticed, there are these `---` code fences at the top. This top section is called frontmatter. Frontmatter in Astro is a metadata section at the top of Markdown, enclosed by `---`, written in YAML. It defines custom properties like title, description, and tags for content, which are accessible via Astro.props.frontmatter. You can also put JavaScript code inside of your frontmatter.
+
+Perhaps my favorite feature though, are collections. This made it much easier to structure all of my blog posts, as compared to before I refactored. Essentially, `content/blog/` contains all of my posts.
+
+I have this `[...slug].astro` file, which is a route to each of my post:
+
+```astro
+---
+import { getCollection, render } from 'astro:content';
+import BlogPost from '../layouts/blog-post.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: post,
+  }));
+}
+
+const post = Astro.props;
+const { Content } = await render(post);
+---
+
+<BlogPost {...post.data}>
+  <Content />
+</BlogPost>
+```
+
+`Content` is the actual unique content of each post. In my `BlogPost`, that content gets put in the `<slot />` over here:
+
+```astro
+---
+import BaseHead from '../components/base-head.astro';
+
+const { title, description, pubDate, } = Astro.props;
+---
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+  <body>
+    <main>
+      <article>
+        <h1>{title}</h1>
+        <p class="date">{pubDate.toString().slice(4, 10).toUpperCase()}</p>
+        <div class="prose">
+          <slot />
+        </div>
+      </article>
+    </main>
+  </body>
+</html>
+```
+
+Seems a bit confusing to me at first because this is new syntax, but this is honestly much nicer than what I had before refactoring! For some context, I previously had a file that imported all of my posts one by one, and it did not look pleasant...
+
+<p>
+If you'd like to know the technical details about Astro's performance benefits, I'll instead point you to their docs instead of explaining it myself. The documentation will definitely explain it better than I can. Check out this 
+<Navigable 
+  content={"article"}
+  href={"https://docs.astro.build/en/concepts/why-astro/"}
+  external={true}
+  row={1}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>, as well as this overview on the 
+<Navigable 
+  content={"islands architecture"}
+  href={"https://docs.astro.build/en/concepts/islands/"}
+  external={true}
+  row={2}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>.
+</p>
+
+All in all, Astro is great! I recommend this framework if you have a content-rich website, and you want to structure your content easily.

@@ -1,0 +1,114 @@
+---
+title: "Some Thoughts and Plans for 2026"
+description: "A blog article on Arvin Garcia's thoughts and plans for the year 2026."
+pubDate: "Jan 11 2026"
+---
+
+<script lang="ts">
+import { global as G } from "$lib/stores/global.svelte";
+import Navigable from "$lib/components/navigable.svelte";
+
+const rowMap: Record<number, number> = {
+	0: 4,
+	1: 0,
+	2: 0,
+	3: 0,
+};
+
+G.activeRow = 1;
+G.maxRow = Object.keys(rowMap).length - 1;
+G.indexMap = {};
+
+$effect(() => {
+	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
+});
+</script>
+
+I wanted to write this blog article during the week prior, but I decided to fully enjoy the holiday break. That said, a late happy new year to anyone reading this!
+
+I think it would be nice to set some goals for this year. It's okay if ever I don't meet some of them within this year, but it's nice to have something to strive for. Generally, these are my goals:
+
+1. Build at least three projects that solves a problem I have.
+2. Be self-sufficient without AI.
+3. Get a job after graduating.
+
+<p>
+I could make these goals more descriptive by using the 
+<Navigable 
+  content={"SMART framework"}
+  href={"https://www.atlassian.com/blog/productivity/how-to-write-smart-goals"}
+  external={true}
+  row={1}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>, but I'll leave it as is for the sake of brevity.
+</p>
+
+## Building Meaningful Projects
+
+I've already completed The Odin Project last year, so I technically already have some projects under my belt. But, the projects I've built while following that curriculum, are a bit generic in my opinion.
+
+Building those projects were useful since I was learning various programming concepts at the time, but these aren't really "my" projects if that makes sense. These days, I don't think a simple messaging app or an oversimplified social media app is gonna cut it.
+
+I want to build applications that I am proud to show, and I want to have solid reasons why I've built these projects. It doesn't have to be super complex or intricate, but it should at least genuinely solve a problem of mine. At the end of the day, we are problem solvers, and so I should be building apps that solve them.
+
+<p>
+For instance, near the end of last year, I discovered this concept called 
+<Navigable 
+  content={"spaced repetition"}
+  href={"https://ncase.me/remember/"}
+  external={true}
+  row={2}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>. Essentially, it's a way to retain information, by writing them down in flashcards. The frequency of when you practice with these flashcards is spaced out, depending on how often you've got them right.
+</p>
+
+I won't go into detail about it, but feel free to check out the absolutely dope interactive website I've linked above, which goes into detail on what spaced repetition is.
+
+I thought that this would be something I could do to retain the fundamentals. Admittedly, I do sometimes forget something that I should know deeply. Or maybe I do _kind of_ know it, but I'm not sure if I'm using the right terms to explain the said concept...
+
+<p>
+And so I've searched a lot about what app I could use to practice, and many people suggest 
+<Navigable 
+  content={"Anki"}
+  href={"https://apps.ankiweb.net/"}
+  external={true}
+  row={3}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>. I've tried it for a few weeks, and it... works just fine. Though, I have two pain points with it:
+</p>
+
+First, the UI is pretty bad. And second, it's not easy to write code in it. Sometimes, I want to include lines of code or code blocks in my flashcards, but the only option you can do is to use the `code` tag. And even then, there's no syntax highlighting, so it looks pretty rough...
+
+With that being said, this is a great opportunity to create a simple spaced repetition app that is geared towards solving the pain points I've mentioned above. And even better, I can also use this opportunity to learn about new frameworks or libraries that I want to learn.
+
+## I Just Can't with AI
+
+I personally find it so difficult to navigate around this era where AI is slathered everywhere. A lot of people say that if you don't use AI, you'll be left behind. But if I use _too much_ AI... then I just become a vibe coder. For people just wanting to start out with their careers, it's an absolute headache.
+
+From my personal experience, I _learn_ much better when I go slower, taking the time to read the documentation, and using AI super duper minimally. Like for generating mock data. Or giving examples of basic concepts from a framework.
+
+While it takes more time to get a project to a working state, I at least actually _learned_ something. I find that when I finish a project where AI was involved, I'm left thinking that I understood what I just made, but in reality I don't. If I can't explain the codebase of my project, then it's clear that I didn't learn much.
+
+Put simply, I just want to be self-sufficient without AI. I want to be at least skilled enough, where I don't need AI by my side to build an application.
+
+At this point in my career, I think this is the right way to go. As someone starting out, I should be much more focused on _learning_, than trying to be "productive" by being heavily reliant on AI. Once I become self-sufficient, I think only then, that would be a good time to integrate more AI into my workflow.
+
+## Hopefully... A Job
+
+It's expected that I graduate this year, I just have to finish my thesis.
+
+I'm not really concerned with that right now, and so I haven't made my own system to track my job applications and such. Initially though, I do plan on applying to the internship I worked at before, and at a company where a family relative of mine works. So, I'm hoping that goes well.
+
+But, until that day comes, the priority right now is to just keep coding and learning.
+
+That's about it. I also have some other personal goals outside of programming-related stuff, but I decided not to talk about them here.
+
+As for the coming weeks, I plan on building the spaced repetition app I talked about with Next.js. I also plan on learning some Tailwind while I'm at it.
+
+And again, a late happy new year to anybody reading this. Hoping that you also find success this year!

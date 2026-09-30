@@ -1,0 +1,182 @@
+---
+title: "What is MDX?"
+description: "A blog article on explaining the fundamentals of MDX."
+pubDate: "Dec 07 2025"
+---
+
+<script lang="ts">
+import { global as G } from "$lib/stores/global.svelte";
+import Navigable from "$lib/components/navigable.svelte";
+
+const rowMap: Record<number, number> = {
+	0: 4,
+	1: 0,
+	2: 0,
+	3: 0,
+	4: 0,
+};
+
+G.activeRow = 1;
+G.maxRow = Object.keys(rowMap).length - 1;
+G.indexMap = {};
+
+$effect(() => {
+	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
+});
+</script>
+
+<p>
+This week, I refactored my blog to use 
+<Navigable 
+  content={"MDX"}
+  href={"https://mdxjs.com/"}
+  external={true}
+  row={1}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>! After writing all my previous articles as React components with JSX, I wanted to explore a cleaner approach to writing content.
+</p>
+
+<p>
+From the 
+<Navigable 
+  content={"MDX documentation"}
+  href={"https://mdxjs.com/"}
+  external={true}
+  row={2}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>:
+</p>
+
+> "MDX lets you use JSX in your markdown content. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast."
+
+Essentially, MDX is Markdown for the component era. It lets you write Markdown (the simple text formatting syntax you see on GitHub, Reddit, etc.) but with the ability to use React components directly in your content. Pretty cool!
+
+Now, why would you want to use MDX for a blog? Well, the main benefit is simplicity. Writing in Markdown is _so_ much easier than writing JSX for content-heavy pages. Compare these two:
+
+JSX (what I was doing before):
+
+```jsx
+<p>
+  This week, I learned about{' '}
+
+    href="https://example.com"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    something cool
+  </a>
+  ! It was really interesting.
+</p>
+```
+
+MDX (what I'm doing now):
+
+```markdown
+This week, I learned about [something cool](https://example.com)! It was really interesting.
+```
+
+Much cleaner, right? No more worrying about closing tags, special characters, or JSX quirks. Just write naturally!
+
+To get started with MDX, you first need to install it along with some related packages. For my Next.js-like setup, I used:
+
+```bash
+npm install @mdx-js/loader @mdx-js/react
+```
+
+The exact packages you need might vary depending on your setup (Vite, Next.js, etc.), but the MDX documentation has great guides for each.
+
+Now, let's talk about the basics of MDX! If you already know Markdown, you're 90% of the way there. MDX uses standard Markdown syntax for all the usual formatting:
+
+```markdown
+# This is a heading
+
+This is a paragraph with **bold text** and _italic text_.
+
+- This is a list item
+- Another item
+
+[This is a link](https://example.com)
+
+`This is inline code`
+```
+
+Code blocks work just like in regular Markdown. You can even specify the language for syntax highlighting:
+
+````markdown
+```javascript
+function greet(name) {
+  return `Hello, ${name}!`;
+}
+```
+````
+
+Now, here's where MDX gets interesting. You can import and use React components directly in your Markdown:
+
+```mdx
+import { Chart } from "./components/Chart";
+
+# My Article
+
+Here's some text, and below is an interactive chart!
+
+<Chart data={myData} />
+
+More text continues here...
+```
+
+To be honest though, I haven't utilized this feature yet in my blog refactor. Right now, I'm just using MDX for the simple Markdown syntax. But I do plan on implementing custom components in the future! Imagine having things like:
+
+- `<CodePlayground />` for interactive code examples
+- `<Chart />` for data visualizations
+- `<Callout />` for highlighted notes or warnings
+
+<p>
+Take a look at some of the blog articles from 
+<Navigable 
+  content={"Josh Comeau’s website"}
+  href={"https://www.joshwcomeau.com/"}
+  external={true}
+  row={3}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>. His articles have a ton of interactive stuff that you can play around with. I hope to add similar stuff to this blog in the future!
+</p>
+
+The possibilities are pretty exciting! For now though, the main benefit I'm getting is just how much easier it is to write blog posts. No more wrestling with JSX syntax for simple paragraphs and links.
+
+Another thing worth mentioning is that MDX supports custom components for standard Markdown elements. For example, you can make all your links automatically open in a new tab, or style all your code blocks consistently. This is done by providing a components map to the MDX provider:
+
+```jsx
+const components = {
+  a: (props) => <a {...props} target="_blank" rel="noopener noreferrer" />,
+  pre: (props) => <CodeBlock {...props} />,
+};
+```
+
+This way, you write standard Markdown, but it renders with your custom components!
+
+One thing I had to adjust to was escaping curly braces. In regular Markdown, you can write `{` and `}` freely, but in MDX, these are treated as JavaScript expressions. So if you need literal curly braces in your content, you have to escape them: `\{` and `\}`.
+
+Also, if you want to use HTML tags in your MDX, they need to be valid JSX. So `<br>` needs to become `<br />`, and attributes like `class` need to become `className`. It's a small adjustment if you're used to writing HTML.
+
+I will say though, setting up MDX took a bit of configuration. You need to set up the MDX loader/plugin for your build tool, configure any rehype or remark plugins you want to use (for things like syntax highlighting or auto-linking headings), and wire up the components. But once it's set up, writing content becomes _so_ much smoother.
+
+<p>
+The 
+<Navigable 
+  content={"MDX documentation"}
+  href={"https://mdxjs.com/docs/"}
+  external={true}
+  row={4}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> is excellent if you want to learn more. It covers everything from basic syntax to advanced use cases.
+</p>
+
+Overall, I'm really happy with the switch to MDX. Articles are a lot simpler to write, and I have a clear path forward for adding interactive components when I'm ready. If you're building a content-heavy site with React, I'd definitely recommend giving MDX a try!

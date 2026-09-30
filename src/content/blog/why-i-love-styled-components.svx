@@ -1,0 +1,275 @@
+---
+title: "Why I Love styled-components"
+description: "A blog article on explaining why styled-components are great, despite its adoption within the community decreasing."
+pubDate: "Mar 01, 2026"
+---
+
+<script lang="ts">
+import { global as G } from "$lib/stores/global.svelte";
+import Navigable from "$lib/components/navigable.svelte";
+
+const rowMap: Record<number, number> = {
+	0: 4,
+	1: 0,
+	2: 0,
+	3: 0,
+	4: 0,
+};
+
+G.activeRow = 1;
+G.maxRow = Object.keys(rowMap).length - 1;
+G.indexMap = {};
+
+$effect(() => {
+	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
+});
+</script>
+
+> CSS for the &lt;Component> Age. Styling your way with speed, strong typing, and flexibility.
+
+<p>
+For the past couple months, I've learned a few ways of styling my apps. Namely: Good ol' plain CSS, CSS Modules, and Tailwind. Recently though, I've picked up 
+<Navigable 
+  content={"styled-components"}
+  href={"https://styled-components.com/"}
+  external={true}
+  row={1}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>. And out of the four that I know so far, styled-components is my go-to. I've been loving it so much, I even migrated an entire project from Tailwind to styled-components!
+</p>
+
+Alright, so why do I love styled-components?
+
+The main reason I prefer it over the others, is because of how it forces you to give your elements a descriptive name. For instance, look at this simple `Footer` component:
+
+```js
+// tailwind variant
+export default function Footer() {
+  return (
+    <footer className="some utility classes here...">
+      A footer made by
+      <a className="some utility classes here..." href="/to-wherever">
+        @arvingarciabtw
+      </a>
+    </footer>
+  );
+}
+
+// styled-components variant
+export default function Footer() {
+  return (
+    <FooterWrapper>
+      A footer made by
+      <Author>
+        @arvingarciabtw
+      </Author>
+    </FooterWrapper>
+  );
+}
+
+const FooterWrapper = styled.footer`
+ // css goes here ...
+`
+const Author = styled.a`
+ // css goes here ...
+`
+```
+
+With the styled-components variant, I can immediately understand the structure of this component, because of its semantics. The difference isn't that noticeable for a small component like this, but let's look at another component, that's slightly more complex than the one above:
+
+```js
+export default function Card({ front, back }: { front: string; back: string }) {
+  const [isFlipped, setIsFlipped] = React.useState(true);
+
+  return (
+    <OuterCardWrapper
+      transition={{ duration: 0.5 }}
+      animate={{ rotateX: isFlipped ? 0 : 180 }}
+      onClick={() => setIsFlipped((prev) => !prev)}
+    >
+      <InnerCardWrapper
+        transition={{ duration: 0.5 }}
+        animate={{ rotateX: isFlipped ? 0 : 180 }}
+      >
+        <FrontContentWrapper
+          transition={{ duration: 0.5 }}
+          animate={{ rotateX: isFlipped ? 0 : 180 }}
+        >
+          <Prose>
+            <Markdown rehypePlugins={[rehypeHighlight]}>{front}</Markdown>
+          </Prose>
+        </FrontContentWrapper>
+        <BackContentWrapper
+          initial={{ rotateX: 180 }}
+          transition={{ duration: 0.5 }}
+          animate={{ rotateX: isFlipped ? 180 : 0 }}
+        >
+          <Prose>
+            <Markdown rehypePlugins={[rehypeHighlight]}>{back}</Markdown>
+          </Prose>
+        </BackContentWrapper>
+      </InnerCardWrapper>
+    </OuterCardWrapper>
+  );
+}
+```
+
+This is a flippable `Card` component that I use in my spaced repetition app. From a glance, I immediately get a feel for the component's structure. Take a look at the Tailwind variant of this component though, before I migrated to styled-components:
+
+```js
+export default function Card({ front, back }: { front: string; back: string }) {
+  const [isFlipped, setIsFlipped] = useState(true);
+
+  function handleClick() {
+    setIsFlipped((prev) => !prev);
+  }
+
+  return (
+    <motion.div
+      className="relative flex h-full min-h-50 w-full max-w-104 flex-1 cursor-pointer flex-col overflow-y-auto rounded-lg bg-(--color-gray-light) p-4 sm:flex-1 dark:bg-(--color-gray-800)"
+      transition={{ duration: 0.5 }}
+      animate={{ rotateX: isFlipped ? 0 : 180 }}
+      onClick={handleClick}
+    >
+      <motion.div
+        className="relative flex-1"
+        transition={{ duration: 0.5 }}
+        animate={{ rotateX: isFlipped ? 0 : 180 }}
+      >
+        <motion.div
+          className="absolute top-0 left-0 grid h-full w-full place-items-center overflow-y-auto p-2 text-center backface-hidden"
+          transition={{ duration: 0.5 }}
+          animate={{ rotateX: isFlipped ? 0 : 180 }}
+        >
+          <div className="prose w-full prose-p:m-0 prose-p:text-(--color-gray-600) dark:prose-p:text-(--color-gray-300) prose-code:rounded-md prose-code:bg-(--color-gray-100) prose-code:px-1.5 prose-code:py-0.5 prose-code:font-normal prose-code:text-(--color-gray-800) prose-code:before:content-none prose-code:after:content-none dark:prose-code:bg-(--color-gray-750) dark:prose-code:text-(--color-gray-100) prose-pre:mx-0 prose-pre:my-4 prose-pre:min-w-full prose-pre:bg-(--color-white) prose-pre:px-4 prose-pre:text-left dark:prose-pre:bg-(--color-black) [&_pre_code]:bg-(--color-white) [&_pre_code]:p-0 [&_pre_code]:text-(--color-gray-800) dark:[&_pre_code]:bg-(--color-black) dark:[&_pre_code]:text-(--color-gray-300)">
+            <Markdown rehypePlugins={[rehypeHighlight]}>{front}</Markdown>
+          </div>
+        </motion.div>
+        <motion.div
+          className="absolute top-0 left-0 grid h-full w-full place-items-center overflow-y-auto p-2 text-center backface-hidden"
+          initial={{ rotateX: 180 }}
+          transition={{ duration: 0.5 }}
+          animate={{ rotateX: isFlipped ? 180 : 0 }}
+        >
+          <div className="prose w-full prose-p:m-0 prose-p:text-(--color-gray-600) dark:prose-p:text-(--color-gray-300) prose-code:rounded-md prose-code:bg-(--color-gray-100) prose-code:px-1.5 prose-code:py-0.5 prose-code:font-normal prose-code:text-(--color-gray-800) prose-code:before:content-none prose-code:after:content-none dark:prose-code:bg-(--color-gray-750) dark:prose-code:text-(--color-gray-100) prose-pre:mx-0 prose-pre:my-4 prose-pre:min-w-full prose-pre:bg-(--color-white) prose-pre:px-4 prose-pre:text-left dark:prose-pre:bg-(--color-black) [&_pre_code]:bg-(--color-white) [&_pre_code]:p-0 [&_pre_code]:text-(--color-gray-800) dark:[&_pre_code]:bg-(--color-black) dark:[&_pre_code]:text-(--color-gray-300)">
+            <Markdown rehypePlugins={[rehypeHighlight]}>{back}</Markdown>
+          </div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
+  );
+}
+```
+
+To me, this isn't as readable as I'd like.
+
+If you don't like having to define your styles inside of the component, you can isolate the styles into its own file. This is a pattern that I've been following, which makes sense considering that a component is really just a combination of markup, styles, and interactivity. So, your `Footer` component could look like this:
+
+```bash
+Footer/
+├── Footer.tsx
+├── Footer.style.ts
+├── Footer.types.ts
+├── Footer.constants.ts
+└── Footer.helpers.ts
+# ...
+```
+
+The `Footer.style.ts` will simply hold the styles, you export them like so:
+
+```js
+import styled from "styled-components";
+
+const FooterWrapper = styled.footer`
+  padding: var(--space-lg);
+  margin: auto;
+  color: var(--color-gray-700);
+
+  html.dark & {
+    color: var(--color-gray-300);
+  }
+`;
+
+const FooterContent = styled.p``;
+
+const Developer = styled.a`
+  text-decoration: underline;
+  color: var(--color-fg);
+
+  &:hover {
+    text-decoration: none;
+  }
+`;
+
+export { FooterWrapper, FooterContent, Developer };
+```
+
+And then the actual `Footer` component can simply import and use them as you'd expect:
+
+```js
+import {
+  FooterWrapper,
+  FooterContent,
+  Developer,
+} from "@/components/Footer/Footer.style";
+
+export default function Footer() {
+  return (
+    <FooterWrapper>
+      <FooterContent>
+        Made by{" "}
+        <Developer
+          href="https://github.com/arvingarciabtw"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          @arvingarciabtw
+        </Developer>
+      </FooterContent>
+    </FooterWrapper>
+  );
+}
+```
+
+The lack of syntax highlighting might bother you. Thankfully, there are plugins and extensions out there that you can install to implement syntax highlighting. Of course, this will depend on the text editor that you use.
+
+From what I've read online though, it seems that most developers have been moving away from CSS-in-JS approaches like styled-components. It's unfortunate, but I'll still keep using it going forward. At its core, its really just CSS. Core CSS skills are still transferable, so it's not much of a problem, should I ever need to make a switch.
+
+<p>
+To clear up some misconceptions: it seems that a number of developers think that styled-components is not maintained anymore. The primary maintainer has clarified that this is 
+<Navigable 
+  content={"not the case"}
+  href={"https://github.com/orgs/styled-components/discussions/5657"}
+  external={true}
+  row={2}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>. Also, in the past, styled-components did not support React Server Components, but now 
+<Navigable 
+  content={"it does"}
+  href={"https://styled-components.com/docs/advanced#react-server-components"}
+  external={true}
+  row={3}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>!
+</p>
+
+<p>
+I've yet to try alternatives, that are supposedly much more performant, like 
+<Navigable 
+  content={"Linaria"}
+  href={"https://github.com/callstack/linaria"}
+  external={true}
+  row={4}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>. Linaria processes styles during build time, whereas styled-components injects styles at runtime, increasing the bundle size to 11kB gzipped. For now though, I'll stick with styled-components due to its wide adoption compared to its other counterparts.
+</p>
+
+Hopefully you saw some positives with styled-components!

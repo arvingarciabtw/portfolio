@@ -1,0 +1,167 @@
+---
+title: "Express.js: Building Web Servers"
+description: "A blog article explaining the fundamentals of Express.js."
+pubDate: "Nov 09 2025"
+---
+
+<script lang="ts">
+import { global as G } from "$lib/stores/global.svelte";
+import Navigable from "$lib/components/navigable.svelte";
+
+const rowMap: Record<number, number> = {
+	0: 4,
+	1: 0,
+	2: 0,
+	3: 0,
+	4: 0,
+};
+
+G.activeRow = 1;
+G.maxRow = Object.keys(rowMap).length - 1;
+G.indexMap = {};
+
+$effect(() => {
+	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
+});
+</script>
+
+<p>
+I'm continuing with the 
+<Navigable 
+  content={"Node.js course"}
+  href={"https://www.theodinproject.com/paths/full-stack-javascript/courses/nodejs"}
+  external={true}
+  row={1}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> from The Odin Project curriculum. Last week, I talked about what Node.js is and how its asynchronous, event-driven nature works. This week, I'm diving into Express.js, which is a web framework for Node.js that makes building web servers so much easier.
+</p>
+
+<p>
+From the 
+<Navigable 
+  content={"Express.js documentation"}
+  href={"https://expressjs.com/"}
+  external={true}
+  row={2}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>:
+</p>
+
+> "Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications."
+
+Essentially, Express.js is a framework that sits on top of Node.js and gives us a clean, simple way to handle HTTP requests and responses. While you could build a web server using just Node.js's built-in `http` module, Express makes it significantly more straightforward and gives us a lot of useful features out of the box.
+
+Let's talk about why Express is so popular. For one, it simplifies routing. Without Express, handling different routes and HTTP methods with plain Node.js can get messy pretty quickly. Express gives us a clean API to handle routes. It also has middleware support, which I'll get into later. Plus, it's unopinionated, meaning it doesn't force you into a specific way of structuring your application.
+
+To get started with Express, you first need to install it. In your project directory, run:
+
+```bash
+npm install express
+```
+
+Then you can create a basic server like this:
+
+```js
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Hello, World!");
+});
+
+app.listen(3000, () => {
+  console.log("Server is running on port 3000");
+});
+```
+
+That's it! Just run `node app.js` (or whatever you named your file), and you have a web server running on port 3000. Pretty straightforward, right?
+
+Now, let's break down what's happening here. We're importing Express and creating an application instance with `express()`. Then, we're defining a route using `app.get()`. The first argument is the path (`/` in this case, which is the root), and the second argument is a callback function that gets executed when someone visits that route.
+
+The callback function has two parameters: `req` (request) and `res` (response). The `req` object contains information about the incoming HTTP request, while the `res` object is used to send a response back to the client. In this example, we're just sending back the text "Hello, World!" with `res.send()`.
+
+Express supports all the standard HTTP methods. Apart from `app.get()`, you can also use `app.post()`, `app.put()`, `app.delete()`, and so on. Here's a simple example:
+
+```js
+app.post("/submit", (req, res) => {
+  res.send("Form submitted!");
+});
+```
+
+One of the most powerful features of Express is middleware. Put simply, middleware are functions that have access to the request and response objects, and they can execute code, modify these objects, end the request-response cycle, or call the next middleware in the stack.
+
+Middleware functions are executed sequentially, and each middleware can either end the request or pass control to the next middleware using `next()`. Here's an example:
+
+```js
+app.use((req, res, next) => {
+  console.log(`${req.method} request to ${req.url}`);
+  next();
+});
+
+app.get("/", (req, res) => {
+  res.send("Hello, World!");
+});
+```
+
+In this example, every time a request comes in, our middleware logs the HTTP method and URL, then calls `next()` to pass control to the next handler. This middleware will run before any of our route handlers.
+
+Express also has built-in middleware for common tasks. For example, to parse JSON data from POST requests, you can use:
+
+```js
+app.use(express.json());
+
+app.post("/api/data", (req, res) => {
+  console.log(req.body); // this will contain the parsed JSON
+  res.json({ message: "Data received!" });
+});
+```
+
+Route parameters are another useful feature in Express. Sometimes, you want dynamic segments in your URLs. For example, if you're building a blog and want to access different articles by their ID, you can do this:
+
+```js
+app.get("/article/:id", (req, res) => {
+  const articleId = req.params.id;
+  res.send(`You requested article ${articleId}`);
+});
+```
+
+<p>
+The <code>:id</code> syntax creates a route parameter, and you can access its value through <code>req.params.id</code>. This is similar to how dynamic routing works in React Router, which I talked about in a 
+<Navigable 
+  content={"previous article"}
+  href={"https://blog.arvingarcia.com/client-side-routing-with-react-router"}
+  external={true}
+  row={3}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>!
+</p>
+
+Error handling in Express is also quite straightforward. You can create error-handling middleware by defining a function with four parameters instead of three:
+
+```js
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Something went wrong!");
+});
+```
+
+This middleware should be defined after all your other routes and middleware. When an error occurs, Express will automatically skip to this error handler.
+
+<p>
+That's about it for this week! Express.js makes building web servers so much more approachable than working with raw Node.js. Next week, I'll go over authentication with 
+<Navigable 
+  content={"Passport.js"}
+  href={"https://www.passportjs.org/"}
+  external={true}
+  row={4}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>!
+</p>

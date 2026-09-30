@@ -1,0 +1,180 @@
+---
+title: "Intermediate HTML and CSS"
+description: "A blog article explaining intermediate HTML and CSS concepts covered in The Odin project."
+pubDate: "Aug 17 2025"
+---
+
+<script lang="ts">
+import { global as G } from "$lib/stores/global.svelte";
+import Navigable from "$lib/components/navigable.svelte";
+
+const rowMap: Record<number, number> = {
+	0: 4,
+	1: 0,
+	2: 0,
+	3: 0,
+	4: 0,
+	5: 0,
+	6: 0,
+	7: 0,
+	8: 0,
+	9: 0,
+	10: 0,
+	11: 0,
+	12: 0,
+};
+
+G.activeRow = 1;
+G.maxRow = Object.keys(rowMap).length - 1;
+G.indexMap = {};
+
+$effect(() => {
+	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
+});
+</script>
+
+Last week, I learned about the foundations of web development. This week, I explored some intermediate HTML and CSS concepts, as well as a touch of JavaScript.
+
+<p>
+I completed the 
+<Navigable 
+  content={"Intermediate HTML and CSS course"}
+  href={"https://www.theodinproject.com/paths/full-stack-javascript/courses/intermediate-html-and-css"}
+  external={true}
+  row={1}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> from The Odin Project curriculum, and also made some small progress in the JavaScript course. The course primarily covered intermediate HTML and CSS concepts, forms, and the CSS grid layout.
+</p>
+
+<p>
+The intermediate HTML concepts discussed were simple enough. There is a lesson each for Emmet, SVGs, and tables. 
+<Navigable 
+  content={"Emmet"}
+  href={"https://docs.emmet.io/"}
+  external={true}
+  row={2}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> is basically a tool that allows you to write HTML a lot quicker by using syntax from CSS selectors. Perhaps the most useful (and arguably most used) Emmet feature is typing <code>!</code> and pressing <code>Enter</code>, which automatically generates HTML boilerplate for you. However, I do also add another <code>meta</code> tag with <code>name="description"</code> to add a description for my websites.
+</p>
+
+<p>
+I would absolutely love to use SVGs (animated SVGs in particular) more in the future, but I think I'm too early in my learning journey to be going down that rabbit hole. Here's an 
+<Navigable 
+  content={"article"}
+  href={"https://www.joshwcomeau.com/svg/friendly-introduction-to-svg/"}
+  external={true}
+  row={3}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> by Josh Comeau that gives an introduction on SVGs, and the cool things he's done with them!
+</p>
+
+<p>
+As for the intermediate CSS concepts, a ton was covered. Pretty much everything mentioned there was very useful. CSS units (<code>rem</code> is great!), resets (I use 
+<Navigable 
+  content={"this"}
+  href={"https://www.joshwcomeau.com/css/custom-css-reset/"}
+  external={true}
+  row={4}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> one), text styles, additional properties not discussed from the Foundations course, advanced selectors, positioning (which I used to struggle with before), functions, custom properties, frameworks, and preprocessors. That's a lot!
+</p>
+
+The concepts I've applied the most in my projects are using proper units, selectors, and custom properties. I now use `rem` instead of `px` for font sizes, margins, and paddings. Although, `px` still has its place for setting widths and heights on elements. Selectors like `>` I use a lot more in my CSS now. As for custom properties, I use them for setting the color scheme of my project (e.g. `--c-red: #ff0000;`).
+
+<p>
+And while we're on the topic of units, this 
+<Navigable 
+  content={"video"}
+  href={"https://www.youtube.com/watch?v=_-aDOAMmDHI"}
+  external={true}
+  row={5}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> by Kevin Powell on <code>rem</code> vs <code>em</code> is quite eye-opening. It is because of this video that I use <code>em</code> for buttons!
+</p>
+
+<p>
+Now, let's talk about forms. On the surface, you'd think forms would be quite simple, but there is _so much_ to read up on about forms. In MDN's 
+<Navigable 
+  content={"documentation on web forms"}
+  href={"https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms#introductory_guides"}
+  external={true}
+  row={6}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>, there was so much information to unpack. And that's not even including 
+<Navigable 
+  content={"client-side form validation"}
+  href={"https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation"}
+  external={true}
+  row={7}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>! While I didn't expect forms to be quite a hefty chapter, it certainly taught me so much more than I knew before.
+</p>
+
+<p>
+After the forms chapter, I am now introduced to a new CSS layout: 
+<Navigable 
+  content={"grid"}
+  href={"https://css-tricks.com/snippets/css/complete-guide-grid/#aa-introduction-to-css-grid"}
+  external={true}
+  row={8}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>. While I still personally find the flexbox layout a bit more intuitive, I still understood the grid layout quite well and was able to accomplish the admin dashboard project without much trouble. I can definitely see its use for layouts like these. I am quite interested to know though how grid can be used once mobile responsiveness is considered. If you want to see the two projects I've made throughout this course, you may refer to this 
+<Navigable 
+  content={"GitHub"}
+  href={"https://github.com/arvingarciabtw/the-odin-project/tree/main/full-stack-javascript/fsj-01-intermediate-html-and-css"}
+  external={true}
+  row={9}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> link.
+</p>
+
+<p>
+That's pretty much it for that course. I've already started the 
+<Navigable 
+  content={"JavaScript course"}
+  href={"https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript"}
+  external={true}
+  row={10}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>, but I don't want to go into the technical details of it just yet since this blog article is mainly for the stuff I learned from the intermediate HTML and CSS course. I've completed two projects in the JavaScript course so far, 
+<Navigable 
+  content={"library"}
+  href={"https://github.com/arvingarciabtw/the-odin-project/tree/main/full-stack-javascript/fsj-02-javascript/08-library"}
+  external={true}
+  row={11}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> and 
+<Navigable 
+  content={"tic-tac-toe"}
+  href={"https://github.com/arvingarciabtw/the-odin-project/tree/main/full-stack-javascript/fsj-02-javascript/09-tic-tac-toe"}
+  external={true}
+  row={12}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>.
+</p>
+
+Overall, a week filled with a lot of learning. Next week will be all JavaScript!

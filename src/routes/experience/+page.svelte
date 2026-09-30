@@ -56,7 +56,7 @@ $effect(() => {
 .experiences-wrapper {
 	padding: 0 1.25rem;
 	width: 100%;
-	max-width: 90rem;
+	max-width: 78rem;
 	display: flex;
 	flex-direction: column;
 	gap: 4rem;
@@ -73,6 +73,7 @@ $effect(() => {
 	gap: 0.25rem;
 }
 .name {
+	width: max-content;
 	margin-left: -0.25rem;
 	display: grid;
 	grid-template-columns: 1fr;

@@ -1,0 +1,160 @@
+---
+title: "Contribute to Open-Source Civic Tech"
+description: "Talking about why people should contribute to open-source civic tech."
+pubDate: "Aug 02, 2026"
+---
+
+<script lang="ts">
+import { global as G } from "$lib/stores/global.svelte";
+import Navigable from "$lib/components/navigable.svelte";
+
+const rowMap: Record<number, number> = {
+	0: 4,
+	1: 0,
+	2: 0,
+	3: 0,
+	4: 0,
+	5: 0,
+	6: 0,
+	7: 0,
+	8: 0,
+	9: 0,
+	10: 0,
+	11: 0,
+};
+
+G.activeRow = 1;
+G.maxRow = Object.keys(rowMap).length - 1;
+G.indexMap = {};
+
+$effect(() => {
+	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
+});
+</script>
+
+You should contribute to open-source civic tech.
+
+<p>
+I say this because I've been recently getting into contributing to 
+<Navigable 
+  content={"bettergov.ph"}
+  href={"https://github.com/bettergovph"}
+  external={true}
+  row={1}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>, the most active open-source initiative that creates civic tech projects for the Filipino people. Right now, I'm working on automating their bi-monthly link checks via a GitHub 
+<Navigable 
+  content={"lychee"}
+  href={"https://github.com/lycheeverse/lychee-action"}
+  external={true}
+  row={2}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> action, and maintaining my own localized LGU platform called 
+<Navigable 
+  content={"bettercalapan.org"}
+  href={"https://bettercalapan.org/"}
+  external={true}
+  row={3}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>.
+</p>
+
+Regardless of where you are in the world, I'm sure most of us feel that the government can do a better job. That betterment can involve a lot of things, but as developers, we do have the capacity to make a meaningful change ourselves. And that's by contributing to open-source civic tech. It's really fulfilling as well, since what you do is going into something actually helpful and transparent.
+
+<p>
+If you're from the Philippines, I recommend you strongly consider helping out at 
+<Navigable 
+  content={"bettergov.ph"}
+  href={"https://github.com/bettergovph"}
+  external={true}
+  row={4}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>. If you're from anywhere else, then I urge you to go find initiatives that help out your fellow countrymen, I'm sure there's a couple out there in your country!
+</p>
+
+<p>
+Like I mentioned before, I'm currently developing and maintaining 
+<Navigable 
+  content={"bettercalapan.org"}
+  href={"https://bettercalapan.org/"}
+  external={true}
+  row={5}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>, a local LGU platform. It's a subset of one of BetterGov's projects, 
+<Navigable 
+  content={"lgu.bettergov.ph"}
+  href={"https://lgu.bettergov.ph/"}
+  external={true}
+  row={6}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>. What's different about it though is that I'm deviating it from the provided templates and making my own layout and design for it.
+</p>
+
+<p>
+For an informational government site, I'd say the most important things to consider are: UX, accessibility, and performance. 
+<Navigable 
+  content={"GOV.uk"}
+  href={"https://www.gov.uk/"}
+  external={true}
+  row={7}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> is the gold standard for this, so much so that they've even won an 
+<Navigable 
+  content={"award"}
+  href={"https://www.uxmatters.com/mt/archives/2016/01/how-focusing-on-user-experience-helped-govuk-win-design-of-the-year.php"}
+  external={true}
+  row={8}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> for how well thought out the UX and accessibility is. As such, I plan on modeling my site around their design principles, while keeping it as performant as possible.
+</p>
+
+<p>
+To automate performance checks on each page, I'm planning on using 
+<Navigable 
+  content={"Unlighthouse"}
+  href={"https://github.com/harlan-zw/unlighthouse"}
+  external={true}
+  row={9}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>, it essentially just runs Google Lighthouse on all of your pages. Lighthouse serves as a good baseline for checking your site's performance and accessibility. Since it 
+<Navigable 
+  content={"simulates"}
+  href={"https://github.com/GoogleChrome/lighthouse/blob/main/docs/throttling.md"}
+  external={true}
+  row={10}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> a slower mobile network by default, consistently scoring well gives me confidence that users on slower connections will still have a good experience.
+</p>
+
+<p>
+As for accessibility, I've still not yet found a free open-source tool that automates WAI-ARIA checks for each page, but I do plan on ensuring that all the pages of my site will conform to 
+<Navigable 
+  content={"WCAG"}
+  href={"https://www.w3.org/WAI/standards-guidelines/wcag/"}
+  external={true}
+  row={11}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>!
+</p>

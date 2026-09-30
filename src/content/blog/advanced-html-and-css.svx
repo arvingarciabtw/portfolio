@@ -1,0 +1,124 @@
+---
+title: "Advanced HTML and CSS"
+description: "A blog article going through advanced HTML and CSS concepts covered in The Odin Project."
+pubDate: "Sep 07 2025"
+---
+
+<script lang="ts">
+import { global as G } from "$lib/stores/global.svelte";
+import Navigable from "$lib/components/navigable.svelte";
+
+const rowMap: Record<number, number> = {
+	0: 4,
+	1: 0,
+	2: 0,
+	3: 0,
+	4: 0,
+	5: 0,
+	6: 0,
+	7: 0,
+};
+
+G.activeRow = 1;
+G.maxRow = Object.keys(rowMap).length - 1;
+G.indexMap = {};
+
+$effect(() => {
+	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
+});
+</script>
+
+<p>
+For this week, I've finished the 
+<Navigable 
+  content={"Advanced HTML and CSS course"}
+  href={"https://www.theodinproject.com/paths/full-stack-javascript/courses/advanced-html-and-css"}
+  external={true}
+  row={1}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> from The Odin Project curriculum. Primarily, three concepts were covered: animations, accessibility, and responsive design.
+</p>
+
+The animations chapter taught transforms, transitions, and keyframes. Funnily enough though, the most interesting thing I personally learned while doing this chapter is the _pixel pipeline_.
+
+<p>
+Simply put, the pixel pipeline is a process used by web browsers to convert HTML, CSS, and JavaScript into visual elements shown on the screen. This 
+<Navigable 
+  content={"article"}
+  href={"https://web.dev/articles/rendering-performance"}
+  external={true}
+  row={2}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> mentions the five areas of this pipeline: JavaScript, style, layout, paint, and composite.
+</p>
+
+<p>
+Also, this 
+<Navigable 
+  content={"resource"}
+  href={"https://csstriggers.com/"}
+  external={true}
+  row={3}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> is quite useful to see how an animatable CSS property may affect others. It's good to see which properties are performant.
+</p>
+
+<p>
+As for the accessibility chapter, concepts discussed were semantic HTML, accessible colors, keyboard navigation, ARIA, and auditing tools. I find this 
+<Navigable 
+  content={"video from W3"}
+  href={"https://www.youtube.com/watch?v=3f31oufqFSM"}
+  external={true}
+  row={4}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> to be a good and quick refresher on web accessibility.
+</p>
+
+<p>
+For this chapter, the 
+<Navigable 
+  content={"auditing tools lesson"}
+  href={"https://www.theodinproject.com/lessons/node-path-advanced-html-and-css-accessibility-auditing"}
+  external={true}
+  row={5}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> was definitely the one that I've benefitted from the most so far. It talks about some auditing tools that can be used, like 
+<Navigable 
+  content={"Lighthouse for Chrome"}
+  href={"https://developer.chrome.com/docs/lighthouse/overview/"}
+  external={true}
+  row={6}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>. In fact, I was able to diagnose some issues with this blog site because of it, and now this site has 100 on all metrics!
+</p>
+
+And now lastly, responsive design! Throughout my learning journey with the curriculum so far, it was slightly bothering me that my projects were not responsive. But, since responsiveness was not mentioned in prior lessons, I did not fret too much about it.
+
+<p>
+Going through the responsive design chapter wasn't too bad. I found using media queries to be quite intuitive, and was able to accomplish the homepage project without much trouble. I even made my 
+<Navigable 
+  content={"project"}
+  href={"https://homepage-silksong.vercel.app/"}
+  external={true}
+  row={7}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> Silksong-themed, which I found appropriate since Silksong was released a few days ago (and yes, I've been playing way too much the past few days...).
+</p>
+
+That's about it. This one's a very short read, since I just wanted to briefly cover the stuff I found most interesting or useful.
+
+I'm currently doing the React course, so I'll be talking about that next week!

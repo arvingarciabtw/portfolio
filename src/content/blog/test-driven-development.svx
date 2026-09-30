@@ -1,0 +1,181 @@
+---
+title: "Test Driven Development"
+description: "A blog article explaining the basics of test driven development."
+pubDate: "Aug 31 2025"
+---
+
+<script lang="ts">
+import { global as G } from "$lib/stores/global.svelte";
+import Navigable from "$lib/components/navigable.svelte";
+
+const rowMap: Record<number, number> = {
+	0: 4,
+	1: 0,
+	2: 0,
+	3: 0,
+	4: 0,
+	5: 0,
+	6: 0,
+	7: 0,
+	8: 0,
+	9: 0,
+	10: 0,
+};
+
+G.activeRow = 1;
+G.maxRow = Object.keys(rowMap).length - 1;
+G.indexMap = {};
+
+$effect(() => {
+	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
+});
+</script>
+
+<p>
+I finished the 
+<Navigable 
+  content={"JavaScript course"}
+  href={"https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript"}
+  external={true}
+  row={1}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> from The Odin Project!
+</p>
+
+<p>
+This week, I went through some lessons covering computer science concepts (e.g. complexity, data structures, algorithms), intermediate Git, and test driven development with 
+<Navigable 
+  content={"Jest"}
+  href={"https://jestjs.io/"}
+  external={true}
+  row={2}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> as the testing framework.
+</p>
+
+Up to this point I've been writing a lot of code, but of course it's also important to measure its efficiency. There's two ways to measure code efficiency: time complexity and space complexity. Essentially, time complexity is the amount of _time_ an algorithm takes to complete while space complexity is the amount of memory (perhaps _space_ is easier to remember) an algorithm uses during its execution.
+
+<p>
+I won't go into detail regarding the notations, but this 
+<Navigable 
+  content={"Big-O cheat sheet"}
+  href={"https://www.bigocheatsheet.com/"}
+  external={true}
+  row={3}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> is pretty useful.
+</p>
+
+<p>
+I also won't go into detail regarding data structures and algorithms, but it is quite useful to know what data structure to use in certain situations. The CS chapter of the course was quite hefty, though if you'd like to see how I built certain data structures with JavaScript, you can view some of the 
+<Navigable 
+  content={"projects"}
+  href={"https://github.com/arvingarciabtw/the-odin-project/tree/main/full-stack-javascript/fsj-02-javascript"}
+  external={true}
+  row={4}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> here.
+</p>
+
+Now, let's talk about Git commands. The basics were already taught early on in the curriculum, but Git was revisited and some other commands are introduced.
+
+Apart from the typical `git commit`, you can also do `git commit --amend`. This replaces our last commit with our new commit. It is important to remember though to _only_ amend commits that have _not_ been pushed anywhere.
+
+The command `git rebase` integrates changes from one branch to another by moving commits to the latest point of the target branch. On the other hand, `squash` combines multiple commits into one. Then, we have `git reset` that moves your current branch to a different commit.
+
+Though I have to admit, I haven't used these commands in the projects that I've done. The trifecta of `add`, `commit`, and `push` has served me well for my projects so far. But if I ever do goof up something, I can always refer to those other commands I've mentioned.
+
+<p>
+This 
+<Navigable 
+  content={"lesson"}
+  href={"https://www.theodinproject.com/lessons/javascript-using-git-in-the-real-world"}
+  external={true}
+  row={5}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> explores how to use Git in the real world. It essentially goes over the workflow of how you would use Git to collaborate with people, say for example contributing to The Odin Project. Put simply, this is what you'd do: fork the repository, clone that forked repository, make some changes, push, and open a pull request. I glossed over some details, but that's mainly how it goes.
+</p>
+
+<p>
+In fact, so far in my journey, I've actually contributed to 
+<Navigable 
+  content={"MDN"}
+  href={"https://github.com/mdn/content/commits?author=arvingarciabtw&since=2025-07-31&until=2025-08-31"}
+  external={true}
+  row={6}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> and 
+<Navigable 
+  content={"The Odin Project"}
+  href={"https://github.com/TheOdinProject/curriculum/commits?author=arvingarciabtw&since=2025-07-31&until=2025-08-31"}
+  external={true}
+  row={7}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>! Although these are minor fixes, it's nice to know that I was able to contribute to resources that I actually use and benefit from, even if the contributions were quite menial.
+</p>
+
+<p>
+Test driven development (TDD) was given great importance in its chapter. The idea behind it is that you first write the tests, and then you write the code that is being tested. This 
+<Navigable 
+  content={"article"}
+  href={"https://jrsinclair.com/articles/2016/one-weird-trick-that-will-change-the-way-you-code-forever-javascript-tdd/"}
+  external={true}
+  row={8}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> by James Sinclair is a wonderful article that explains the value of doing TDD. A quote from the article:
+</p>
+
+> Test Driven Development is not about testing. It is a way of thinking and coding that just-so-happens to involve tests.
+
+The article also mentions two simple rules in TDD that imply three simple steps, taken from a book by Kent Beck named Test-Driven Development by Example:
+
+1. Write new code only if you first have a failing automated test.
+2. Eliminate duplication.
+
+The three steps:
+
+1. **Red**—write a little test that doesn't work, perhaps doesn't even compile at first
+2. **Green**—make the test work quickly, committing whatever sins necessary in the process
+3. **Refactor**—eliminate all the duplication created in just getting the test to work
+
+<p>
+Doing TDD while doing my 
+<Navigable 
+  content={"battleship"}
+  href={"https://github.com/arvingarciabtw/the-odin-project/tree/main/full-stack-javascript/fsj-02-javascript/19-battleship"}
+  external={true}
+  row={9}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> project was very useful. Following this kind of principle really reinforces you to start small, and it eventually helps you out in the long run. I'm excited to practice TDD more in future projects!
+</p>
+
+<p>
+That's it for this week. I already started the 
+<Navigable 
+  content={"Advanced HTML and CSS"}
+  href={"https://www.theodinproject.com/paths/full-stack-javascript/courses/advanced-html-and-css"}
+  external={true}
+  row={10}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> course, so I'll be going over that next week (and maybe a little bit of React?).
+</p>

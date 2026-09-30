@@ -1,0 +1,112 @@
+---
+title: "Better Auth with Better Auth"
+description: "A blog article on implementing Better Auth for better authentication."
+pubDate: "Feb 01 2026"
+---
+
+<script lang="ts">
+import { global as G } from "$lib/stores/global.svelte";
+import Navigable from "$lib/components/navigable.svelte";
+
+const rowMap: Record<number, number> = {
+	0: 4,
+	1: 0,
+};
+
+G.activeRow = 1;
+G.maxRow = Object.keys(rowMap).length - 1;
+G.indexMap = {};
+
+$effect(() => {
+	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
+});
+</script>
+
+I've recently been learning Next.js by building a spaced repetition app. One of the features that it currently has, is authentication with Google and GitHub. For the authentication, I used Better Auth, and so far I found it much easier to use than NextAuth.
+
+From their official website:
+
+> The most comprehensive authentication framework for TypeScript.
+
+And Better Auth certainly is! It supports many popular frameworks, OAuth providers (like what I used, Google and GitHub), two factor authentication, and it even has a plugin ecosystem. To top it all off, it's super duper easy to use.
+
+<p>
+I'll only cover the simple stuff and what I've used in my own project. Though, here's a link to the 
+<Navigable 
+  content={"documentation"}
+  href={"https://www.better-auth.com/docs/introduction"}
+  external={true}
+  row={1}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> if you're interested.
+</p>
+
+You first just install the package (with whatever package manager you want, in this case I use `pnpm`):
+
+```bash
+pnpm add better-auth
+```
+
+After installing, you add the following environment variables to your `.env` file:
+
+```bash
+BETTER_AUTH_SECRET= # you can use openssl rand -base64 32 to generate
+BETTER_AUTH_URL= # base url of your app
+```
+
+You then need an `auth.ts` file, which will have your auth instance:
+
+```typescript
+import { betterAuth } from "better-auth";
+export const auth = betterAuth({
+  //...
+});
+```
+
+To the file above, you need to configure your database. What you put in there varies based on what database or ORM you use. In my case, I used Prisma. After that, you can just configure whatever authentication methods you want:
+
+```typescript
+import { betterAuth } from "better-auth";
+import { prismaAdapter } from "better-auth/adapters/prisma";
+import prisma from "@/lib/prisma";
+
+export const auth = betterAuth({
+  // Here I am using Prisma with postgresql
+  database: prismaAdapter(prisma, {
+    provider: "postgresql",
+  }),
+  // Since I only want Google and GitHub, I specify them as my social providers
+  socialProviders: {
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    },
+    github: {
+      clientId: process.env.GITHUB_CLIENT_ID as string,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+    },
+  },
+});
+```
+
+After that's done, you then set up a route handler on your server. For Next.js app router, your `route.ts` would look like this:
+
+```typescript
+import { auth } from "@/lib/auth"; // path to auth file
+import { toNextJsHandler } from "better-auth/next-js";
+
+export const { POST, GET } = toNextJsHandler(auth);
+```
+
+Then lastly, create a client instance. For React, it would look like this:
+
+```typescript
+import { createAuthClient } from "better-auth/react";
+export const authClient = createAuthClient({
+  baseURL: process.env.BASE_URL, // environment variable that has your base URL
+});
+```
+
+And that's it. It's that simple! Compared to NextAuth, I had a much easier time setting up auth with Better Auth. And like I mentioned before, you can do so much more with Better Auth. You have the option to implement two factor authentication, and it even has a plugin ecosystem.

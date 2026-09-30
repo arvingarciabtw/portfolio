@@ -1,0 +1,385 @@
+---
+title: "TypeScript: JavaScript with Types"
+description: "A blog article on explaining the fundamentals of TypeScript."
+pubDate: "Nov 30 2025"
+---
+
+<script lang="ts">
+import { global as G } from "$lib/stores/global.svelte";
+import Navigable from "$lib/components/navigable.svelte";
+
+const rowMap: Record<number, number> = {
+	0: 4,
+	1: 0,
+	2: 0,
+	3: 0,
+	4: 0,
+	5: 0,
+	6: 0,
+};
+
+G.activeRow = 1;
+G.maxRow = Object.keys(rowMap).length - 1;
+G.indexMap = {};
+
+$effect(() => {
+	G.maxRowIndex = rowMap[G.activeRow] ?? 0;
+});
+</script>
+
+<p>
+This week, I've been taking some time to learn the basics of 
+<Navigable 
+  content={"TypeScript"}
+  href={"https://www.typescriptlang.org/"}
+  external={true}
+  row={1}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>. I've been hearing about it constantly, and after working with Prisma and seeing how helpful those type warnings were, I figured it was time to actually learn what TypeScript is all about.
+</p>
+
+<p>
+From the 
+<Navigable 
+  content={"TypeScript documentation"}
+  href={"https://www.typescriptlang.org/"}
+  external={true}
+  row={2}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>:
+</p>
+
+> "TypeScript is a strongly typed programming language that builds on JavaScript, giving you better
+> tooling at any scale."
+
+Essentially, TypeScript is JavaScript with types. It adds a type system on top of JavaScript,
+which helps catch errors before you even run your code. The cool thing is that TypeScript
+_compiles_ to JavaScript, so at the end of the day, you're still running JavaScript. Your browser
+or Node.js doesn't know anything about TypeScript!
+
+Now, why would you want to use TypeScript? Well, the main benefit is catching bugs early.
+In JavaScript, you can do something like this:
+
+```javascript
+function add(a, b) {
+  return a + b;
+}
+
+add(5, "10"); // returns '510' instead of 15!
+```
+
+JavaScript happily lets you add a number and a string together, which probably isn't what you
+intended. With TypeScript, you can specify that both parameters should be numbers, and TypeScript
+will warn you if you try to pass in a string.
+
+To get started with TypeScript, you first need to install it. You can do this globally or as a dev
+dependency in your project:
+
+```bash
+npm install -g typescript
+# or
+npm install --save-dev typescript
+```
+
+Once installed, you can compile TypeScript files (which have a `.ts` extension) to JavaScript
+using the `tsc` command. For example, if you have a file called `app.ts`, you can compile it with
+`tsc app.ts`, which will create an `app.js` file.
+
+Now, let's talk about the basics of TypeScript! The fundamental concept is _type annotations_.
+These are simply ways to tell TypeScript what type a variable, parameter, or return value should be.
+
+Here's how you'd rewrite that add function with TypeScript:
+
+```typescript
+function add(a: number, b: number): number {
+  return a + b;
+}
+
+add(5, 10); // works fine!
+add(5, "10"); // TypeScript error!
+```
+
+The `: number` after each parameter tells TypeScript that `a` and `b` should be numbers. The `: number`
+after the closing parenthesis tells TypeScript that the function returns a number.
+
+TypeScript has several basic types. The most common ones are `string`, `number`, `boolean`, `array`,
+and `object`. Here are some examples:
+
+```typescript
+let username: string = "Bob";
+let age: number = 25;
+let isStudent: boolean = true;
+let scores: number[] = [95, 87, 91];
+let user: { name: string; age: number } = { name: "Bob", age: 25 };
+```
+
+For arrays, you can use either `number[]` or `Array<number>`. Both mean the same thing!
+
+One thing that's really useful is _type inference_. TypeScript is actually smart enough to figure
+out types based on the values you assign. So, you don't always need to explicitly write the type:
+
+```typescript
+let username = "Bob"; // TypeScript knows this is a string
+let age = 25; // TypeScript knows this is a number
+
+username = 123; // TypeScript error! Can't assign number to string
+```
+
+Now, what if you have a variable that could be multiple types? That's where _union types_ come in.
+You can use the `|` operator to say "this could be this type OR that type":
+
+```typescript
+let id: string | number;
+
+id = "abc123"; // works!
+id = 456; // also works!
+id = true; // error! can't be a boolean
+```
+
+Another useful concept is _interfaces_. Interfaces let you define the shape of an object. This
+is especially helpful when you're working with complex objects:
+
+```typescript
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  age?: number; // the ? makes this optional
+}
+
+const user1: User = {
+  id: 1,
+  name: "Alice",
+  email: "alice@example.com",
+};
+
+const user2: User = {
+  id: 2,
+  name: "Bob",
+  email: "bob@example.com",
+  age: 30,
+};
+```
+
+The `?` after `age` makes that property optional, so you don't have to include it in every user object.
+
+You can also use interfaces with functions. This is particularly useful when you're passing objects
+as parameters:
+
+```typescript
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+function greetUser(user: User): string {
+  return `Hello, ${user.name}!`;
+}
+
+greetUser({ id: 1, name: "Alice", email: "alice@example.com" });
+```
+
+TypeScript also has _type aliases_, which are similar to interfaces but slightly different. You
+can use the `type` keyword to create a type alias:
+
+```typescript
+type ID = string | number;
+
+let userId: ID = 123;
+let productId: ID = "abc";
+```
+
+In most cases, interfaces and type aliases can be used interchangeably. However, interfaces are
+generally preferred for defining object shapes, while type aliases are better for union types and
+other complex types.
+
+One thing that confused me at first was the `any` type. This is basically an escape hatch that
+tells TypeScript "I don't care what type this is, just let me do whatever I want":
+
+```typescript
+let something: any = "hello";
+something = 123; // fine
+something = true; // also fine
+something.toUpperCase(); // no error, even though booleans don't have toUpperCase
+```
+
+While `any` can be useful when you're migrating JavaScript code to TypeScript, you should
+generally avoid it. It defeats the whole purpose of using TypeScript! If you really need to say
+"this could be anything," consider using `unknown` instead, which is safer.
+
+TypeScript also has _enums_, which are a way to define a set of named constants:
+
+```typescript
+enum Role {
+  Admin,
+  User,
+  Guest,
+}
+
+let userRole: Role = Role.Admin;
+```
+
+By default, enums are number-based (Admin = 0, User = 1, Guest = 2), but you can also make string enums:
+
+```typescript
+enum Role {
+  Admin = "ADMIN",
+  User = "USER",
+  Guest = "GUEST",
+}
+```
+
+Now, let's talk about functions a bit more. You can type function parameters and return values,
+but you can also type the function itself:
+
+```typescript
+// regular function with types
+function multiply(a: number, b: number): number {
+  return a * b;
+}
+
+// arrow function with types
+const divide = (a: number, b: number): number => {
+  return a / b;
+};
+
+// function type
+let calculate: (x: number, y: number) => number;
+
+calculate = multiply; // works!
+calculate = divide; // also works!
+```
+
+One of the most powerful features of TypeScript is _generics_. Generics let you create reusable
+components that work with different types. The syntax can look a bit intimidating at first,
+but the concept is actually quite simple:
+
+```typescript
+function getFirstElement<T>(arr: T[]): T {
+  return arr[0];
+}
+
+const firstNumber = getFirstElement([1, 2, 3]); // TypeScript knows this is a number
+const firstName = getFirstElement(["Alice", "Bob"]); // TypeScript knows this is a string
+```
+
+The `<T>` is a _type parameter_. It's like a placeholder that says "this function works with
+any type, and we'll call that type T." When you call the function, TypeScript figures out what
+T is based on what you pass in.
+
+To be honest, generics took me a while to wrap my head around. But once it clicked, I realized
+how powerful they are for writing flexible, reusable code.
+
+Something else worth mentioning is the `tsconfig.json` file. This is where you configure how
+TypeScript compiles your code. You can generate one with `tsc --init`, and it'll create a file
+with a bunch of options. Here are some of the important ones:
+
+```json
+{
+  "compilerOptions": {
+    "target": "es2016", // what version of JS to compile to
+    "module": "commonjs", // what module system to use
+    "strict": true, // enable all strict type checking
+    "esModuleInterop": true, // better compatibility with ES modules
+    "skipLibCheck": true, // skip type checking of declaration files
+    "forceConsistentCasingInFileNames": true, // ensure consistent file naming
+    "outDir": "./dist" // where to output compiled JS files
+  }
+}
+```
+
+The `strict` option is particularly important. When set to `true`, it enables a bunch of strict
+type checking rules that help catch more errors. The two most important ones are `noImplicitAny`
+and `strictNullChecks`. These are already included in `strict: true`.
+
+`noImplicitAny` prevents TypeScript from automatically falling back to the `any` type when it
+can't figure out what type something should be. Without this flag, TypeScript might silently
+assign `any` to variables, which defeats the whole purpose of using TypeScript. With it enabled,
+you'll get an error and have to explicitly say what type something is.
+
+`strictNullChecks` is also really important. By default, TypeScript lets you assign `null` or
+`undefined` to any type, which can lead to those dreaded "Cannot read property of null" errors.
+When this flag is enabled, you have to explicitly handle `null` and `undefined` cases:
+
+```typescript
+function greet(name: string) {
+  console.log(`Hello, ${name.toUpperCase()}!`);
+}
+
+greet(null); // error with strictNullChecks enabled!
+
+// you'd need to handle it like this:
+function greet(name: string | null) {
+  if (name === null) {
+    console.log("Hello, guest!");
+  } else {
+    console.log(`Hello, ${name.toUpperCase()}!`);
+  }
+}
+```
+
+Both of these flags are enabled when you set `strict: true`, which is why I recommend keeping it on.
+Sure, it might feel like TypeScript is being overly strict at first, but it's really just helping
+you catch bugs before they happen!
+
+I will say though, TypeScript does have a bit of a learning curve. There were moments where I felt
+like I was fighting the type system, especially when working with more complex types. But after
+getting through the initial friction, I can see why so many people prefer TypeScript over plain JavaScript.
+
+<p>
+This 
+<Navigable 
+  content={"TypeScript Handbook"}
+  href={"https://www.typescriptlang.org/docs/handbook/intro.html"}
+  external={true}
+  row={3}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> is an excellent
+resource if you want to dive deeper. It covers everything from the basics to advanced topics.
+</p>
+
+Overall, I'm glad I took the time to learn TypeScript. While it's not strictly necessary for everything,
+I can see how it would be incredibly helpful for larger projects where catching bugs early is crucial.
+
+<p>
+That's about it for this week. To put in more reps with TypeScript, I plan on refactoring this
+blog with it. The code samples could also use some syntax highlighting, and I
+think 
+<Navigable 
+  content={"react-syntax-highlighter"}
+  href={"https://github.com/react-syntax-highlighter/react-syntax-highlighter"}
+  external={true}
+  row={4}
+  idx={0}
+  underlined={true}
+  multi={false}
+/>
+would do great. Also, I've been thinking of using 
+<Navigable 
+  content={"MDX"}
+  href={"https://mdxjs.com/"}
+  external={true}
+  row={5}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> or
+<Navigable 
+  content={"react-markdown"}
+  href={"https://github.com/remarkjs/react-markdown"}
+  external={true}
+  row={6}
+  idx={0}
+  underlined={true}
+  multi={false}
+/> to simplify the blog's structure.
+</p>
+
+Perhaps I'll talk about either of the two next week!

@@ -12,7 +12,6 @@ const rowMap: Record<number, number> = {
 	2: 0,
 	3: 0,
 	4: 0,
-	5: 0,
 };
 
 G.maxRow = Object.keys(rowMap).length - 1;
@@ -90,7 +89,7 @@ $effect(() => {
 .projects-wrapper {
 	padding: 0 1.25rem;
 	width: 100%;
-	max-width: 90rem;
+	max-width: 78rem;
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;

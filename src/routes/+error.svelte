@@ -52,7 +52,7 @@ $effect(() => {
 	padding: 0 1.25rem;
 	min-height: 100%;
 	width: 100%;
-	max-width: 90rem;
+	max-width: 78rem;
 	display: grid;
 	place-items: start;
 	gap: 1rem;
