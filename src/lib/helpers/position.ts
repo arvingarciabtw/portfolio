@@ -1,7 +1,7 @@
 import type { PositionState } from "./helpers.d.ts";
 
 export const position = {
-	DISTANCE: 50,
+	DISTANCE: 150,
 	x: {
 		increase(positionState: PositionState) {
 			positionState.x += position.DISTANCE;

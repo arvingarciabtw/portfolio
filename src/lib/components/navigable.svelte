@@ -79,9 +79,15 @@ onMount(() => {
 		window.removeEventListener("keydown", navigationListener);
 	};
 });
+
+let el: any;
+$effect(() => {
+	if (isActive) el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+});
 </script>
 
 <a
+	bind:this={el}
 	class={`navigable 
     ${(isLastVisited && multi) && "last-visited"} 
     ${isActive && "active"} 
@@ -119,6 +125,8 @@ a.navigable {
 	display: inline-block;
 	color: inherit;
 	line-height: 1.5;
+	scroll-margin-top: 15rem;
+	scroll-margin-bottom: 15rem;
 
 	&.underlined {
 		text-decoration: underline dotted;
