@@ -150,9 +150,9 @@ onMount(() => {
 
 <style>
 main {
-	padding: 0 1rem 7rem;
+	padding: 6rem 1rem 7rem;
 	display: grid;
-	place-items: center;
+	justify-items: center;
 	gap: 4rem;
 	transition: transform 0.3s ease;
 }

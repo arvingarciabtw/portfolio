@@ -21,6 +21,7 @@ const rowMap: Record<number, number> = {
 	9: 0,
 	10: 0,
 	11: 0,
+	12: 0,
 };
 
 G.activeRow = 1;
@@ -40,7 +41,7 @@ I say this because I've been recently getting into contributing to
   content={"bettergov.ph"}
   href={"https://github.com/bettergovph"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -49,7 +50,7 @@ I say this because I've been recently getting into contributing to
   content={"lychee"}
   href={"https://github.com/lycheeverse/lychee-action"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}
@@ -58,7 +59,7 @@ I say this because I've been recently getting into contributing to
   content={"bettercalapan.org"}
   href={"https://bettercalapan.org/"}
   external={true}
-  row={3}
+  row={4}
   idx={0}
   underlined={true}
   multi={false}
@@ -73,7 +74,7 @@ If you're from the Philippines, I recommend you strongly consider helping out at
   content={"bettergov.ph"}
   href={"https://github.com/bettergovph"}
   external={true}
-  row={4}
+  row={5}
   idx={0}
   underlined={true}
   multi={false}
@@ -86,7 +87,7 @@ Like I mentioned before, I'm currently developing and maintaining
   content={"bettercalapan.org"}
   href={"https://bettercalapan.org/"}
   external={true}
-  row={5}
+  row={6}
   idx={0}
   underlined={true}
   multi={false}
@@ -95,7 +96,7 @@ Like I mentioned before, I'm currently developing and maintaining
   content={"lgu.bettergov.ph"}
   href={"https://lgu.bettergov.ph/"}
   external={true}
-  row={6}
+  row={7}
   idx={0}
   underlined={true}
   multi={false}
@@ -108,7 +109,7 @@ For an informational government site, I'd say the most important things to consi
   content={"GOV.uk"}
   href={"https://www.gov.uk/"}
   external={true}
-  row={7}
+  row={8}
   idx={0}
   underlined={true}
   multi={false}
@@ -117,7 +118,7 @@ For an informational government site, I'd say the most important things to consi
   content={"award"}
   href={"https://www.uxmatters.com/mt/archives/2016/01/how-focusing-on-user-experience-helped-govuk-win-design-of-the-year.php"}
   external={true}
-  row={8}
+  row={9}
   idx={0}
   underlined={true}
   multi={false}
@@ -130,7 +131,7 @@ To automate performance checks on each page, I'm planning on using
   content={"Unlighthouse"}
   href={"https://github.com/harlan-zw/unlighthouse"}
   external={true}
-  row={9}
+  row={10}
   idx={0}
   underlined={true}
   multi={false}
@@ -139,7 +140,7 @@ To automate performance checks on each page, I'm planning on using
   content={"simulates"}
   href={"https://github.com/GoogleChrome/lighthouse/blob/main/docs/throttling.md"}
   external={true}
-  row={10}
+  row={11}
   idx={0}
   underlined={true}
   multi={false}
@@ -152,7 +153,7 @@ As for accessibility, I've still not yet found a free open-source tool that auto
   content={"WCAG"}
   href={"https://www.w3.org/WAI/standards-guidelines/wcag/"}
   external={true}
-  row={11}
+  row={12}
   idx={0}
   underlined={true}
   multi={false}

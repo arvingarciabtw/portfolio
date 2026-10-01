@@ -14,6 +14,7 @@ const rowMap: Record<number, number> = {
 	2: 0,
 	3: 0,
 	4: 0,
+	5: 0,
 };
 
 G.activeRow = 1;
@@ -31,7 +32,7 @@ I'm continuing with the
   content={"Node.js course"}
   href={"https://www.theodinproject.com/paths/full-stack-javascript/courses/nodejs"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -44,7 +45,7 @@ From the
   content={"Express.js documentation"}
   href={"https://expressjs.com/"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}
@@ -135,7 +136,7 @@ The <code>:id</code> syntax creates a route parameter, and you can access its va
   content={"previous article"}
   href={"https://blog.arvingarcia.com/client-side-routing-with-react-router"}
   external={true}
-  row={3}
+  row={4}
   idx={0}
   underlined={true}
   multi={false}
@@ -159,7 +160,7 @@ That's about it for this week! Express.js makes building web servers so much mor
   content={"Passport.js"}
   href={"https://www.passportjs.org/"}
   external={true}
-  row={4}
+  row={5}
   idx={0}
   underlined={true}
   multi={false}

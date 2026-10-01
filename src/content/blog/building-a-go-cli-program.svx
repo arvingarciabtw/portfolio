@@ -17,6 +17,7 @@ const rowMap: Record<number, number> = {
 	5: 0,
 	6: 0,
 	7: 0,
+	8: 0,
 };
 
 G.activeRow = 1;
@@ -34,7 +35,7 @@ I've recently been learning Go on
   content={"boot.dev"}
   href={"https://www.boot.dev/"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -47,7 +48,7 @@ I built
   content={"gitlarp"}
   href={"https://github.com/arvingarciabtw/gitlarp"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}
@@ -56,7 +57,7 @@ I built
   content={"larping"}
   href={"https://www.urbandictionary.com/define.php?term=Larping"}
   external={true}
-  row={3}
+  row={4}
   idx={0}
   underlined={true}
   multi={false}
@@ -132,7 +133,7 @@ At the end of the day, what packages you'd use depends on what kind of program y
   content={"flag package"}
   href={"https://pkg.go.dev/flag"}
   external={true}
-  row={4}
+  row={5}
   idx={0}
   underlined={true}
   multi={false}
@@ -143,7 +144,7 @@ At the end of the day, what packages you'd use depends on what kind of program y
   content={"os package"}
   href={"https://pkg.go.dev/os"}
   external={true}
-  row={5}
+  row={6}
   idx={0}
   underlined={true}
   multi={false}
@@ -154,7 +155,7 @@ At the end of the day, what packages you'd use depends on what kind of program y
   content={"os/exec subpackage"}
   href={"https://pkg.go.dev/os/exec"}
   external={true}
-  row={6}
+  row={7}
   idx={0}
   underlined={true}
   multi={false}
@@ -165,7 +166,7 @@ At the end of the day, what packages you'd use depends on what kind of program y
   content={"gitlarp"}
   href={"https://github.com/arvingarciabtw/gitlarp"}
   external={true}
-  row={7}
+  row={8}
   idx={0}
   underlined={true}
   multi={false}

@@ -12,6 +12,7 @@ const rowMap: Record<number, number> = {
 	0: 4,
 	1: 0,
 	2: 0,
+	3: 0,
 };
 
 G.activeRow = 1;
@@ -29,7 +30,7 @@ I recently came across this banger of a
   content={"video"}
   href={"https://www.youtube.com/watch?v=HTUh0OO6Kmo"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -57,7 +58,7 @@ I'm trying out having an agent that explicitly only points me towards relevant d
   content={"boot.dev"}
   href={"https://www.boot.dev/"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}

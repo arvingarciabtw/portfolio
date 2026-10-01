@@ -14,6 +14,7 @@ const rowMap: Record<number, number> = {
 	2: 0,
 	3: 0,
 	4: 0,
+	5: 0,
 };
 
 G.activeRow = 1;
@@ -31,7 +32,7 @@ I took a break from
   content={"The Odin Project"}
   href={"https://www.theodinproject.com"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -44,7 +45,7 @@ Since it has been a while, I needed a refresher on React, so this
   content={"resource"}
   href={"https://react.dev/learn"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}
@@ -109,7 +110,7 @@ Now, I don't want this article to be too long so I won't explain the gist of it,
   content={"lesson"}
   href={"https://react.dev/learn/queueing-a-series-of-state-updates"}
   external={true}
-  row={3}
+  row={4}
   idx={0}
   underlined={true}
   multi={false}
@@ -122,7 +123,7 @@ And that's about it! I actually wanted to also talk about effects in this articl
   content={"memory card game"}
   href={"https://github.com/arvingarciabtw/the-odin-project/tree/main/full-stack-javascript/fsj-04-react/22-memory-card"}
   external={true}
-  row={4}
+  row={5}
   idx={0}
   underlined={true}
   multi={false}

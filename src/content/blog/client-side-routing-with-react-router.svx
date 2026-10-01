@@ -18,6 +18,7 @@ const rowMap: Record<number, number> = {
 	6: 0,
 	7: 0,
 	8: 0,
+	9: 0,
 };
 
 G.activeRow = 1;
@@ -35,7 +36,7 @@ This week, I've completed the
   content={"React"}
   href={"https://www.theodinproject.com/paths/full-stack-javascript/courses/react"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -50,7 +51,7 @@ However, for a MPA, the page would have to reload when we navigate through diffe
   content={"better SEO"}
   href={"https://medium.com/@sehban.alam/single-page-applications-spas-vs-multi-page-applications-mpas-advantages-and-challenges-df06bee3fed1"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}
@@ -65,7 +66,7 @@ Client-side routing does come with some caveats. For example, you'd need to noti
   content={"React Router"}
   href={"https://reactrouter.com/"}
   external={true}
-  row={3}
+  row={4}
   idx={0}
   underlined={true}
   multi={false}
@@ -78,7 +79,7 @@ Let's take a look at some code from a
   content={"lesson"}
   href={"https://www.theodinproject.com/lessons/node-path-react-new-react-router"}
   external={true}
-  row={4}
+  row={5}
   idx={0}
   underlined={true}
   multi={false}
@@ -180,7 +181,7 @@ And that's about it! I also learned some other stuff while doing the project lik
   content={"Vitest"}
   href={"https://vitest.dev/"}
   external={true}
-  row={5}
+  row={6}
   idx={0}
   underlined={true}
   multi={false}
@@ -189,7 +190,7 @@ And that's about it! I also learned some other stuff while doing the project lik
   content={"CSS modules"}
   href={"https://github.com/css-modules/css-modules"}
   external={true}
-  row={6}
+  row={7}
   idx={0}
   underlined={true}
   multi={false}
@@ -198,7 +199,7 @@ And that's about it! I also learned some other stuff while doing the project lik
   content={"live preview"}
   href={"https://nexus-tech-shop.vercel.app/"}
   external={true}
-  row={7}
+  row={8}
   idx={0}
   underlined={true}
   multi={false}
@@ -207,7 +208,7 @@ And that's about it! I also learned some other stuff while doing the project lik
   content={"source code"}
   href={"https://github.com/arvingarciabtw/the-odin-project/tree/main/full-stack-javascript/fsj-04-react/23-shopping-cart"}
   external={true}
-  row={8}
+  row={9}
   idx={0}
   underlined={true}
   multi={false}

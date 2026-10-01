@@ -12,6 +12,7 @@ const rowMap: Record<number, number> = {
 	0: 4,
 	1: 0,
 	2: 0,
+	3: 0,
 };
 
 G.activeRow = 1;
@@ -120,7 +121,7 @@ If you'd like to know the technical details about Astro's performance benefits, 
   content={"article"}
   href={"https://docs.astro.build/en/concepts/why-astro/"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -129,7 +130,7 @@ If you'd like to know the technical details about Astro's performance benefits, 
   content={"islands architecture"}
   href={"https://docs.astro.build/en/concepts/islands/"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}

@@ -31,6 +31,7 @@ const rowMap: Record<number, number> = {
 	19: 0,
 	20: 0,
 	21: 0,
+	22: 0,
 };
 
 G.activeRow = 1;
@@ -50,7 +51,7 @@ Continuing on from where I left off last week, I moved on forward with the
   content={"JavaScript"}
   href={"https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -59,7 +60,7 @@ Continuing on from where I left off last week, I moved on forward with the
   content={"npm"}
   href={"https://docs.npmjs.com/about-npm"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}
@@ -68,7 +69,7 @@ Continuing on from where I left off last week, I moved on forward with the
   content={"Webpack"}
   href={"https://webpack.js.org/guides/getting-started/"}
   external={true}
-  row={3}
+  row={4}
   idx={0}
   underlined={true}
   multi={false}
@@ -81,7 +82,7 @@ A simple way to organize code is by using objects to group things. Typically, th
   content={"library"}
   href={"https://github.com/arvingarciabtw/the-odin-project/tree/main/full-stack-javascript/fsj-02-javascript/08-library"}
   external={true}
-  row={4}
+  row={5}
   idx={0}
   underlined={true}
   multi={false}
@@ -94,7 +95,7 @@ Moving forward, factory functions and the module pattern was explored. Previousl
   content={"tic-tac-toe"}
   href={"https://github.com/arvingarciabtw/the-odin-project/tree/main/full-stack-javascript/fsj-02-javascript/09-tic-tac-toe"}
   external={true}
-  row={5}
+  row={6}
   idx={0}
   underlined={true}
   multi={false}
@@ -114,7 +115,7 @@ Typically, a factory function is used to make multiple objects. But, there are c
   content={"Immediately Invoked Function Expression (IIFE)"}
   href={"https://developer.mozilla.org/en-US/docs/Glossary/IIFE"}
   external={true}
-  row={6}
+  row={7}
   idx={0}
   underlined={true}
   multi={false}
@@ -123,7 +124,7 @@ Typically, a factory function is used to make multiple objects. But, there are c
   content={"lesson"}
   href={"https://www.theodinproject.com/lessons/node-path-javascript-factory-functions-and-the-module-pattern"}
   external={true}
-  row={7}
+  row={8}
   idx={0}
   underlined={true}
   multi={false}
@@ -153,7 +154,7 @@ Furthermore, ES6 (or ECMAScript 2015) introduced something called
   content={"ES6 modules"}
   href={"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"}
   external={true}
-  row={8}
+  row={9}
   idx={0}
   underlined={true}
   multi={false}
@@ -166,7 +167,7 @@ Now, there are a lot of third party code out there that can help us with our app
   content={"npm"}
   href={"https://docs.npmjs.com/about-npm"}
   external={true}
-  row={9}
+  row={10}
   idx={0}
   underlined={true}
   multi={false}
@@ -179,7 +180,7 @@ However, having a bunch of individual modules and imported third party files can
   content={"Webpack"}
   href={"https://webpack.js.org/guides/getting-started/"}
   external={true}
-  row={10}
+  row={11}
   idx={0}
   underlined={true}
   multi={false}
@@ -188,7 +189,7 @@ However, having a bunch of individual modules and imported third party files can
   content={"restaurant page"}
   href={"https://github.com/arvingarciabtw/the-odin-project/tree/main/full-stack-javascript/fsj-02-javascript/10-restaurant-page"}
   external={true}
-  row={11}
+  row={12}
   idx={0}
   underlined={true}
   multi={false}
@@ -201,7 +202,7 @@ It is also worth noting that you can have separate configurations for the develo
   content={"documentation"}
   href={"https://webpack.js.org/guides/production/"}
   external={true}
-  row={12}
+  row={13}
   idx={0}
   underlined={true}
   multi={false}
@@ -210,7 +211,7 @@ It is also worth noting that you can have separate configurations for the develo
   content={"to-do list"}
   href={"https://github.com/arvingarciabtw/the-odin-project/tree/main/full-stack-javascript/fsj-02-javascript/11-to-do-list"}
   external={true}
-  row={13}
+  row={14}
   idx={0}
   underlined={true}
   multi={false}
@@ -223,7 +224,7 @@ By this point, it is important to know about good principles around the object o
   content={"video series"}
   href={"https://www.youtube.com/playlist?list=PLZlA0Gpn_vH9kocFX7R7BAe_CvvOCO_p9"}
   external={true}
-  row={14}
+  row={15}
   idx={0}
   underlined={true}
   multi={false}
@@ -236,7 +237,7 @@ Another useful concept explored is linting. Admittedly, I didn't set up a linter
   content={"LazyVim"}
   href={"https://www.lazyvim.org/"}
   external={true}
-  row={15}
+  row={16}
   idx={0}
   underlined={true}
   multi={false}
@@ -245,7 +246,7 @@ Another useful concept explored is linting. Admittedly, I didn't set up a linter
   content={"ESLint"}
   href={"https://eslint.org/docs/latest/use/getting-started"}
   external={true}
-  row={16}
+  row={17}
   idx={0}
   underlined={true}
   multi={false}
@@ -254,7 +255,7 @@ Another useful concept explored is linting. Admittedly, I didn't set up a linter
   content={"Prettier"}
   href={"https://prettier.io/docs/"}
   external={true}
-  row={17}
+  row={18}
   idx={0}
   underlined={true}
   multi={false}
@@ -267,7 +268,7 @@ And now, let's talk about asynchronous functions in JavaScript. Basically, these
   content={"weather app"}
   href={"https://github.com/arvingarciabtw/the-odin-project/tree/main/full-stack-javascript/fsj-02-javascript/12-weather-app"}
   external={true}
-  row={18}
+  row={19}
   idx={0}
   underlined={true}
   multi={false}
@@ -280,7 +281,7 @@ The concept that makes asynchronous JavaScript possible is the <code>Promise</co
   content={"article"}
   href={"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"}
   external={true}
-  row={19}
+  row={20}
   idx={0}
   underlined={true}
   multi={false}
@@ -289,7 +290,7 @@ The concept that makes asynchronous JavaScript possible is the <code>Promise</co
   content={"article"}
   href={"https://javascript.info/async-await"}
   external={true}
-  row={20}
+  row={21}
   idx={0}
   underlined={true}
   multi={false}
@@ -302,7 +303,7 @@ On another note, I also want to talk a bit about AI use (not this again...). At 
   content={"article"}
   href={"https://blog.arvinagarcia.com/articles/01.html"}
   external={true}
-  row={21}
+  row={22}
   idx={0}
   underlined={true}
   multi={false}

@@ -11,6 +11,7 @@ import Navigable from "$lib/components/navigable.svelte";
 const rowMap: Record<number, number> = {
 	0: 4,
 	1: 0,
+	2: 0,
 };
 
 G.activeRow = 1;
@@ -36,7 +37,7 @@ I'll only cover the simple stuff and what I've used in my own project. Though, h
   content={"documentation"}
   href={"https://www.better-auth.com/docs/introduction"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}

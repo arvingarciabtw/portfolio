@@ -13,6 +13,7 @@ const rowMap: Record<number, number> = {
 	1: 0,
 	2: 0,
 	3: 0,
+	4: 0,
 };
 
 G.activeRow = 1;
@@ -38,7 +39,7 @@ I could make these goals more descriptive by using the
   content={"SMART framework"}
   href={"https://www.atlassian.com/blog/productivity/how-to-write-smart-goals"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -59,7 +60,7 @@ For instance, near the end of last year, I discovered this concept called
   content={"spaced repetition"}
   href={"https://ncase.me/remember/"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}
@@ -76,7 +77,7 @@ And so I've searched a lot about what app I could use to practice, and many peop
   content={"Anki"}
   href={"https://apps.ankiweb.net/"}
   external={true}
-  row={3}
+  row={4}
   idx={0}
   underlined={true}
   multi={false}

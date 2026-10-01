@@ -40,7 +40,11 @@ onMount(() => {
 
 <style>
 header {
-	padding: 1.5rem 1rem 0.25rem;
+	padding: 1.5rem 1rem;
+	width: 100dvw;
+	position: fixed;
+	top: 0;
+	left: 0;
 	display: grid;
 	place-items: center;
 	background: var(--black);

@@ -22,6 +22,7 @@ const rowMap: Record<number, number> = {
 	10: 0,
 	11: 0,
 	12: 0,
+	13: 0,
 };
 
 G.activeRow = 1;
@@ -41,7 +42,7 @@ I completed the
   content={"Intermediate HTML and CSS course"}
   href={"https://www.theodinproject.com/paths/full-stack-javascript/courses/intermediate-html-and-css"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -54,7 +55,7 @@ The intermediate HTML concepts discussed were simple enough. There is a lesson e
   content={"Emmet"}
   href={"https://docs.emmet.io/"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}
@@ -67,7 +68,7 @@ I would absolutely love to use SVGs (animated SVGs in particular) more in the fu
   content={"article"}
   href={"https://www.joshwcomeau.com/svg/friendly-introduction-to-svg/"}
   external={true}
-  row={3}
+  row={4}
   idx={0}
   underlined={true}
   multi={false}
@@ -80,7 +81,7 @@ As for the intermediate CSS concepts, a ton was covered. Pretty much everything 
   content={"this"}
   href={"https://www.joshwcomeau.com/css/custom-css-reset/"}
   external={true}
-  row={4}
+  row={5}
   idx={0}
   underlined={true}
   multi={false}
@@ -95,7 +96,7 @@ And while we're on the topic of units, this
   content={"video"}
   href={"https://www.youtube.com/watch?v=_-aDOAMmDHI"}
   external={true}
-  row={5}
+  row={6}
   idx={0}
   underlined={true}
   multi={false}
@@ -108,7 +109,7 @@ Now, let's talk about forms. On the surface, you'd think forms would be quite si
   content={"documentation on web forms"}
   href={"https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms#introductory_guides"}
   external={true}
-  row={6}
+  row={7}
   idx={0}
   underlined={true}
   multi={false}
@@ -117,7 +118,7 @@ Now, let's talk about forms. On the surface, you'd think forms would be quite si
   content={"client-side form validation"}
   href={"https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation"}
   external={true}
-  row={7}
+  row={8}
   idx={0}
   underlined={true}
   multi={false}
@@ -130,7 +131,7 @@ After the forms chapter, I am now introduced to a new CSS layout:
   content={"grid"}
   href={"https://css-tricks.com/snippets/css/complete-guide-grid/#aa-introduction-to-css-grid"}
   external={true}
-  row={8}
+  row={9}
   idx={0}
   underlined={true}
   multi={false}
@@ -139,7 +140,7 @@ After the forms chapter, I am now introduced to a new CSS layout:
   content={"GitHub"}
   href={"https://github.com/arvingarciabtw/the-odin-project/tree/main/full-stack-javascript/fsj-01-intermediate-html-and-css"}
   external={true}
-  row={9}
+  row={10}
   idx={0}
   underlined={true}
   multi={false}
@@ -152,7 +153,7 @@ That's pretty much it for that course. I've already started the
   content={"JavaScript course"}
   href={"https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript"}
   external={true}
-  row={10}
+  row={11}
   idx={0}
   underlined={true}
   multi={false}
@@ -161,7 +162,7 @@ That's pretty much it for that course. I've already started the
   content={"library"}
   href={"https://github.com/arvingarciabtw/the-odin-project/tree/main/full-stack-javascript/fsj-02-javascript/08-library"}
   external={true}
-  row={11}
+  row={12}
   idx={0}
   underlined={true}
   multi={false}
@@ -170,7 +171,7 @@ That's pretty much it for that course. I've already started the
   content={"tic-tac-toe"}
   href={"https://github.com/arvingarciabtw/the-odin-project/tree/main/full-stack-javascript/fsj-02-javascript/09-tic-tac-toe"}
   external={true}
-  row={12}
+  row={13}
   idx={0}
   underlined={true}
   multi={false}

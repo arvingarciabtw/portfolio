@@ -17,6 +17,7 @@ const rowMap: Record<number, number> = {
 	5: 0,
 	6: 0,
 	7: 0,
+	8: 0,
 };
 
 G.activeRow = 1;
@@ -34,7 +35,7 @@ For this week, I've finished the
   content={"Advanced HTML and CSS course"}
   href={"https://www.theodinproject.com/paths/full-stack-javascript/courses/advanced-html-and-css"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -49,7 +50,7 @@ Simply put, the pixel pipeline is a process used by web browsers to convert HTML
   content={"article"}
   href={"https://web.dev/articles/rendering-performance"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}
@@ -62,7 +63,7 @@ Also, this
   content={"resource"}
   href={"https://csstriggers.com/"}
   external={true}
-  row={3}
+  row={4}
   idx={0}
   underlined={true}
   multi={false}
@@ -75,7 +76,7 @@ As for the accessibility chapter, concepts discussed were semantic HTML, accessi
   content={"video from W3"}
   href={"https://www.youtube.com/watch?v=3f31oufqFSM"}
   external={true}
-  row={4}
+  row={5}
   idx={0}
   underlined={true}
   multi={false}
@@ -88,7 +89,7 @@ For this chapter, the
   content={"auditing tools lesson"}
   href={"https://www.theodinproject.com/lessons/node-path-advanced-html-and-css-accessibility-auditing"}
   external={true}
-  row={5}
+  row={6}
   idx={0}
   underlined={true}
   multi={false}
@@ -97,7 +98,7 @@ For this chapter, the
   content={"Lighthouse for Chrome"}
   href={"https://developer.chrome.com/docs/lighthouse/overview/"}
   external={true}
-  row={6}
+  row={7}
   idx={0}
   underlined={true}
   multi={false}
@@ -112,7 +113,7 @@ Going through the responsive design chapter wasn't too bad. I found using media 
   content={"project"}
   href={"https://homepage-silksong.vercel.app/"}
   external={true}
-  row={7}
+  row={8}
   idx={0}
   underlined={true}
   multi={false}

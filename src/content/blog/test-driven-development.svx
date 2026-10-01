@@ -20,6 +20,7 @@ const rowMap: Record<number, number> = {
 	8: 0,
 	9: 0,
 	10: 0,
+	11: 0,
 };
 
 G.activeRow = 1;
@@ -37,7 +38,7 @@ I finished the
   content={"JavaScript course"}
   href={"https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -50,7 +51,7 @@ This week, I went through some lessons covering computer science concepts (e.g. 
   content={"Jest"}
   href={"https://jestjs.io/"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}
@@ -65,7 +66,7 @@ I won't go into detail regarding the notations, but this
   content={"Big-O cheat sheet"}
   href={"https://www.bigocheatsheet.com/"}
   external={true}
-  row={3}
+  row={4}
   idx={0}
   underlined={true}
   multi={false}
@@ -78,7 +79,7 @@ I also won't go into detail regarding data structures and algorithms, but it is 
   content={"projects"}
   href={"https://github.com/arvingarciabtw/the-odin-project/tree/main/full-stack-javascript/fsj-02-javascript"}
   external={true}
-  row={4}
+  row={5}
   idx={0}
   underlined={true}
   multi={false}
@@ -99,7 +100,7 @@ This
   content={"lesson"}
   href={"https://www.theodinproject.com/lessons/javascript-using-git-in-the-real-world"}
   external={true}
-  row={5}
+  row={6}
   idx={0}
   underlined={true}
   multi={false}
@@ -112,7 +113,7 @@ In fact, so far in my journey, I've actually contributed to
   content={"MDN"}
   href={"https://github.com/mdn/content/commits?author=arvingarciabtw&since=2025-07-31&until=2025-08-31"}
   external={true}
-  row={6}
+  row={7}
   idx={0}
   underlined={true}
   multi={false}
@@ -121,7 +122,7 @@ In fact, so far in my journey, I've actually contributed to
   content={"The Odin Project"}
   href={"https://github.com/TheOdinProject/curriculum/commits?author=arvingarciabtw&since=2025-07-31&until=2025-08-31"}
   external={true}
-  row={7}
+  row={8}
   idx={0}
   underlined={true}
   multi={false}
@@ -134,7 +135,7 @@ Test driven development (TDD) was given great importance in its chapter. The ide
   content={"article"}
   href={"https://jrsinclair.com/articles/2016/one-weird-trick-that-will-change-the-way-you-code-forever-javascript-tdd/"}
   external={true}
-  row={8}
+  row={9}
   idx={0}
   underlined={true}
   multi={false}
@@ -160,7 +161,7 @@ Doing TDD while doing my
   content={"battleship"}
   href={"https://github.com/arvingarciabtw/the-odin-project/tree/main/full-stack-javascript/fsj-02-javascript/19-battleship"}
   external={true}
-  row={9}
+  row={10}
   idx={0}
   underlined={true}
   multi={false}
@@ -173,7 +174,7 @@ That's it for this week. I already started the
   content={"Advanced HTML and CSS"}
   href={"https://www.theodinproject.com/paths/full-stack-javascript/courses/advanced-html-and-css"}
   external={true}
-  row={10}
+  row={11}
   idx={0}
   underlined={true}
   multi={false}

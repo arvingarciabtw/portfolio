@@ -19,6 +19,7 @@ const rowMap: Record<number, number> = {
 	7: 0,
 	8: 0,
 	9: 0,
+	10: 0,
 };
 
 G.activeRow = 1;
@@ -36,7 +37,7 @@ I'm someone who likes to learn about these new not-so-popular CSS things. One ex
   content={"squircle"}
   href={"https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/corner-shape-value#squircle"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -45,7 +46,7 @@ I'm someone who likes to learn about these new not-so-popular CSS things. One ex
   content={"subgrid"}
   href={"https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Grid_layout/Subgrid"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}
@@ -58,7 +59,7 @@ I've recently been working on
   content={"BetterCalapan"}
   href={"https://bettercalapan.org"}
   external={true}
-  row={3}
+  row={4}
   idx={0}
   underlined={true}
   multi={false}
@@ -67,7 +68,7 @@ I've recently been working on
   content={"roadmap"}
   href={"https://roadmap.bettercalapan.org"}
   external={true}
-  row={4}
+  row={5}
   idx={0}
   underlined={true}
   multi={false}
@@ -124,7 +125,7 @@ If you want to poke at the fix yourself, the roadmap site is live
   content={"here"}
   href={"https://roadmap.bettercalapan.org"}
   external={true}
-  row={5}
+  row={6}
   idx={0}
   underlined={true}
   multi={false}
@@ -133,7 +134,7 @@ If you want to poke at the fix yourself, the roadmap site is live
   content={"source code"}
   href={"https://github.com/bettercalapan/roadmap"}
   external={true}
-  row={6}
+  row={7}
   idx={0}
   underlined={true}
   multi={false}
@@ -148,7 +149,7 @@ If you want to poke at the fix yourself, the roadmap site is live
   content={"subgrid"}
   href={"https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Grid_layout/Subgrid"}
   external={true}
-  row={7}
+  row={8}
   idx={0}
   underlined={true}
   multi={false}
@@ -159,7 +160,7 @@ If you want to poke at the fix yourself, the roadmap site is live
   content={"portal"}
   href={"https://bettercalapan.org"}
   external={true}
-  row={8}
+  row={9}
   idx={0}
   underlined={true}
   multi={false}
@@ -170,7 +171,7 @@ If you want to poke at the fix yourself, the roadmap site is live
   content={"roadmap"}
   href={"https://roadmap.bettercalapan.org"}
   external={true}
-  row={9}
+  row={10}
   idx={0}
   underlined={true}
   multi={false}

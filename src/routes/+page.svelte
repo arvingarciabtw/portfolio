@@ -113,17 +113,20 @@ section {
 	color: var(--white);
 }
 .blog {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
 	text-transform: lowercase;
 }
 .article-list {
-	margin: 2rem 0;
+	margin-top: 2rem;
 }
 .article {
 	margin-bottom: 0.75rem;
 	display: grid;
 	grid-template-columns: max-content 1fr;
 	align-items: center;
-	gap: 1rem;
+	gap: 0.5rem;
 
 	.content {
 		display: grid;
@@ -146,6 +149,7 @@ section {
 
 @media (max-width: 600px) {
 	.article {
+		margin-bottom: 0.5rem;
 		align-items: start;
 		gap: 0.375rem;
 

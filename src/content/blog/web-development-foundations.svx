@@ -33,6 +33,7 @@ const rowMap: Record<number, number> = {
 	21: 0,
 	22: 0,
 	23: 0,
+	24: 0,
 };
 
 G.activeRow = 1;
@@ -52,7 +53,7 @@ This week, I completed the
   content={"Foundations"}
   href={"https://www.theodinproject.com/paths/foundations/courses/foundations"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -61,7 +62,7 @@ This week, I completed the
   content={"The Odin Project"}
   href={"https://www.theodinproject.com/"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}
@@ -70,7 +71,7 @@ This week, I completed the
   content={"article"}
   href={"https://dev.to/theodinproject/why-learning-to-code-is-so-damn-hard-11nn"}
   external={true}
-  row={3}
+  row={4}
   idx={0}
   underlined={true}
   multi={false}
@@ -79,7 +80,7 @@ This week, I completed the
   content={"chapter"}
   href={"https://www.theodinproject.com/lessons/foundations-motivation-and-mindset"}
   external={true}
-  row={4}
+  row={5}
   idx={0}
   underlined={true}
   multi={false}
@@ -94,7 +95,7 @@ The web browser will request the resource from the web server where the resource
   content={"HTTP"}
   href={"https://developer.mozilla.org/en-US/docs/Web/HTTP"}
   external={true}
-  row={5}
+  row={6}
   idx={0}
   underlined={true}
   multi={false}
@@ -103,7 +104,7 @@ The web browser will request the resource from the web server where the resource
   content={"IP"}
   href={"https://www.cloudflare.com/learning/network-layer/internet-protocol/"}
   external={true}
-  row={6}
+  row={7}
   idx={0}
   underlined={true}
   multi={false}
@@ -112,7 +113,7 @@ The web browser will request the resource from the web server where the resource
   content={"TCP"}
   href={"https://www.techtarget.com/searchnetworking/definition/TCP-IP"}
   external={true}
-  row={7}
+  row={8}
   idx={0}
   underlined={true}
   multi={false}
@@ -125,7 +126,7 @@ Furthermore, after pressing <code>Enter</code>, your browser will ask your compu
   content={"DNS server"}
   href={"https://www.cloudflare.com/learning/dns/what-is-a-dns-server/"}
   external={true}
-  row={8}
+  row={9}
   idx={0}
   underlined={true}
   multi={false}
@@ -140,7 +141,7 @@ From this point, the basics of
   content={"Git"}
   href={"https://git-scm.com/doc"}
   external={true}
-  row={9}
+  row={10}
   idx={0}
   underlined={true}
   multi={false}
@@ -149,7 +150,7 @@ From this point, the basics of
   content={"Lazygit"}
   href={"https://github.com/jesseduffield/lazygit"}
   external={true}
-  row={10}
+  row={11}
   idx={0}
   underlined={true}
   multi={false}
@@ -162,7 +163,7 @@ And finally, we now get to
   content={"HTML"}
   href={"https://developer.mozilla.org/en-US/docs/Web/HTML"}
   external={true}
-  row={11}
+  row={12}
   idx={0}
   underlined={true}
   multi={false}
@@ -175,7 +176,7 @@ Also, this
   content={"resource"}
   href={"https://internetingishard.netlify.app/html-and-css/links-and-images/"}
   external={true}
-  row={12}
+  row={13}
   idx={0}
   underlined={true}
   multi={false}
@@ -188,7 +189,7 @@ From this point on, everything I learned about HTML were put into practice in th
   content={"project"}
   href={"https://recipes-seven-teal.vercel.app/"}
   external={true}
-  row={13}
+  row={14}
   idx={0}
   underlined={true}
   multi={false}
@@ -201,7 +202,7 @@ After this, I then had a refresher on
   content={"CSS"}
   href={"https://developer.mozilla.org/en-US/docs/Web/CSS"}
   external={true}
-  row={14}
+  row={15}
   idx={0}
   underlined={true}
   multi={false}
@@ -210,7 +211,7 @@ After this, I then had a refresher on
   content={"article"}
   href={"https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/"}
   external={true}
-  row={15}
+  row={16}
   idx={0}
   underlined={true}
   multi={false}
@@ -223,7 +224,7 @@ At this point, I made this
   content={"project"}
   href={"https://landing-page-sigma-peach-49.vercel.app/"}
   external={true}
-  row={16}
+  row={17}
   idx={0}
   underlined={true}
   multi={false}
@@ -236,7 +237,7 @@ We now face the beast that is
   content={"JavaScript"}
   href={"https://developer.mozilla.org/en-US/docs/Web/JavaScript"}
   external={true}
-  row={17}
+  row={18}
   idx={0}
   underlined={true}
   multi={false}
@@ -245,7 +246,7 @@ We now face the beast that is
   content={"chapter"}
   href={"https://www.theodinproject.com/lessons/foundations-problem-solving"}
   external={true}
-  row={18}
+  row={19}
   idx={0}
   underlined={true}
   multi={false}
@@ -260,7 +261,7 @@ Anyways, here are the projects I made for the JavaScript chapter.
   content={"Rock paper scissors"}
   href={"https://rock-paper-scissors-mu-kohl.vercel.app/"}
   external={true}
-  row={19}
+  row={20}
   idx={0}
   underlined={true}
   multi={false}
@@ -269,7 +270,7 @@ Anyways, here are the projects I made for the JavaScript chapter.
   content={"etch-a-sketch"}
   href={"https://etch-a-sketch-indol-xi.vercel.app/"}
   external={true}
-  row={20}
+  row={21}
   idx={0}
   underlined={true}
   multi={false}
@@ -278,7 +279,7 @@ Anyways, here are the projects I made for the JavaScript chapter.
   content={"calculator"}
   href={"https://calculator-psi-black.vercel.app/"}
   external={true}
-  row={21}
+  row={22}
   idx={0}
   underlined={true}
   multi={false}
@@ -293,7 +294,7 @@ On another note, this
   content={"article"}
   href={"https://www.javascripttutorial.net/javascript-dom/javascript-event-delegation/"}
   external={true}
-  row={22}
+  row={23}
   idx={0}
   underlined={true}
   multi={false}
@@ -312,7 +313,7 @@ That's about it for this week. Overall, it was very fun! Time to move on to the
   content={"Intermediate HTML and CSS"}
   href={"https://www.theodinproject.com/paths/full-stack-javascript/courses/intermediate-html-and-css"}
   external={true}
-  row={23}
+  row={24}
   idx={0}
   underlined={true}
   multi={false}

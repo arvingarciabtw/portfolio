@@ -14,6 +14,7 @@ const rowMap: Record<number, number> = {
 	2: 0,
 	3: 0,
 	4: 0,
+	5: 0,
 };
 
 G.activeRow = 1;
@@ -33,7 +34,7 @@ In their
   content={"documentation"}
   href={"https://nextjs.org/docs"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -60,7 +61,7 @@ This framework has many more features that it provides, but I suggest that you t
   content={"courses"}
   href={"https://nextjs.org/learn"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}
@@ -73,7 +74,7 @@ Just to get myself familiarized, I followed their app router course. Although, f
   content={"Better Auth"}
   href={"https://www.better-auth.com/"}
   external={true}
-  row={3}
+  row={4}
   idx={0}
   underlined={true}
   multi={false}
@@ -82,7 +83,7 @@ Just to get myself familiarized, I followed their app router course. Although, f
   content={"Prisma"}
   href={"https://www.prisma.io/"}
   external={true}
-  row={4}
+  row={5}
   idx={0}
   underlined={true}
   multi={false}

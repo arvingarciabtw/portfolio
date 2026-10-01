@@ -78,7 +78,7 @@ onMount(() => {
 
 <style>
 footer {
-	padding: 0.25rem 1rem 1.5rem;
+	padding: 1.5rem 1rem;
 	width: 100dvw;
 	position: fixed;
 	bottom: 0;
@@ -96,9 +96,11 @@ footer {
 	padding: 0 1.25rem;
 	width: 100%;
 	max-width: 78rem;
-	display: flex;
-	flex-wrap: wrap;
 	gap: 1rem 2rem;
+	display: flex;
+	overflow-x: scroll;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 }
 .key-group {
 	display: flex;

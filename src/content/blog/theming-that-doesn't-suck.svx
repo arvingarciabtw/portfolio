@@ -18,6 +18,7 @@ const rowMap: Record<number, number> = {
 	6: 0,
 	7: 0,
 	8: 0,
+	9: 0,
 };
 
 G.activeRow = 1;
@@ -41,7 +42,7 @@ My approach is based on this
   content={"article"}
   href={"https://scriptraccoon.dev/blog/darkmode-toggle-sveltekit"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -105,7 +106,7 @@ We can then use a
   content={"handle"}
   href={"https://svelte.dev/docs/kit/hooks#handle"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}
@@ -114,7 +115,7 @@ We can then use a
   content={"prerendered"}
   href={"https://svelte.dev/docs/kit/page-options#prerender"}
   external={true}
-  row={3}
+  row={4}
   idx={0}
   underlined={true}
   multi={false}
@@ -146,7 +147,7 @@ If there's no <code>theme</code> cookie, return the default response. Otherwise,
   content={"transformPageChunk"}
   href={"https://svelte.dev/docs/kit/@sveltejs-kit#resolveoptions"}
   external={true}
-  row={4}
+  row={5}
   idx={0}
   underlined={true}
   multi={false}
@@ -184,7 +185,7 @@ This script runs synchronously, before the rest of the page renders, which is wh
   content={"basis"}
   href={"https://scriptraccoon.dev/blog/darkmode-toggle-sveltekit"}
   external={true}
-  row={5}
+  row={6}
   idx={0}
   underlined={true}
   multi={false}
@@ -195,7 +196,7 @@ This script runs synchronously, before the rest of the page renders, which is wh
   content={"handle"}
   href={"https://svelte.dev/docs/kit/hooks#handle"}
   external={true}
-  row={6}
+  row={7}
   idx={0}
   underlined={true}
   multi={false}
@@ -206,7 +207,7 @@ This script runs synchronously, before the rest of the page renders, which is wh
   content={"prerender"}
   href={"https://svelte.dev/docs/kit/page-options#prerender"}
   external={true}
-  row={7}
+  row={8}
   idx={0}
   underlined={true}
   multi={false}
@@ -217,7 +218,7 @@ This script runs synchronously, before the rest of the page renders, which is wh
   content={"transformPageChunk"}
   href={"https://svelte.dev/docs/kit/@sveltejs-kit#resolveoptions"}
   external={true}
-  row={8}
+  row={9}
   idx={0}
   underlined={true}
   multi={false}

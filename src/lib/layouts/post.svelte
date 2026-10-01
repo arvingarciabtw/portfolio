@@ -1,9 +1,21 @@
 <script lang="ts">
+import Navigable from "$lib/components/navigable.svelte";
+
 let { title, pubDate, children } = $props();
 </script>
 
 <article class="post">
-	<h1>{title}</h1>
+  <div class="title">
+    <Navigable 
+      content={title}
+      href={"#"}
+      external={false}
+      row={1}
+      idx={0}
+      underlined={false}
+      multi={false}
+    />
+  </div>
 	<time>{pubDate}</time>
 	{@render children()}
 </article>
@@ -15,8 +27,8 @@ let { title, pubDate, children } = $props();
 	--flicker-color: var(--blog);
 	--active-color: var(--flicker-color);
 
-	h1 {
-		color: var(--flicker-color);
+	.title {
+		margin-left: -0.25rem;
 	}
 	time {
 		display: block;
@@ -37,7 +49,6 @@ let { title, pubDate, children } = $props();
 	}
 	:global(a) {
 		color: var(--flicker-color);
-		text-decoration: underline dotted;
 	}
 	:global(ul) {
 		margin: 1rem 0 3rem;

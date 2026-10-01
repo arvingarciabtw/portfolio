@@ -14,6 +14,7 @@ const rowMap: Record<number, number> = {
 	2: 0,
 	3: 0,
 	4: 0,
+	5: 0,
 };
 
 G.activeRow = 1;
@@ -33,7 +34,7 @@ This motivation came to mind when I saw this desk robot,
   content={"Taby"}
   href={"https://www.heytaby.com"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -46,7 +47,7 @@ An ESP32 is a
   content={"microcontroller"}
   href={"https://en.wikipedia.org/wiki/Microcontroller"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}
@@ -55,7 +56,7 @@ An ESP32 is a
   content={"better"}
   href={"https://jlcpcb.com/blog/esp32-vs-arduino#:~:text=most%20common%20baseline%20in%20the%20differences%20between%20Arduino%20and%20ESP32"}
   external={true}
-  row={3}
+  row={4}
   idx={0}
   underlined={true}
   multi={false}
@@ -68,7 +69,7 @@ The specific one that I got is the ESP32-S3 chip. For the whole setup, I just fo
   content={"official guide"}
   href={"https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/get-started/"}
   external={true}
-  row={4}
+  row={5}
   idx={0}
   underlined={true}
   multi={false}

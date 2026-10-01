@@ -15,6 +15,7 @@ const rowMap: Record<number, number> = {
 	3: 0,
 	4: 0,
 	5: 0,
+	6: 0,
 };
 
 G.activeRow = 1;
@@ -31,7 +32,7 @@ $effect(() => {
   content={"Handle them gracefully"}
   href={"https://go-proverbs.github.io/#:~:text=Don%27t%20just%20check%20errors%2C%20handle%20them%20gracefully."}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -44,7 +45,7 @@ If you're a technical person, who values learning the technical stuff much more 
   content={"article from Dave Cheney"}
   href={"https://dave.cheney.net/2016/04/27/dont-just-check-errors-handle-them-gracefully"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}
@@ -53,7 +54,7 @@ If you're a technical person, who values learning the technical stuff much more 
   content={"this one"}
   href={"https://dave.cheney.net/2016/04/07/constant-errors"}
   external={true}
-  row={3}
+  row={4}
   idx={0}
   underlined={true}
   multi={false}
@@ -70,7 +71,7 @@ These functions aren't natively in Go though, it comes from another package,
   content={"github.com/pkg/errors"}
   href={"https://pkg.go.dev/github.com/pkg/errors"}
   external={true}
-  row={4}
+  row={5}
   idx={0}
   underlined={true}
   multi={false}
@@ -83,7 +84,7 @@ This was written way back in 2016 though. It's been 9 years, and while I'm not y
   content={"modern practices"}
   href={"https://blog.jetbrains.com/go/2026/03/02/secure-go-error-handling-best-practices/"}
   external={true}
-  row={5}
+  row={6}
   idx={0}
   underlined={true}
   multi={false}

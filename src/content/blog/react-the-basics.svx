@@ -17,6 +17,7 @@ const rowMap: Record<number, number> = {
 	5: 0,
 	6: 0,
 	7: 0,
+	8: 0,
 };
 
 G.activeRow = 1;
@@ -34,7 +35,7 @@ So far, I'm currently on the
   content={"React course"}
   href={"https://www.theodinproject.com/paths/full-stack-javascript/courses/react"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -51,7 +52,7 @@ There's many ways to set up React in a project, but
   content={"Vite"}
   href={"https://vite.dev/guide/"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}
@@ -80,7 +81,7 @@ We're able to write HTML markup inside a JavaScript because of
   content={"JSX"}
   href={"https://legacy.reactjs.org/docs/introducing-jsx.html"}
   external={true}
-  row={3}
+  row={4}
   idx={0}
   underlined={true}
   multi={false}
@@ -97,7 +98,7 @@ This
   content={"lesson"}
   href={"https://www.theodinproject.com/lessons/node-path-react-new-what-is-jsx"}
   external={true}
-  row={4}
+  row={5}
   idx={0}
   underlined={true}
   multi={false}
@@ -110,7 +111,7 @@ Sometimes, we'd want components to display different things depending on differe
   content={"article"}
   href={"https://react.dev/learn/conditional-rendering"}
   external={true}
-  row={5}
+  row={6}
   idx={0}
   underlined={true}
   multi={false}
@@ -123,7 +124,7 @@ There are also times where we'd want to display multiple similar components from
   content={"article"}
   href={"https://react.dev/learn/rendering-lists"}
   external={true}
-  row={6}
+  row={7}
   idx={0}
   underlined={true}
   multi={false}
@@ -136,7 +137,7 @@ That's about it for now. I'll talk more about state once I've finished the
   content={"CV Application"}
   href={"https://www.theodinproject.com/lessons/node-path-react-new-cv-application"}
   external={true}
-  row={7}
+  row={8}
   idx={0}
   underlined={true}
   multi={false}

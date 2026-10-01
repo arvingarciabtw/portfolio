@@ -14,6 +14,7 @@ const rowMap: Record<number, number> = {
 	2: 0,
 	3: 0,
 	4: 0,
+	5: 0,
 };
 
 G.activeRow = 1;
@@ -33,7 +34,7 @@ For the past couple months, I've learned a few ways of styling my apps. Namely: 
   content={"styled-components"}
   href={"https://styled-components.com/"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -243,7 +244,7 @@ To clear up some misconceptions: it seems that a number of developers think that
   content={"not the case"}
   href={"https://github.com/orgs/styled-components/discussions/5657"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}
@@ -252,7 +253,7 @@ To clear up some misconceptions: it seems that a number of developers think that
   content={"it does"}
   href={"https://styled-components.com/docs/advanced#react-server-components"}
   external={true}
-  row={3}
+  row={4}
   idx={0}
   underlined={true}
   multi={false}
@@ -265,7 +266,7 @@ I've yet to try alternatives, that are supposedly much more performant, like
   content={"Linaria"}
   href={"https://github.com/callstack/linaria"}
   external={true}
-  row={4}
+  row={5}
   idx={0}
   underlined={true}
   multi={false}

@@ -14,6 +14,7 @@ const rowMap: Record<number, number> = {
 	2: 0,
 	3: 0,
 	4: 0,
+	5: 0,
 };
 
 G.activeRow = 1;
@@ -31,7 +32,7 @@ This week, I refactored my blog to use
   content={"MDX"}
   href={"https://mdxjs.com/"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -44,7 +45,7 @@ From the
   content={"MDX documentation"}
   href={"https://mdxjs.com/"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}
@@ -140,7 +141,7 @@ Take a look at some of the blog articles from
   content={"Josh Comeau’s website"}
   href={"https://www.joshwcomeau.com/"}
   external={true}
-  row={3}
+  row={4}
   idx={0}
   underlined={true}
   multi={false}
@@ -172,7 +173,7 @@ The
   content={"MDX documentation"}
   href={"https://mdxjs.com/docs/"}
   external={true}
-  row={4}
+  row={5}
   idx={0}
   underlined={true}
   multi={false}

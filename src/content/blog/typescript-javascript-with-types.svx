@@ -16,6 +16,7 @@ const rowMap: Record<number, number> = {
 	4: 0,
 	5: 0,
 	6: 0,
+	7: 0,
 };
 
 G.activeRow = 1;
@@ -33,7 +34,7 @@ This week, I've been taking some time to learn the basics of
   content={"TypeScript"}
   href={"https://www.typescriptlang.org/"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -46,7 +47,7 @@ From the
   content={"TypeScript documentation"}
   href={"https://www.typescriptlang.org/"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}
@@ -337,7 +338,7 @@ This
   content={"TypeScript Handbook"}
   href={"https://www.typescriptlang.org/docs/handbook/intro.html"}
   external={true}
-  row={3}
+  row={4}
   idx={0}
   underlined={true}
   multi={false}
@@ -356,7 +357,7 @@ think
   content={"react-syntax-highlighter"}
   href={"https://github.com/react-syntax-highlighter/react-syntax-highlighter"}
   external={true}
-  row={4}
+  row={5}
   idx={0}
   underlined={true}
   multi={false}
@@ -366,7 +367,7 @@ would do great. Also, I've been thinking of using
   content={"MDX"}
   href={"https://mdxjs.com/"}
   external={true}
-  row={5}
+  row={6}
   idx={0}
   underlined={true}
   multi={false}
@@ -375,7 +376,7 @@ would do great. Also, I've been thinking of using
   content={"react-markdown"}
   href={"https://github.com/remarkjs/react-markdown"}
   external={true}
-  row={6}
+  row={7}
   idx={0}
   underlined={true}
   multi={false}

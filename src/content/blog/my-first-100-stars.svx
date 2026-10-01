@@ -13,6 +13,7 @@ const rowMap: Record<number, number> = {
 	1: 0,
 	2: 0,
 	3: 0,
+	4: 0,
 };
 
 G.activeRow = 1;
@@ -30,7 +31,7 @@ For the past month, I've been gradually working on
   content={"ditto"}
   href={"https://github.com/arvingarciabtw/ditto"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -43,7 +44,7 @@ Its not just the stars though, but also the fact that some people went out of th
   content={"improving the codebase"}
   href={"https://github.com/arvingarciabtw/ditto/issues/1"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}
@@ -52,7 +53,7 @@ Its not just the stars though, but also the fact that some people went out of th
   content={"Nix support"}
   href={"https://github.com/arvingarciabtw/ditto/pull/3"}
   external={true}
-  row={3}
+  row={4}
   idx={0}
   underlined={true}
   multi={false}

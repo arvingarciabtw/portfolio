@@ -13,6 +13,7 @@ const rowMap: Record<number, number> = {
 	1: 0,
 	2: 0,
 	3: 0,
+	4: 0,
 };
 
 G.activeRow = 1;
@@ -30,7 +31,7 @@ This week, I finished the
   content={"Node.js course"}
   href={"https://www.theodinproject.com/paths/full-stack-javascript/courses/nodejs"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -184,7 +185,7 @@ The API is incredibly intuitive! For creating records, you use <code>create()</c
   content={"here"}
   href={"https://www.prisma.io/docs/orm/prisma-client/queries/crud"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}
@@ -267,7 +268,7 @@ But after a while, I got the hang of it. Thankfully, the
   content={"documentation"}
   href={"https://www.prisma.io/docs"}
   external={true}
-  row={3}
+  row={4}
   idx={0}
   underlined={true}
   multi={false}

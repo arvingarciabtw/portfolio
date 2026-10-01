@@ -19,6 +19,7 @@ const rowMap: Record<number, number> = {
 	7: 0,
 	8: 0,
 	9: 0,
+  10: 0,
 };
 
 G.activeRow = 1;
@@ -57,7 +58,7 @@ So, I recently re-read the
   content={"HTML elements reference"}
   href={"https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -109,7 +110,7 @@ which visualizes pressed keys in the footer, as well as the home page of another
   content={"ditto"}
   href={"https://ditto.arvingarcia.com"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}
@@ -124,7 +125,7 @@ I have not used this personally, but it seems very useful! In particular, its
   content={"info page"}
   href={"https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/mark"}
   external={true}
-  row={3}
+  row={4}
   idx={0}
   underlined={true}
   multi={false}
@@ -138,7 +139,7 @@ I'll keep this in mind if I ever make some sort of docs site that involves a sea
   content={"svelte.dev"}
   href={"https://svelte.dev"}
   external={true}
-  row={4}
+  row={5}
   idx={0}
   underlined={true}
   multi={false}
@@ -157,7 +158,7 @@ These two are also quite niche in usage, but the <code>ins</code>
   content={"info page"}
   href={"https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/ins"}
   external={true}
-  row={5}
+  row={6}
   idx={0}
   underlined={true}
   multi={false}
@@ -177,7 +178,7 @@ I hope this was useful! Time to start putting `h1`s in your `section`s if you ha
         content={r.content}
         href={r.href}
         external={true}
-        row={6 + i}
+        row={7 + i}
         idx={0}
         underlined={true}
         multi={false}

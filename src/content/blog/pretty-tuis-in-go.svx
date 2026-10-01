@@ -20,6 +20,7 @@ const rowMap: Record<number, number> = {
 	8: 0,
 	9: 0,
 	10: 0,
+	11: 0,
 };
 
 G.activeRow = 1;
@@ -37,7 +38,7 @@ Recently, I've been building a terminal app that visualizes key presses with an 
   content={"repo"}
   href={"https://github.com/arvingarciabtw/qwerty"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -50,7 +51,7 @@ If you've looked at rices on
   content={"r/unixp*rn"}
   href={"https://www.reddit.com/r/unixporn/"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}
@@ -59,7 +60,7 @@ If you've looked at rices on
   content={"fastfetch"}
   href={"https://github.com/fastfetch-cli/fastfetch"}
   external={true}
-  row={3}
+  row={4}
   idx={0}
   underlined={true}
   multi={false}
@@ -68,7 +69,7 @@ If you've looked at rices on
   content={"cmatrix"}
   href={"https://github.com/abishekvashok/cmatrix"}
   external={true}
-  row={4}
+  row={5}
   idx={0}
   underlined={true}
   multi={false}
@@ -83,7 +84,7 @@ Of course, I have to make this look good. I wanted to build this with Go (I'm li
   content={"Bubble Tea"}
   href={"https://github.com/charmbracelet/bubbletea"}
   external={true}
-  row={5}
+  row={6}
   idx={0}
   underlined={true}
   multi={false}
@@ -92,7 +93,7 @@ Of course, I have to make this look good. I wanted to build this with Go (I'm li
   content={"Lipgloss"}
   href={"https://github.com/charmbracelet/lipgloss"}
   external={true}
-  row={6}
+  row={7}
   idx={0}
   underlined={true}
   multi={false}
@@ -105,7 +106,7 @@ I'll just go over why I liked using these while building my app. If you want to 
   content={"Bubble Tea"}
   href={"https://pkg.go.dev/charm.land/bubbletea/v2"}
   external={true}
-  row={7}
+  row={8}
   idx={0}
   underlined={true}
   multi={false}
@@ -114,7 +115,7 @@ I'll just go over why I liked using these while building my app. If you want to 
   content={"Lipgloss"}
   href={"https://pkg.go.dev/charm.land/lipgloss/v2"}
   external={true}
-  row={8}
+  row={9}
   idx={0}
   underlined={true}
   multi={false}
@@ -127,7 +128,7 @@ What I like about them is their simplicity. You'd think that making TUIs would b
   content={"The Elm Architecture"}
   href={"https://guide.elm-lang.org/architecture/"}
   external={true}
-  row={9}
+  row={10}
   idx={0}
   underlined={true}
   multi={false}
@@ -191,7 +192,7 @@ Since our state is always changing every time something happens, our View works 
   content={"tutorial"}
   href={"https://github.com/charmbracelet/bubbletea/tree/main/tutorials/commands/"}
   external={true}
-  row={10}
+  row={11}
   idx={0}
   underlined={true}
   multi={false}

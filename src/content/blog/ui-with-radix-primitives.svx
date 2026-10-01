@@ -14,6 +14,7 @@ const rowMap: Record<number, number> = {
 	2: 0,
 	3: 0,
 	4: 0,
+	5: 0,
 };
 
 G.activeRow = 1;
@@ -36,7 +37,7 @@ Thankfully though,
   content={"component libraries"}
   href={"https://www.sanity.io/glossary/component-library"}
   external={true}
-  row={1}
+  row={2}
   idx={0}
   underlined={true}
   multi={false}
@@ -49,7 +50,7 @@ There are a ton of component libraries out there, and I haven't done a deep dive
   content={"Radix Primitives"}
   href={"https://www.radix-ui.com/primitives"}
   external={true}
-  row={2}
+  row={3}
   idx={0}
   underlined={true}
   multi={false}
@@ -62,7 +63,7 @@ I like that it handles the accessibility for us. I'm certainly not an accessibil
   content={"WAI-ARIA design patterns"}
   href={"https://www.w3.org/WAI/ARIA/apg/"}
   external={true}
-  row={3}
+  row={4}
   idx={0}
   underlined={true}
   multi={false}
@@ -95,7 +96,7 @@ If you find this component library interesting, I'd suggest you take a look at t
   content={"documentation"}
   href={"https://www.radix-ui.com/primitives/docs/overview/introduction"}
   external={true}
-  row={4}
+  row={5}
   idx={0}
   underlined={true}
   multi={false}
