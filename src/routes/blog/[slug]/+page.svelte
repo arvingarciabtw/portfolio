@@ -17,27 +17,19 @@ const posts = import.meta.glob<PostModule>("/src/content/blog/*.svx", {
 
 <script lang="ts">
 import { page } from "$app/state";
-import { global as G } from "$lib/stores/global.svelte";
 
-const post = $derived(
-	posts[`/src/content/blog/${page.params.slug}.svx`],
-);
-
-G.indexMap = {};
+const post = $derived(posts[`/src/content/blog/${page.params.slug}.svx`]);
 </script>
 
 <svelte:head>
 	<title>arvin</title>
-	<meta
-		name="description"
-		content={post.metadata.description}
-	/>
+	<meta name="description" content={post.metadata.description} />
 </svelte:head>
 
 {#if post}
-{@const Content = post.default}
+    {@const Content = post.default}
 
-  <div class="article-wrapper">
+    <div class="article-wrapper">
 	<Content />
 </div>
 {/if}

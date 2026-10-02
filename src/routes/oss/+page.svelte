@@ -24,65 +24,78 @@ $effect(() => {
 </script>
 
 <div class="oss-wrapper">
-	{#each oss as org, i (org)}
-		<div class="oss">
-			<div class="details">
-				<div class="selection">
-          <Navigable 
-            content={org.name}
-            href={org.url}
-            external={true}
-            row={i + 1}
-            idx={0}
-          />
-          <!-- hacky way of customizing five-digit metrics, but i can't be bothered rn -->
-          <div class="metrics">
-            {#if org.metrics.stars != null && org.metrics.stars > 10}
-              <div class="metric stars">
-                <div class="icon">
-                  <Star />
+    {#each oss as org, i (org)}
+        <div class="oss">
+            <div class="details">
+                <div class="selection">
+                    <Navigable
+                        content={org.name}
+                        href={org.url}
+                        external={true}
+                        row={i + 1}
+                        idx={0}
+                    />
+                    <!-- hacky way of customizing five-digit metrics, but i can't be bothered rn -->
+                    <div class="metrics">
+                        {#if org.metrics.stars != null && org.metrics.stars > 10}
+                            <div class="metric stars">
+                                <div class="icon">
+                                    <Star />
+                                </div>
+                                <p>
+                                    {org.metrics.stars - 10000 > 0
+                                        ? `${org.metrics.stars.toString().slice(0, 2)}.${org.metrics.stars.toString().slice(2, 3)}k`
+                                        : org.metrics.stars}{org.metrics.stars >
+                                    10
+                                        ? "+"
+                                        : ""}
+                                </p>
+                            </div>
+                        {/if}
+                        {#if org.metrics.downloads != null && org.metrics.downloads > 10}
+                            <div class="metric downloads">
+                                <div class="icon">
+                                    <Download />
+                                </div>
+                                <p>
+                                    {org.metrics.downloads}{org.metrics
+                                        .downloads > 10
+                                        ? "+"
+                                        : ""}
+                                </p>
+                            </div>
+                        {/if}
+                        {#if org.metrics.forks != null && org.metrics.forks >= 5}
+                            <div class="metric forks">
+                                <div class="icon">
+                                    <Fork />
+                                </div>
+                                <p>
+                                    {org.metrics.forks - 10000 > 0
+                                        ? `${org.metrics.forks.toString().slice(0, 2)}.${org.metrics.forks.toString().slice(2, 3)}k`
+                                        : org.metrics.forks}{org.metrics.forks >
+                                    10
+                                        ? "+"
+                                        : ""}
+                                </p>
+                            </div>
+                        {/if}
+                    </div>
                 </div>
-                <p>
-                  {org.metrics.stars - 10000 > 0 ? `${org.metrics.stars.toString().slice(0, 2)}.${org.metrics.stars.toString().slice(2, 3)}k` : org.metrics.stars}{org.metrics.stars > 10 ? '+' : ''}
-                </p>
-              </div>
-            {/if}
-            {#if org.metrics.downloads != null && org.metrics.downloads > 10}
-              <div class="metric downloads">
-                <div class="icon">
-                  <Download />
-                </div>
-                <p>
-                  {org.metrics.downloads}{org.metrics.downloads > 10 ? '+' : ''}
-                </p>
-              </div>
-            {/if}
-            {#if org.metrics.forks != null && org.metrics.forks >= 5}
-              <div class="metric forks">
-                <div class="icon">
-                  <Fork />
-                </div>
-                <p>
-                  {org.metrics.forks - 10000 > 0 ? `${org.metrics.forks.toString().slice(0, 2)}.${org.metrics.forks.toString().slice(2, 3)}k` : org.metrics.forks}{org.metrics.forks > 10 ? '+' : ''}
-                </p>
-              </div>
-            {/if}
-          </div>
-				</div>
-          <ul class="technology-list">
-            {#each org.technologies as technology, i (technology)}
-              <li class="technology">
-                <p>{technology}</p>
-                {#if i != org.technologies.length - 1}
-                  <p class="separator">·</p>
-                {/if}
-              </li>
-            {/each}
-          </ul>
-			</div>
-			<p class="description">{org.description}</p>
-		</div>
-	{/each}
+                <ul class="technology-list">
+                    {#each org.technologies as technology, i (technology)}
+                        <li class="technology">
+                            <p>{technology}</p>
+                            {#if i != org.technologies.length - 1}
+                                <p class="separator">·</p>
+                            {/if}
+                        </li>
+                    {/each}
+                </ul>
+            </div>
+            <p class="description">{org.description}</p>
+        </div>
+    {/each}
 </div>
 
 <style>

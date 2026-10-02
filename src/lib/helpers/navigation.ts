@@ -5,6 +5,7 @@ export function navigate(path: string) {
 	goto(path);
 
 	G.activeRow = 1;
+	G.activeIndex = 0;
 
 	switch (path) {
 		case "/":

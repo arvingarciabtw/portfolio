@@ -31,8 +31,7 @@ $effect(() => {
 });
 
 onMount(() => {
-	return () => {
-	};
+	return () => {};
 });
 </script>
 
@@ -41,23 +40,23 @@ onMount(() => {
 		<h1>socials</h1>
 		<div class="description">
 			<ul class="row">
-				{#each socials as social, i (social)}
-					<li class="social">
-            <Navigable 
-              content={social.content} 
-              href={social.href} 
-              external={true}
-              row=1
-              idx={i}
-              underlined={true}
-              multi={true}
-            />
-					</li>
-					{#if i != socials.length - 1}
-						<li class="separator">·</li>
-					{/if}
-				{/each}
-			</ul>
+                {#each socials as social, i (social)}
+                    <li class="social">
+                        <Navigable
+                            content={social.content}
+                            href={social.href}
+                            external={true}
+                            row="1"
+                            idx={i}
+                            underlined={true}
+                            multi={true}
+                        />
+                    </li>
+                    {#if i != socials.length - 1}
+                        <li class="separator">·</li>
+                    {/if}
+                {/each}
+            </ul>
 		</div>
 	</section>
 
@@ -65,19 +64,19 @@ onMount(() => {
 		<h1>philosophy</h1>
 		<div class="description">
 			<ul class="philosophy-list">
-				{#each philosophies as philosophy, i (philosophy)}
-					<li class="philosophy">
-            <Navigable 
-              content={philosophy.content} 
-              href={philosophy.href} 
-              external={true}
-              row={i + 2}
-              idx={0}
-              underlined={true}
-            />
-					</li>
-				{/each}
-			</ul>
+                {#each philosophies as philosophy, i (philosophy)}
+                    <li class="philosophy">
+                        <Navigable
+                            content={philosophy.content}
+                            href={philosophy.href}
+                            external={true}
+                            row={i + 2}
+                            idx={0}
+                            underlined={true}
+                        />
+                    </li>
+                {/each}
+            </ul>
 		</div>
 	</section>
 
@@ -85,23 +84,23 @@ onMount(() => {
 		<h1>software</h1>
 		<div class="description">
 			<ul class="row">
-				{#each software as s, i (s)}
-					<li class="tool">
-            <Navigable 
-              content={s.content} 
-              href={s.href} 
-              external={true}
-              row={5}
-              idx={i}
-              underlined={true}
-              multi={true}
-            />
-					</li>
-					{#if i != software.length - 1}
-						<li class="separator">·</li>
-					{/if}
-				{/each}
-			</ul>
+                {#each software as s, i (s)}
+                    <li class="tool">
+                        <Navigable
+                            content={s.content}
+                            href={s.href}
+                            external={true}
+                            row={5}
+                            idx={i}
+                            underlined={true}
+                            multi={true}
+                        />
+                    </li>
+                    {#if i != software.length - 1}
+                        <li class="separator">·</li>
+                    {/if}
+                {/each}
+            </ul>
 		</div>
 	</section>
 
@@ -109,23 +108,23 @@ onMount(() => {
 		<h1>games</h1>
 		<div class="description">
 			<ul class="row">
-				{#each games as game, i (game)}
-					<li class="tool">
-            <Navigable 
-              content={game.content} 
-              href={game.href} 
-              external={true}
-              row={6}
-              idx={i}
-              underlined={true}
-              multi={true}
-            />
-					</li>
-					{#if i != games.length - 1}
-						<li class="separator">·</li>
-					{/if}
-				{/each}
-			</ul>
+                {#each games as game, i (game)}
+                    <li class="tool">
+                        <Navigable
+                            content={game.content}
+                            href={game.href}
+                            external={true}
+                            row={6}
+                            idx={i}
+                            underlined={true}
+                            multi={true}
+                        />
+                    </li>
+                    {#if i != games.length - 1}
+                        <li class="separator">·</li>
+                    {/if}
+                {/each}
+            </ul>
 		</div>
 	</section>
 
@@ -133,23 +132,23 @@ onMount(() => {
 		<h1>music</h1>
 		<div class="description">
 			<ul class="row">
-				{#each music as artist, i (artist)}
-					<li class="tool">
-            <Navigable 
-              content={artist.content} 
-              href={artist.href} 
-              external={true}
-              row={7}
-              idx={i}
-              underlined={true}
-              multi={true}
-            />
-					</li>
-					{#if i != music.length - 1}
-						<li class="separator">·</li>
-					{/if}
-				{/each}
-			</ul>
+                {#each music as artist, i (artist)}
+                    <li class="tool">
+                        <Navigable
+                            content={artist.content}
+                            href={artist.href}
+                            external={true}
+                            row={7}
+                            idx={i}
+                            underlined={true}
+                            multi={true}
+                        />
+                    </li>
+                    {#if i != music.length - 1}
+                        <li class="separator">·</li>
+                    {/if}
+                {/each}
+            </ul>
 		</div>
 	</section>
 
@@ -157,23 +156,23 @@ onMount(() => {
 		<h1>conditions</h1>
 		<div class="description">
 			<ul class="row">
-				{#each conditions as condition, i (condition)}
-					<li class="tool">
-            <Navigable 
-              content={condition.content} 
-              href={condition.href} 
-              external={true}
-              row={8}
-              idx={i}
-              underlined={true}
-              multi={true}
-            />
-					</li>
-					{#if i != conditions.length - 1}
-						<li class="separator">·</li>
-					{/if}
-				{/each}
-			</ul>
+                {#each conditions as condition, i (condition)}
+                    <li class="tool">
+                        <Navigable
+                            content={condition.content}
+                            href={condition.href}
+                            external={true}
+                            row={8}
+                            idx={i}
+                            underlined={true}
+                            multi={true}
+                        />
+                    </li>
+                    {#if i != conditions.length - 1}
+                        <li class="separator">·</li>
+                    {/if}
+                {/each}
+            </ul>
 		</div>
 	</section>
 

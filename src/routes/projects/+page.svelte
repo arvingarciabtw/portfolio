@@ -25,64 +25,73 @@ $effect(() => {
 </script>
 
 <div class="projects-wrapper">
-	{#each projects as project, i (project)}
-		<div class="project">
-			<div class="details">
-				<div class="selection">
-          <Navigable 
-            content={project.name}
-            href={project.url}
-            external={true}
-            row={i + 1}
-            idx={0}
-          />
-          <div class="metrics">
-            {#if project.metrics.stars != null && project.metrics.stars > 10}
-              <div class="metric stars">
-                <div class="icon">
-                  <Star />
+    {#each projects as project, i (project)}
+        <div class="project">
+            <div class="details">
+                <div class="selection">
+                    <Navigable
+                        content={project.name}
+                        href={project.url}
+                        external={true}
+                        row={i + 1}
+                        idx={0}
+                    />
+                    <div class="metrics">
+                        {#if project.metrics.stars != null && project.metrics.stars > 10}
+                            <div class="metric stars">
+                                <div class="icon">
+                                    <Star />
+                                </div>
+                                <p>
+                                    {project.metrics.stars}{project.metrics
+                                        .stars > 10
+                                        ? "+"
+                                        : ""}
+                                </p>
+                            </div>
+                        {/if}
+                        {#if project.metrics.downloads != null && project.metrics.downloads > 10}
+                            <div class="metric downloads">
+                                <div class="icon">
+                                    <Download />
+                                </div>
+                                <p>
+                                    {project.metrics.downloads}{project.metrics
+                                        .downloads > 10
+                                        ? "+"
+                                        : ""}
+                                </p>
+                            </div>
+                        {/if}
+                        {#if project.metrics.forks != null && project.metrics.forks >= 5}
+                            <div class="metric forks">
+                                <div class="icon">
+                                    <Fork />
+                                </div>
+                                <p>
+                                    {project.metrics.forks}{project.metrics
+                                        .forks > 10
+                                        ? "+"
+                                        : ""}
+                                </p>
+                            </div>
+                        {/if}
+                    </div>
                 </div>
-                <p>
-                  {project.metrics.stars}{project.metrics.stars > 10 ? '+' : ''}
-                </p>
-              </div>
-            {/if}
-            {#if project.metrics.downloads != null && project.metrics.downloads > 10}
-              <div class="metric downloads">
-                <div class="icon">
-                  <Download />
-                </div>
-                <p>
-                  {project.metrics.downloads}{project.metrics.downloads > 10 ? '+' : ''}
-                </p>
-              </div>
-            {/if}
-            {#if project.metrics.forks != null && project.metrics.forks >= 5}
-              <div class="metric forks">
-                <div class="icon">
-                  <Fork />
-                </div>
-                <p>
-                  {project.metrics.forks}{project.metrics.forks > 10 ? '+' : ''}
-                </p>
-              </div>
-            {/if}
-          </div>
-				</div>
-          <ul class="technology-list">
-            {#each project.technologies as technology, i (technology)}
-              <li class="technology">
-                <p>{technology}</p>
-                {#if i != project.technologies.length - 1}
-                  <p class="separator">·</p>
-                {/if}
-              </li>
-            {/each}
-          </ul>
-			</div>
-			<p class="description">{project.description}</p>
-		</div>
-	{/each}
+                <ul class="technology-list">
+                    {#each project.technologies as technology, i (technology)}
+                        <li class="technology">
+                            <p>{technology}</p>
+                            {#if i != project.technologies.length - 1}
+                                <p class="separator">·</p>
+                            {/if}
+                        </li>
+                    {/each}
+                </ul>
+            </div>
+            <p class="description">{project.description}</p>
+        </div>
+    {/each}
 </div>
 
 <style>

@@ -2,6 +2,7 @@
 import { onMount } from "svelte";
 import { page } from "$app/state";
 import { global as G, pageMaps } from "$lib/stores/global.svelte";
+import { navigate } from "$lib/helpers/navigation";
 
 let shake = $state({
 	left: false,
@@ -21,12 +22,9 @@ let {
 	...rest
 } = $props();
 
-const isActive = $derived(
-	row == G.activeRow && idx == G.activeIndex,
-);
+const isActive = $derived(row == G.activeRow && idx == G.activeIndex);
 const isLastVisited = $derived(
-	G.indexMap[row] === idx &&
-		row != G.activeRow,
+	G.indexMap[row] === idx && row != G.activeRow,
 );
 
 function setPageMap() {
@@ -82,40 +80,40 @@ onMount(() => {
 
 let el: any;
 $effect(() => {
-	if (isActive) el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+	if (isActive) {
+		el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+	}
 });
 </script>
 
 <a
 	bind:this={el}
 	class={`navigable 
-    ${(isLastVisited && multi) && "last-visited"} 
+    ${isLastVisited && multi && "last-visited"} 
     ${isActive && "active"} 
     ${underlined && "underlined"} 
     ${shake.left && "shake-left"} 
     ${shake.down && "shake-down"} 
     ${shake.up && "shake-up"}
-    ${shake.right && "shake-right"}`
-  }
+    ${shake.right && "shake-right"}`}
 	onanimationend={() => {
-    shake.left = false
-    shake.down = false
-    shake.up = false
-    shake.right = false
-  }}
-	href={href}
+        shake.left = false;
+        shake.down = false;
+        shake.up = false;
+        shake.right = false;
+    }}
+	{href}
 	target={external ? "_blank" : undefined}
 	rel={external ? "noopener noreferrer" : undefined}
 	data-navigable
 	data-row={row}
 	data-idx={idx}
 	onmousedown={() => {
-    G.activeRow = 1
-    G.activeIndex = 0
-  }}
+        navigate(href);
+    }}
 	{...rest}
 >
-  {content}
+    {content}
 </a>
 
 <style>
@@ -151,9 +149,13 @@ a.navigable {
 		color: var(--bright-white);
 		opacity: 0.5;
 		background-size: 4px 4px;
-		background-image: repeating-linear-gradient(45deg, var(--bright-black)
-			0, var(--bright-black)
-			1px, var(--black), var(--black) 50%);
+		background-image: repeating-linear-gradient(
+			45deg,
+			var(--bright-black) 0,
+			var(--bright-black) 1px,
+			var(--black),
+			var(--black) 50%
+		);
 	}
 
 	&.active {

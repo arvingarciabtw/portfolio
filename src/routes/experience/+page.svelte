@@ -20,36 +20,36 @@ $effect(() => {
 </script>
 
 <div class="experiences-wrapper">
-	{#each experiences as experience, i (experience.description)}
-    <div class="experience">
-      <div class="details">
-        <div class="name">
-          <Navigable 
-            content={experience.position}
-            href={experience.url}
-            external={true}
-            row={i + 1}
-            idx={0}
-          />
+    {#each experiences as experience, i (experience.description)}
+        <div class="experience">
+            <div class="details">
+                <div class="name">
+                    <Navigable
+                        content={experience.position}
+                        href={experience.url}
+                        external={true}
+                        row={i + 1}
+                        idx={0}
+                    />
+                </div>
+                <div class="others">
+                    <ul>
+                        <li class="company">{experience.company}</li>
+                        <li class="separator">·</li>
+                        <li class="date">{experience.date}</li>
+                    </ul>
+                </div>
+            </div>
+            <ul class="points">
+                {#each experience.points as point (point)}
+                    <li class="point">
+                        <p class="symbol">*</p>
+                        {@html point}
+                    </li>
+                {/each}
+            </ul>
         </div>
-        <div class="others">
-          <ul>
-            <li class="company">{experience.company}</li>
-            <li class="separator">·</li>
-            <li class="date">{experience.date}</li>
-          </ul>
-        </div>
-      </div>
-			<ul class="points">
-				{#each experience.points as point (point)}
-					<li class="point">
-						<p class="symbol">*</p>
-						{@html point}
-					</li>
-				{/each}
-			</ul>
-		</div>
-	{/each}
+    {/each}
 </div>
 
 <style>

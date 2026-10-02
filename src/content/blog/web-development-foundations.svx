@@ -38,7 +38,6 @@ const rowMap: Record<number, number> = {
 
 G.activeRow = 1;
 G.maxRow = Object.keys(rowMap).length - 1;
-G.indexMap = {};
 
 $effect(() => {
 	G.maxRowIndex = rowMap[G.activeRow] ?? 0;

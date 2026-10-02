@@ -1,23 +1,28 @@
 <script lang="ts">
+import { global as G } from "$lib/stores/global.svelte";
 import Navigable from "$lib/components/navigable.svelte";
 
 let { title, pubDate, children } = $props();
+
+G.indexMap = {
+	0: 0,
+};
 </script>
 
 <article class="post">
-  <div class="title">
-    <Navigable 
-      content={title}
-      href={"#"}
-      external={false}
-      row={1}
-      idx={0}
-      underlined={false}
-      multi={false}
-    />
-  </div>
-	<time>{pubDate}</time>
-	{@render children()}
+    <div class="title">
+        <Navigable
+            content={title}
+            href={"#"}
+            external={false}
+            row={1}
+            idx={0}
+            underlined={false}
+            multi={false}
+        />
+    </div>
+    <time>{pubDate}</time>
+    {@render children()}
 </article>
 
 <style>

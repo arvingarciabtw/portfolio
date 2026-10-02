@@ -1,18 +1,16 @@
 <script lang="ts">
 import { global as G, pageMaps } from "$lib/stores/global.svelte";
 import { socials } from "$lib/data/data";
+import { groups } from "$lib/data/posts";
 import Navigable from "$lib/components/navigable.svelte";
-import type { PageData } from "./$types";
-
-let { data }: { data: PageData } = $props();
 
 const rowMap: Record<number, number> = {
 	0: 4,
 	1: 1,
 };
 
-const LENGTH_2026 = data.groups[0].posts.length;
-const LENGTH_2025 = data.groups[1].posts.length;
+const LENGTH_2026 = groups[0].posts.length;
+const LENGTH_2025 = groups[1].posts.length;
 
 for (let i = 2; i <= LENGTH_2026 + 1; i++) {
 	rowMap[i] = 0;
@@ -55,7 +53,7 @@ $effect(() => {
 	</section>
 
 	<div class="blog">
-		{#each data.groups as group, gIdx (group)}
+		{#each groups as group, gIdx (group)}
 			<div class="year">
 				<h2>{group.year}</h2>
 				<ul class="article-list">
