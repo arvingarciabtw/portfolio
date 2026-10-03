@@ -1,8 +1,8 @@
 <script lang="ts">
 import { onMount } from "svelte";
 import { page } from "$app/state";
-import { global as G, pageMaps } from "$lib/stores/global.svelte";
-import { navigate } from "$lib/helpers/navigation";
+import { global as G, pageMaps } from "#lib/stores/global.svelte.js";
+import { navigate } from "#lib/helpers/navigation.js";
 
 let shake = $state({
 	left: false,

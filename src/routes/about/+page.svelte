@@ -7,9 +7,9 @@ import {
 	philosophies,
 	socials,
 	software,
-} from "$lib/data/data";
-import { global as G, pageMaps } from "$lib/stores/global.svelte";
-import Navigable from "$lib/components/navigable.svelte";
+} from "#lib/data/data.js";
+import { global as G, pageMaps } from "#lib/stores/global.svelte.js";
+import Navigable from "#lib/components/navigable.svelte";
 
 const rowMap: Record<number, number> = {
 	0: 4,

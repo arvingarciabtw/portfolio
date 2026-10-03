@@ -1,6 +1,6 @@
 <script lang="ts">
-import { global as G } from "$lib/stores/global.svelte";
-import Navigable from "$lib/components/navigable.svelte";
+import { global as G } from "#lib/stores/global.svelte.js";
+import Navigable from "#lib/components/navigable.svelte";
 
 let { title, description, pubDate, children } = $props();
 

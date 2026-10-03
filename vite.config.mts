@@ -6,6 +6,11 @@ import { fileURLToPath } from "node:url";
 import { type BundledLanguage, codeToHtml } from "shiki";
 
 export default defineConfig({
+	resolve: {
+		alias: {
+			"#lib": fileURLToPath(new URL("./src/lib", import.meta.url)),
+		},
+	},
 	plugins: [
 		sveltekit({
 			extensions: [".svelte", ".svx"],
@@ -41,7 +46,7 @@ export default defineConfig({
 						? undefined
 						: true,
 			},
-			adapter: adapter(),
+			adapter: adapter({ platformProxy: { persist: false } }),
 		}),
 	],
 });

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { keyGroups, keys } from "$lib/helpers/keys";
+import { keyGroups, keys } from "#lib/helpers/keys.js";
 import { onMount } from "svelte";
 
 let char = $state("");

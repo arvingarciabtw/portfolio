@@ -1,6 +1,8 @@
-type Route = Parameters<typeof resolve>[0];
+export type Route = string | URL;
 
-type Link = {
+// resolve is imported via value in consumers that need it, keep Route simple? Or just inline type
+
+export type Link = {
 	content: string;
 };
 export type InternalLink = Link & {
@@ -18,6 +20,11 @@ export type Experience = {
 	description: string;
 	points: string[];
 	technologies: string[];
+};
+
+export type Metrics = {
+	stars: string;
+	forks: string;
 };
 
 export type Project = {

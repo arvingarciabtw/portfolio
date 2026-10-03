@@ -3,7 +3,7 @@ import type {
 	ExternalLink,
 	InternalLink,
 	Project,
-} from "./data.d.ts";
+} from "./data";
 import { resolve } from "$app/paths";
 
 const COLORS = {

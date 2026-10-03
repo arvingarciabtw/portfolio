@@ -1,11 +1,11 @@
 import type { RequestHandler } from "./$types";
-import { all } from "$lib/data/posts";
+import { all } from "#lib/data/posts.js";
 import {
 	SITE_DESCRIPTION,
 	SITE_LANGUAGE,
 	SITE_TITLE,
 	SITE_URL,
-} from "$lib/data/site";
+} from "#lib/data/site.js";
 
 export const prerender = true;
 

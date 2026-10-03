@@ -1,8 +1,8 @@
 <script lang="ts">
 import { onMount } from "svelte";
-import { sections } from "$lib/data/data";
+import { sections } from "#lib/data/data.js";
 import Navigable from "./navigable.svelte";
-import { global as G } from "$lib/stores/global.svelte";
+import { global as G } from "#lib/stores/global.svelte.js";
 
 G.maxRowIndex = 4;
 

@@ -5,8 +5,8 @@ pubDate: "Nov 02 2025"
 ---
 
 <script lang="ts">
-import { global as G } from "$lib/stores/global.svelte";
-import Navigable from "$lib/components/navigable.svelte";
+import { global as G } from "#lib/stores/global.svelte.js";
+import Navigable from "#lib/components/navigable.svelte";
 
 const rowMap: Record<number, number> = {
 	0: 4,

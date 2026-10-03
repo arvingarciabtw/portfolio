@@ -1,8 +1,8 @@
 import { goto } from "$app/navigation";
-import { global as G, pageMaps } from "$lib/stores/global.svelte";
+import { global as G, pageMaps } from "#lib/stores/global.svelte.js";
 
 export function navigate(path: string) {
-	goto(path);
+	if (path.startsWith("/")) goto(path);
 
 	G.activeRow = 1;
 	G.activeIndex = 0;

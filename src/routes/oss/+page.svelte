@@ -1,10 +1,10 @@
 <script lang="ts">
-import { oss } from "$lib/data/data";
-import { global as G } from "$lib/stores/global.svelte";
-import Download from "$lib/icons/download.svelte";
-import Fork from "$lib/icons/fork.svelte";
-import Star from "$lib/icons/star.svelte";
-import Navigable from "$lib/components/navigable.svelte";
+import { oss } from "#lib/data/data.js";
+import { global as G } from "#lib/stores/global.svelte.js";
+import Download from "#lib/icons/download.svelte";
+import Fork from "#lib/icons/fork.svelte";
+import Star from "#lib/icons/star.svelte";
+import Navigable from "#lib/components/navigable.svelte";
 
 const rowMap: Record<number, number> = {
 	0: 4,

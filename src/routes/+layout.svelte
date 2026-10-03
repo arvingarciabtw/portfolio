@@ -2,15 +2,15 @@
 import { onMount } from "svelte";
 import { afterNavigate } from "$app/navigation";
 import "../global.css";
-import faviconForLight from "$lib/assets/favicon-for-light.png";
-import faviconForDark from "$lib/assets/favicon-for-dark.png";
-import { font } from "$lib/helpers/fonts";
-import { execute, move, navigate } from "$lib/helpers/navigation";
-import { position } from "$lib/helpers/position";
-import { settings } from "$lib/helpers/settings";
-import { theme } from "$lib/helpers/theme";
-import Header from "$lib/components/header.svelte";
-import Footer from "$lib/components/footer.svelte";
+import faviconForLight from "#lib/assets/favicon-for-light.png";
+import faviconForDark from "#lib/assets/favicon-for-dark.png";
+import { font } from "#lib/helpers/fonts.js";
+import { execute, move, navigate } from "#lib/helpers/navigation.js";
+import { position } from "#lib/helpers/position.js";
+import { settings } from "#lib/helpers/settings.js";
+import { theme } from "#lib/helpers/theme.js";
+import Header from "#lib/components/header.svelte";
+import Footer from "#lib/components/footer.svelte";
 
 let { children } = $props();
 
@@ -109,7 +109,9 @@ function navigationListener(e: KeyboardEvent) {
 	}
 }
 
-afterNavigate(() => {
+afterNavigate(({ shallow }) => {
+	if (shallow) return;
+
 	position.reset(positionState, null);
 });
 

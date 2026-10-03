@@ -1,8 +1,8 @@
 <script lang="ts">
-import { global as G, pageMaps } from "$lib/stores/global.svelte";
-import { socials } from "$lib/data/data";
-import { groups } from "$lib/data/posts";
-import Navigable from "$lib/components/navigable.svelte";
+import { global as G, pageMaps } from "#lib/stores/global.svelte.js";
+import { socials } from "#lib/data/data.js";
+import { groups } from "#lib/data/posts.js";
+import Navigable from "#lib/components/navigable.svelte";
 
 const rowMap: Record<number, number> = {
 	0: 4,
