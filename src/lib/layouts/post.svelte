@@ -2,14 +2,19 @@
 import { global as G } from "$lib/stores/global.svelte";
 import Navigable from "$lib/components/navigable.svelte";
 
-let { title, pubDate, children } = $props();
+let { title, description, pubDate, children } = $props();
 
 G.indexMap = {
 	0: 0,
 };
 </script>
 
-<article class="post">
+<svelte:head>
+	<meta name="description" content={description} />
+</svelte:head>
+
+<div class="post-wrapper">
+	<article class="post">
     <div class="title">
         <Navigable
             content={title}
@@ -23,9 +28,15 @@ G.indexMap = {
     </div>
     <time>{pubDate}</time>
     {@render children()}
-</article>
+	</article>
+</div>
 
 <style>
+.post-wrapper {
+	padding: 0 1.25rem;
+	width: 100%;
+	max-width: 78rem;
+}
 .post {
 	display: grid;
 	text-transform: lowercase;

@@ -152,7 +152,7 @@ const posts: Post[] = [
 	{
 		title: "Theming that Doesn't Suck",
 		pubDate: "Sep 13, 2026",
-		slug: "theming-that-doesn't-suck",
+		slug: "theming-that-doesnt-suck",
 	},
 	{
 		title: "TypeScript: JavaScript with Types",

@@ -3,7 +3,7 @@ import { position } from "./position.ts";
 
 export const settings = {
 	reset(positionState: PositionState, fontState: FontState) {
-		position.reset(positionState);
+		position.reset(positionState, 1);
 
 		fontState.size = 14;
 		fontState.weight = 400;

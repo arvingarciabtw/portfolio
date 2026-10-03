@@ -46,7 +46,7 @@ function settingsListener(e: KeyboardEvent) {
 			settings.reset(positionState, fontState);
 			break;
 		case "p":
-			position.reset(positionState);
+			position.reset(positionState, 1);
 			break;
 		case "t":
 			theme.mode(currentTheme);
@@ -110,7 +110,7 @@ function navigationListener(e: KeyboardEvent) {
 }
 
 afterNavigate(() => {
-	position.reset(positionState);
+	position.reset(positionState, null);
 });
 
 onMount(() => {

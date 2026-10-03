@@ -19,9 +19,12 @@ export const position = {
 			positionState.y -= position.DISTANCE;
 		},
 	},
-	reset(positionState: PositionState) {
+	reset(positionState: PositionState, row: number | null) {
 		positionState.x = 0;
 		positionState.y = 0;
-		G.activeRow = 1;
+
+		if (row != null) {
+			G.activeRow = row;
+		}
 	},
 };
