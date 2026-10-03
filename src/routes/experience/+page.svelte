@@ -59,7 +59,7 @@ $effect(() => {
 	max-width: 78rem;
 	display: flex;
 	flex-direction: column;
-	gap: 4rem;
+	gap: 2rem;
 	--flicker-color: var(--experience);
 }
 .experience {

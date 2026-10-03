@@ -16,7 +16,7 @@ for (let i = 2; i <= LENGTH_2026 + 1; i++) {
 	rowMap[i] = 0;
 }
 
-for (let i = 2 + LENGTH_2026 + 1; i <= LENGTH_2026 + LENGTH_2025 + 2; i++) {
+for (let i = 2 + LENGTH_2026 + 1; i <= LENGTH_2026 + LENGTH_2025 + 3; i++) {
 	rowMap[i] = 0;
 }
 
@@ -52,7 +52,23 @@ $effect(() => {
     </ul>
 	</section>
 
-	<div class="blog">
+	<section class="blog">
+    <h1>
+      blog
+      <span class="separator">·</span>
+      <span class="rss">
+      <Navigable 
+        content={"rss"}
+        href={"https://arvingarcia.com/rss.xml"}
+        external={true}
+        row={2}
+        idx={0}
+        underlined={true}
+        multi={false}
+      /> 
+      </span>
+    </h1>
+		<p class="description">write, write, write!</p>
 		{#each groups as group, gIdx (group)}
 			<div class="year">
 				<h2>{group.year}</h2>
@@ -65,7 +81,7 @@ $effect(() => {
                 content={post.title}
                 href={`/blog/${post.slug}`}
                 external={false}
-                row={gIdx == 0 ? 2 + pIdx : 2 + LENGTH_2025 + pIdx + 1}
+                row={gIdx == 0 ? 3 + pIdx : 3 + LENGTH_2025 + pIdx + 1}
                 idx={0}
                 underlined={false}
                 multi={false}
@@ -78,7 +94,7 @@ $effect(() => {
 				</ul>
 			</div>
 		{/each}
-	</div>
+	</section>
 </div>
 
 <style>
@@ -116,8 +132,15 @@ section {
 	gap: 2rem;
 	text-transform: lowercase;
 }
+.blog .description {
+	margin-top: -1.25rem;
+}
+.separator,
+.rss {
+	color: var(--white);
+}
 .article-list {
-	margin-top: 2rem;
+	margin-top: 1.5rem;
 }
 .article {
 	margin-bottom: 0.75rem;
