@@ -42,9 +42,6 @@ export default defineConfig({
 						: true,
 			},
 			adapter: adapter(),
-			output: {
-				bundleStrategy: "single",
-			},
 		}),
 	],
 });
