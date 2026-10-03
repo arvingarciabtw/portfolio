@@ -123,6 +123,9 @@ G.indexMap = {
 }
 
 @media (max-width: 500px) {
+	.post-wrapper {
+		padding: 0;
+	}
 	.post {
 		:global(ul) {
 			gap: 0rem;

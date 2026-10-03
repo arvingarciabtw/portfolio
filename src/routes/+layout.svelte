@@ -156,4 +156,10 @@ main {
 	gap: 4rem;
 	transition: transform 0.3s ease;
 }
+
+@media (max-width: 500px) {
+	main {
+		padding: 5rem 1rem 2rem;
+	}
+}
 </style>

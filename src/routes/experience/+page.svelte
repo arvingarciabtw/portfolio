@@ -118,6 +118,7 @@ ul {
 @media (max-width: 500px) {
 	.experiences-wrapper {
 		padding: 0 0.25rem;
+		gap: 2rem;
 	}
 }
 </style>

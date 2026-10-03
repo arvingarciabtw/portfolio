@@ -48,6 +48,9 @@ header {
 	display: grid;
 	place-items: center;
 	background: var(--black);
+	overflow-x: scroll;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 	z-index: 1; /* to stack above scrollable main el */
 }
 .wrapper {
@@ -63,11 +66,12 @@ header {
 .section-list {
 	width: 100%;
 	display: flex;
-	flex-wrap: wrap;
 	gap: 0.5rem 2.5rem;
 }
 .section {
 	color: var(--flicker-color);
+	display: grid;
+	grid-template-columns: repeat(2, max-content);
 }
 .section.home {
 	--flicker-color: var(--home);
@@ -98,10 +102,10 @@ header {
 
 @media (max-width: 500px) {
 	header {
+		width: 100%;
 		padding: 1rem 0;
 	}
 	.section-list {
-		flex-wrap: wrap;
 		gap: 0.25rem 1rem;
 	}
 }
