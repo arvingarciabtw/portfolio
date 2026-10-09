@@ -1,9 +1,4 @@
-import type {
-	Experience,
-	ExternalLink,
-	InternalLink,
-	Project,
-} from "./data";
+import type { Experience, ExternalLink, InternalLink, Project } from "./data";
 import { resolve } from "$app/paths";
 
 const COLORS = {
@@ -76,7 +71,7 @@ export const projects: Project[] = [
 		description:
 			"a system-wide and cross-platform ascii keyboard visualizer and keycaster.",
 		metrics: {
-			downloads: 140,
+			downloads: 150,
 			stars: 120,
 			forks: 2,
 		},
