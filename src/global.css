@@ -90,6 +90,12 @@ html[data-theme='dark-hard'] {
 	--bright-purple: hsl(287.44, 42.9%, 70.37%);
 	--bright-white: hsl(43.16, 58.76%, 80.98%);
 	--bright-ocean: hsl(237.06, 40.89%, 69.04%);
+	--scanlines: repeating-linear-gradient(
+		to bottom,
+		transparent 0,
+		rgb(0 0 0 / 0.12) 2px,
+		transparent 3px
+	);
 }
 
 html[data-theme='light'] {
@@ -124,6 +130,12 @@ html[data-theme='light-hard'] {
 	--bright-purple: hsl(287.44, 58.9%, 41.37%);
 	--bright-white: hsl(20, 5.26%, 22.35%);
 	--bright-ocean: hsl(237.06, 40.89%, 49.04%);
+	--scanlines: repeating-linear-gradient(
+		to bottom,
+		transparent 0,
+		rgb(60 56 54 / 0.06) 2px,
+		transparent 3px
+	);
 }
 
 /* syntax highlighting */
@@ -264,7 +276,7 @@ body {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	background: var(--black);
+	background: var(--scanlines), var(--black);
 	color: var(--bright-white);
 	font-family: 'commit-mono', monospace;
 }

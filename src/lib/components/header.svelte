@@ -47,11 +47,11 @@ header {
 	left: 0;
 	display: grid;
 	place-items: center;
-	background: var(--black);
+	background: var(--scanlines), var(--black);
 	overflow-x: scroll;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
-	z-index: 1; /* to stack above scrollable main el */
+	z-index: 1;
 }
 .wrapper {
 	padding: 0 1.25rem 0 1rem;

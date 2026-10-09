@@ -84,7 +84,7 @@ footer {
 	bottom: 0;
 	left: 0;
 	z-index: 1;
-	background: var(--black);
+	background: var(--scanlines), var(--black);
 	display: grid;
 	place-items: center;
 
