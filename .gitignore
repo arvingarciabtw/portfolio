@@ -20,8 +20,7 @@ Thumbs.db
 
 # Vite
 .vite
-vite.config.js.timestamp-*
-vite.config.ts.timestamp-*
+vite.config.*.timestamp-*
 
 # Cloudflare 
 worker-configuration.d.ts
