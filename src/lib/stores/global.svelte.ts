@@ -8,6 +8,8 @@ export const global: Global = $state({
 	indexMap: {
 		0: 0,
 	},
+	lastContentRow: 1,
+	lastTocRow: null,
 });
 
 export const pageMaps: PageMaps = {

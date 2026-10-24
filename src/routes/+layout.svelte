@@ -1,14 +1,19 @@
 <script lang="ts">
 import { onMount } from "svelte";
-import { afterNavigate } from "$app/navigation";
 import "../global.css";
 import faviconForLight from "#lib/assets/favicon-for-light.png";
 import faviconForDark from "#lib/assets/favicon-for-dark.png";
 import { font } from "#lib/helpers/fonts.js";
-import { execute, move, navigate } from "#lib/helpers/navigation.js";
-import { position } from "#lib/helpers/position.js";
+import {
+	execute,
+	move,
+	navigate,
+	resetColumnMemory,
+} from "#lib/helpers/navigation.js";
+import { scroll } from "#lib/helpers/scroll.js";
 import { settings } from "#lib/helpers/settings.js";
 import { theme } from "#lib/helpers/theme.js";
+import { global as G } from "#lib/stores/global.svelte.js";
 import Header from "#lib/components/header.svelte";
 import Footer from "#lib/components/footer.svelte";
 
@@ -19,10 +24,6 @@ let currentTheme = $state({
 		? document.documentElement.getAttribute("data-theme") || ""
 		: "",
 });
-let positionState = $state({
-	x: 0,
-	y: 0,
-});
 let fontState = $state({
 	size: 14,
 	weight: 400,
@@ -31,22 +32,29 @@ let fontState = $state({
 function settingsListener(e: KeyboardEvent) {
 	switch (e.key) {
 		case "w":
-			position.y.increase(positionState);
+			scroll.up();
 			break;
 		case "a":
-			position.x.increase(positionState);
+			scroll.left();
 			break;
 		case "s":
-			position.y.decrease(positionState);
+			scroll.down();
 			break;
 		case "d":
-			position.x.decrease(positionState);
+			scroll.right();
 			break;
 		case "r":
-			settings.reset(positionState, fontState);
+			settings.reset(fontState);
+			scroll.reset();
+			G.activeRow = 1;
+			G.activeIndex = 0;
+			resetColumnMemory();
 			break;
 		case "p":
-			position.reset(positionState, 1);
+			scroll.reset();
+			G.activeRow = 1;
+			G.activeIndex = 0;
+			resetColumnMemory();
 			break;
 		case "t":
 			theme.mode(currentTheme);
@@ -92,11 +100,11 @@ function navigationListener(e: KeyboardEvent) {
 			break;
 		case "j":
 		case "ArrowDown":
-			move.down();
+			move.down(e);
 			break;
 		case "k":
 		case "ArrowUp":
-			move.up();
+			move.up(e);
 			break;
 		case "l":
 		case "ArrowRight":
@@ -108,12 +116,6 @@ function navigationListener(e: KeyboardEvent) {
 			break;
 	}
 }
-
-afterNavigate(({ shallow }) => {
-	if (shallow) return;
-
-	position.reset(positionState, null);
-});
 
 onMount(() => {
 	window.addEventListener("keydown", settingsListener);
@@ -145,7 +147,7 @@ onMount(() => {
 </svelte:head>
 
 <Header font={{ size: fontState.size, weight: fontState.weight }} />
-<main style:transform="translate({positionState.x}px, {positionState.y}px)">
+<main>
   {@render children()}
 </main>
 <Footer />
@@ -156,7 +158,6 @@ main {
 	display: grid;
 	justify-items: center;
 	gap: 4rem;
-	transition: transform 0.3s ease;
 }
 
 @media (max-width: 500px) {

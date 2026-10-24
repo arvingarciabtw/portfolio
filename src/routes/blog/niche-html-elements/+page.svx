@@ -64,7 +64,7 @@ So, I recently re-read the
 /> at MDN Web Docs, and I was a bit surprised at some of the stuff I've seen. Feel free to go over the list yourself, but I'm more so writing this as a reminder to myself, and maybe an interesting little nugget for any readers.
 </p>
 
-## section 
+## section
 
 I feel like most people know about `section`, and use it as a more semantic replacement for `div`, but here's the official description from the docs:
 

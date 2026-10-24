@@ -1,5 +1,40 @@
-import type { Experience, ExternalLink, InternalLink, Project } from "./data";
 import { resolve } from "$app/paths";
+
+type Route = string | URL;
+
+type Link = {
+	content: string;
+};
+type InternalLink = Link & {
+	href: Route;
+};
+type ExternalLink = Link & {
+	href: string;
+};
+
+type Experience = {
+	position: string;
+	company: string;
+	url: string;
+	date: string;
+	description: string;
+	points: string[];
+	technologies: string[];
+};
+
+type Metrics = {
+	downloads: number | null;
+	stars: number;
+	forks: number;
+};
+
+type Project = {
+	name: string;
+	url: string;
+	description: string;
+	metrics: Metrics;
+	technologies: string[];
+};
 
 const COLORS = {
 	react: "#0cc8f9",

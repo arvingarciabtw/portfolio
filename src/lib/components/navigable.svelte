@@ -1,209 +1,253 @@
 <script lang="ts">
-import { onMount } from "svelte";
-import { page } from "$app/state";
-import { global as G, pageMaps } from "#lib/stores/global.svelte.js";
-import { navigate } from "#lib/helpers/navigation.js";
+  import { onMount } from "svelte";
+  import { page } from "$app/state";
+  import { global as G, pageMaps } from "#lib/stores/global.svelte.js";
+  import { navigate, nextPosition } from "#lib/helpers/navigation.js";
 
-let shake = $state({
-	left: false,
-	down: false,
-	up: false,
-	right: false,
-});
+  let shake = $state({
+    left: false,
+    down: false,
+    up: false,
+    right: false,
+  });
 
-let {
-	content,
-	href,
-	external,
-	row,
-	idx,
-	underlined = false,
-	multi = false,
-	...rest
-} = $props();
+  let {
+    content,
+    href,
+    external,
+    row,
+    idx,
+    underlined = false,
+    multi = false,
+    ...rest
+  } = $props();
 
-const isActive = $derived(row == G.activeRow && idx == G.activeIndex);
-const isLastVisited = $derived(
-	G.indexMap[row] === idx && row != G.activeRow,
-);
+  const isActive = $derived(row == G.activeRow && idx == G.activeIndex);
+  const isBlog = $derived(page.url.pathname.startsWith("/blog/"));
+  const inContentColumn = $derived(G.activeRow > 0 && G.activeIndex === 0);
+  const inTocColumn = $derived(G.activeRow > 0 && G.activeIndex === 1);
+  // Blog posts have two columns: article links (idx 0) and TOC links (idx 1).
+  // Only mark the remembered item in the column that is not active.
+  const isLastVisited = $derived(
+    isBlog
+      ? row > 0 &&
+          ((!inContentColumn && idx === 0 && row === G.lastContentRow) ||
+            (!inTocColumn && idx === 1 && row === G.lastTocRow))
+      : G.indexMap[row] === idx && row != G.activeRow,
+  );
+  const showLastVisited = $derived(isLastVisited && (multi || isBlog));
 
-function setPageMap() {
-	switch (page.url.pathname) {
-		case "/":
-			pageMaps.home[G.activeRow] = G.activeIndex;
-			break;
-		case "/about":
-			pageMaps.about[G.activeRow] = G.activeIndex;
-			break;
-	}
-}
+  function setPageMap() {
+    switch (page.url.pathname) {
+      case "/":
+        pageMaps.home[G.activeRow] = G.activeIndex;
+        break;
+      case "/about":
+        pageMaps.about[G.activeRow] = G.activeIndex;
+        break;
+    }
+  }
 
-function navigationListener(e: KeyboardEvent) {
-	const rowMatches = row == G.activeRow;
-	const idxMatches = idx == G.activeIndex;
-	const inFirstRow = G.activeRow == 0;
-	const inLastRow = G.activeRow == G.maxRow;
-	const inFirstIdx = idx == 0;
-	const inLastIdx = idx == G.maxRowIndex;
+  function navigationListener(e: KeyboardEvent) {
+    if (!isActive) return;
 
-	switch (e.key) {
-		case "h":
-		case "ArrowLeft":
-			if (inFirstIdx && rowMatches && idxMatches) shake.left = true;
-			setPageMap();
-			break;
-		case "j":
-		case "ArrowDown":
-			if (rowMatches && idxMatches && inLastRow) shake.down = true;
-			setPageMap();
-			break;
-		case "k":
-		case "ArrowUp":
-			if (rowMatches && idxMatches && inFirstRow) shake.up = true;
-			setPageMap();
-			break;
-		case "l":
-		case "ArrowRight":
-			if (inLastIdx && rowMatches && idxMatches) shake.right = true;
-			setPageMap();
-			break;
-	}
-}
+    if (isBlog) {
+      switch (e.key) {
+        case "h":
+        case "ArrowLeft":
+          shake.left = !nextPosition("left", row, idx);
+          break;
+        case "j":
+        case "ArrowDown":
+          shake.down = !nextPosition("down", row, idx);
+          break;
+        case "k":
+        case "ArrowUp":
+          shake.up = !nextPosition("up", row, idx);
+          break;
+        case "l":
+        case "ArrowRight":
+          shake.right = !nextPosition("right", row, idx);
+          break;
+      }
+      return;
+    }
 
-onMount(() => {
-	window.addEventListener("keydown", navigationListener);
+    const rowMatches = row == G.activeRow;
+    const idxMatches = idx == G.activeIndex;
+    const inFirstRow = G.activeRow == 0;
+    const inLastRow = G.activeRow == G.maxRow;
+    const inFirstIdx = idx == 0;
+    const inLastIdx = idx == G.maxRowIndex;
 
-	return () => {
-		window.removeEventListener("keydown", navigationListener);
-	};
-});
+    switch (e.key) {
+      case "h":
+      case "ArrowLeft":
+        if (inFirstIdx && rowMatches && idxMatches) shake.left = true;
+        setPageMap();
+        break;
+      case "j":
+      case "ArrowDown":
+        if (rowMatches && idxMatches && inLastRow) shake.down = true;
+        setPageMap();
+        break;
+      case "k":
+      case "ArrowUp":
+        if (rowMatches && idxMatches && inFirstRow) shake.up = true;
+        setPageMap();
+        break;
+      case "l":
+      case "ArrowRight":
+        if (inLastIdx && rowMatches && idxMatches) shake.right = true;
+        setPageMap();
+        break;
+    }
+  }
 
-let el: any;
-$effect(() => {
-	if (isActive) {
-		el.scrollIntoView({ behavior: "smooth", block: "nearest" });
-	}
-});
+  onMount(() => {
+    window.addEventListener("keydown", navigationListener);
+
+    return () => {
+      window.removeEventListener("keydown", navigationListener);
+    };
+  });
+
+  let el: any;
+  $effect(() => {
+    if (isActive) {
+      el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  });
 </script>
 
 <a
-	bind:this={el}
-	class={`navigable 
-    ${isLastVisited && multi && "last-visited"} 
+  bind:this={el}
+  class={`navigable 
+    ${showLastVisited && "last-visited"} 
     ${isActive && "active"} 
     ${underlined && "underlined"} 
     ${shake.left && "shake-left"} 
     ${shake.down && "shake-down"} 
     ${shake.up && "shake-up"}
     ${shake.right && "shake-right"}`}
-	onanimationend={() => {
-        shake.left = false;
-        shake.down = false;
-        shake.up = false;
-        shake.right = false;
-    }}
-	{href}
-	target={external ? "_blank" : undefined}
-	rel={external ? "noopener noreferrer" : undefined}
-	data-navigable
-	data-row={row}
-	data-idx={idx}
-	onmousedown={() => {
-        navigate(href);
-    }}
-	{...rest}
+  {href}
+  target={external ? "_blank" : undefined}
+  rel={external ? "noopener noreferrer" : undefined}
+  data-navigable
+  data-row={row}
+  data-idx={idx}
+  onmousedown={() => {
+    if (isBlog && row > 0) {
+      if (idx === 0) {
+        G.lastContentRow = row;
+      } else if (idx === 1) {
+        G.lastTocRow = row;
+      }
+    }
+
+    G.activeRow = row;
+    G.activeIndex = idx;
+    navigate(href);
+  }}
+  onanimationend={() => {
+    shake.left = false;
+    shake.down = false;
+    shake.up = false;
+    shake.right = false;
+  }}
+  {...rest}
 >
-    {content}
+  {content}
 </a>
 
 <style>
-a.navigable {
-	padding: 1px 0.25rem;
-	max-width: 100%;
-	display: inline-block;
-	color: inherit;
-	line-height: 1.5;
-	scroll-margin-top: 15rem;
-	scroll-margin-bottom: 15rem;
+  a.navigable {
+    padding: 1px 0.25rem;
+    max-width: 100%;
+    display: inline-block;
+    color: inherit;
+    line-height: 1.5;
+    scroll-margin-top: 15rem;
+    scroll-margin-bottom: 15rem;
 
-	&.underlined {
-		text-decoration: underline dotted;
-	}
+    &.underlined {
+      text-decoration: underline dotted;
+    }
 
-	&:hover,
-	&.last-visited,
-	&.active {
-		&.underlined {
-			text-decoration: none;
-		}
-	}
+    &:hover,
+    &.last-visited,
+    &.active {
+      &.underlined {
+        text-decoration: none;
+      }
+    }
 
-	&:hover {
-		background: var(--flicker-color);
-		color: var(--black);
-		animation: flicker 0.4s steps(1, end) 1;
-	}
+    &:hover {
+      background: var(--flicker-color);
+      color: var(--black);
+      animation: flicker 0.4s steps(1, end) 1;
+    }
 
-	&.last-visited {
-		background-color: var(--black);
-		color: var(--bright-white);
-		opacity: 0.5;
-		background-size: 4px 4px;
-		background-image: repeating-linear-gradient(
-			45deg,
-			var(--bright-black) 0,
-			var(--bright-black) 1px,
-			var(--black),
-			var(--black) 50%
-		);
-	}
+    &.last-visited {
+      background-color: var(--black);
+      color: var(--bright-white);
+      opacity: 0.5;
+      background-size: 4px 4px;
+      background-image: repeating-linear-gradient(
+        45deg,
+        var(--bright-black) 0,
+        var(--bright-black) 1px,
+        var(--black),
+        var(--black) 50%
+      );
+    }
 
-	&.active {
-		background: var(--flicker-color);
-		color: var(--black);
-		animation: flicker 0.4s steps(1, end) 1;
-	}
+    &.active {
+      background: var(--flicker-color);
+      color: var(--black);
+      animation: flicker 0.4s steps(1, end) 1;
+    }
 
-	&.shake-up,
-	&.shake-down,
-	&.shake-left,
-	&.shake-right {
-		padding: 1px 0.25rem;
-		display: inline-block;
-	}
-	&.shake-up {
-		animation: shake-up 0.1s;
-	}
-	&.shake-down {
-		animation: shake-down 0.1s;
-	}
-	&.shake-left {
-		animation: shake-left 0.1s;
-	}
-	&.shake-right {
-		animation: shake-right 0.1s;
-	}
-}
+    &.shake-up,
+    &.shake-down,
+    &.shake-left,
+    &.shake-right {
+      padding: 1px 0.25rem;
+      display: inline-block;
+    }
+    &.shake-up {
+      animation: shake-up 0.1s;
+    }
+    &.shake-down {
+      animation: shake-down 0.1s;
+    }
+    &.shake-left {
+      animation: shake-left 0.1s;
+    }
+    &.shake-right {
+      animation: shake-right 0.1s;
+    }
+  }
 
-@media (max-width: 500px) {
-	a.navigable {
-		padding: 0.25rem;
+  @media (max-width: 500px) {
+    a.navigable {
+      padding: 0.25rem;
 
-		&:hover,
-		&.last-visited,
-		&.active {
-			&.underlined {
-				text-decoration: underline dotted;
-			}
-		}
+      &:hover,
+      &.last-visited,
+      &.active {
+        &.underlined {
+          text-decoration: underline dotted;
+        }
+      }
 
-		&.last-visited,
-		&.active {
-			opacity: 1;
-			background: transparent;
-			animation: none;
-			color: var(--active-color, inherit);
-		}
-	}
-}
+      &.last-visited,
+      &.active {
+        opacity: 1;
+        background: transparent;
+        animation: none;
+        color: var(--active-color, inherit);
+      }
+    }
+  }
 </style>

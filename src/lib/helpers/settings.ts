@@ -1,10 +1,7 @@
-import type { FontState, PositionState } from "./helpers.d.ts";
-import { position } from "./position.ts";
+import type { FontState } from "./helpers.d.ts";
 
 export const settings = {
-	reset(positionState: PositionState, fontState: FontState) {
-		position.reset(positionState, 1);
-
+	reset(fontState: FontState) {
 		fontState.size = 14;
 		fontState.weight = 400;
 

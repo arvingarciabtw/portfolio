@@ -105,8 +105,11 @@ header {
 		width: 100%;
 		padding: 1rem 0;
 	}
+	.wrapper {
+		gap: 0;
+	}
 	.section-list {
-		gap: 0.25rem 1rem;
+		gap: 2rem;
 	}
 }
 </style>

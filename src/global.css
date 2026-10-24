@@ -94,8 +94,19 @@ html[data-theme='dark-hard'] {
 		to bottom,
 		transparent 0,
 		rgb(0 0 0 / 0.12) 2px,
-		transparent 3px
+		transparent 4px
 	);
+}
+@media (max-width: 500px) {
+	html[data-theme='dark'],
+	html[data-theme='dark-hard'] {
+		--scanlines: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      rgb(0 0 0 / 0.12) 2px,
+      transparent 3px
+	  );
+	}
 }
 
 html[data-theme='light'] {
@@ -134,8 +145,20 @@ html[data-theme='light-hard'] {
 		to bottom,
 		transparent 0,
 		rgb(60 56 54 / 0.06) 2px,
-		transparent 3px
+		transparent 4px
 	);
+}
+
+@media (max-width: 500px) {
+	html[data-theme='light'],
+	html[data-theme='light'] {
+		--scanlines: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+		  rgb(60 56 54 / 0.06) 2px,
+      transparent 3px
+	  );
+	}
 }
 
 /* syntax highlighting */
@@ -262,6 +285,10 @@ html {
 }
 
 /* general */
+*::selection {
+	background: var(--bright-white);
+	color: var(--black);
+}
 html {
 	display: grid;
 	place-items: center;
@@ -270,6 +297,7 @@ html {
 	font-size: 0.875rem;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
+	scroll-behavior: smooth;
 }
 body {
 	min-height: 100dvh;
